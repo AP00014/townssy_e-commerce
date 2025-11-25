@@ -1,0 +1,26 @@
+/* [project]/app/styles/sectionheader.css [app-client] (css) */
+.section-header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 0 4px;
+  display: flex;
+}
+
+.section-title {
+  color: var(--text-dark);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.view-all-link {
+  color: var(--primary-color);
+  cursor: pointer;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+}
+
+/*# sourceMappingURL=app_styles_sectionheader_css_bad6b30c._.single.css.map*/

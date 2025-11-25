@@ -1,0 +1,101 @@
+/* [project]/app/styles/header.css [app-client] (css) */
+.header {
+  max-height: 200px;
+  padding: 12px 20px 20px;
+  transition: opacity .5s, transform .5s, max-height .5s, padding .5s, margin .5s;
+  overflow: hidden;
+}
+
+.header.hidden {
+  opacity: 0;
+  pointer-events: none;
+  max-height: 0;
+  margin: 0;
+  padding: 0 20px;
+  transform: translateY(-20px);
+}
+
+.header-greeting {
+  color: var(--text-gray);
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.header-title {
+  color: var(--text-dark);
+  margin-bottom: 16px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.header-top {
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.logo {
+  align-items: center;
+  margin-right: 16px;
+  display: flex;
+}
+
+.logo svg {
+  width: 120px;
+  height: 40px;
+}
+
+.cart-icon-wrapper {
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.cart-icon-wrapper svg {
+  width: 24px;
+  height: 24px;
+}
+
+.cart-badge {
+  background-color: var(--cart-badge);
+  color: #fff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+
+.cart-icon-wrapper.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .cart-icon-wrapper.desktop-only {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo svg {
+    width: 80px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo svg {
+    width: 100px;
+    height: 33px;
+  }
+}
+
+/*# sourceMappingURL=app_styles_header_css_bad6b30c._.single.css.map*/

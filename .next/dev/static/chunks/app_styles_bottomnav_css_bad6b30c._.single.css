@@ -1,0 +1,64 @@
+/* [project]/app/styles/bottomnav.css [app-client] (css) */
+.bottom-nav {
+  background: var(--background);
+  border-top: 1px solid var(--border-color);
+  padding: 12px 0;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 100;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 -2px 8px #0000000d;
+}
+
+@media (min-width: 768px) {
+  .bottom-nav {
+    display: none;
+  }
+
+  .page-content {
+    padding-bottom: 20px;
+  }
+}
+
+.nav-item {
+  cursor: pointer;
+  color: var(--text-light-gray);
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  text-decoration: none;
+  transition: color .2s;
+  display: flex;
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.nav-icon-wrapper {
+  position: relative;
+}
+
+.nav-icon-wrapper.active {
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 50%;
+  padding: 8px;
+}
+
+.nav-icon-wrapper.active .nav-icon {
+  color: #fff;
+}
+
+/*# sourceMappingURL=app_styles_bottomnav_css_bad6b30c._.single.css.map*/

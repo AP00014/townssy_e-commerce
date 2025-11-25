@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/globals.css"],"sourcesContent":["/* Import all component styles */\r\n@import './styles/variables.css';\r\n@import './styles/base.css';\r\n@import './styles/statusbar.css';\r\n@import './styles/header.css';\r\n@import './styles/searchbar.css';\r\n@import './styles/desktopnav.css';\r\n@import './styles/sectionheader.css';\r\n@import './styles/categories.css';\r\n@import './styles/promobanner.css';\r\n@import './styles/products.css';\r\n@import './styles/bottomnav.css';\r\n@import './styles/theme.css';\r\n@import './styles/productdetail.css';\r\n@import './styles/menu.css';\r\n@import './styles/profilemodal.css';\r\n@import './styles/categoriesmodal.css';\r\n@import './styles/top-ranking.css';\r\n"],"names":[],"mappings":""}}]
+}

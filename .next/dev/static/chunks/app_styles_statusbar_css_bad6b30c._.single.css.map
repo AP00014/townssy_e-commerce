@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/styles/statusbar.css"],"sourcesContent":[".status-bar {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  padding: 8px 20px;\r\n  font-size: 14px;\r\n  font-weight: 600;\r\n  color: var(--text-dark);\r\n  background: transparent;\r\n  transition: color 0.3s ease;\r\n}\r\n\r\n.status-bar-right {\r\n  display: flex;\r\n  align-items: center;\r\n  gap: 4px;\r\n}\r\n\r\n"],"names":[],"mappings":"AAAA;;;;;;;;;;;;AAYA"}}]
+}

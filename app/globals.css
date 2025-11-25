@@ -1,0 +1,18 @@
+/* Import all component styles */
+@import './styles/variables.css';
+@import './styles/base.css';
+@import './styles/statusbar.css';
+@import './styles/header.css';
+@import './styles/searchbar.css';
+@import './styles/desktopnav.css';
+@import './styles/sectionheader.css';
+@import './styles/categories.css';
+@import './styles/promobanner.css';
+@import './styles/products.css';
+@import './styles/bottomnav.css';
+@import './styles/theme.css';
+@import './styles/productdetail.css';
+@import './styles/menu.css';
+@import './styles/profilemodal.css';
+@import './styles/categoriesmodal.css';
+@import './styles/top-ranking.css';

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/HP/Desktop/my%20projects/Townssy%20E-commerce/app/page.js"],"sourcesContent":["export default function Home() {\r\n  return (\r\n    <main>\r\n      <h1>Welcome to Townssy E-commerce</h1>\r\n    </main>\r\n  )\r\n}"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;kBACC,cAAA,8OAAC;sBAAG;;;;;;;;;;;AAGV"}}]
+}

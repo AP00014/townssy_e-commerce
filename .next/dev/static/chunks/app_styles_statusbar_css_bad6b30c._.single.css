@@ -1,0 +1,20 @@
+/* [project]/app/styles/statusbar.css [app-client] (css) */
+.status-bar {
+  color: var(--text-dark);
+  background: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color .3s;
+  display: flex;
+}
+
+.status-bar-right {
+  align-items: center;
+  gap: 4px;
+  display: flex;
+}
+
+/*# sourceMappingURL=app_styles_statusbar_css_bad6b30c._.single.css.map*/

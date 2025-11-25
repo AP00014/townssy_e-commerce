@@ -1,0 +1,111 @@
+/* [project]/app/styles/favourites.css [app-client] (css) */
+.favourites-header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 0 4px;
+  display: flex;
+}
+
+.favourites-title {
+  color: var(--text-dark);
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.favourites-count {
+  color: var(--text-gray);
+  background: var(--border-color);
+  border-radius: 12px;
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+.favourites-actions {
+  margin-bottom: 20px;
+}
+
+.clear-favourites-btn {
+  color: #fff;
+  cursor: pointer;
+  background: #ef4444;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.clear-favourites-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+.favourites-grid {
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  display: grid;
+}
+
+.empty-favourites {
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  display: flex;
+}
+
+.empty-favourites-icon {
+  color: var(--text-light-gray);
+  margin-bottom: 20px;
+}
+
+.empty-favourites h2 {
+  color: var(--text-dark);
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.empty-favourites p {
+  color: var(--text-gray);
+  margin: 0 0 24px;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .favourites-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .favourites-title {
+    font-size: 20px;
+  }
+
+  .favourites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .favourites-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .empty-favourites {
+    padding: 40px 20px;
+  }
+
+  .empty-favourites h2 {
+    font-size: 20px;
+  }
+}
+
+/*# sourceMappingURL=app_styles_favourites_css_bad6b30c._.single.css.map*/

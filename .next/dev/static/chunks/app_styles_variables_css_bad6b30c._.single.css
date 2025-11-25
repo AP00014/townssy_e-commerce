@@ -1,0 +1,34 @@
+/* [project]/app/styles/variables.css [app-client] (css) */
+:root {
+  --green-100: #004600;
+  --green-200: #003c00;
+  --green-300: #003200;
+  --green-400: #002800;
+  --green-500: #001e00;
+  --green-600: #001400;
+  --green-700: #000a00;
+  --primary-color: #004600;
+  --primary-color-dark: #003200;
+  --background: #f5f9f5;
+  --border-color: #e6f0e6;
+  --text-dark: #001e00;
+  --text-gray: #002800;
+  --text-light-gray: #003c00;
+  --cart-badge: red;
+  --shadow-color: #0046001a;
+}
+
+[data-theme="dark"] {
+  --primary-color: #003200;
+  --primary-color-dark: #002800;
+  --background: #000a00;
+  --background-secondary: #001400;
+  --border-color: #002800;
+  --text-dark: #e6f0e6;
+  --text-gray: #b3d9b3;
+  --text-light-gray: #80c280;
+  --cart-badge: #f44;
+  --shadow-color: #0028004d;
+}
+
+/*# sourceMappingURL=app_styles_variables_css_bad6b30c._.single.css.map*/

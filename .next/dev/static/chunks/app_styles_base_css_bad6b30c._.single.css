@@ -1,0 +1,52 @@
+/* [project]/app/styles/base.css [app-client] (css) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--text-dark);
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  transition: background-color .3s, color .3s;
+  overflow-x: hidden;
+}
+
+html {
+  background-color: var(--background);
+  transition: background-color .3s;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.page-content {
+  padding-top: 0;
+  padding-bottom: 80px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 24px;
+  }
+
+  .page-content {
+    padding-bottom: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1400px;
+    padding: 0 32px;
+  }
+}
+
+/*# sourceMappingURL=app_styles_base_css_bad6b30c._.single.css.map*/

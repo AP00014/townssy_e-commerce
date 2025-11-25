@@ -1,0 +1,137 @@
+/* [project]/app/styles/menu.css [app-client] (css) */
+.menu-overlay {
+  z-index: 998;
+  background: #00000080;
+  animation: .3s fadeIn;
+  position: fixed;
+  inset: 0;
+}
+
+.menu-container {
+  background: var(--background);
+  z-index: 999;
+  width: 85%;
+  max-width: 320px;
+  animation: .3s slideInRight;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow-y: auto;
+  box-shadow: -4px 0 20px #00000026;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.menu-header {
+  border-bottom: 1px solid var(--border-color);
+  background: var(--background);
+  z-index: 1;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+
+.menu-title {
+  color: var(--text-dark);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.menu-close-btn {
+  cursor: pointer;
+  color: var(--text-dark);
+  background: none;
+  border: none;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  transition: background-color .2s;
+  display: flex;
+}
+
+.menu-close-btn:hover {
+  background: var(--border-color);
+}
+
+.menu-content {
+  padding: 20px 0;
+}
+
+.menu-section {
+  margin-bottom: 32px;
+}
+
+.menu-section-title {
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 12px;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.menu-item {
+  color: var(--text-dark);
+  cursor: pointer;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: background-color .2s;
+  display: flex;
+}
+
+.menu-item:hover {
+  background: var(--border-color);
+}
+
+.menu-item svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-gray);
+  flex-shrink: 0;
+}
+
+.menu-item span {
+  flex: 1;
+  font-size: 16px;
+}
+
+.menu-theme-item {
+  justify-content: space-between;
+}
+
+.menu-theme-toggle-wrapper {
+  align-items: center;
+  display: flex;
+}
+
+[data-theme="dark"] .menu-container {
+  box-shadow: -4px 0 20px #0006;
+}
+
+/*# sourceMappingURL=app_styles_menu_css_bad6b30c._.single.css.map*/

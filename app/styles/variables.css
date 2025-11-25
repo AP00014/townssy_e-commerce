@@ -1,0 +1,36 @@
+:root {
+  /* Green color palette */
+  --green-100: #004600;
+  --green-200: #003c00;
+  --green-300: #003200;
+  --green-400: #002800;
+  --green-500: #001e00;
+  --green-600: #001400;
+  --green-700: #000a00;
+
+  /* Light mode colors */
+  --primary-color: #004600;
+  --primary-color-dark: #003200;
+  --background: #f5f9f5;
+  --border-color: #e6f0e6;
+  --text-dark: #001e00;
+  --text-gray: #002800;
+  --text-light-gray: #003c00;
+  --cart-badge: #FF0000;
+  --shadow-color: rgba(0, 70, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  /* Dark mode colors */
+  --primary-color: #003200;
+  --primary-color-dark: #002800;
+  --background: #000a00;
+  --background-secondary: #001400;
+  --border-color: #002800;
+  --text-dark: #e6f0e6;
+  --text-gray: #b3d9b3;
+  --text-light-gray: #80c280;
+  --cart-badge: #FF4444;
+  --shadow-color: rgba(0, 40, 0, 0.3);
+}
+

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/styles/categories.css"],"sourcesContent":[".categories-container {\r\n  margin-bottom: 24px;\r\n}\r\n\r\n.categories-scroll {\r\n  display: flex;\r\n  gap: 16px;\r\n  overflow-x: auto;\r\n  padding: 8px 4px;\r\n  scrollbar-width: none;\r\n  -ms-overflow-style: none;\r\n}\r\n\r\n.categories-scroll::-webkit-scrollbar {\r\n  display: none;\r\n}\r\n\r\n.category-card {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  gap: 8px;\r\n  min-width: 80px;\r\n  cursor: pointer;\r\n}\r\n\r\n.category-image {\r\n  width: 80px;\r\n  height: 80px;\r\n  border-radius: 50%;\r\n  object-fit: cover;\r\n  background: var(--border-color);\r\n}\r\n\r\n.category-label {\r\n  font-size: 12px;\r\n  color: var(--text-dark);\r\n  font-weight: 500;\r\n  text-align: center;\r\n}\r\n\r\n"],"names":[],"mappings":"AAAA;;;;AAIA;;;;;;;;;AASA;;;;AAIA;;;;;;;;;AASA;;;;;;;;AAQA"}}]
+}

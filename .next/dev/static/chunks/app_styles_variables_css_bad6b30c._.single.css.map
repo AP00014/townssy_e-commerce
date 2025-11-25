@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/app/styles/variables.css"],"sourcesContent":[":root {\n  /* Green color palette */\n  --green-100: #004600;\n  --green-200: #003c00;\n  --green-300: #003200;\n  --green-400: #002800;\n  --green-500: #001e00;\n  --green-600: #001400;\n  --green-700: #000a00;\n\n  /* Light mode colors */\n  --primary-color: #004600;\n  --primary-color-dark: #003200;\n  --background: #f5f9f5;\n  --border-color: #e6f0e6;\n  --text-dark: #001e00;\n  --text-gray: #002800;\n  --text-light-gray: #003c00;\n  --cart-badge: #FF0000;\n  --shadow-color: rgba(0, 70, 0, 0.1);\n}\n\n[data-theme=\"dark\"] {\n  /* Dark mode colors */\n  --primary-color: #003200;\n  --primary-color-dark: #002800;\n  --background: #000a00;\n  --background-secondary: #001400;\n  --border-color: #002800;\n  --text-dark: #e6f0e6;\n  --text-gray: #b3d9b3;\n  --text-light-gray: #80c280;\n  --cart-badge: #FF4444;\n  --shadow-color: rgba(0, 40, 0, 0.3);\n}\n\n"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;AAsBA"}}]
+}

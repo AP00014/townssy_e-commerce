@@ -1,0 +1,43 @@
+/* [project]/app/styles/categories.css [app-client] (css) */
+.categories-container {
+  margin-bottom: 24px;
+}
+
+.categories-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 16px;
+  padding: 8px 4px;
+  display: flex;
+  overflow-x: auto;
+}
+
+.categories-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.category-card {
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 80px;
+  display: flex;
+}
+
+.category-image {
+  object-fit: cover;
+  background: var(--border-color);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.category-label {
+  color: var(--text-dark);
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=app_styles_categories_css_bad6b30c._.single.css.map*/

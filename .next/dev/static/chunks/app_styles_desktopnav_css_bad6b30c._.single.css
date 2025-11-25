@@ -1,0 +1,74 @@
+/* [project]/app/styles/desktopnav.css [app-client] (css) */
+.desktop-nav {
+  align-items: center;
+  gap: 16px;
+  display: none;
+}
+
+.desktop-nav-item {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  width: 44px;
+  height: 44px;
+  color: var(--text-dark);
+  cursor: pointer;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: all .2s;
+  display: flex;
+  position: relative;
+}
+
+.desktop-nav-item:hover {
+  background: var(--border-color);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px #0000001a;
+}
+
+.desktop-nav-item svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-dark);
+  color: var(--text-dark);
+}
+
+.desktop-cart-wrapper {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.desktop-cart-badge {
+  background-color: var(--cart-badge);
+  color: #fff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+
+.profile-dropdown-container {
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+
+  .search-bar-container {
+    margin-bottom: 24px;
+  }
+}
+
+/*# sourceMappingURL=app_styles_desktopnav_css_bad6b30c._.single.css.map*/

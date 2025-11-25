@@ -1,0 +1,141 @@
+/* [project]/app/styles/filters.css [app-client] (css) */
+.filters-container {
+  position: relative;
+}
+
+.filters-toggle {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 12px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all .2s;
+  display: flex;
+}
+
+.filters-toggle:hover {
+  background: var(--border-color);
+  border-color: var(--primary-color);
+}
+
+.filters-toggle svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--text-dark);
+}
+
+.filters-dropdown {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  z-index: 100;
+  border-radius: 12px;
+  min-width: 280px;
+  max-height: 400px;
+  padding: 20px;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px #0000001a;
+}
+
+.filter-section {
+  margin-bottom: 24px;
+}
+
+.filter-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.filter-title {
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.filter-options {
+  flex-direction: column;
+  gap: 8px;
+  display: flex;
+}
+
+.filter-option {
+  cursor: pointer;
+  border-radius: 8px;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  transition: background-color .2s;
+  display: flex;
+}
+
+.filter-option:hover {
+  background: var(--border-color);
+}
+
+.filter-option input[type="radio"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+}
+
+.filter-option span {
+  color: var(--text-dark);
+  font-size: 14px;
+}
+
+.filter-actions {
+  border-top: 1px solid var(--border-color);
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 20px;
+  display: flex;
+}
+
+.filter-clear, .filter-apply {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  flex: 1;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.filter-clear {
+  background: var(--border-color);
+  color: var(--text-dark);
+}
+
+.filter-clear:hover {
+  background: var(--text-light-gray);
+}
+
+.filter-apply {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.filter-apply:hover {
+  background: var(--primary-color-dark);
+}
+
+@media (min-width: 768px) {
+  .filters-dropdown {
+    min-width: 320px;
+    left: 0;
+    right: auto;
+  }
+}
+
+/*# sourceMappingURL=app_styles_filters_css_bad6b30c._.single.css.map*/
