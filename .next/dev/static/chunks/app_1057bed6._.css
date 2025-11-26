@@ -260,6 +260,7 @@ html {
 
 .search-input {
   color: var(--text-dark);
+  background: none;
   border: none;
   outline: none;
   flex: 1;
@@ -638,7 +639,7 @@ html {
   }
 
   .promo-banner-wrapper {
-    height: 200px;
+    height: 280px;
   }
 
   .promo-title {
