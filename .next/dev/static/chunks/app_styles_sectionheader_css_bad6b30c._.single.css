@@ -13,6 +13,11 @@
   font-weight: 700;
 }
 
+.section-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
 .view-all-link {
   color: var(--primary-color);
   cursor: pointer;

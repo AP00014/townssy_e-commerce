@@ -67,9 +67,6 @@ export default function TopRankingPage() {
               originalPrice={product.originalPrice}
               isFavorite={product.isFavorite}
               badge={product.badge}
-              moq={product.moq}
-              sellerInfo={product.sellerInfo}
-              soldCount={product.soldCount}
               variant="top-ranking"
             />
           ))}

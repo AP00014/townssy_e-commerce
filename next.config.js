@@ -1,9 +1,12 @@
 module.exports = {
-  output: 'export',
+  output: "export",
   trailingSlash: true,
-  basePath: '/townssy_e-commerce',
-  assetPrefix: '/townssy_e-commerce/',
   images: {
     unoptimized: true,
   },
-}
+  turbopack: {},
+  webpack: (config) => {
+    config.ignoreWarnings = [{ module: /node_modules/, message: /source map/ }];
+    return config;
+  },
+};

@@ -17,17 +17,19 @@
 /* Profile modal for mobile */
 .profile-modal {
   background: var(--background);
-  border-radius: 16px;
   width: 100%;
-  max-width: 360px;
-  max-height: 85vh;
+  max-width: 400px;
+  height: 100vh;
   overflow-y: auto;
   z-index: 10000;
-  animation: slideUp 0.3s ease;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: slideLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
   position: fixed;
-  padding: 20px;
-  bottom: 200px;
+  top: 0;
+  right: 0;
+  padding: 24px;
+  padding-bottom: 90px;
+  border-left: 1px solid var(--border-color);
 }
 
 /* Dropdown styles for desktop */
@@ -52,14 +54,12 @@
   to { opacity: 1; }
 }
 
-@keyframes slideUp {
+@keyframes slideLeft {
   from {
-    transform: translateY(20px);
-    opacity: 0;
+    transform: translateX(100%);
   }
   to {
-    transform: translateY(0);
-    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -410,10 +410,10 @@
   }
 
   .profile-modal {
-    max-height: 90vh;
-    border-radius: 14px;
-    padding: 16px;
-    margin-left: 16px;
+    max-width: 100%; /* Full width on very small screens if needed, or keep max-width */
+    border-radius: 0;
+    padding: 20px;
+    margin-left: 0;
   }
 
   .profile-dropdown {
@@ -446,8 +446,9 @@
 
 @media (max-width: 480px) {
   .profile-modal {
-    padding: 12px;
-     margin-left: 12px;
+    padding: 16px;
+    margin-left: 0;
+    max-width: 100%;
   }
 
   .profile-dropdown {

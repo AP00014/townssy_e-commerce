@@ -88,6 +88,32 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
+/* Filter Button */
+.category-tab-filter {
+  padding: 12px 12px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light-gray);
+  transition: all 0.2s;
+  margin-left: 4px;
+  flex-shrink: 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.category-tab-filter:hover {
+  color: var(--text-dark);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.category-tab-filter:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
 .products-container {
   margin-bottom: 24px;
 }
@@ -263,6 +289,7 @@
   line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -288,74 +315,6 @@
   text-decoration: line-through;
 }
 
-.product-discount {
-  font-size: 12px;
-  color: #FF0000;
-  font-weight: 600;
-}
-
-/* MOQ */
-.product-moq {
-  font-size: 12px;
-  color: var(--text-light-gray);
-  margin-bottom: 4px;
-}
-
-/* Price Indicator */
-.product-price-indicator {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  color: #FF0000;
-  margin-bottom: 4px;
-}
-
-.product-price-indicator svg {
-  color: #FF0000;
-}
-
-/* Delivery Info */
-.product-delivery {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  color: #10b981;
-  margin-bottom: 4px;
-}
-
-.product-delivery svg {
-  color: #10b981;
-}
-
-/* Reorder Rate */
-.product-reorder {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  color: #10b981;
-  margin-bottom: 4px;
-}
-
-.product-reorder svg {
-  color: #10b981;
-}
-
-/* Sold Count */
-.product-sold {
-  font-size: 11px;
-  color: var(--text-light-gray);
-  margin-bottom: 4px;
-}
-
-/* Seller Info */
-.product-seller {
-  font-size: 11px;
-  color: var(--text-light-gray);
-  margin-top: 4px;
-}
 
 /* Hexagonal TOP Badge for Top Ranking */
 .product-top-badge-hexagonal {

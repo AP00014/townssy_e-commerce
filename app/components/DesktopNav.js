@@ -4,10 +4,11 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import ProfileModal from './ProfileModal';
+import { useProfile } from '../context/ProfileContext';
 
 export default function DesktopNav({ cartCount = 3 }) {
   const pathname = usePathname();
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const { isProfileOpen, toggleProfile, closeProfile } = useProfile();
 
   return (
     <>
@@ -32,14 +33,14 @@ export default function DesktopNav({ cartCount = 3 }) {
         <div className="profile-dropdown-container">
           <div
             className="desktop-nav-item"
-            onClick={() => setIsProfileModalOpen(true)}
+            onClick={toggleProfile}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
           </div>
-          <ProfileModal isOpen={isProfileModalOpen} onClose={() => setIsProfileModalOpen(false)} variant="dropdown" />
+          <ProfileModal isOpen={isProfileOpen} onClose={closeProfile} variant="dropdown" />
         </div>
       </div>
     </>

@@ -1,0 +1,256 @@
+/* [project]/app/styles/quickfilter.css [app-client] (css) */
+.quick-filter-overlay {
+  z-index: 2000;
+  background: #00000080;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+
+.quick-filter-modal {
+  background: var(--background);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px #0003;
+}
+
+.quick-filter-header {
+  border-bottom: 1px solid var(--border-color);
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  display: flex;
+}
+
+.quick-filter-header h3 {
+  color: var(--text-dark);
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.quick-filter-close {
+  color: var(--text-secondary);
+  cursor: pointer;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  padding: 4px;
+  transition: all .2s;
+}
+
+.quick-filter-close:hover {
+  background: var(--background-secondary, #0000000d);
+  color: var(--text-dark);
+}
+
+.quick-filter-content {
+  padding: 20px;
+}
+
+.filter-section {
+  margin-bottom: 24px;
+}
+
+.filter-section:last-child {
+  margin-bottom: 0;
+}
+
+.filter-label {
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+}
+
+.location-selector {
+  position: relative;
+}
+
+.location-button {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  color: var(--text-dark);
+  cursor: pointer;
+  border-radius: 8px;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  transition: all .2s;
+  display: flex;
+}
+
+.location-button:hover {
+  border-color: var(--primary-color);
+}
+
+.location-button span {
+  text-align: left;
+  flex: 1;
+}
+
+.location-dropdown {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  z-index: 1000;
+  border-radius: 8px;
+  max-height: 200px;
+  margin-top: 4px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px #00000026;
+}
+
+.location-option {
+  text-align: left;
+  width: 100%;
+  color: var(--text-dark);
+  cursor: pointer;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  background: none;
+  padding: 12px 16px;
+  font-size: 14px;
+  transition: background-color .2s;
+  display: block;
+}
+
+.location-option:last-child {
+  border-bottom: none;
+}
+
+.location-option:hover {
+  background: var(--background-secondary, #0000000d);
+}
+
+.location-option.active {
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+}
+
+.price-inputs {
+  align-items: center;
+  gap: 12px;
+  display: flex;
+}
+
+.price-input-group {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.currency-symbol {
+  color: var(--text-secondary);
+  z-index: 1;
+  font-size: 14px;
+  position: absolute;
+  left: 12px;
+}
+
+.price-input {
+  border: 1px solid var(--border-color);
+  background: var(--background);
+  width: 100%;
+  color: var(--text-dark);
+  border-radius: 8px;
+  padding: 12px 12px 12px 28px;
+  font-size: 14px;
+  transition: border-color .2s;
+}
+
+.price-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+.price-separator {
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.quick-filter-actions {
+  border-top: 1px solid var(--border-color);
+  gap: 12px;
+  padding: 20px;
+  display: flex;
+}
+
+.clear-button, .apply-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all .2s;
+}
+
+.clear-button {
+  background: var(--background-secondary, #0000000d);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.clear-button:hover {
+  background: var(--background-secondary, #0000001a);
+}
+
+.apply-button {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.apply-button:hover {
+  background: var(--primary-hover, #e55b3c);
+}
+
+[data-theme="dark"] .quick-filter-overlay {
+  background: #000000b3;
+}
+
+[data-theme="dark"] .quick-filter-modal {
+  box-shadow: 0 10px 25px #0006;
+}
+
+[data-theme="dark"] .location-dropdown {
+  box-shadow: 0 4px 12px #0000004d;
+}
+
+@media (max-width: 480px) {
+  .quick-filter-overlay, .quick-filter-header, .quick-filter-content {
+    padding: 16px;
+  }
+
+  .quick-filter-actions {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .price-inputs {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .price-separator {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=app_styles_quickfilter_css_bad6b30c._.single.css.map*/

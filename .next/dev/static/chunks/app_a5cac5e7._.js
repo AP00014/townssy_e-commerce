@@ -9,9 +9,7 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$context$2f$FavouritesContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/context/FavouritesContext.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check.js [app-client] (ecmascript) <export default as Check>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/search.js [app-client] (ecmascript) <export default as Search>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowDown$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-down.js [app-client] (ecmascript) <export default as ArrowDown>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-up.js [app-client] (ecmascript) <export default as ArrowUp>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/award.js [app-client] (ecmascript) <export default as Award>");
 ;
@@ -20,8 +18,8 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite = false, // New Alibaba-style props
-badge, moq, sellerInfo, priceIndicator, deliveryInfo, reorderRate, soldCount, discount, showVisualSearch = true, variant = 'default', category, subcategory }) {
+function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite = false, badge, showVisualSearch = true, variant = 'default' // 'default', 'top-deal', 'top-ranking', 'grid'
+ }) {
     _s();
     const { toggleFavourite, isFavourite } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$context$2f$FavouritesContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useFavourites"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -47,32 +45,32 @@ badge, moq, sellerInfo, priceIndicator, deliveryInfo, reorderRate, soldCount, di
                             className: "product-image"
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 45,
+                            lineNumber: 35,
                             columnNumber: 11
                         }, this),
-                        badge && variant !== 'top-ranking' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        badge && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: `product-badge product-badge-${badge.type || 'default'}`,
                             children: badge.text
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 53,
+                            lineNumber: 43,
                             columnNumber: 13
                         }, this),
-                        showVisualSearch && variant !== 'top-ranking' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        showVisualSearch && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "product-visual-search",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
                                 size: 14
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 61,
+                                lineNumber: 51,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 60,
+                            lineNumber: 50,
                             columnNumber: 13
                         }, this),
-                        variant !== 'top-ranking' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: `product-favorite ${favourite ? 'active' : ''}`,
                             onClick: (e)=>{
                                 e.preventDefault();
@@ -98,275 +96,122 @@ badge, moq, sellerInfo, priceIndicator, deliveryInfo, reorderRate, soldCount, di
                                     d: "M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/ProductCard.js",
-                                    lineNumber: 82,
-                                    columnNumber: 17
+                                    lineNumber: 71,
+                                    columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 81,
-                                columnNumber: 15
+                                lineNumber: 70,
+                                columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 67,
+                            lineNumber: 56,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/components/ProductCard.js",
+                    lineNumber: 34,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "product-info",
+                    children: [
+                        badge && badge.position === 'above-title' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: `product-badge-inline product-badge-${badge.type || 'default'}`,
+                            children: badge.text
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/ProductCard.js",
+                            lineNumber: 79,
                             columnNumber: 13
                         }, this),
-                        variant === 'top-ranking' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "product-top-badge-hexagonal",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                children: "TOP"
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "product-title-link",
+                            onClick: ()=>router.push(`/products/${id || 1}`),
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "product-title",
+                                children: title
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 90,
-                                columnNumber: 15
+                                lineNumber: 85,
+                                columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 89,
+                            lineNumber: 84,
+                            columnNumber: 11
+                        }, this),
+                        (variant !== 'top-ranking' || currentPrice) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "product-price",
+                            children: [
+                                currentPrice && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "product-price-current",
+                                    children: formatPrice(currentPrice)
+                                }, void 0, false, {
+                                    fileName: "[project]/app/components/ProductCard.js",
+                                    lineNumber: 92,
+                                    columnNumber: 17
+                                }, this),
+                                originalPrice && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "product-price-original",
+                                    children: formatPrice(originalPrice)
+                                }, void 0, false, {
+                                    fileName: "[project]/app/components/ProductCard.js",
+                                    lineNumber: 95,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/components/ProductCard.js",
+                            lineNumber: 90,
+                            columnNumber: 13
+                        }, this),
+                        badge && badge.position === 'below-title' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: `product-ranking-badge product-ranking-badge-${badge.type || 'default'}`,
+                            children: [
+                                badge.icon === 'crown' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__["Award"], {
+                                    size: 12
+                                }, void 0, false, {
+                                    fileName: "[project]/app/components/ProductCard.js",
+                                    lineNumber: 103,
+                                    columnNumber: 42
+                                }, this),
+                                badge.icon === 'arrow-up' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUp$3e$__["ArrowUp"], {
+                                    size: 12
+                                }, void 0, false, {
+                                    fileName: "[project]/app/components/ProductCard.js",
+                                    lineNumber: 104,
+                                    columnNumber: 45
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    children: badge.text
+                                }, void 0, false, {
+                                    fileName: "[project]/app/components/ProductCard.js",
+                                    lineNumber: 105,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/components/ProductCard.js",
+                            lineNumber: 102,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/ProductCard.js",
-                    lineNumber: 44,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "product-info",
-                    children: variant === 'top-ranking' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "product-category-text",
-                            children: [
-                                category && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "product-category-label",
-                                    children: category
-                                }, void 0, false, {
-                                    fileName: "[project]/app/components/ProductCard.js",
-                                    lineNumber: 100,
-                                    columnNumber: 30
-                                }, this),
-                                subcategory && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "product-category-name",
-                                    children: subcategory
-                                }, void 0, false, {
-                                    fileName: "[project]/app/components/ProductCard.js",
-                                    lineNumber: 101,
-                                    columnNumber: 33
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 99,
-                            columnNumber: 15
-                        }, this)
-                    }, void 0, false) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
-                        children: [
-                            badge && badge.position === 'above-title' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: `product-badge-inline product-badge-${badge.type || 'default'}`,
-                                children: badge.text
-                            }, void 0, false, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 108,
-                                columnNumber: 17
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "product-title-link",
-                                onClick: ()=>router.push(`/products/${id || 1}`),
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "product-title",
-                                    children: title
-                                }, void 0, false, {
-                                    fileName: "[project]/app/components/ProductCard.js",
-                                    lineNumber: 114,
-                                    columnNumber: 17
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 113,
-                                columnNumber: 15
-                            }, this),
-                            currentPrice && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "product-price",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "product-price-current",
-                                        children: formatPrice(currentPrice)
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 120,
-                                        columnNumber: 19
-                                    }, this),
-                                    originalPrice && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "product-price-original",
-                                        children: formatPrice(originalPrice)
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 122,
-                                        columnNumber: 21
-                                    }, this),
-                                    discount && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "product-discount",
-                                        children: discount
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 125,
-                                        columnNumber: 21
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 119,
-                                columnNumber: 17
-                            }, this),
-                            moq && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "product-moq",
-                                children: [
-                                    "MOQ: ",
-                                    moq
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 132,
-                                columnNumber: 17
-                            }, this),
-                            badge && badge.position === 'below-title' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: `product-ranking-badge product-ranking-badge-${badge.type || 'default'}`,
-                                children: [
-                                    badge.icon === 'crown' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__["Award"], {
-                                        size: 12
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 138,
-                                        columnNumber: 46
-                                    }, this),
-                                    badge.icon === 'arrow-up' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUp$3e$__["ArrowUp"], {
-                                        size: 12
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 139,
-                                        columnNumber: 49
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: badge.text
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 140,
-                                        columnNumber: 19
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 137,
-                                columnNumber: 17
-                            }, this),
-                            priceIndicator && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "product-price-indicator",
-                                children: [
-                                    priceIndicator.type === 'lower' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$down$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowDown$3e$__["ArrowDown"], {
-                                        size: 12
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 147,
-                                        columnNumber: 55
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: priceIndicator.text
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 148,
-                                        columnNumber: 19
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 146,
-                                columnNumber: 17
-                            }, this),
-                            deliveryInfo && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "product-delivery",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
-                                        size: 12
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 155,
-                                        columnNumber: 19
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: deliveryInfo
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 156,
-                                        columnNumber: 19
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 154,
-                                columnNumber: 17
-                            }, this),
-                            reorderRate && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "product-reorder",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
-                                        size: 12
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 163,
-                                        columnNumber: 19
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: [
-                                            "Reorder rate ",
-                                            reorderRate,
-                                            "%"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/app/components/ProductCard.js",
-                                        lineNumber: 164,
-                                        columnNumber: 19
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 162,
-                                columnNumber: 17
-                            }, this),
-                            soldCount && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "product-sold",
-                                children: [
-                                    soldCount,
-                                    " sold"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 170,
-                                columnNumber: 17
-                            }, this),
-                            sellerInfo && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "product-seller",
-                                children: sellerInfo
-                            }, void 0, false, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 175,
-                                columnNumber: 17
-                            }, this)
-                        ]
-                    }, void 0, true)
-                }, void 0, false, {
-                    fileName: "[project]/app/components/ProductCard.js",
-                    lineNumber: 95,
+                    lineNumber: 76,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/components/ProductCard.js",
-            lineNumber: 43,
+            lineNumber: 33,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/ProductCard.js",
-        lineNumber: 42,
+        lineNumber: 32,
         columnNumber: 5
     }, this);
 }
@@ -1256,8 +1101,8 @@ function BottomNav() {
                 }, this)
         },
         {
-            label: 'Flash',
-            path: '/flash',
+            label: 'Orders',
+            path: '/orders',
             icon: (isActive)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                     width: "24",
                     height: "24",
@@ -1267,14 +1112,69 @@ function BottomNav() {
                     strokeWidth: "2",
                     strokeLinecap: "round",
                     strokeLinejoin: "round",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("polygon", {
-                        points: "13 2 3 14 12 14 11 22 21 10 12 10 13 2"
-                    }, void 0, false, {
-                        fileName: "[project]/app/components/BottomNav.js",
-                        lineNumber: 29,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                            x1: "8",
+                            y1: "6",
+                            x2: "21",
+                            y2: "6"
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/BottomNav.js",
+                            lineNumber: 29,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                            x1: "8",
+                            y1: "12",
+                            x2: "21",
+                            y2: "12"
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/BottomNav.js",
+                            lineNumber: 30,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                            x1: "8",
+                            y1: "18",
+                            x2: "21",
+                            y2: "18"
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/BottomNav.js",
+                            lineNumber: 31,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                            x1: "3",
+                            y1: "6",
+                            x2: "3.01",
+                            y2: "6"
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/BottomNav.js",
+                            lineNumber: 32,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                            x1: "3",
+                            y1: "12",
+                            x2: "3.01",
+                            y2: "12"
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/BottomNav.js",
+                            lineNumber: 33,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("line", {
+                            x1: "3",
+                            y1: "18",
+                            x2: "3.01",
+                            y2: "18"
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/BottomNav.js",
+                            lineNumber: 34,
+                            columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
                     fileName: "[project]/app/components/BottomNav.js",
                     lineNumber: 28,
                     columnNumber: 9
@@ -1299,7 +1199,7 @@ function BottomNav() {
                             r: "1"
                         }, void 0, false, {
                             fileName: "[project]/app/components/BottomNav.js",
-                            lineNumber: 38,
+                            lineNumber: 43,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1308,20 +1208,20 @@ function BottomNav() {
                             r: "1"
                         }, void 0, false, {
                             fileName: "[project]/app/components/BottomNav.js",
-                            lineNumber: 39,
+                            lineNumber: 44,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                             d: "M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
                         }, void 0, false, {
                             fileName: "[project]/app/components/BottomNav.js",
-                            lineNumber: 40,
+                            lineNumber: 45,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/BottomNav.js",
-                    lineNumber: 37,
+                    lineNumber: 42,
                     columnNumber: 9
                 }, this)
         },
@@ -1341,12 +1241,12 @@ function BottomNav() {
                         points: "12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
                     }, void 0, false, {
                         fileName: "[project]/app/components/BottomNav.js",
-                        lineNumber: 49,
+                        lineNumber: 54,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/components/BottomNav.js",
-                    lineNumber: 48,
+                    lineNumber: 53,
                     columnNumber: 9
                 }, this)
         },
@@ -1368,7 +1268,7 @@ function BottomNav() {
                             d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
                         }, void 0, false, {
                             fileName: "[project]/app/components/BottomNav.js",
-                            lineNumber: 59,
+                            lineNumber: 64,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1377,13 +1277,13 @@ function BottomNav() {
                             r: "4"
                         }, void 0, false, {
                             fileName: "[project]/app/components/BottomNav.js",
-                            lineNumber: 60,
+                            lineNumber: 65,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/BottomNav.js",
-                    lineNumber: 58,
+                    lineNumber: 63,
                     columnNumber: 9
                 }, this)
         }
@@ -1409,7 +1309,7 @@ function BottomNav() {
                                     children: item.icon(active)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/BottomNav.js",
-                                    lineNumber: 82,
+                                    lineNumber: 87,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1420,13 +1320,13 @@ function BottomNav() {
                                     children: item.label
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/BottomNav.js",
-                                    lineNumber: 85,
+                                    lineNumber: 90,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, item.path, true, {
                             fileName: "[project]/app/components/BottomNav.js",
-                            lineNumber: 76,
+                            lineNumber: 81,
                             columnNumber: 15
                         }, this);
                     }
@@ -1439,7 +1339,7 @@ function BottomNav() {
                                 children: item.icon(active)
                             }, void 0, false, {
                                 fileName: "[project]/app/components/BottomNav.js",
-                                lineNumber: 92,
+                                lineNumber: 97,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1450,19 +1350,19 @@ function BottomNav() {
                                 children: item.label
                             }, void 0, false, {
                                 fileName: "[project]/app/components/BottomNav.js",
-                                lineNumber: 95,
+                                lineNumber: 100,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, item.path, true, {
                         fileName: "[project]/app/components/BottomNav.js",
-                        lineNumber: 91,
+                        lineNumber: 96,
                         columnNumber: 13
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/app/components/BottomNav.js",
-                lineNumber: 68,
+                lineNumber: 73,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$ProfileModal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1471,7 +1371,7 @@ function BottomNav() {
                 variant: "modal"
             }, void 0, false, {
                 fileName: "[project]/app/components/BottomNav.js",
-                lineNumber: 100,
+                lineNumber: 105,
                 columnNumber: 7
             }, this)
         ]
@@ -1665,7 +1565,51 @@ const featuredProducts = [
         image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
         currentPrice: '$30.0',
         originalPrice: '$40.0',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '1.5 x 1.5 x 0.5 inches',
+            weight: '0.2 lbs',
+            material: 'Plastic and Metal',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.5,
+                author: 'John Doe',
+                date: '2023-10-01',
+                comment: 'Great smartwatch!',
+                verified: true
+            }
+        ],
+        averageRating: 4.5,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'sale',
+                text: 'Sale'
+            }
+        ],
+        category: 'Electronics',
+        tags: [
+            'smart',
+            'watch',
+            'fitness'
+        ]
     },
     {
         id: 2,
@@ -1673,7 +1617,59 @@ const featuredProducts = [
         image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop',
         currentPrice: '₹ 1,100',
         originalPrice: '₹ 2,200',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'S',
+                available: true
+            },
+            {
+                size: 'M',
+                available: true
+            },
+            {
+                size: 'L',
+                available: false
+            }
+        ],
+        specifications: {
+            dimensions: '36 x 28 x 1 inches',
+            weight: '1 lbs',
+            material: 'Cotton',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '3-5 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.0,
+                author: 'Jane Smith',
+                date: '2023-09-15',
+                comment: 'Stylish and comfortable!',
+                verified: true
+            }
+        ],
+        averageRating: 4.0,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'sale',
+                text: 'Sale'
+            }
+        ],
+        category: 'Fashion',
+        tags: [
+            'clothing',
+            'jumpsuit',
+            'women'
+        ]
     },
     {
         id: 3,
@@ -1681,7 +1677,50 @@ const featuredProducts = [
         image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop',
         currentPrice: '₹ 2,453',
         originalPrice: '₹ 4,700',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '2 x 2 x 4 inches',
+            weight: '0.3 lbs',
+            material: 'Glass and Plastic',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: false,
+            estimatedDelivery: '5-7 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.8,
+                author: 'Alice Johnson',
+                date: '2023-08-20',
+                comment: 'Amazing for skin!',
+                verified: true
+            }
+        ],
+        averageRating: 4.8,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'sale',
+                text: 'Sale'
+            }
+        ],
+        category: 'Beauty',
+        tags: [
+            'skincare',
+            'serum',
+            'vitamin c'
+        ]
     },
     {
         id: 4,
@@ -1689,7 +1728,63 @@ const featuredProducts = [
         image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop',
         currentPrice: '₹ 1,700',
         originalPrice: '₹ 3,400',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'S',
+                available: true
+            },
+            {
+                size: 'M',
+                available: true
+            },
+            {
+                size: 'L',
+                available: true
+            },
+            {
+                size: 'XL',
+                available: false
+            }
+        ],
+        specifications: {
+            dimensions: '28 x 20 x 1 inches',
+            weight: '0.5 lbs',
+            material: 'Cotton',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.2,
+                author: 'Bob Wilson',
+                date: '2023-07-10',
+                comment: 'Comfortable fit!',
+                verified: true
+            }
+        ],
+        averageRating: 4.2,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'sale',
+                text: 'Sale'
+            }
+        ],
+        category: 'Fashion',
+        tags: [
+            'clothing',
+            't-shirt',
+            'striped'
+        ]
     }
 ];
 const topProducts = [
@@ -1699,7 +1794,35 @@ const topProducts = [
         image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
         currentPrice: '$24.00',
         originalPrice: null,
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '10 x 5 x 2 inches',
+            weight: '1 lbs',
+            material: 'Various',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'General',
+        tags: [
+            'product'
+        ]
     },
     {
         id: 6,
@@ -1707,7 +1830,35 @@ const topProducts = [
         image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop',
         currentPrice: '$24.00',
         originalPrice: null,
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '10 x 5 x 2 inches',
+            weight: '1 lbs',
+            material: 'Various',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'General',
+        tags: [
+            'product'
+        ]
     },
     {
         id: 7,
@@ -1715,7 +1866,35 @@ const topProducts = [
         image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop',
         currentPrice: '$24.00',
         originalPrice: null,
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '10 x 5 x 2 inches',
+            weight: '1 lbs',
+            material: 'Various',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'General',
+        tags: [
+            'product'
+        ]
     }
 ];
 const accessories = [
@@ -1725,7 +1904,35 @@ const accessories = [
         image: 'https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=400&fit=crop',
         currentPrice: '$275.00',
         originalPrice: '$550.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '12 x 8 x 3 inches',
+            weight: '2 lbs',
+            material: 'Various',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Accessories',
+        tags: [
+            'accessory'
+        ]
     },
     {
         id: 9,
@@ -1733,7 +1940,35 @@ const accessories = [
         image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop',
         currentPrice: '$900.00',
         originalPrice: '$1800.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '12 x 8 x 3 inches',
+            weight: '2 lbs',
+            material: 'Various',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Accessories',
+        tags: [
+            'accessory'
+        ]
     },
     {
         id: 10,
@@ -1741,7 +1976,35 @@ const accessories = [
         image: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=400&fit=crop',
         currentPrice: '$400.00',
         originalPrice: '$800.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '12 x 8 x 3 inches',
+            weight: '2 lbs',
+            material: 'Various',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Accessories',
+        tags: [
+            'accessory'
+        ]
     }
 ];
 const newArrivals = [
@@ -1757,6 +2020,49 @@ const newArrivals = [
                 type: 'image',
                 url: 'https://images.unsplash.com/photo-1601593346740-925612772716?w=600&h=600&fit=crop'
             }
+        ],
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '6 x 4 x 0.5 inches',
+            weight: '0.2 lbs',
+            material: 'Plastic',
+            warranty: '6 months'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.5,
+                author: 'User1',
+                date: '2023-11-01',
+                comment: 'Good protection!',
+                verified: true
+            }
+        ],
+        averageRating: 4.5,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'new',
+                text: 'New Arrival'
+            }
+        ],
+        category: 'Accessories',
+        tags: [
+            'phone',
+            'case'
         ]
     },
     {
@@ -1771,6 +2077,49 @@ const newArrivals = [
                 type: 'image',
                 url: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=600&fit=crop'
             }
+        ],
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '4 x 4 x 0.5 inches',
+            weight: '0.3 lbs',
+            material: 'Plastic',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.0,
+                author: 'User2',
+                date: '2023-10-15',
+                comment: 'Fast charging!',
+                verified: true
+            }
+        ],
+        averageRating: 4.0,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'new',
+                text: 'New Arrival'
+            }
+        ],
+        category: 'Electronics',
+        tags: [
+            'charger',
+            'wireless'
         ]
     },
     {
@@ -1779,7 +2128,50 @@ const newArrivals = [
         image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop',
         currentPrice: '$80.00',
         originalPrice: '$160.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '8 x 6 x 2 inches',
+            weight: '0.5 lbs',
+            material: 'Plastic and Metal',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.8,
+                author: 'User3',
+                date: '2023-09-20',
+                comment: 'Great sound!',
+                verified: true
+            }
+        ],
+        averageRating: 4.8,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'new',
+                text: 'New Arrival'
+            }
+        ],
+        category: 'Electronics',
+        tags: [
+            'headphones',
+            'bluetooth'
+        ]
     }
 ];
 const hotProducts = [
@@ -1789,7 +2181,50 @@ const hotProducts = [
         image: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&h=400&fit=crop',
         currentPrice: '$45.00',
         originalPrice: '$90.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '5 x 3 x 1.5 inches',
+            weight: '0.3 lbs',
+            material: 'Plastic',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.7,
+                author: 'Gamer1',
+                date: '2023-12-01',
+                comment: 'Precise and responsive!',
+                verified: true
+            }
+        ],
+        averageRating: 4.7,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'hot',
+                text: 'Hot Product'
+            }
+        ],
+        category: 'Electronics',
+        tags: [
+            'gaming',
+            'mouse'
+        ]
     },
     {
         id: 15,
@@ -1797,7 +2232,50 @@ const hotProducts = [
         image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=400&fit=crop',
         currentPrice: '$120.00',
         originalPrice: '$240.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '18 x 6 x 1.5 inches',
+            weight: '2 lbs',
+            material: 'Plastic and Metal',
+            warranty: '2 years'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.9,
+                author: 'Typist2',
+                date: '2023-11-15',
+                comment: 'Amazing typing feel!',
+                verified: true
+            }
+        ],
+        averageRating: 4.9,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'hot',
+                text: 'Hot Product'
+            }
+        ],
+        category: 'Electronics',
+        tags: [
+            'keyboard',
+            'mechanical'
+        ]
     },
     {
         id: 16,
@@ -1805,7 +2283,49 @@ const hotProducts = [
         image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop',
         currentPrice: '$200.00',
         originalPrice: '$400.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '24 x 14 x 6 inches',
+            weight: '8 lbs',
+            material: 'Plastic and Glass',
+            warranty: '3 years'
+        },
+        delivery: {
+            freeShipping: false,
+            estimatedDelivery: '5-7 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.6,
+                author: 'Tech3',
+                date: '2023-10-20',
+                comment: 'Vivid colors!',
+                verified: true
+            }
+        ],
+        averageRating: 4.6,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'hot',
+                text: 'Hot Product'
+            }
+        ],
+        category: 'Electronics',
+        tags: [
+            'monitor',
+            'led'
+        ]
     }
 ];
 const topRated = [
@@ -1815,7 +2335,50 @@ const topRated = [
         image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=400&fit=crop',
         currentPrice: '$60.00',
         originalPrice: '$120.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '12 x 8 x 14 inches',
+            weight: '5 lbs',
+            material: 'Plastic and Metal',
+            warranty: '2 years'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.8,
+                author: 'CoffeeLover',
+                date: '2023-10-05',
+                comment: 'Makes great coffee!',
+                verified: true
+            }
+        ],
+        averageRating: 4.8,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'top',
+                text: 'Top Rated'
+            }
+        ],
+        category: 'Kitchen',
+        tags: [
+            'coffee',
+            'maker'
+        ]
     },
     {
         id: 18,
@@ -1823,7 +2386,49 @@ const topRated = [
         image: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400&h=400&fit=crop',
         currentPrice: '$35.00',
         originalPrice: '$70.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '8 x 6 x 12 inches',
+            weight: '3 lbs',
+            material: 'Plastic',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.5,
+                author: 'SmoothieFan',
+                date: '2023-09-12',
+                comment: 'Powerful and easy to use!',
+                verified: true
+            }
+        ],
+        averageRating: 4.5,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'top',
+                text: 'Top Rated'
+            }
+        ],
+        category: 'Kitchen',
+        tags: [
+            'blender'
+        ]
     },
     {
         id: 19,
@@ -1831,7 +2436,49 @@ const topRated = [
         image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop',
         currentPrice: '$100.00',
         originalPrice: '$200.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '10 x 10 x 12 inches',
+            weight: '6 lbs',
+            material: 'Plastic and Metal',
+            warranty: '2 years'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.9,
+                author: 'HealthyEater',
+                date: '2023-08-25',
+                comment: 'Crispy and healthy!',
+                verified: true
+            }
+        ],
+        averageRating: 4.9,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'top',
+                text: 'Top Rated'
+            }
+        ],
+        category: 'Kitchen',
+        tags: [
+            'air fryer'
+        ]
     }
 ];
 const bestSelling = [
@@ -1841,7 +2488,50 @@ const bestSelling = [
         image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop',
         currentPrice: '$20.00',
         originalPrice: '$40.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '24 x 68 x 0.25 inches',
+            weight: '2 lbs',
+            material: 'Rubber',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.7,
+                author: 'Yogi',
+                date: '2023-11-20',
+                comment: 'Non-slip and comfortable!',
+                verified: true
+            }
+        ],
+        averageRating: 4.7,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'best',
+                text: 'Best Selling'
+            }
+        ],
+        category: 'Sports',
+        tags: [
+            'yoga',
+            'mat'
+        ]
     },
     {
         id: 21,
@@ -1849,7 +2539,49 @@ const bestSelling = [
         image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop',
         currentPrice: '$50.00',
         originalPrice: '$100.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: '5-25 lbs',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '10 x 5 x 5 inches',
+            weight: '15 lbs',
+            material: 'Metal',
+            warranty: 'Lifetime'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.6,
+                author: 'FitnessGuy',
+                date: '2023-10-30',
+                comment: 'Great for home workouts!',
+                verified: true
+            }
+        ],
+        averageRating: 4.6,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'best',
+                text: 'Best Selling'
+            }
+        ],
+        category: 'Sports',
+        tags: [
+            'dumbbells'
+        ]
     },
     {
         id: 22,
@@ -1857,7 +2589,58 @@ const bestSelling = [
         image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
         currentPrice: '$75.00',
         originalPrice: '$150.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: '7',
+                available: true
+            },
+            {
+                size: '8',
+                available: true
+            },
+            {
+                size: '9',
+                available: false
+            }
+        ],
+        specifications: {
+            dimensions: '12 x 4 x 4 inches',
+            weight: '1 lbs',
+            material: 'Mesh and Rubber',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.8,
+                author: 'Runner',
+                date: '2023-09-18',
+                comment: 'Comfortable and lightweight!',
+                verified: true
+            }
+        ],
+        averageRating: 4.8,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'best',
+                text: 'Best Selling'
+            }
+        ],
+        category: 'Sports',
+        tags: [
+            'running',
+            'shoes'
+        ]
     }
 ];
 const luxuryProducts = [
@@ -1867,7 +2650,49 @@ const luxuryProducts = [
         image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
         currentPrice: '$500.00',
         originalPrice: '$1000.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '1.5 x 1.5 x 0.5 inches',
+            weight: '0.3 lbs',
+            material: 'Gold and Leather',
+            warranty: '5 years'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 5.0,
+                author: 'LuxuryBuyer',
+                date: '2023-12-10',
+                comment: 'Elegant and timeless!',
+                verified: true
+            }
+        ],
+        averageRating: 5.0,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'luxury',
+                text: 'Luxury'
+            }
+        ],
+        category: 'Fashion',
+        tags: [
+            'watch'
+        ]
     },
     {
         id: 24,
@@ -1875,7 +2700,49 @@ const luxuryProducts = [
         image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop',
         currentPrice: '$300.00',
         originalPrice: '$600.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '12 x 10 x 4 inches',
+            weight: '2 lbs',
+            material: 'Leather',
+            warranty: '2 years'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.9,
+                author: 'Fashionista',
+                date: '2023-11-05',
+                comment: 'Stylish and durable!',
+                verified: true
+            }
+        ],
+        averageRating: 4.9,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'luxury',
+                text: 'Luxury'
+            }
+        ],
+        category: 'Fashion',
+        tags: [
+            'bag'
+        ]
     },
     {
         id: 25,
@@ -1883,7 +2750,49 @@ const luxuryProducts = [
         image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop',
         currentPrice: '$150.00',
         originalPrice: '$300.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '6 x 2 x 6 inches',
+            weight: '0.2 lbs',
+            material: 'Metal and Glass',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard',
+                'Express'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.7,
+                author: 'SunSeeker',
+                date: '2023-10-15',
+                comment: 'UV protection and style!',
+                verified: true
+            }
+        ],
+        averageRating: 4.7,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'luxury',
+                text: 'Luxury'
+            }
+        ],
+        category: 'Fashion',
+        tags: [
+            'sunglasses'
+        ]
     }
 ];
 const ecoProducts = [
@@ -1893,7 +2802,49 @@ const ecoProducts = [
         image: 'https://images.unsplash.com/photo-1559599101-f09722fb4948?w=400&h=400&fit=crop',
         currentPrice: '$5.00',
         originalPrice: '$10.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '7 x 1 x 0.5 inches',
+            weight: '0.1 lbs',
+            material: 'Bamboo',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.5,
+                author: 'EcoUser',
+                date: '2023-11-10',
+                comment: 'Great eco-friendly alternative!',
+                verified: true
+            }
+        ],
+        averageRating: 4.5,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'eco',
+                text: 'Eco-Friendly'
+            }
+        ],
+        category: 'Beauty',
+        tags: [
+            'eco',
+            'toothbrush'
+        ]
     },
     {
         id: 27,
@@ -1901,7 +2852,48 @@ const ecoProducts = [
         image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop',
         currentPrice: '$15.00',
         originalPrice: '$30.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '3 x 3 x 10 inches',
+            weight: '0.5 lbs',
+            material: 'Stainless Steel',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.8,
+                author: 'Hydrated',
+                date: '2023-10-25',
+                comment: 'Keeps drinks cold perfectly!',
+                verified: true
+            }
+        ],
+        averageRating: 4.8,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'eco',
+                text: 'Eco-Friendly'
+            }
+        ],
+        category: 'Home',
+        tags: [
+            'water bottle'
+        ]
     },
     {
         id: 28,
@@ -1909,7 +2901,57 @@ const ecoProducts = [
         image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop',
         currentPrice: '$25.00',
         originalPrice: '$50.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'S',
+                available: true
+            },
+            {
+                size: 'M',
+                available: true
+            },
+            {
+                size: 'L',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '28 x 20 x 1 inches',
+            weight: '0.5 lbs',
+            material: 'Organic Cotton',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.6,
+                author: 'OrganicFan',
+                date: '2023-09-15',
+                comment: 'Soft and comfortable!',
+                verified: true
+            }
+        ],
+        averageRating: 4.6,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'eco',
+                text: 'Eco-Friendly'
+            }
+        ],
+        category: 'Fashion',
+        tags: [
+            'organic',
+            't-shirt'
+        ]
     }
 ];
 const travelEssentials = [
@@ -1919,7 +2961,48 @@ const travelEssentials = [
         image: 'https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?w=400&h=400&fit=crop',
         currentPrice: '$20.00',
         originalPrice: '$40.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '12 x 10 x 4 inches',
+            weight: '0.8 lbs',
+            material: 'Memory Foam',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.7,
+                author: 'Traveler',
+                date: '2023-12-05',
+                comment: 'Comfortable for long flights!',
+                verified: true
+            }
+        ],
+        averageRating: 4.7,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'travel',
+                text: 'Travel Essential'
+            }
+        ],
+        category: 'Travel',
+        tags: [
+            'pillow'
+        ]
     },
     {
         id: 30,
@@ -1927,7 +3010,48 @@ const travelEssentials = [
         image: 'https://images.unsplash.com/photo-1609594040430-3b9b92a98e53?w=400&h=400&fit=crop',
         currentPrice: '$30.00',
         originalPrice: '$60.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '4 x 3 x 1 inches',
+            weight: '0.5 lbs',
+            material: 'Plastic',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.9,
+                author: 'PowerUser',
+                date: '2023-11-20',
+                comment: 'Fast charging on the go!',
+                verified: true
+            }
+        ],
+        averageRating: 4.9,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'travel',
+                text: 'Travel Essential'
+            }
+        ],
+        category: 'Electronics',
+        tags: [
+            'charger'
+        ]
     },
     {
         id: 31,
@@ -1935,7 +3059,52 @@ const travelEssentials = [
         image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop',
         currentPrice: '$15.00',
         originalPrice: '$30.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'M',
+                available: true
+            },
+            {
+                size: 'L',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '10 x 4 x 0.1 inches',
+            weight: '0.2 lbs',
+            material: 'Nylon',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.4,
+                author: 'RunnerTraveler',
+                date: '2023-10-30',
+                comment: 'Helps with circulation!',
+                verified: true
+            }
+        ],
+        averageRating: 4.4,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'travel',
+                text: 'Travel Essential'
+            }
+        ],
+        category: 'Sports',
+        tags: [
+            'socks'
+        ]
     }
 ];
 const securityProducts = [
@@ -1945,7 +3114,48 @@ const securityProducts = [
         image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop',
         currentPrice: '$100.00',
         originalPrice: '$200.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '6 x 3 x 2 inches',
+            weight: '1 lbs',
+            material: 'Metal',
+            warranty: '2 years'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.8,
+                author: 'HomeOwner',
+                date: '2023-12-15',
+                comment: 'Easy keyless entry!',
+                verified: true
+            }
+        ],
+        averageRating: 4.8,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'security',
+                text: 'Security'
+            }
+        ],
+        category: 'Security',
+        tags: [
+            'lock'
+        ]
     },
     {
         id: 33,
@@ -1953,7 +3163,48 @@ const securityProducts = [
         image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=400&fit=crop',
         currentPrice: '$80.00',
         originalPrice: '$160.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '4 x 3 x 2 inches',
+            weight: '0.5 lbs',
+            material: 'Plastic',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.6,
+                author: 'SecurityFan',
+                date: '2023-11-25',
+                comment: 'Clear night vision!',
+                verified: true
+            }
+        ],
+        averageRating: 4.6,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'security',
+                text: 'Security'
+            }
+        ],
+        category: 'Security',
+        tags: [
+            'camera'
+        ]
     },
     {
         id: 34,
@@ -1961,7 +3212,48 @@ const securityProducts = [
         image: 'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=400&fit=crop',
         currentPrice: '$150.00',
         originalPrice: '$300.00',
-        isFavorite: false
+        isFavorite: false,
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '8 x 6 x 2 inches',
+            weight: '2 lbs',
+            material: 'Plastic and Metal',
+            warranty: '3 years'
+        },
+        delivery: {
+            freeShipping: false,
+            estimatedDelivery: '5-7 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.9,
+                author: 'SafeHome',
+                date: '2023-10-20',
+                comment: 'Reliable protection!',
+                verified: true
+            }
+        ],
+        averageRating: 4.9,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'security',
+                text: 'Security'
+            }
+        ],
+        category: 'Security',
+        tags: [
+            'alarm'
+        ]
     }
 ];
 const topDeals = [
@@ -1977,9 +3269,47 @@ const topDeals = [
             text: 'Flash Deal',
             position: 'image'
         },
-        discount: 'Extra 11% off',
-        moq: null,
-        sellerInfo: null
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '6 x 0.5 x 0.5 inches',
+            weight: '0.1 lbs',
+            material: 'Plastic',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.5,
+                author: 'Student',
+                date: '2023-12-20',
+                comment: 'Great for writing!',
+                verified: true
+            }
+        ],
+        averageRating: 4.5,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'deal',
+                text: 'Deal'
+            }
+        ],
+        category: 'Office',
+        tags: [
+            'pens'
+        ]
     },
     {
         id: 36,
@@ -1992,8 +3322,47 @@ const topDeals = [
             type: 'lower',
             text: 'Lower priced than similar'
         },
-        moq: null,
-        sellerInfo: null
+        sizes: [
+            {
+                size: '16 inches',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '16 x 16 x 6 inches',
+            weight: '20 lbs',
+            material: 'Chrome',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '5-7 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.7,
+                author: 'CarEnthusiast',
+                date: '2023-11-15',
+                comment: 'Shiny and durable!',
+                verified: true
+            }
+        ],
+        averageRating: 4.7,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'deal',
+                text: 'Deal'
+            }
+        ],
+        category: 'Automotive',
+        tags: [
+            'wheel'
+        ]
     },
     {
         id: 37,
@@ -2006,40 +3375,245 @@ const topDeals = [
             type: 'lower',
             text: 'Lower priced than similar'
         },
-        moq: null,
-        sellerInfo: null
+        sizes: [
+            {
+                size: '1 lb',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '8 x 6 x 3 inches',
+            weight: '1 lbs',
+            material: 'Coffee',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [
+            {
+                rating: 4.8,
+                author: 'CoffeeLover',
+                date: '2023-10-10',
+                comment: 'Rich flavor!',
+                verified: true
+            }
+        ],
+        averageRating: 4.8,
+        reviewCount: 1,
+        labels: [
+            {
+                type: 'deal',
+                text: 'Deal'
+            }
+        ],
+        category: 'Food',
+        tags: [
+            'coffee'
+        ]
     }
 ];
 const topRanking = [
     {
         id: 38,
-        title: 'Smart TVs',
+        title: 'Manufacturer 75 Inch Led Television 65 Inch 4k UHD Smart TV',
         image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=400&fit=crop',
         currentPrice: null,
         originalPrice: null,
         isFavorite: false,
+        badge: {
+            type: 'ranking',
+            text: 'Top ranked last month',
+            position: 'below-title',
+            icon: 'crown'
+        },
         category: 'Hot selling',
-        subcategory: 'Smart TVs'
+        subcategory: 'Smart TVs',
+        sizes: [
+            {
+                size: '75 inches',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '66 x 38 x 3 inches',
+            weight: '50 lbs',
+            material: 'Plastic and Glass',
+            warranty: '2 years'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '5-7 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [
+            {
+                type: 'ranking',
+                text: 'Top Ranking'
+            }
+        ],
+        tags: [
+            'tv',
+            'smart'
+        ]
     },
     {
         id: 39,
-        title: 'Passenger Car Wheels',
-        image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=400&fit=crop',
+        title: 'Accept Custom 4K Android Flat Screen Led Tv Smart TV',
+        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop',
         currentPrice: null,
         originalPrice: null,
         isFavorite: false,
+        badge: {
+            type: 'rising',
+            text: 'On the rise in Hot selling Smart TVs',
+            position: 'below-title',
+            icon: 'arrow-up'
+        },
         category: 'Hot selling',
-        subcategory: 'Passenger Car Wheels'
+        subcategory: 'Smart TVs',
+        sizes: [
+            {
+                size: '55 inches',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '48 x 28 x 3 inches',
+            weight: '30 lbs',
+            material: 'Plastic and Glass',
+            warranty: '2 years'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '5-7 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [
+            {
+                type: 'ranking',
+                text: 'Top Ranking'
+            }
+        ],
+        tags: [
+            'tv',
+            'smart'
+        ]
     },
     {
         id: 40,
-        title: 'Home & Garden',
-        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop',
+        title: 'TLC LED TV Smart World\'s Top 2 Ranking UHD 4K Original',
+        image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop',
         currentPrice: null,
         originalPrice: null,
         isFavorite: false,
+        badge: {
+            type: 'rising',
+            text: 'On the rise in Hot selling LED TVs',
+            position: 'below-title',
+            icon: 'arrow-up'
+        },
         category: 'Hot selling',
-        subcategory: 'Home & Garden'
+        subcategory: 'LED TVs',
+        sizes: [
+            {
+                size: '65 inches',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '57 x 33 x 3 inches',
+            weight: '40 lbs',
+            material: 'Plastic and Glass',
+            warranty: '2 years'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '5-7 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [
+            {
+                type: 'ranking',
+                text: 'Top Ranking'
+            }
+        ],
+        tags: [
+            'tv',
+            'led'
+        ]
+    },
+    {
+        id: 41,
+        title: 'Global Version POCO X7 5G Smartphone MTK Dimensity',
+        image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop',
+        currentPrice: null,
+        originalPrice: null,
+        isFavorite: false,
+        badge: {
+            type: 'ranking',
+            text: 'Top ranked last month',
+            position: 'below-title',
+            icon: 'crown'
+        },
+        category: 'Hot selling',
+        subcategory: 'Smartphones',
+        sizes: [
+            {
+                size: '6.5 inches',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '6 x 3 x 0.3 inches',
+            weight: '0.5 lbs',
+            material: 'Glass and Metal',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [
+            {
+                type: 'ranking',
+                text: 'Top Ranking'
+            }
+        ],
+        tags: [
+            'phone',
+            'smartphone'
+        ]
     }
 ];
 const tailoredSelections = [
@@ -2072,14 +3646,35 @@ const gridProducts = [
         currentPrice: '$1.80',
         originalPrice: null,
         isFavorite: false,
-        badge: {
-            type: 'guaranteed',
-            text: 'Guaranteed',
-            position: 'above-title'
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '4 x 3 x 1 inches',
+            weight: '0.2 lbs',
+            material: 'Plastic',
+            warranty: 'N/A'
         },
-        moq: '6',
-        deliveryInfo: 'Delivery by Dec 20',
-        sellerInfo: '1 yr · CN'
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Beauty',
+        tags: [
+            'nail',
+            'art'
+        ]
     },
     {
         id: 46,
@@ -2088,12 +3683,43 @@ const gridProducts = [
         currentPrice: '$12',
         originalPrice: null,
         isFavorite: false,
-        moq: '2',
         priceIndicator: {
             type: 'lower',
             text: 'Lower priced than similar'
         },
-        sellerInfo: '1 yr · CN'
+        sizes: [
+            {
+                size: 'M',
+                available: true
+            },
+            {
+                size: 'L',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '20 x 16 x 1 inches',
+            weight: '1 lbs',
+            material: 'Cotton',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Fashion',
+        tags: [
+            'sweater',
+            'embroidered'
+        ]
     },
     {
         id: 47,
@@ -2102,14 +3728,35 @@ const gridProducts = [
         currentPrice: '$1.63',
         originalPrice: null,
         isFavorite: false,
-        badge: {
-            type: 'guaranteed',
-            text: 'Guaranteed',
-            position: 'above-title'
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '3 x 3 x 10 inches',
+            weight: '0.5 lbs',
+            material: 'Stainless Steel',
+            warranty: '1 year'
         },
-        moq: '2',
-        discount: '14% off',
-        sellerInfo: '2 yrs · CN'
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Home',
+        tags: [
+            'flask',
+            'vacuum'
+        ]
     },
     {
         id: 48,
@@ -2118,17 +3765,39 @@ const gridProducts = [
         currentPrice: '$2.63',
         originalPrice: null,
         isFavorite: false,
-        badge: {
-            type: 'guaranteed',
-            text: 'Guaranteed',
-            position: 'above-title'
-        },
-        moq: '25',
         priceIndicator: {
             type: 'lower',
             text: 'Lower priced than similar'
         },
-        sellerInfo: '2 yrs · CN'
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '3 x 3 x 6 inches',
+            weight: '0.3 lbs',
+            material: 'Stainless Steel',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Home',
+        tags: [
+            'tumbler',
+            'stainless steel'
+        ]
     },
     {
         id: 49,
@@ -2137,9 +3806,35 @@ const gridProducts = [
         currentPrice: '$10.99-11.99',
         originalPrice: null,
         isFavorite: false,
-        moq: '2',
-        deliveryInfo: 'Easy Return',
-        sellerInfo: '1 yr · CN'
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '1 x 1 x 0.5 inches',
+            weight: '0.1 lbs',
+            material: 'Metal',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Fashion',
+        tags: [
+            'ring',
+            'cartoon'
+        ]
     },
     {
         id: 50,
@@ -2148,9 +3843,39 @@ const gridProducts = [
         currentPrice: '$17.02',
         originalPrice: null,
         isFavorite: false,
-        moq: '1',
-        reorderRate: '16',
-        sellerInfo: 'Verified 1 yr CN'
+        sizes: [
+            {
+                size: 'M',
+                available: true
+            },
+            {
+                size: 'L',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '20 x 16 x 1 inches',
+            weight: '1 lbs',
+            material: 'Cotton',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Sports',
+        tags: [
+            'athletic',
+            'set'
+        ]
     },
     {
         id: 51,
@@ -2159,9 +3884,35 @@ const gridProducts = [
         currentPrice: '$2.20',
         originalPrice: null,
         isFavorite: false,
-        moq: '10',
-        reorderRate: '32',
-        sellerInfo: '4 yrs · CN'
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '4 x 4 x 4 inches',
+            weight: '0.5 lbs',
+            material: 'Ceramic',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Home',
+        tags: [
+            'mug',
+            'creation'
+        ]
     },
     {
         id: 52,
@@ -2170,9 +3921,35 @@ const gridProducts = [
         currentPrice: '$4.60',
         originalPrice: null,
         isFavorite: false,
-        moq: '2',
-        discount: '$10 off every $100',
-        sellerInfo: '2 yrs · CN'
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '6 x 2 x 6 inches',
+            weight: '0.2 lbs',
+            material: 'Metal and Glass',
+            warranty: '1 year'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Fashion',
+        tags: [
+            'sunglasses',
+            'luxury'
+        ]
     },
     {
         id: 53,
@@ -2181,12 +3958,54 @@ const gridProducts = [
         currentPrice: '$4.84',
         originalPrice: null,
         isFavorite: false,
-        moq: '1',
-        soldCount: '140 sold',
-        sellerInfo: '1 yr CN'
+        sizes: [
+            {
+                size: 'One Size',
+                available: true
+            }
+        ],
+        specifications: {
+            dimensions: '2 x 2 x 4 inches',
+            weight: '0.3 lbs',
+            material: 'Glass and Plastic',
+            warranty: 'N/A'
+        },
+        delivery: {
+            freeShipping: true,
+            estimatedDelivery: '2-3 business days',
+            shippingOptions: [
+                'Standard'
+            ],
+            returnPolicy: '30-day return policy'
+        },
+        reviews: [],
+        averageRating: 0,
+        reviewCount: 0,
+        labels: [],
+        category: 'Beauty',
+        tags: [
+            'perfume'
+        ]
     }
 ];
 const getProductDetails = (id)=>{
+    // Find reviews from summary products
+    const allSummaryProducts = [
+        ...featuredProducts,
+        ...topProducts,
+        ...accessories,
+        ...newArrivals,
+        ...hotProducts,
+        ...topRated,
+        ...bestSelling,
+        ...luxuryProducts,
+        ...ecoProducts,
+        ...travelEssentials,
+        ...securityProducts,
+        ...topDeals,
+        ...gridProducts
+    ];
+    const summaryProduct = allSummaryProducts.find((p)=>p.id === parseInt(id));
     const allProductDetails = [
         {
             id: 1,
@@ -2201,10 +4020,6 @@ const getProductDetails = (id)=>{
                 {
                     type: 'image',
                     url: 'https://images.unsplash.com/photo-1579586337278-3befd40f17da?w=600&h=600&fit=crop'
-                },
-                {
-                    type: 'video',
-                    url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4'
                 }
             ],
             description: 'NEW Original Ulefone Watch 1.3 inch TFT Touch Screen 5 ATM Waterproof & 9 Sports Mode BT 4.2 Smart Watch Same Day Shipping on orders before 6PM (GMT+8), shipped from Hong Kong Warehouse',
@@ -2222,7 +4037,19 @@ const getProductDetails = (id)=>{
                     label: 'Fresh'
                 }
             ],
-            freeShipping: true
+            freeShipping: true,
+            delivery: {
+                freeShipping: true,
+                estimatedDelivery: '2-3 business days',
+                shippingOptions: [
+                    'Standard',
+                    'Express'
+                ],
+                returnPolicy: '30-day return policy'
+            },
+            reviews: summaryProduct?.reviews || [],
+            averageRating: summaryProduct?.averageRating || 0,
+            reviewCount: summaryProduct?.reviewCount || 0
         },
         {
             id: 2,
@@ -2254,7 +4081,16 @@ const getProductDetails = (id)=>{
                     label: 'Fresh'
                 }
             ],
-            freeShipping: true
+            freeShipping: true,
+            delivery: {
+                freeShipping: true,
+                estimatedDelivery: '3-5 business days',
+                shippingOptions: [
+                    'Standard',
+                    'Express'
+                ],
+                returnPolicy: '30-day return policy'
+            }
         },
         {
             id: 3,
@@ -2265,10 +4101,6 @@ const getProductDetails = (id)=>{
                 {
                     type: 'image',
                     url: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&h=600&fit=crop'
-                },
-                {
-                    type: 'video',
-                    url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4'
                 }
             ],
             description: 'Premium Vitamin C Serum for brightening and anti-aging. Contains natural ingredients and is suitable for all skin types.',
@@ -2286,7 +4118,15 @@ const getProductDetails = (id)=>{
                     label: 'Fresh'
                 }
             ],
-            freeShipping: false
+            freeShipping: false,
+            delivery: {
+                freeShipping: false,
+                estimatedDelivery: '5-7 business days',
+                shippingOptions: [
+                    'Standard'
+                ],
+                returnPolicy: '30-day return policy'
+            }
         },
         {
             id: 4,
@@ -2409,10 +4249,6 @@ const getProductDetails = (id)=>{
                 {
                     type: 'image',
                     url: 'https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop'
-                },
-                {
-                    type: 'video',
-                    url: 'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4'
                 }
             ],
             description: 'Premium wireless earbuds with noise cancellation. Long battery life and crystal clear sound quality.',
@@ -3089,7 +4925,13 @@ const getProductDetails = (id)=>{
             freeShipping: false
         }
     ];
-    return allProductDetails.find((p)=>p.id === parseInt(id)) || allProductDetails[0];
+    const detailedProduct = allProductDetails.find((p)=>p.id === parseInt(id)) || allProductDetails[0];
+    if (summaryProduct) {
+        detailedProduct.reviews = summaryProduct.reviews || [];
+        detailedProduct.averageRating = summaryProduct.averageRating || 0;
+        detailedProduct.reviewCount = summaryProduct.reviewCount || 0;
+    }
+    return detailedProduct;
 };
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
@@ -3113,6 +4955,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$BottomN
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$data$2f$products$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/data/products.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
+'use client';
 'use client';
 ;
 ;
@@ -3147,12 +4990,12 @@ function TopRankingPage() {
                                     size: 24
                                 }, void 0, false, {
                                     fileName: "[project]/app/top-ranking/page.js",
-                                    lineNumber: 26,
+                                    lineNumber: 28,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/top-ranking/page.js",
-                                lineNumber: 22,
+                                lineNumber: 24,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -3160,7 +5003,7 @@ function TopRankingPage() {
                                 children: "Top Ranking in US"
                             }, void 0, false, {
                                 fileName: "[project]/app/top-ranking/page.js",
-                                lineNumber: 28,
+                                lineNumber: 30,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3169,18 +5012,18 @@ function TopRankingPage() {
                                     size: 24
                                 }, void 0, false, {
                                     fileName: "[project]/app/top-ranking/page.js",
-                                    lineNumber: 30,
+                                    lineNumber: 32,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/top-ranking/page.js",
-                                lineNumber: 29,
+                                lineNumber: 31,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/top-ranking/page.js",
-                        lineNumber: 21,
+                        lineNumber: 23,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3192,13 +5035,13 @@ function TopRankingPage() {
                                 size: 18
                             }, void 0, false, {
                                 fileName: "[project]/app/top-ranking/page.js",
-                                lineNumber: 40,
+                                lineNumber: 42,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/top-ranking/page.js",
-                        lineNumber: 35,
+                        lineNumber: 37,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3209,12 +5052,12 @@ function TopRankingPage() {
                                 children: tab
                             }, tab, false, {
                                 fileName: "[project]/app/top-ranking/page.js",
-                                lineNumber: 46,
+                                lineNumber: 48,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/app/top-ranking/page.js",
-                        lineNumber: 44,
+                        lineNumber: 46,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3226,34 +5069,33 @@ function TopRankingPage() {
                                 currentPrice: product.currentPrice,
                                 originalPrice: product.originalPrice,
                                 isFavorite: product.isFavorite,
-                                category: product.category,
-                                subcategory: product.subcategory,
+                                badge: product.badge,
                                 variant: "top-ranking"
                             }, product.id, false, {
                                 fileName: "[project]/app/top-ranking/page.js",
-                                lineNumber: 59,
+                                lineNumber: 61,
                                 columnNumber: 13
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/app/top-ranking/page.js",
-                        lineNumber: 57,
+                        lineNumber: 59,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/top-ranking/page.js",
-                lineNumber: 19,
+                lineNumber: 21,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$BottomNav$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/app/top-ranking/page.js",
-                lineNumber: 74,
+                lineNumber: 75,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/top-ranking/page.js",
-        lineNumber: 18,
+        lineNumber: 20,
         columnNumber: 5
     }, this);
 }

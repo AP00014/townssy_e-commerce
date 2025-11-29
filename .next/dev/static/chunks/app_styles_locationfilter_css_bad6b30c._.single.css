@@ -1,0 +1,139 @@
+/* [project]/app/styles/locationfilter.css [app-client] (css) */
+.location-filter-desktop {
+  margin-right: 16px;
+  position: relative;
+}
+
+.location-filter-desktop .location-filter-button {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  cursor: pointer;
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  min-width: 120px;
+  padding: 8px 12px;
+  font-size: 14px;
+  transition: all .2s;
+  display: flex;
+}
+
+.location-filter-desktop .location-filter-button:hover {
+  background: var(--background-secondary, #0000000d);
+  border-color: var(--primary-color);
+}
+
+.location-filter-desktop .location-text {
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+  overflow: hidden;
+}
+
+.location-filter-mobile {
+  border-bottom: 1px solid var(--border-color);
+  background: var(--background);
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  display: flex;
+}
+
+.location-filter-header {
+  align-items: center;
+  gap: 8px;
+  display: flex;
+}
+
+.location-filter-label {
+  color: var(--text-dark);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.location-filter-selector {
+  position: relative;
+}
+
+.location-filter-mobile .location-filter-button {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  color: var(--text-dark);
+  cursor: pointer;
+  border-radius: 8px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 14px;
+  transition: all .2s;
+  display: flex;
+}
+
+.location-filter-mobile .location-filter-button:hover {
+  border-color: var(--primary-color);
+}
+
+.location-filter-dropdown {
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  z-index: 1000;
+  border-radius: 8px;
+  max-height: 200px;
+  margin-top: 4px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px #00000026;
+}
+
+.location-filter-option {
+  text-align: left;
+  width: 100%;
+  color: var(--text-dark);
+  cursor: pointer;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  background: none;
+  padding: 12px 16px;
+  font-size: 14px;
+  transition: background-color .2s;
+  display: block;
+}
+
+.location-filter-option:last-child {
+  border-bottom: none;
+}
+
+.location-filter-option:hover {
+  background: var(--background-secondary, #0000000d);
+}
+
+.location-filter-option.active {
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .location-filter-dropdown {
+  box-shadow: 0 4px 12px #0000004d;
+}
+
+@media (max-width: 768px) {
+  .location-filter-desktop {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .location-filter-mobile {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=app_styles_locationfilter_css_bad6b30c._.single.css.map*/

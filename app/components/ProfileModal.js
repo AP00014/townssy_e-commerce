@@ -85,28 +85,6 @@ export default function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
   const useModal = variant === 'modal' || (variant === 'auto' && isMobile);
   const useDropdown = variant === 'dropdown' || (variant === 'auto' && !isMobile);
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      if (useModal) {
-        document.addEventListener('mousedown', handleClickOutside);
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.addEventListener('mousedown', handleClickOutside);
-      }
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen, onClose, useModal]);
-
   // Validation functions
   const validateUsername = (value) => {
     if (!value) {

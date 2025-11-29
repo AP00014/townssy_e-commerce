@@ -4,11 +4,12 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useState } from 'react';
 import ProfileModal from './ProfileModal';
+import { useProfile } from '../context/ProfileContext';
 
 export default function BottomNav() {
   const pathname = usePathname();
   const isCartPage = pathname === '/cart';
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const { isProfileOpen, toggleProfile, closeProfile } = useProfile();
 
   const navItems = [
     { 
@@ -81,7 +82,7 @@ export default function BottomNav() {
               <div
                 key={item.path}
                 className="nav-item"
-                onClick={() => setIsProfileModalOpen(true)}
+                onClick={toggleProfile}
                 style={{ cursor: 'pointer' }}
               >
                 <div className={`nav-icon-wrapper ${active ? 'active' : ''}`}>
@@ -102,7 +103,7 @@ export default function BottomNav() {
           );
         })}
       </nav>
-      <ProfileModal isOpen={isProfileModalOpen} onClose={() => setIsProfileModalOpen(false)} variant="modal" />
+      <ProfileModal isOpen={isProfileOpen} onClose={closeProfile} variant="modal" />
     </>
   );
 }

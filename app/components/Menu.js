@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import ThemeToggle from './ThemeToggle';
+import LocationFilter from './LocationFilter';
 
 export default function Menu({ isOpen, onClose }) {
   const menuRef = useRef(null);
@@ -31,7 +32,7 @@ export default function Menu({ isOpen, onClose }) {
       <div className="menu-overlay" onClick={onClose}></div>
       <div className="menu-container" ref={menuRef}>
         <div className="menu-header">
-          <h2 className="menu-title">Menu</h2>
+          <LocationFilter variant="mobile" />
           <button className="menu-close-btn" onClick={onClose}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -40,7 +41,7 @@ export default function Menu({ isOpen, onClose }) {
           </button>
         </div>
         
-        <div className="menu-content">
+        <div className="menu-content"> 
           <div className="menu-section">
             <h3 className="menu-section-title">Navigation</h3>
             <a href="/" className="menu-item">

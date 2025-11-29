@@ -1,27 +1,44 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import Header from './components/Header';
-import SearchBar from './components/SearchBar';
-import SectionHeader from './components/SectionHeader';
-import ProductCard from './components/ProductCard';
-import PromoBanner from './components/PromoBanner';
-import BottomNav from './components/BottomNav';
-import CategoriesModal from './components/CategoriesModal';
-import { ChevronDown } from 'lucide-react';
-import { categories, featuredProducts, newArrivals, hotProducts, topRated, bestSelling, luxuryProducts, ecoProducts, travelEssentials, securityProducts, topDeals, topRanking, tailoredSelections, gridProducts } from './data/products';
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import Header from "./components/Header";
+import SearchBar from "./components/SearchBar";
+import SectionHeader from "./components/SectionHeader";
+import ProductCard from "./components/ProductCard";
+import PromoBanner from "./components/PromoBanner";
+import BottomNav from "./components/BottomNav";
+import CategoriesModal from "./components/CategoriesModal";
+import QuickFilter from "./components/QuickFilter";
+import { ChevronDown, Filter } from "lucide-react";
+import {
+  categories,
+  featuredProducts,
+  newArrivals,
+  hotProducts,
+  topRated,
+  bestSelling,
+  luxuryProducts,
+  ecoProducts,
+  travelEssentials,
+  securityProducts,
+  topDeals,
+  topRanking,
+  tailoredSelections,
+  gridProducts,
+} from "./data/products";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useState("All");
   const [isCategoriesModalOpen, setIsCategoriesModalOpen] = useState(false);
+  const [isQuickFilterOpen, setIsQuickFilterOpen] = useState(false);
   const [isTabsVisible, setIsTabsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const scrollTimeoutRef = useRef(null);
   const tabsRef = useRef(null);
 
   // Use categories for tabs, with "All" as the first tab
-  const tabs = ['All', ...categories.slice(0, 2).map(cat => cat.name)];
+  const tabs = ["All", ...categories.slice(0, 2).map((cat) => cat.name)];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,10 +65,10 @@ export default function Home() {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
@@ -63,16 +80,16 @@ export default function Home() {
       <div className="container">
         <Header />
         <SearchBar cartCount={3} />
-        
+
         {/* Navigation Tabs with Dropdown */}
-        <div 
+        <div
           ref={tabsRef}
-          className={`category-tabs ${isTabsVisible ? 'visible' : 'hidden'}`}
+          className={`category-tabs ${isTabsVisible ? "visible" : "hidden"}`}
         >
           {tabs.map((tab) => (
             <button
               key={tab}
-              className={`category-tab ${activeTab === tab ? 'active' : ''}`}
+              className={`category-tab ${activeTab === tab ? "active" : ""}`}
               onClick={() => setActiveTab(tab)}
             >
               {tab}
@@ -84,12 +101,28 @@ export default function Home() {
           >
             <ChevronDown size={18} />
           </button>
+          <button
+            className="category-tab-filter"
+            onClick={() => setIsQuickFilterOpen(true)}
+            title="Quick filters"
+          >
+            <Filter size={18} />
+          </button>
         </div>
-        
+
         <CategoriesModal
           isOpen={isCategoriesModalOpen}
           onClose={() => setIsCategoriesModalOpen(false)}
           categories={categories}
+        />
+
+        <QuickFilter
+          isOpen={isQuickFilterOpen}
+          onClose={() => setIsQuickFilterOpen(false)}
+          onApplyFilters={(filters) => {
+            console.log("Applied filters:", filters);
+            // Here you would implement the actual filtering logic
+          }}
         />
 
         <PromoBanner />
@@ -97,7 +130,9 @@ export default function Home() {
         {/* Top Deals Section */}
         <div className="products-container top-deals-section">
           <SectionHeader title="Top Deals" />
-          <p className="section-subtitle">Score the lowest prices on Townssy E-commerce</p>
+          <div className="section-subtitle">
+            Score the lowest prices on Townssy E-commerce
+          </div>
           <div className="products-scroll">
             {topDeals.map((product) => (
               <ProductCard
@@ -109,11 +144,6 @@ export default function Home() {
                 originalPrice={product.originalPrice}
                 isFavorite={product.isFavorite}
                 badge={product.badge}
-                moq={product.moq}
-                sellerInfo={product.sellerInfo}
-                priceIndicator={product.priceIndicator}
-                deliveryInfo={product.deliveryInfo}
-                discount={product.discount}
                 variant="top-deal"
               />
             ))}
@@ -121,13 +151,11 @@ export default function Home() {
         </div>
 
         {/* Top Ranking Section */}
-        <Link 
-          href="/top-ranking"
-          className="products-container top-ranking-section"
-          style={{ textDecoration: 'none', display: 'block' }}
-        >
-          <SectionHeader title="Top Ranking" />
-          <p className="section-subtitle">Navigate trends with data-driven rankings</p>
+        <div className="products-container top-ranking-section">
+          <SectionHeader title="Top Ranking" href="/top-ranking" />
+          <div className="section-subtitle">
+            Navigate trends with data-driven rankings
+          </div>
           <div className="products-scroll">
             {topRanking.map((product) => (
               <ProductCard
@@ -139,19 +167,21 @@ export default function Home() {
                 originalPrice={product.originalPrice}
                 isFavorite={product.isFavorite}
                 badge={product.badge}
-                moq={product.moq}
-                sellerInfo={product.sellerInfo}
-                soldCount={product.soldCount}
                 variant="top-ranking"
               />
             ))}
           </div>
-        </Link>
+        </div>
 
         {/* Tailored Selections Section */}
         <div className="tailored-selections-section">
           <div className="tailored-selections-list">
-            <h3 className="section-title" style={{ marginBottom: '16px', padding: '0 4px' }}>Tailored Selections</h3>
+            <h3
+              className="section-title"
+              style={{ marginBottom: "16px", padding: "0 4px" }}
+            >
+              Tailored Selections
+            </h3>
             {tailoredSelections.map((selection) => (
               <div key={selection.id} className="tailored-selection-item">
                 <img
@@ -159,7 +189,9 @@ export default function Home() {
                   alt={selection.label}
                   className="tailored-selection-image"
                 />
-                <span className="tailored-selection-label">{selection.label}</span>
+                <span className="tailored-selection-label">
+                  {selection.label}
+                </span>
               </div>
             ))}
           </div>
@@ -174,11 +206,6 @@ export default function Home() {
                 originalPrice={product.originalPrice}
                 isFavorite={product.isFavorite}
                 badge={product.badge}
-                moq={product.moq}
-                sellerInfo={product.sellerInfo}
-                priceIndicator={product.priceIndicator}
-                deliveryInfo={product.deliveryInfo}
-                discount={product.discount}
                 variant="grid"
               />
             ))}
@@ -198,13 +225,6 @@ export default function Home() {
                 originalPrice={product.originalPrice}
                 isFavorite={product.isFavorite}
                 badge={product.badge}
-                moq={product.moq}
-                sellerInfo={product.sellerInfo}
-                priceIndicator={product.priceIndicator}
-                deliveryInfo={product.deliveryInfo}
-                reorderRate={product.reorderRate}
-                soldCount={product.soldCount}
-                discount={product.discount}
                 variant="grid"
               />
             ))}

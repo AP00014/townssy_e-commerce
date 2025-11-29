@@ -1,24 +1,64 @@
-import { getProductDetails } from '../../data/products';
-import ProductDetailClient from './ProductDetailClient';
+import {
+  getProductDetails,
+  featuredProducts,
+  topProducts,
+  accessories,
+  newArrivals,
+  hotProducts,
+  topRated,
+  bestSelling,
+  luxuryProducts,
+  ecoProducts,
+  travelEssentials,
+  securityProducts,
+  topDeals,
+  topRanking,
+  gridProducts,
+} from "../../data/products";
+import ProductDetailClient from "./ProductDetailClient";
 
 export async function generateStaticParams() {
-  // Generate all possible product IDs from 1 to 34 based on the data
-  const ids = [];
-  for (let i = 1; i <= 34; i++) {
-    ids.push({ id: i.toString() });
-  }
-  return ids;
+  const allProducts = [
+    ...featuredProducts,
+    ...topProducts,
+    ...accessories,
+    ...newArrivals,
+    ...hotProducts,
+    ...topRated,
+    ...bestSelling,
+    ...luxuryProducts,
+    ...ecoProducts,
+    ...travelEssentials,
+    ...securityProducts,
+    ...topDeals,
+    ...topRanking,
+    ...gridProducts,
+  ];
+  const uniqueIds = [...new Set(allProducts.map((p) => p.id))];
+  return uniqueIds.map((id) => ({ id: id.toString() }));
 }
 
-export default function ProductDetailPage({ params }) {
-  const product = getProductDetails(params.id);
+export default async function ProductDetailPage({ params }) {
+  const { id } = await params;
+  const product = getProductDetails(id);
 
   if (!product) {
     return (
       <div className="product-detail-page">
-        <div style={{ padding: '40px 20px', textAlign: 'center' }}>
+        <div style={{ padding: "40px 20px", textAlign: "center" }}>
           <h2>Product not found</h2>
-          <button onClick={() => window.history.back()} style={{ marginTop: '20px', padding: '12px 24px', background: 'var(--primary-color)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer' }}>
+          <button
+            onClick={() => window.history.back()}
+            style={{
+              marginTop: "20px",
+              padding: "12px 24px",
+              background: "var(--primary-color)",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              cursor: "pointer",
+            }}
+          >
             Go Back
           </button>
         </div>
@@ -28,4 +68,3 @@ export default function ProductDetailPage({ params }) {
 
   return <ProductDetailClient product={product} />;
 }
-

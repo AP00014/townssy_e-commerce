@@ -1,9 +1,12 @@
 import './globals.css'
 import './styles/cart.css'
 import './styles/favourites.css'
+import './styles/locationfilter.css'
+import './styles/quickfilter.css'
 import { HeaderProvider } from './context/HeaderContext'
 import { CartProvider } from './context/CartContext'
 import { FavouritesProvider } from './context/FavouritesContext'
+import { ProfileProvider } from './context/ProfileContext'
 
 export const metadata = {
   title: 'Townssy E-commerce',
@@ -20,7 +23,9 @@ export default function RootLayout({ children }) {
         <HeaderProvider>
           <CartProvider>
             <FavouritesProvider>
-              {children}
+              <ProfileProvider>
+                {children}
+              </ProfileProvider>
             </FavouritesProvider>
           </CartProvider>
         </HeaderProvider>

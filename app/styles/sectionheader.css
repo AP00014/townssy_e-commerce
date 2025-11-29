@@ -12,6 +12,11 @@
   color: var(--text-dark);
 }
 
+.section-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .view-all-link {
   font-size: 14px;
   color: var(--primary-color);
@@ -21,4 +26,3 @@
   align-items: center;
   gap: 4px;
 }
-

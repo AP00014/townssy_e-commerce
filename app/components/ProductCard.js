@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useFavourites } from '../context/FavouritesContext';
 import { Check, Search, ArrowDown, ArrowUp, Award } from 'lucide-react';
@@ -11,15 +12,7 @@ export default function ProductCard({
   currentPrice,
   originalPrice,
   isFavorite = false,
-  // New Alibaba-style props
   badge,
-  moq,
-  sellerInfo,
-  priceIndicator,
-  deliveryInfo,
-  reorderRate,
-  soldCount,
-  discount,
   showVisualSearch = true,
   variant = 'default' // 'default', 'top-deal', 'top-ranking', 'grid'
 }) {
@@ -37,7 +30,7 @@ export default function ProductCard({
   };
 
   return (
-    <div className={`product-card-link product-card-${variant}`}>
+    <Link href={`/products/${id}`} className={`product-card-link product-card-${variant}`}>
       <div className="product-card">
         <div className="product-image-wrapper">
           <img
@@ -89,7 +82,7 @@ export default function ProductCard({
             </div>
           )}
           
-          <div className="product-title-link" onClick={() => router.push(`/products/${id || 1}`)}>
+          <div className="product-title-link">
             <div className="product-title">{title}</div>
           </div>
           
@@ -102,17 +95,9 @@ export default function ProductCard({
               {originalPrice && (
                 <span className="product-price-original">{formatPrice(originalPrice)}</span>
               )}
-              {discount && (
-                <span className="product-discount">{discount}</span>
-              )}
             </div>
           )}
-          
-          {/* MOQ */}
-          {moq && (
-            <div className="product-moq">MOQ: {moq}</div>
-          )}
-          
+
           {/* Ranking Badge - below title for top-ranking */}
           {badge && badge.position === 'below-title' && (
             <div className={`product-ranking-badge product-ranking-badge-${badge.type || 'default'}`}>
@@ -121,43 +106,9 @@ export default function ProductCard({
               <span>{badge.text}</span>
             </div>
           )}
-          
-          {/* Price Indicator */}
-          {priceIndicator && (
-            <div className="product-price-indicator">
-              {priceIndicator.type === 'lower' && <ArrowDown size={12} />}
-              <span>{priceIndicator.text}</span>
-            </div>
-          )}
-          
-          {/* Delivery Info */}
-          {deliveryInfo && (
-            <div className="product-delivery">
-              <Check size={12} />
-              <span>{deliveryInfo}</span>
-            </div>
-          )}
-          
-          {/* Reorder Rate */}
-          {reorderRate && (
-            <div className="product-reorder">
-              <Check size={12} />
-              <span>Reorder rate {reorderRate}%</span>
-            </div>
-          )}
-          
-          {/* Sold Count */}
-          {soldCount && (
-            <div className="product-sold">{soldCount} sold</div>
-          )}
-          
-          {/* Seller Info */}
-          {sellerInfo && (
-            <div className="product-seller">{sellerInfo}</div>
-          )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
