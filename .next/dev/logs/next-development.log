@@ -12,3 +12,9 @@ Parsing ecmascript source code failed
 
 Unexpected token `{`. Expected identifier, string literal, numeric literal or [ for the computed key
 [00:37:25.401] Server  LOG      ✓ Compiled in 34ms
+[00:42:47.934] Server  LOG      ✓ Compiled in 207ms
+[00:42:58.269] Browser ERROR   uncaughtError: ReferenceError: LocationFilter is not defined
+[00:43:03.110] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:43:04.075] Server  LOG      ✓ Compiled in 60ms
+[00:45:26.661] Server  LOG      ✓ Compiled in 83ms
+[00:45:38.961] Server  LOG      ✓ Compiled in 127ms
