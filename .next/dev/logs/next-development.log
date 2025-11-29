@@ -1,2 +1,14 @@
 [00:00:07.454] Server  LOG      ✓ Ready in 4.8s
 [00:00:22.857] Server  LOG      ○ Compiling / ...
+[00:37:04.483] Browser ERROR   ./app/layout.js:13:17
+Parsing ecmascript source code failed
+  11 | export const metadata = {
+  12 |   title: 'Townssy E-commerce',
+> 13 |                 {children}
+     |                 ^
+  14 |               </ProfileProvider>
+  15 |             </FavouritesProvider>
+  16 |           </CartProvider>
+
+Unexpected token `{`. Expected identifier, string literal, numeric literal or [ for the computed key
+[00:37:25.401] Server  LOG      ✓ Compiled in 34ms
