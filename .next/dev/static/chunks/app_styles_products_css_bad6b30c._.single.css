@@ -440,30 +440,59 @@
   background: var(--background);
   border: 1px solid var(--border-color);
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 16px;
   align-items: center;
-  gap: 12px;
-  padding: 12px;
-  transition: all .2s;
+  gap: 16px;
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: all .3s cubic-bezier(.4, 0, .2, 1);
   display: flex;
+  position: relative;
+  overflow: hidden;
 }
 
 .tailored-selection-item:hover {
   border-color: var(--primary-color);
-  box-shadow: 0 2px 8px #00000014;
+  background: linear-gradient(to right, var(--background), rgba(var(--primary-rgb), .02));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px #00000014;
 }
 
 .tailored-selection-image {
   object-fit: cover;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
+  border-radius: 12px;
+  width: 56px;
+  height: 56px;
+  transition: transform .3s;
+  box-shadow: 0 2px 8px #0000001a;
+}
+
+.tailored-selection-item:hover .tailored-selection-image {
+  transform: scale(1.05);
 }
 
 .tailored-selection-label {
   color: var(--text-dark);
-  font-size: 14px;
-  font-weight: 500;
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.tailored-selection-item:after {
+  content: "";
+  opacity: .5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  transition: all .3s;
+}
+
+.tailored-selection-item:hover:after {
+  opacity: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E");
+  transform: translateX(4px);
 }
 
 /*# sourceMappingURL=app_styles_products_css_bad6b30c._.single.css.map*/

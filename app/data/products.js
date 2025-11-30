@@ -857,21 +857,29 @@ export const tailoredSelections = [
   {
     id: 41,
     label: "Women's Clothes",
+    slug: "womens-clothes",
+    category: "Fashion",
     image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=200&h=200&fit=crop',
   },
   {
     id: 42,
     label: 'Designer Shoe',
+    slug: "designer-shoes",
+    category: "Fashion",
     image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&h=200&fit=crop',
   },
   {
     id: 43,
     label: 'Food Trailer',
+    slug: "food-trailers",
+    category: "Food",
     image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=200&fit=crop',
   },
   {
     id: 44,
     label: 'Spider Hoodie',
+    slug: "spider-hoodies",
+    category: "Fashion",
     image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200&h=200&fit=crop',
   },
 ];
@@ -1264,7 +1272,7 @@ export const getProductDetails = (id) => {
     {
       id: 14,
       title: 'Gaming Mouse',
-      currentPrice: '$45.00',
+      currentPrice: '$45.00', 
       originalPrice: '$90.00',
       images: [
         'https://images.unsplash.com/photo-1527814050087-3793815479db?w=600&h=600&fit=crop',

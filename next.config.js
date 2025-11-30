@@ -6,7 +6,11 @@ module.exports = {
   },
   turbopack: {},
   webpack: (config) => {
-    config.ignoreWarnings = [{ module: /node_modules/, message: /source map/ }];
+    config.ignoreWarnings = [
+      { module: /node_modules/, message: /source map/ },
+      { message: /source map/ },
+      { message: /Invalid source map/ },
+    ];
     return config;
   },
 };

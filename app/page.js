@@ -183,7 +183,11 @@ export default function Home() {
               Tailored Selections
             </h3>
             {tailoredSelections.map((selection) => (
-              <div key={selection.id} className="tailored-selection-item">
+              <Link 
+                key={selection.id} 
+                href={`/category/${selection.slug}`}
+                className="tailored-selection-item"
+              >
                 <img
                   src={selection.image}
                   alt={selection.label}
@@ -192,7 +196,7 @@ export default function Home() {
                 <span className="tailored-selection-label">
                   {selection.label}
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="products-grid">

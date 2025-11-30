@@ -1,20 +1,2 @@
-[00:00:07.454] Server  LOG      ✓ Ready in 4.8s
-[00:00:22.857] Server  LOG      ○ Compiling / ...
-[00:37:04.483] Browser ERROR   ./app/layout.js:13:17
-Parsing ecmascript source code failed
-  11 | export const metadata = {
-  12 |   title: 'Townssy E-commerce',
-> 13 |                 {children}
-     |                 ^
-  14 |               </ProfileProvider>
-  15 |             </FavouritesProvider>
-  16 |           </CartProvider>
-
-Unexpected token `{`. Expected identifier, string literal, numeric literal or [ for the computed key
-[00:37:25.401] Server  LOG      ✓ Compiled in 34ms
-[00:42:47.934] Server  LOG      ✓ Compiled in 207ms
-[00:42:58.269] Browser ERROR   uncaughtError: ReferenceError: LocationFilter is not defined
-[00:43:03.110] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:43:04.075] Server  LOG      ✓ Compiled in 60ms
-[00:45:26.661] Server  LOG      ✓ Compiled in 83ms
-[00:45:38.961] Server  LOG      ✓ Compiled in 127ms
+[00:00:03.309] Server  LOG      ✓ Ready in 1963ms
+[00:21:22.601] Server  LOG      ✓ Compiled in 83ms

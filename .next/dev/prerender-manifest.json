@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "877084fcd611657db7e429e8c6206b07",
-    "previewModeSigningKey": "9d4c045b80431e5a9f3020544669aac16dd5f768212a6088ba8c326311409b26",
-    "previewModeEncryptionKey": "234a0cfebb5eca30c9bf4efe812b7fd0c7c006109cf34ac105e759d6e62010a8"
-  }
-}
+{"version":4,"routes":{"/category/womens-clothes":{},"/category/designer-shoes":{},"/category/food-trailers":{},"/category/spider-hoodies":{}},"dynamicRoutes":{"/category/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/category/[slug]","routeRegex":"^\\/category\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"8abed2bce976ee7bedf9e2d95bc2cf39","previewModeSigningKey":"4d9dae4f01bf7e65121b501bf9906edda707896fd28071814c86470394b7fac0","previewModeEncryptionKey":"4aec8f70866890e7fb577373f138acfcee5e1656b6cb64c9731dabccf42af8dd"}}
