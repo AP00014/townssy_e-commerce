@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect, useMemo } from 'react';
 import { featuredProducts, topProducts, accessories, newArrivals, hotProducts, topRated, bestSelling, luxuryProducts, ecoProducts, travelEssentials, securityProducts, topDeals, gridProducts } from '../../data/products.js';
 import ProductCard from '../../components/ProductCard.js';
-import { ChevronLeft, Heart, Share2, Star, Truck, Calendar, RotateCcw, ShieldCheck } from 'lucide-react';
+import { ChevronLeft, Heart, Share2, Star, Truck, Calendar, RotateCcw, ShieldCheck, MessageCircle } from 'lucide-react';
 
 // Function to find similar products based on category and tags
 function getSimilarProducts(currentProduct) {
@@ -321,6 +321,16 @@ export default function ProductDetailClient({ product }) {
         >
           Add to Cart
         </button>
+
+        <a 
+          href={`https://wa.me/1234567890?text=Hi, I'm interested in ${product.title}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whatsapp-btn"
+        >
+          <MessageCircle size={20} />
+          Contact Supplier
+        </a>
 
         {/* You Might Also Like Section */}
         {(() => {

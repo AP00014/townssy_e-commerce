@@ -1,0 +1,436 @@
+/* Discover Section Container */
+.discover-section {
+  padding: 0 4px;
+  margin-bottom: 24px;
+  margin-top: 16px;
+}
+
+/* Tabs */
+.discover-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 4px;
+}
+
+.discover-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.discover-tab {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  background: transparent;
+}
+
+.discover-tab.active {
+  background: var(--background);
+  border-color: var(--border-color);
+  color: var(--text-dark);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.discover-tab.inactive {
+  background: transparent;
+  color: var(--text-light-gray);
+}
+
+.discover-tab.inactive:hover {
+  background: rgba(0,0,0,0.02);
+}
+
+.tab-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Main Grid Layout */
+.discover-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* Promo Card (Left Column) */
+.promo-card {
+  background: linear-gradient(135deg, #E0C8FF 0%, #D8B4FE 100%);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 340px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.15);
+}
+
+.promo-header {
+  z-index: 2;
+  position: relative;
+}
+
+.promo-title {
+  color: #6B21A8;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(255,255,255,0.3);
+}
+
+/* Slider Container */
+.promo-slider {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 20px;
+}
+
+.promo-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  pointer-events: none;
+}
+
+.promo-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.promo-main-image {
+  width: 85%;
+  height: auto;
+  max-height: 70%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.2));
+  border-radius: 12px;
+}
+
+.promo-footer {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.view-more-btn {
+  background: #7C3AED;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 32px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+  transition: all 0.2s ease;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.view-more-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.5);
+}
+
+.view-more-btn:active {
+  transform: scale(1.02);
+}
+
+.promo-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  z-index: 2;
+}
+
+.promo-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(107, 33, 168, 0.3);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.promo-dot:hover {
+  background: rgba(107, 33, 168, 0.5);
+  transform: scale(1.2);
+}
+
+.promo-dot.active {
+  background: #FF6B00;
+  width: 20px;
+  border-radius: 3px;
+}
+
+/* Products Column (Right Column) */
+.discover-products {
+  display: flex;
+  flex-direction: column;
+}
+
+.discover-products .product-card-link {
+  height: 100%;
+}
+
+.discover-products .product-card {
+  height: 100%;
+  min-height: 340px;
+}
+
+/* Desktop Optimizations */
+@media (min-width: 1024px) {
+  .discover-section {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 16px;
+    margin-bottom: 32px;
+  }
+  
+  .discover-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .promo-card {
+    min-height: 400px;
+    padding: 28px;
+    border-radius: 20px;
+  }
+  
+  .promo-title {
+    font-size: 26px;
+  }
+  
+  .promo-slider {
+    padding: 28px;
+  }
+  
+  .promo-main-image {
+    width: 75%;
+    max-height: 65%;
+  }
+  
+  .view-more-btn {
+    padding: 12px 40px;
+    font-size: 15px;
+  }
+  
+  .promo-footer {
+    margin-bottom: 32px;
+  }
+  
+  .promo-dots {
+    bottom: 16px;
+    gap: 8px;
+  }
+  
+  .promo-dot {
+    width: 7px;
+    height: 7px;
+  }
+  
+  .promo-dot.active {
+    width: 24px;
+  }
+  
+  .discover-products {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: auto auto;
+    gap: 12px;
+    height: 100%;
+  }
+  
+  .discover-products .product-card-link:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+  
+  .discover-products .product-card-link {
+    height: auto;
+  }
+  
+  .discover-products .product-card {
+    min-height: auto;
+    height: 100%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .discover-section {
+    max-width: 1400px;
+  }
+  
+  .discover-grid {
+    gap: 20px;
+  }
+  
+  .promo-card {
+    min-height: 450px;
+    padding: 32px;
+  }
+  
+  .promo-title {
+    font-size: 28px;
+  }
+  
+  .discover-products {
+    gap: 16px;
+  }
+  
+  .discover-products .product-card {
+    min-height: auto;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .discover-grid {
+    gap: 6px;
+  }
+  
+  .promo-card {
+    min-height: 300px;
+    padding: 16px;
+  }
+  
+  .promo-title {
+    font-size: 18px;
+  }
+  
+  .view-more-btn {
+    padding: 8px 24px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .discover-section {
+    padding: 0 2px;
+  }
+  
+  .discover-grid {
+    gap: 4px;
+  }
+  
+  .promo-card {
+    min-height: 280px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  .promo-title {
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+  
+  .promo-slider {
+    top: 45%;
+  }
+  
+  .view-more-btn {
+    padding: 7px 18px;
+    font-size: 12px;
+  }
+  
+  .promo-footer {
+    margin-bottom: 24px;
+  }
+  
+  .promo-main-image {
+    width: 85%;
+    max-height: 55%;
+  }
+  
+  .promo-dots {
+    bottom: 8px;
+    gap: 4px;
+  }
+  
+  .promo-dot {
+    width: 5px;
+    height: 5px;
+  }
+  
+  .promo-dot.active {
+    width: 16px;
+  }
+  
+  .discover-products .product-card {
+    min-height: 280px;
+  }
+}
+
+/* Dark Mode */
+[data-theme="dark"] .discover-tab.active {
+  background: var(--background-secondary);
+  color: var(--text-dark);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .promo-card {
+  background: linear-gradient(135deg, #4C1D95 0%, #581C87 100%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] .promo-title {
+  color: #E9D5FF;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] .view-more-btn {
+  background: #8B5CF6;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35);
+}
+
+[data-theme="dark"] .view-more-btn:hover {
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.45);
+}
+
+[data-theme="dark"] .promo-dot {
+  background: rgba(233, 213, 255, 0.3);
+}
+
+[data-theme="dark"] .promo-dot:hover {
+  background: rgba(233, 213, 255, 0.5);
+}

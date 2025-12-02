@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useFavourites } from '../context/FavouritesContext';
-import { Check, Search, ArrowDown, ArrowUp, Award } from 'lucide-react';
+import { Check, ArrowDown, ArrowUp, Award } from 'lucide-react';
 
 export default function ProductCard({
   id,
@@ -13,7 +13,6 @@ export default function ProductCard({
   originalPrice,
   isFavorite = false,
   badge,
-  showVisualSearch = true,
   variant = 'default' // 'default', 'top-deal', 'top-ranking', 'grid'
 }) {
   const { toggleFavourite, isFavourite } = useFavourites();
@@ -46,12 +45,7 @@ export default function ProductCard({
             </div>
           )}
           
-          {/* Visual Search Icon */}
-          {showVisualSearch && (
-            <div className="product-visual-search">
-              <Search size={14} />
-            </div>
-          )}
+
           
           {/* Favorite Button */}
           <div

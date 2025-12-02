@@ -889,26 +889,6 @@ html {
   display: inline-block;
 }
 
-.product-visual-search {
-  cursor: pointer;
-  z-index: 2;
-  color: #fff;
-  background: #0009;
-  border-radius: 4px;
-  justify-content: center;
-  align-items: center;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-}
-
-.product-visual-search:hover {
-  background: #000c;
-}
-
 .product-favorite {
   cursor: pointer;
   z-index: 2;
@@ -2128,6 +2108,36 @@ html {
   .similar-products-container {
     gap: 10px;
   }
+}
+
+.whatsapp-btn {
+  color: #fff;
+  cursor: pointer;
+  background: #25d366;
+  border: none;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .3s;
+  display: flex;
+  box-shadow: 0 4px 12px #25d36633;
+}
+
+.whatsapp-btn:hover {
+  background: #128c7e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px #25d3664d;
+}
+
+.whatsapp-btn:active {
+  transform: translateY(0);
 }
 
 /* [project]/app/styles/menu.css [app-client] (css) */

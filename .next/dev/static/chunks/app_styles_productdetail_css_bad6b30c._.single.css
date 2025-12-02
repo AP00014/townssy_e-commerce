@@ -830,4 +830,34 @@
   }
 }
 
+.whatsapp-btn {
+  color: #fff;
+  cursor: pointer;
+  background: #25d366;
+  border: none;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .3s;
+  display: flex;
+  box-shadow: 0 4px 12px #25d36633;
+}
+
+.whatsapp-btn:hover {
+  background: #128c7e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px #25d3664d;
+}
+
+.whatsapp-btn:active {
+  transform: translateY(0);
+}
+
 /*# sourceMappingURL=app_styles_productdetail_css_bad6b30c._.single.css.map*/

@@ -63,164 +63,164 @@ __turbopack_context__.s([
 const categories = [
     {
         id: 1,
-        name: 'Environment',
-        image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop'
+        name: "Suppliers",
+        image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop"
     },
     {
         id: 2,
-        name: 'Agriculture',
-        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop'
+        name: "Manufacturers",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop"
     },
     {
         id: 3,
-        name: 'Power Transmission',
-        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop'
+        name: "Power Transmission",
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop"
     },
     {
         id: 4,
-        name: 'Safety',
-        image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=200&fit=crop'
+        name: "Safety",
+        image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=200&fit=crop"
     },
     {
         id: 5,
-        name: 'Pet Supplies',
-        image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop'
+        name: "Pet Supplies",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop"
     },
     {
         id: 6,
-        name: 'Testing Instrument & Equipment',
-        image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop'
+        name: "Testing Instrument & Equipment",
+        image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop"
     },
     {
         id: 7,
-        name: 'Material Handling',
-        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop'
+        name: "Material Handling",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop"
     },
     {
         id: 8,
-        name: 'Fabrication Services',
-        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop'
+        name: "Fabrication Services",
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop"
     },
     {
         id: 9,
-        name: 'Rubber & Plastics',
-        image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=200&fit=crop'
+        name: "Rubber & Plastics",
+        image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=200&fit=crop"
     },
     {
         id: 10,
-        name: 'Purchasing agent',
-        image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop'
+        name: "Purchasing agent",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop"
     },
     {
         id: 11,
-        name: 'Business Services',
-        image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop'
+        name: "Business Services",
+        image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop"
     },
     {
         id: 12,
-        name: 'Electronics',
-        image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop'
+        name: "Electronics",
+        image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=200&h=200&fit=crop"
     },
     {
         id: 13,
-        name: 'Fashion',
-        image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop'
+        name: "Fashion",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&h=200&fit=crop"
     },
     {
         id: 14,
-        name: 'Home',
-        image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop'
+        name: "Home",
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop"
     },
     {
         id: 15,
-        name: 'Kitchen',
-        image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=200&fit=crop'
+        name: "Kitchen",
+        image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=200&fit=crop"
     },
     {
         id: 16,
-        name: 'Sports',
-        image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop'
+        name: "Sports",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=200&h=200&fit=crop"
     }
 ];
 const suppliers = [
     {
         id: 1,
-        name: 'Premium Suppliers'
+        name: "Premium Suppliers"
     },
     {
         id: 2,
-        name: 'Global Trade Co.'
+        name: "Global Trade Co."
     },
     {
         id: 3,
-        name: 'Quality Goods Ltd.'
+        name: "Quality Goods Ltd."
     },
     {
         id: 4,
-        name: 'Best Deals Inc.'
+        name: "Best Deals Inc."
     },
     {
         id: 5,
-        name: 'Trusted Merchants'
+        name: "Trusted Merchants"
     }
 ];
 const manufacturers = [
     {
         id: 1,
-        name: 'TechCorp Industries'
+        name: "TechCorp Industries"
     },
     {
         id: 2,
-        name: 'Fashion Forward'
+        name: "Fashion Forward"
     },
     {
         id: 3,
-        name: 'Home Essentials Co.'
+        name: "Home Essentials Co."
     },
     {
         id: 4,
-        name: 'Kitchen Pro'
+        name: "Kitchen Pro"
     },
     {
         id: 5,
-        name: 'Sports Gear Inc.'
+        name: "Sports Gear Inc."
     }
 ];
 const featuredProducts = [
     {
         id: 1,
-        title: 'NEW Ulefone Watch',
-        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
-        currentPrice: '$30.0',
-        originalPrice: '$40.0',
+        title: "NEW Ulefone Watch",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+        currentPrice: "$30.0",
+        originalPrice: "$40.0",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '1.5 x 1.5 x 0.5 inches',
-            weight: '0.2 lbs',
-            material: 'Plastic and Metal',
-            warranty: '1 year'
+            dimensions: "1.5 x 1.5 x 0.5 inches",
+            weight: "0.2 lbs",
+            material: "Plastic and Metal",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.5,
-                author: 'John Doe',
-                date: '2023-10-01',
-                comment: 'Great smartwatch!',
+                author: "John Doe",
+                date: "2023-10-01",
+                comment: "Great smartwatch!",
                 verified: true
             }
         ],
@@ -228,59 +228,61 @@ const featuredProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'sale',
-                text: 'Sale'
+                type: "sale",
+                text: "Sale"
             }
         ],
-        category: 'Electronics',
+        category: "Electronics",
+        providerType: "manufacturer",
+        secondaryCategory: "electronics",
         tags: [
-            'smart',
-            'watch',
-            'fitness'
+            "smart",
+            "watch",
+            "fitness"
         ]
     },
     {
         id: 2,
-        title: 'White Jumpsuit',
-        image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop',
-        currentPrice: '₹ 1,100',
-        originalPrice: '₹ 2,200',
+        title: "White Jumpsuit",
+        image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop",
+        currentPrice: "₹ 1,100",
+        originalPrice: "₹ 2,200",
         isFavorite: false,
         sizes: [
             {
-                size: 'S',
+                size: "S",
                 available: true
             },
             {
-                size: 'M',
+                size: "M",
                 available: true
             },
             {
-                size: 'L',
+                size: "L",
                 available: false
             }
         ],
         specifications: {
-            dimensions: '36 x 28 x 1 inches',
-            weight: '1 lbs',
-            material: 'Cotton',
-            warranty: 'N/A'
+            dimensions: "36 x 28 x 1 inches",
+            weight: "1 lbs",
+            material: "Cotton",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '3-5 business days',
+            estimatedDelivery: "3-5 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.0,
-                author: 'Jane Smith',
-                date: '2023-09-15',
-                comment: 'Stylish and comfortable!',
+                author: "Jane Smith",
+                date: "2023-09-15",
+                comment: "Stylish and comfortable!",
                 verified: true
             }
         ],
@@ -288,50 +290,52 @@ const featuredProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'sale',
-                text: 'Sale'
+                type: "sale",
+                text: "Sale"
             }
         ],
-        category: 'Fashion',
+        category: "Fashion",
+        providerType: "supplier",
+        secondaryCategory: "fashion",
         tags: [
-            'clothing',
-            'jumpsuit',
-            'women'
+            "clothing",
+            "jumpsuit",
+            "women"
         ]
     },
     {
         id: 3,
-        title: 'Vitamin C Serum',
-        image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop',
-        currentPrice: '₹ 2,453',
-        originalPrice: '₹ 4,700',
+        title: "Vitamin C Serum",
+        image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop",
+        currentPrice: "₹ 2,453",
+        originalPrice: "₹ 4,700",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '2 x 2 x 4 inches',
-            weight: '0.3 lbs',
-            material: 'Glass and Plastic',
-            warranty: 'N/A'
+            dimensions: "2 x 2 x 4 inches",
+            weight: "0.3 lbs",
+            material: "Glass and Plastic",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: false,
-            estimatedDelivery: '5-7 business days',
+            estimatedDelivery: "5-7 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.8,
-                author: 'Alice Johnson',
-                date: '2023-08-20',
-                comment: 'Amazing for skin!',
+                author: "Alice Johnson",
+                date: "2023-08-20",
+                comment: "Amazing for skin!",
                 verified: true
             }
         ],
@@ -339,63 +343,65 @@ const featuredProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'sale',
-                text: 'Sale'
+                type: "sale",
+                text: "Sale"
             }
         ],
-        category: 'Beauty',
+        category: "Beauty",
+        providerType: "supplier",
+        secondaryCategory: "beauty-health",
         tags: [
-            'skincare',
-            'serum',
-            'vitamin c'
+            "skincare",
+            "serum",
+            "vitamin c"
         ]
     },
     {
         id: 4,
-        title: 'Strip T-shirt',
-        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop',
-        currentPrice: '₹ 1,700',
-        originalPrice: '₹ 3,400',
+        title: "Strip T-shirt",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop",
+        currentPrice: "₹ 1,700",
+        originalPrice: "₹ 3,400",
         isFavorite: false,
         sizes: [
             {
-                size: 'S',
+                size: "S",
                 available: true
             },
             {
-                size: 'M',
+                size: "M",
                 available: true
             },
             {
-                size: 'L',
+                size: "L",
                 available: true
             },
             {
-                size: 'XL',
+                size: "XL",
                 available: false
             }
         ],
         specifications: {
-            dimensions: '28 x 20 x 1 inches',
-            weight: '0.5 lbs',
-            material: 'Cotton',
-            warranty: 'N/A'
+            dimensions: "28 x 20 x 1 inches",
+            weight: "0.5 lbs",
+            material: "Cotton",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.2,
-                author: 'Bob Wilson',
-                date: '2023-07-10',
-                comment: 'Comfortable fit!',
+                author: "Bob Wilson",
+                date: "2023-07-10",
+                comment: "Comfortable fit!",
                 verified: true
             }
         ],
@@ -403,279 +409,281 @@ const featuredProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'sale',
-                text: 'Sale'
+                type: "sale",
+                text: "Sale"
             }
         ],
-        category: 'Fashion',
+        category: "Fashion",
+        providerType: "manufacturer",
+        secondaryCategory: "fashion",
         tags: [
-            'clothing',
-            't-shirt',
-            'striped'
+            "clothing",
+            "t-shirt",
+            "striped"
         ]
     }
 ];
 const topProducts = [
     {
         id: 5,
-        title: 'Product Title',
-        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
-        currentPrice: '$24.00',
+        title: "Product Title",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+        currentPrice: "$24.00",
         originalPrice: null,
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '10 x 5 x 2 inches',
-            weight: '1 lbs',
-            material: 'Various',
-            warranty: '1 year'
+            dimensions: "10 x 5 x 2 inches",
+            weight: "1 lbs",
+            material: "Various",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'General',
+        category: "General",
         tags: [
-            'product'
+            "product"
         ]
     },
     {
         id: 6,
-        title: 'Product Title',
-        image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop',
-        currentPrice: '$24.00',
+        title: "Product Title",
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop",
+        currentPrice: "$24.00",
         originalPrice: null,
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '10 x 5 x 2 inches',
-            weight: '1 lbs',
-            material: 'Various',
-            warranty: '1 year'
+            dimensions: "10 x 5 x 2 inches",
+            weight: "1 lbs",
+            material: "Various",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'General',
+        category: "General",
         tags: [
-            'product'
+            "product"
         ]
     },
     {
         id: 7,
-        title: 'Product Title',
-        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop',
-        currentPrice: '$24.00',
+        title: "Product Title",
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+        currentPrice: "$24.00",
         originalPrice: null,
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '10 x 5 x 2 inches',
-            weight: '1 lbs',
-            material: 'Various',
-            warranty: '1 year'
+            dimensions: "10 x 5 x 2 inches",
+            weight: "1 lbs",
+            material: "Various",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'General',
+        category: "General",
         tags: [
-            'product'
+            "product"
         ]
     }
 ];
 const accessories = [
     {
         id: 8,
-        title: 'Lorem ipsum lorem ipsum dolor sit amet',
-        image: 'https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=400&fit=crop',
-        currentPrice: '$275.00',
-        originalPrice: '$550.00',
+        title: "Lorem ipsum lorem ipsum dolor sit amet",
+        image: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=400&fit=crop",
+        currentPrice: "$275.00",
+        originalPrice: "$550.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '12 x 8 x 3 inches',
-            weight: '2 lbs',
-            material: 'Various',
-            warranty: '1 year'
+            dimensions: "12 x 8 x 3 inches",
+            weight: "2 lbs",
+            material: "Various",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Accessories',
+        category: "Accessories",
         tags: [
-            'accessory'
+            "accessory"
         ]
     },
     {
         id: 9,
-        title: 'Lorem ipsum lorem ipsum dolor sit amet',
-        image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop',
-        currentPrice: '$900.00',
-        originalPrice: '$1800.00',
+        title: "Lorem ipsum lorem ipsum dolor sit amet",
+        image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop",
+        currentPrice: "$900.00",
+        originalPrice: "$1800.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '12 x 8 x 3 inches',
-            weight: '2 lbs',
-            material: 'Various',
-            warranty: '1 year'
+            dimensions: "12 x 8 x 3 inches",
+            weight: "2 lbs",
+            material: "Various",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Accessories',
+        category: "Accessories",
         tags: [
-            'accessory'
+            "accessory"
         ]
     },
     {
         id: 10,
-        title: 'Lorem ipsum lorem ipsum dolor sit amet',
-        image: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=400&fit=crop',
-        currentPrice: '$400.00',
-        originalPrice: '$800.00',
+        title: "Lorem ipsum lorem ipsum dolor sit amet",
+        image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=400&fit=crop",
+        currentPrice: "$400.00",
+        originalPrice: "$800.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '12 x 8 x 3 inches',
-            weight: '2 lbs',
-            material: 'Various',
-            warranty: '1 year'
+            dimensions: "12 x 8 x 3 inches",
+            weight: "2 lbs",
+            material: "Various",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Accessories',
+        category: "Accessories",
         tags: [
-            'accessory'
+            "accessory"
         ]
     }
 ];
 const newArrivals = [
     {
         id: 11,
-        title: 'Smartphone Case',
-        image: 'https://images.unsplash.com/photo-1601593346740-925612772716?w=400&h=400&fit=crop',
-        currentPrice: '$15.00',
-        originalPrice: '$30.00',
+        title: "Smartphone Case",
+        image: "https://images.unsplash.com/photo-1601593346740-925612772716?w=400&h=400&fit=crop",
+        currentPrice: "$15.00",
+        originalPrice: "$30.00",
         isFavorite: false,
         media: [
             {
-                type: 'image',
-                url: 'https://images.unsplash.com/photo-1601593346740-925612772716?w=600&h=600&fit=crop'
+                type: "image",
+                url: "https://images.unsplash.com/photo-1601593346740-925612772716?w=600&h=600&fit=crop"
             }
         ],
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '6 x 4 x 0.5 inches',
-            weight: '0.2 lbs',
-            material: 'Plastic',
-            warranty: '6 months'
+            dimensions: "6 x 4 x 0.5 inches",
+            weight: "0.2 lbs",
+            material: "Plastic",
+            warranty: "6 months"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.5,
-                author: 'User1',
-                date: '2023-11-01',
-                comment: 'Good protection!',
+                author: "User1",
+                date: "2023-11-01",
+                comment: "Good protection!",
                 verified: true
             }
         ],
@@ -683,56 +691,56 @@ const newArrivals = [
         reviewCount: 1,
         labels: [
             {
-                type: 'new',
-                text: 'New Arrival'
+                type: "new",
+                text: "New Arrival"
             }
         ],
-        category: 'Accessories',
+        category: "Accessories",
         tags: [
-            'phone',
-            'case'
+            "phone",
+            "case"
         ]
     },
     {
         id: 12,
-        title: 'Wireless Charger',
-        image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=400&fit=crop',
-        currentPrice: '$25.00',
-        originalPrice: '$50.00',
+        title: "Wireless Charger",
+        image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=400&fit=crop",
+        currentPrice: "$25.00",
+        originalPrice: "$50.00",
         isFavorite: false,
         media: [
             {
-                type: 'image',
-                url: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=600&fit=crop'
+                type: "image",
+                url: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=600&fit=crop"
             }
         ],
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '4 x 4 x 0.5 inches',
-            weight: '0.3 lbs',
-            material: 'Plastic',
-            warranty: '1 year'
+            dimensions: "4 x 4 x 0.5 inches",
+            weight: "0.3 lbs",
+            material: "Plastic",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.0,
-                author: 'User2',
-                date: '2023-10-15',
-                comment: 'Fast charging!',
+                author: "User2",
+                date: "2023-10-15",
+                comment: "Fast charging!",
                 verified: true
             }
         ],
@@ -740,50 +748,50 @@ const newArrivals = [
         reviewCount: 1,
         labels: [
             {
-                type: 'new',
-                text: 'New Arrival'
+                type: "new",
+                text: "New Arrival"
             }
         ],
-        category: 'Electronics',
+        category: "Electronics",
         tags: [
-            'charger',
-            'wireless'
+            "charger",
+            "wireless"
         ]
     },
     {
         id: 13,
-        title: 'Bluetooth Headphones',
-        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop',
-        currentPrice: '$80.00',
-        originalPrice: '$160.00',
+        title: "Bluetooth Headphones",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+        currentPrice: "$80.00",
+        originalPrice: "$160.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '8 x 6 x 2 inches',
-            weight: '0.5 lbs',
-            material: 'Plastic and Metal',
-            warranty: '1 year'
+            dimensions: "8 x 6 x 2 inches",
+            weight: "0.5 lbs",
+            material: "Plastic and Metal",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.8,
-                author: 'User3',
-                date: '2023-09-20',
-                comment: 'Great sound!',
+                author: "User3",
+                date: "2023-09-20",
+                comment: "Great sound!",
                 verified: true
             }
         ],
@@ -791,52 +799,52 @@ const newArrivals = [
         reviewCount: 1,
         labels: [
             {
-                type: 'new',
-                text: 'New Arrival'
+                type: "new",
+                text: "New Arrival"
             }
         ],
-        category: 'Electronics',
+        category: "Electronics",
         tags: [
-            'headphones',
-            'bluetooth'
+            "headphones",
+            "bluetooth"
         ]
     }
 ];
 const hotProducts = [
     {
         id: 14,
-        title: 'Gaming Mouse',
-        image: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&h=400&fit=crop',
-        currentPrice: '$45.00',
-        originalPrice: '$90.00',
+        title: "Gaming Mouse",
+        image: "https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&h=400&fit=crop",
+        currentPrice: "$45.00",
+        originalPrice: "$90.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '5 x 3 x 1.5 inches',
-            weight: '0.3 lbs',
-            material: 'Plastic',
-            warranty: '1 year'
+            dimensions: "5 x 3 x 1.5 inches",
+            weight: "0.3 lbs",
+            material: "Plastic",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.7,
-                author: 'Gamer1',
-                date: '2023-12-01',
-                comment: 'Precise and responsive!',
+                author: "Gamer1",
+                date: "2023-12-01",
+                comment: "Precise and responsive!",
                 verified: true
             }
         ],
@@ -844,50 +852,50 @@ const hotProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'hot',
-                text: 'Hot Product'
+                type: "hot",
+                text: "Hot Product"
             }
         ],
-        category: 'Electronics',
+        category: "Electronics",
         tags: [
-            'gaming',
-            'mouse'
+            "gaming",
+            "mouse"
         ]
     },
     {
         id: 15,
-        title: 'Mechanical Keyboard',
-        image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=400&fit=crop',
-        currentPrice: '$120.00',
-        originalPrice: '$240.00',
+        title: "Mechanical Keyboard",
+        image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&h=400&fit=crop",
+        currentPrice: "$120.00",
+        originalPrice: "$240.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '18 x 6 x 1.5 inches',
-            weight: '2 lbs',
-            material: 'Plastic and Metal',
-            warranty: '2 years'
+            dimensions: "18 x 6 x 1.5 inches",
+            weight: "2 lbs",
+            material: "Plastic and Metal",
+            warranty: "2 years"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.9,
-                author: 'Typist2',
-                date: '2023-11-15',
-                comment: 'Amazing typing feel!',
+                author: "Typist2",
+                date: "2023-11-15",
+                comment: "Amazing typing feel!",
                 verified: true
             }
         ],
@@ -895,49 +903,49 @@ const hotProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'hot',
-                text: 'Hot Product'
+                type: "hot",
+                text: "Hot Product"
             }
         ],
-        category: 'Electronics',
+        category: "Electronics",
         tags: [
-            'keyboard',
-            'mechanical'
+            "keyboard",
+            "mechanical"
         ]
     },
     {
         id: 16,
-        title: 'LED Monitor',
-        image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop',
-        currentPrice: '$200.00',
-        originalPrice: '$400.00',
+        title: "LED Monitor",
+        image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop",
+        currentPrice: "$200.00",
+        originalPrice: "$400.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '24 x 14 x 6 inches',
-            weight: '8 lbs',
-            material: 'Plastic and Glass',
-            warranty: '3 years'
+            dimensions: "24 x 14 x 6 inches",
+            weight: "8 lbs",
+            material: "Plastic and Glass",
+            warranty: "3 years"
         },
         delivery: {
             freeShipping: false,
-            estimatedDelivery: '5-7 business days',
+            estimatedDelivery: "5-7 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.6,
-                author: 'Tech3',
-                date: '2023-10-20',
-                comment: 'Vivid colors!',
+                author: "Tech3",
+                date: "2023-10-20",
+                comment: "Vivid colors!",
                 verified: true
             }
         ],
@@ -945,52 +953,52 @@ const hotProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'hot',
-                text: 'Hot Product'
+                type: "hot",
+                text: "Hot Product"
             }
         ],
-        category: 'Electronics',
+        category: "Electronics",
         tags: [
-            'monitor',
-            'led'
+            "monitor",
+            "led"
         ]
     }
 ];
 const topRated = [
     {
         id: 17,
-        title: 'Coffee Maker',
-        image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=400&fit=crop',
-        currentPrice: '$60.00',
-        originalPrice: '$120.00',
+        title: "Coffee Maker",
+        image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=400&fit=crop",
+        currentPrice: "$60.00",
+        originalPrice: "$120.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '12 x 8 x 14 inches',
-            weight: '5 lbs',
-            material: 'Plastic and Metal',
-            warranty: '2 years'
+            dimensions: "12 x 8 x 14 inches",
+            weight: "5 lbs",
+            material: "Plastic and Metal",
+            warranty: "2 years"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.8,
-                author: 'CoffeeLover',
-                date: '2023-10-05',
-                comment: 'Makes great coffee!',
+                author: "CoffeeLover",
+                date: "2023-10-05",
+                comment: "Makes great coffee!",
                 verified: true
             }
         ],
@@ -998,50 +1006,50 @@ const topRated = [
         reviewCount: 1,
         labels: [
             {
-                type: 'top',
-                text: 'Top Rated'
+                type: "top",
+                text: "Top Rated"
             }
         ],
-        category: 'Kitchen',
+        category: "Kitchen",
         tags: [
-            'coffee',
-            'maker'
+            "coffee",
+            "maker"
         ]
     },
     {
         id: 18,
-        title: 'Blender',
-        image: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400&h=400&fit=crop',
-        currentPrice: '$35.00',
-        originalPrice: '$70.00',
+        title: "Blender",
+        image: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400&h=400&fit=crop",
+        currentPrice: "$35.00",
+        originalPrice: "$70.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '8 x 6 x 12 inches',
-            weight: '3 lbs',
-            material: 'Plastic',
-            warranty: '1 year'
+            dimensions: "8 x 6 x 12 inches",
+            weight: "3 lbs",
+            material: "Plastic",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.5,
-                author: 'SmoothieFan',
-                date: '2023-09-12',
-                comment: 'Powerful and easy to use!',
+                author: "SmoothieFan",
+                date: "2023-09-12",
+                comment: "Powerful and easy to use!",
                 verified: true
             }
         ],
@@ -1049,49 +1057,49 @@ const topRated = [
         reviewCount: 1,
         labels: [
             {
-                type: 'top',
-                text: 'Top Rated'
+                type: "top",
+                text: "Top Rated"
             }
         ],
-        category: 'Kitchen',
+        category: "Kitchen",
         tags: [
-            'blender'
+            "blender"
         ]
     },
     {
         id: 19,
-        title: 'Air Fryer',
-        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop',
-        currentPrice: '$100.00',
-        originalPrice: '$200.00',
+        title: "Air Fryer",
+        image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop",
+        currentPrice: "$100.00",
+        originalPrice: "$200.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '10 x 10 x 12 inches',
-            weight: '6 lbs',
-            material: 'Plastic and Metal',
-            warranty: '2 years'
+            dimensions: "10 x 10 x 12 inches",
+            weight: "6 lbs",
+            material: "Plastic and Metal",
+            warranty: "2 years"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.9,
-                author: 'HealthyEater',
-                date: '2023-08-25',
-                comment: 'Crispy and healthy!',
+                author: "HealthyEater",
+                date: "2023-08-25",
+                comment: "Crispy and healthy!",
                 verified: true
             }
         ],
@@ -1099,51 +1107,51 @@ const topRated = [
         reviewCount: 1,
         labels: [
             {
-                type: 'top',
-                text: 'Top Rated'
+                type: "top",
+                text: "Top Rated"
             }
         ],
-        category: 'Kitchen',
+        category: "Kitchen",
         tags: [
-            'air fryer'
+            "air fryer"
         ]
     }
 ];
 const bestSelling = [
     {
         id: 20,
-        title: 'Yoga Mat',
-        image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop',
-        currentPrice: '$20.00',
-        originalPrice: '$40.00',
+        title: "Yoga Mat",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=400&fit=crop",
+        currentPrice: "$20.00",
+        originalPrice: "$40.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '24 x 68 x 0.25 inches',
-            weight: '2 lbs',
-            material: 'Rubber',
-            warranty: '1 year'
+            dimensions: "24 x 68 x 0.25 inches",
+            weight: "2 lbs",
+            material: "Rubber",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.7,
-                author: 'Yogi',
-                date: '2023-11-20',
-                comment: 'Non-slip and comfortable!',
+                author: "Yogi",
+                date: "2023-11-20",
+                comment: "Non-slip and comfortable!",
                 verified: true
             }
         ],
@@ -1151,50 +1159,50 @@ const bestSelling = [
         reviewCount: 1,
         labels: [
             {
-                type: 'best',
-                text: 'Best Selling'
+                type: "best",
+                text: "Best Selling"
             }
         ],
-        category: 'Sports',
+        category: "Sports",
         tags: [
-            'yoga',
-            'mat'
+            "yoga",
+            "mat"
         ]
     },
     {
         id: 21,
-        title: 'Dumbbells Set',
-        image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop',
-        currentPrice: '$50.00',
-        originalPrice: '$100.00',
+        title: "Dumbbells Set",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop",
+        currentPrice: "$50.00",
+        originalPrice: "$100.00",
         isFavorite: false,
         sizes: [
             {
-                size: '5-25 lbs',
+                size: "5-25 lbs",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '10 x 5 x 5 inches',
-            weight: '15 lbs',
-            material: 'Metal',
-            warranty: 'Lifetime'
+            dimensions: "10 x 5 x 5 inches",
+            weight: "15 lbs",
+            material: "Metal",
+            warranty: "Lifetime"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.6,
-                author: 'FitnessGuy',
-                date: '2023-10-30',
-                comment: 'Great for home workouts!',
+                author: "FitnessGuy",
+                date: "2023-10-30",
+                comment: "Great for home workouts!",
                 verified: true
             }
         ],
@@ -1202,57 +1210,57 @@ const bestSelling = [
         reviewCount: 1,
         labels: [
             {
-                type: 'best',
-                text: 'Best Selling'
+                type: "best",
+                text: "Best Selling"
             }
         ],
-        category: 'Sports',
+        category: "Sports",
         tags: [
-            'dumbbells'
+            "dumbbells"
         ]
     },
     {
         id: 22,
-        title: 'Running Shoes',
-        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
-        currentPrice: '$75.00',
-        originalPrice: '$150.00',
+        title: "Running Shoes",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop",
+        currentPrice: "$75.00",
+        originalPrice: "$150.00",
         isFavorite: false,
         sizes: [
             {
-                size: '7',
+                size: "7",
                 available: true
             },
             {
-                size: '8',
+                size: "8",
                 available: true
             },
             {
-                size: '9',
+                size: "9",
                 available: false
             }
         ],
         specifications: {
-            dimensions: '12 x 4 x 4 inches',
-            weight: '1 lbs',
-            material: 'Mesh and Rubber',
-            warranty: '1 year'
+            dimensions: "12 x 4 x 4 inches",
+            weight: "1 lbs",
+            material: "Mesh and Rubber",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.8,
-                author: 'Runner',
-                date: '2023-09-18',
-                comment: 'Comfortable and lightweight!',
+                author: "Runner",
+                date: "2023-09-18",
+                comment: "Comfortable and lightweight!",
                 verified: true
             }
         ],
@@ -1260,52 +1268,52 @@ const bestSelling = [
         reviewCount: 1,
         labels: [
             {
-                type: 'best',
-                text: 'Best Selling'
+                type: "best",
+                text: "Best Selling"
             }
         ],
-        category: 'Sports',
+        category: "Sports",
         tags: [
-            'running',
-            'shoes'
+            "running",
+            "shoes"
         ]
     }
 ];
 const luxuryProducts = [
     {
         id: 23,
-        title: 'Designer Watch',
-        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
-        currentPrice: '$500.00',
-        originalPrice: '$1000.00',
+        title: "Designer Watch",
+        image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+        currentPrice: "$500.00",
+        originalPrice: "$1000.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '1.5 x 1.5 x 0.5 inches',
-            weight: '0.3 lbs',
-            material: 'Gold and Leather',
-            warranty: '5 years'
+            dimensions: "1.5 x 1.5 x 0.5 inches",
+            weight: "0.3 lbs",
+            material: "Gold and Leather",
+            warranty: "5 years"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 5.0,
-                author: 'LuxuryBuyer',
-                date: '2023-12-10',
-                comment: 'Elegant and timeless!',
+                author: "LuxuryBuyer",
+                date: "2023-12-10",
+                comment: "Elegant and timeless!",
                 verified: true
             }
         ],
@@ -1313,49 +1321,49 @@ const luxuryProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'luxury',
-                text: 'Luxury'
+                type: "luxury",
+                text: "Luxury"
             }
         ],
-        category: 'Fashion',
+        category: "Fashion",
         tags: [
-            'watch'
+            "watch"
         ]
     },
     {
         id: 24,
-        title: 'Leather Bag',
-        image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop',
-        currentPrice: '$300.00',
-        originalPrice: '$600.00',
+        title: "Leather Bag",
+        image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop",
+        currentPrice: "$300.00",
+        originalPrice: "$600.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '12 x 10 x 4 inches',
-            weight: '2 lbs',
-            material: 'Leather',
-            warranty: '2 years'
+            dimensions: "12 x 10 x 4 inches",
+            weight: "2 lbs",
+            material: "Leather",
+            warranty: "2 years"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.9,
-                author: 'Fashionista',
-                date: '2023-11-05',
-                comment: 'Stylish and durable!',
+                author: "Fashionista",
+                date: "2023-11-05",
+                comment: "Stylish and durable!",
                 verified: true
             }
         ],
@@ -1363,49 +1371,49 @@ const luxuryProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'luxury',
-                text: 'Luxury'
+                type: "luxury",
+                text: "Luxury"
             }
         ],
-        category: 'Fashion',
+        category: "Fashion",
         tags: [
-            'bag'
+            "bag"
         ]
     },
     {
         id: 25,
-        title: 'Sunglasses',
-        image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop',
-        currentPrice: '$150.00',
-        originalPrice: '$300.00',
+        title: "Sunglasses",
+        image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop",
+        currentPrice: "$150.00",
+        originalPrice: "$300.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '6 x 2 x 6 inches',
-            weight: '0.2 lbs',
-            material: 'Metal and Glass',
-            warranty: '1 year'
+            dimensions: "6 x 2 x 6 inches",
+            weight: "0.2 lbs",
+            material: "Metal and Glass",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard',
-                'Express'
+                "Standard",
+                "Express"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.7,
-                author: 'SunSeeker',
-                date: '2023-10-15',
-                comment: 'UV protection and style!',
+                author: "SunSeeker",
+                date: "2023-10-15",
+                comment: "UV protection and style!",
                 verified: true
             }
         ],
@@ -1413,50 +1421,50 @@ const luxuryProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'luxury',
-                text: 'Luxury'
+                type: "luxury",
+                text: "Luxury"
             }
         ],
-        category: 'Fashion',
+        category: "Fashion",
         tags: [
-            'sunglasses'
+            "sunglasses"
         ]
     }
 ];
 const ecoProducts = [
     {
         id: 26,
-        title: 'Bamboo Toothbrush',
-        image: 'https://images.unsplash.com/photo-1559599101-f09722fb4948?w=400&h=400&fit=crop',
-        currentPrice: '$5.00',
-        originalPrice: '$10.00',
+        title: "Bamboo Toothbrush",
+        image: "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=400&h=400&fit=crop",
+        currentPrice: "$5.00",
+        originalPrice: "$10.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '7 x 1 x 0.5 inches',
-            weight: '0.1 lbs',
-            material: 'Bamboo',
-            warranty: 'N/A'
+            dimensions: "7 x 1 x 0.5 inches",
+            weight: "0.1 lbs",
+            material: "Bamboo",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.5,
-                author: 'EcoUser',
-                date: '2023-11-10',
-                comment: 'Great eco-friendly alternative!',
+                author: "EcoUser",
+                date: "2023-11-10",
+                comment: "Great eco-friendly alternative!",
                 verified: true
             }
         ],
@@ -1464,49 +1472,49 @@ const ecoProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'eco',
-                text: 'Eco-Friendly'
+                type: "eco",
+                text: "Eco-Friendly"
             }
         ],
-        category: 'Beauty',
+        category: "Beauty",
         tags: [
-            'eco',
-            'toothbrush'
+            "eco",
+            "toothbrush"
         ]
     },
     {
         id: 27,
-        title: 'Reusable Water Bottle',
-        image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop',
-        currentPrice: '$15.00',
-        originalPrice: '$30.00',
+        title: "Reusable Water Bottle",
+        image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop",
+        currentPrice: "$15.00",
+        originalPrice: "$30.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '3 x 3 x 10 inches',
-            weight: '0.5 lbs',
-            material: 'Stainless Steel',
-            warranty: '1 year'
+            dimensions: "3 x 3 x 10 inches",
+            weight: "0.5 lbs",
+            material: "Stainless Steel",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.8,
-                author: 'Hydrated',
-                date: '2023-10-25',
-                comment: 'Keeps drinks cold perfectly!',
+                author: "Hydrated",
+                date: "2023-10-25",
+                comment: "Keeps drinks cold perfectly!",
                 verified: true
             }
         ],
@@ -1514,56 +1522,56 @@ const ecoProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'eco',
-                text: 'Eco-Friendly'
+                type: "eco",
+                text: "Eco-Friendly"
             }
         ],
-        category: 'Home',
+        category: "Home",
         tags: [
-            'water bottle'
+            "water bottle"
         ]
     },
     {
         id: 28,
-        title: 'Organic Cotton T-shirt',
-        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop',
-        currentPrice: '$25.00',
-        originalPrice: '$50.00',
+        title: "Organic Cotton T-shirt",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop",
+        currentPrice: "$25.00",
+        originalPrice: "$50.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'S',
+                size: "S",
                 available: true
             },
             {
-                size: 'M',
+                size: "M",
                 available: true
             },
             {
-                size: 'L',
+                size: "L",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '28 x 20 x 1 inches',
-            weight: '0.5 lbs',
-            material: 'Organic Cotton',
-            warranty: 'N/A'
+            dimensions: "28 x 20 x 1 inches",
+            weight: "0.5 lbs",
+            material: "Organic Cotton",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.6,
-                author: 'OrganicFan',
-                date: '2023-09-15',
-                comment: 'Soft and comfortable!',
+                author: "OrganicFan",
+                date: "2023-09-15",
+                comment: "Soft and comfortable!",
                 verified: true
             }
         ],
@@ -1571,51 +1579,51 @@ const ecoProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'eco',
-                text: 'Eco-Friendly'
+                type: "eco",
+                text: "Eco-Friendly"
             }
         ],
-        category: 'Fashion',
+        category: "Fashion",
         tags: [
-            'organic',
-            't-shirt'
+            "organic",
+            "t-shirt"
         ]
     }
 ];
 const travelEssentials = [
     {
         id: 29,
-        title: 'Travel Pillow',
-        image: 'https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?w=400&h=400&fit=crop',
-        currentPrice: '$20.00',
-        originalPrice: '$40.00',
+        title: "Travel Pillow",
+        image: "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?w=400&h=400&fit=crop",
+        currentPrice: "$20.00",
+        originalPrice: "$40.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '12 x 10 x 4 inches',
-            weight: '0.8 lbs',
-            material: 'Memory Foam',
-            warranty: '1 year'
+            dimensions: "12 x 10 x 4 inches",
+            weight: "0.8 lbs",
+            material: "Memory Foam",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.7,
-                author: 'Traveler',
-                date: '2023-12-05',
-                comment: 'Comfortable for long flights!',
+                author: "Traveler",
+                date: "2023-12-05",
+                comment: "Comfortable for long flights!",
                 verified: true
             }
         ],
@@ -1623,48 +1631,48 @@ const travelEssentials = [
         reviewCount: 1,
         labels: [
             {
-                type: 'travel',
-                text: 'Travel Essential'
+                type: "travel",
+                text: "Travel Essential"
             }
         ],
-        category: 'Travel',
+        category: "Travel",
         tags: [
-            'pillow'
+            "pillow"
         ]
     },
     {
         id: 30,
-        title: 'Portable Charger',
-        image: 'https://images.unsplash.com/photo-1609594040430-3b9b92a98e53?w=400&h=400&fit=crop',
-        currentPrice: '$30.00',
-        originalPrice: '$60.00',
+        title: "Portable Charger",
+        image: "https://images.unsplash.com/photo-1609594040430-3b9b92a98e53?w=400&h=400&fit=crop",
+        currentPrice: "$30.00",
+        originalPrice: "$60.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '4 x 3 x 1 inches',
-            weight: '0.5 lbs',
-            material: 'Plastic',
-            warranty: '1 year'
+            dimensions: "4 x 3 x 1 inches",
+            weight: "0.5 lbs",
+            material: "Plastic",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.9,
-                author: 'PowerUser',
-                date: '2023-11-20',
-                comment: 'Fast charging on the go!',
+                author: "PowerUser",
+                date: "2023-11-20",
+                comment: "Fast charging on the go!",
                 verified: true
             }
         ],
@@ -1672,52 +1680,52 @@ const travelEssentials = [
         reviewCount: 1,
         labels: [
             {
-                type: 'travel',
-                text: 'Travel Essential'
+                type: "travel",
+                text: "Travel Essential"
             }
         ],
-        category: 'Electronics',
+        category: "Electronics",
         tags: [
-            'charger'
+            "charger"
         ]
     },
     {
         id: 31,
-        title: 'Compression Socks',
-        image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop',
-        currentPrice: '$15.00',
-        originalPrice: '$30.00',
+        title: "Compression Socks",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop",
+        currentPrice: "$15.00",
+        originalPrice: "$30.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'M',
+                size: "M",
                 available: true
             },
             {
-                size: 'L',
+                size: "L",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '10 x 4 x 0.1 inches',
-            weight: '0.2 lbs',
-            material: 'Nylon',
-            warranty: 'N/A'
+            dimensions: "10 x 4 x 0.1 inches",
+            weight: "0.2 lbs",
+            material: "Nylon",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.4,
-                author: 'RunnerTraveler',
-                date: '2023-10-30',
-                comment: 'Helps with circulation!',
+                author: "RunnerTraveler",
+                date: "2023-10-30",
+                comment: "Helps with circulation!",
                 verified: true
             }
         ],
@@ -1725,50 +1733,50 @@ const travelEssentials = [
         reviewCount: 1,
         labels: [
             {
-                type: 'travel',
-                text: 'Travel Essential'
+                type: "travel",
+                text: "Travel Essential"
             }
         ],
-        category: 'Sports',
+        category: "Sports",
         tags: [
-            'socks'
+            "socks"
         ]
     }
 ];
 const securityProducts = [
     {
         id: 32,
-        title: 'Smart Lock',
-        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop',
-        currentPrice: '$100.00',
-        originalPrice: '$200.00',
+        title: "Smart Lock",
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+        currentPrice: "$100.00",
+        originalPrice: "$200.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '6 x 3 x 2 inches',
-            weight: '1 lbs',
-            material: 'Metal',
-            warranty: '2 years'
+            dimensions: "6 x 3 x 2 inches",
+            weight: "1 lbs",
+            material: "Metal",
+            warranty: "2 years"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.8,
-                author: 'HomeOwner',
-                date: '2023-12-15',
-                comment: 'Easy keyless entry!',
+                author: "HomeOwner",
+                date: "2023-12-15",
+                comment: "Easy keyless entry!",
                 verified: true
             }
         ],
@@ -1776,48 +1784,48 @@ const securityProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'security',
-                text: 'Security'
+                type: "security",
+                text: "Security"
             }
         ],
-        category: 'Security',
+        category: "Security",
         tags: [
-            'lock'
+            "lock"
         ]
     },
     {
         id: 33,
-        title: 'Security Camera',
-        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=400&fit=crop',
-        currentPrice: '$80.00',
-        originalPrice: '$160.00',
+        title: "Security Camera",
+        image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=400&fit=crop",
+        currentPrice: "$80.00",
+        originalPrice: "$160.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '4 x 3 x 2 inches',
-            weight: '0.5 lbs',
-            material: 'Plastic',
-            warranty: '1 year'
+            dimensions: "4 x 3 x 2 inches",
+            weight: "0.5 lbs",
+            material: "Plastic",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.6,
-                author: 'SecurityFan',
-                date: '2023-11-25',
-                comment: 'Clear night vision!',
+                author: "SecurityFan",
+                date: "2023-11-25",
+                comment: "Clear night vision!",
                 verified: true
             }
         ],
@@ -1825,48 +1833,48 @@ const securityProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'security',
-                text: 'Security'
+                type: "security",
+                text: "Security"
             }
         ],
-        category: 'Security',
+        category: "Security",
         tags: [
-            'camera'
+            "camera"
         ]
     },
     {
         id: 34,
-        title: 'Alarm System',
-        image: 'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=400&fit=crop',
-        currentPrice: '$150.00',
-        originalPrice: '$300.00',
+        title: "Alarm System",
+        image: "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=400&h=400&fit=crop",
+        currentPrice: "$150.00",
+        originalPrice: "$300.00",
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '8 x 6 x 2 inches',
-            weight: '2 lbs',
-            material: 'Plastic and Metal',
-            warranty: '3 years'
+            dimensions: "8 x 6 x 2 inches",
+            weight: "2 lbs",
+            material: "Plastic and Metal",
+            warranty: "3 years"
         },
         delivery: {
             freeShipping: false,
-            estimatedDelivery: '5-7 business days',
+            estimatedDelivery: "5-7 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.9,
-                author: 'SafeHome',
-                date: '2023-10-20',
-                comment: 'Reliable protection!',
+                author: "SafeHome",
+                date: "2023-10-20",
+                comment: "Reliable protection!",
                 verified: true
             }
         ],
@@ -1874,55 +1882,55 @@ const securityProducts = [
         reviewCount: 1,
         labels: [
             {
-                type: 'security',
-                text: 'Security'
+                type: "security",
+                text: "Security"
             }
         ],
-        category: 'Security',
+        category: "Security",
         tags: [
-            'alarm'
+            "alarm"
         ]
     }
 ];
 const topDeals = [
     {
         id: 35,
-        title: 'Colorful Retractable Ballpoint Pens',
-        image: 'https://images.unsplash.com/photo-1583484963886-cce23f3a5878?w=400&h=400&fit=crop',
-        currentPrice: '$0.08',
+        title: "Colorful Retractable Ballpoint Pens",
+        image: "https://images.unsplash.com/photo-1583484963886-cce23f3a5878?w=400&h=400&fit=crop",
+        currentPrice: "$0.08",
         originalPrice: null,
         isFavorite: false,
         badge: {
-            type: 'flash',
-            text: 'Flash Deal',
-            position: 'image'
+            type: "flash",
+            text: "Flash Deal",
+            position: "image"
         },
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '6 x 0.5 x 0.5 inches',
-            weight: '0.1 lbs',
-            material: 'Plastic',
-            warranty: 'N/A'
+            dimensions: "6 x 0.5 x 0.5 inches",
+            weight: "0.1 lbs",
+            material: "Plastic",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.5,
-                author: 'Student',
-                date: '2023-12-20',
-                comment: 'Great for writing!',
+                author: "Student",
+                date: "2023-12-20",
+                comment: "Great for writing!",
                 verified: true
             }
         ],
@@ -1930,52 +1938,52 @@ const topDeals = [
         reviewCount: 1,
         labels: [
             {
-                type: 'deal',
-                text: 'Deal'
+                type: "deal",
+                text: "Deal"
             }
         ],
-        category: 'Office',
+        category: "Office",
         tags: [
-            'pens'
+            "pens"
         ]
     },
     {
         id: 36,
-        title: 'Chrome Car Wheel LSGZL',
-        image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=400&fit=crop',
-        currentPrice: '$230',
+        title: "Chrome Car Wheel LSGZL",
+        image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=400&fit=crop",
+        currentPrice: "$230",
         originalPrice: null,
         isFavorite: false,
         priceIndicator: {
-            type: 'lower',
-            text: 'Lower priced than similar'
+            type: "lower",
+            text: "Lower priced than similar"
         },
         sizes: [
             {
-                size: '16 inches',
+                size: "16 inches",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '16 x 16 x 6 inches',
-            weight: '20 lbs',
-            material: 'Chrome',
-            warranty: '1 year'
+            dimensions: "16 x 16 x 6 inches",
+            weight: "20 lbs",
+            material: "Chrome",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '5-7 business days',
+            estimatedDelivery: "5-7 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.7,
-                author: 'CarEnthusiast',
-                date: '2023-11-15',
-                comment: 'Shiny and durable!',
+                author: "CarEnthusiast",
+                date: "2023-11-15",
+                comment: "Shiny and durable!",
                 verified: true
             }
         ],
@@ -1983,52 +1991,52 @@ const topDeals = [
         reviewCount: 1,
         labels: [
             {
-                type: 'deal',
-                text: 'Deal'
+                type: "deal",
+                text: "Deal"
             }
         ],
-        category: 'Automotive',
+        category: "Automotive",
         tags: [
-            'wheel'
+            "wheel"
         ]
     },
     {
         id: 37,
-        title: 'Premium Coffee Grounds',
-        image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop',
-        currentPrice: '$3',
+        title: "Premium Coffee Grounds",
+        image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop",
+        currentPrice: "$3",
         originalPrice: null,
         isFavorite: false,
         priceIndicator: {
-            type: 'lower',
-            text: 'Lower priced than similar'
+            type: "lower",
+            text: "Lower priced than similar"
         },
         sizes: [
             {
-                size: '1 lb',
+                size: "1 lb",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '8 x 6 x 3 inches',
-            weight: '1 lbs',
-            material: 'Coffee',
-            warranty: 'N/A'
+            dimensions: "8 x 6 x 3 inches",
+            weight: "1 lbs",
+            material: "Coffee",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [
             {
                 rating: 4.8,
-                author: 'CoffeeLover',
-                date: '2023-10-10',
-                comment: 'Rich flavor!',
+                author: "CoffeeLover",
+                date: "2023-10-10",
+                comment: "Rich flavor!",
                 verified: true
             }
         ],
@@ -2036,211 +2044,211 @@ const topDeals = [
         reviewCount: 1,
         labels: [
             {
-                type: 'deal',
-                text: 'Deal'
+                type: "deal",
+                text: "Deal"
             }
         ],
-        category: 'Food',
+        category: "Food",
         tags: [
-            'coffee'
+            "coffee"
         ]
     }
 ];
 const topRanking = [
     {
         id: 38,
-        title: 'Manufacturer 75 Inch Led Television 65 Inch 4k UHD Smart TV',
-        image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=400&fit=crop',
+        title: "Manufacturer 75 Inch Led Television 65 Inch 4k UHD Smart TV",
+        image: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=400&fit=crop",
         currentPrice: null,
         originalPrice: null,
         isFavorite: false,
         badge: {
-            type: 'ranking',
-            text: 'Top ranked last month',
-            position: 'below-title',
-            icon: 'crown'
+            type: "ranking",
+            text: "Top ranked last month",
+            position: "below-title",
+            icon: "crown"
         },
-        category: 'Hot selling',
-        subcategory: 'Smart TVs',
+        category: "Hot selling",
+        subcategory: "Smart TVs",
         sizes: [
             {
-                size: '75 inches',
+                size: "75 inches",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '66 x 38 x 3 inches',
-            weight: '50 lbs',
-            material: 'Plastic and Glass',
-            warranty: '2 years'
+            dimensions: "66 x 38 x 3 inches",
+            weight: "50 lbs",
+            material: "Plastic and Glass",
+            warranty: "2 years"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '5-7 business days',
+            estimatedDelivery: "5-7 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [
             {
-                type: 'ranking',
-                text: 'Top Ranking'
+                type: "ranking",
+                text: "Top Ranking"
             }
         ],
         tags: [
-            'tv',
-            'smart'
+            "tv",
+            "smart"
         ]
     },
     {
         id: 39,
-        title: 'Accept Custom 4K Android Flat Screen Led Tv Smart TV',
-        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop',
+        title: "Accept Custom 4K Android Flat Screen Led Tv Smart TV",
+        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop",
         currentPrice: null,
         originalPrice: null,
         isFavorite: false,
         badge: {
-            type: 'rising',
-            text: 'On the rise in Hot selling Smart TVs',
-            position: 'below-title',
-            icon: 'arrow-up'
+            type: "rising",
+            text: "On the rise in Hot selling Smart TVs",
+            position: "below-title",
+            icon: "arrow-up"
         },
-        category: 'Hot selling',
-        subcategory: 'Smart TVs',
+        category: "Hot selling",
+        subcategory: "Smart TVs",
         sizes: [
             {
-                size: '55 inches',
+                size: "55 inches",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '48 x 28 x 3 inches',
-            weight: '30 lbs',
-            material: 'Plastic and Glass',
-            warranty: '2 years'
+            dimensions: "48 x 28 x 3 inches",
+            weight: "30 lbs",
+            material: "Plastic and Glass",
+            warranty: "2 years"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '5-7 business days',
+            estimatedDelivery: "5-7 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [
             {
-                type: 'ranking',
-                text: 'Top Ranking'
+                type: "ranking",
+                text: "Top Ranking"
             }
         ],
         tags: [
-            'tv',
-            'smart'
+            "tv",
+            "smart"
         ]
     },
     {
         id: 40,
-        title: 'TLC LED TV Smart World\'s Top 2 Ranking UHD 4K Original',
-        image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop',
+        title: "TLC LED TV Smart World's Top 2 Ranking UHD 4K Original",
+        image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop",
         currentPrice: null,
         originalPrice: null,
         isFavorite: false,
         badge: {
-            type: 'rising',
-            text: 'On the rise in Hot selling LED TVs',
-            position: 'below-title',
-            icon: 'arrow-up'
+            type: "rising",
+            text: "On the rise in Hot selling LED TVs",
+            position: "below-title",
+            icon: "arrow-up"
         },
-        category: 'Hot selling',
-        subcategory: 'LED TVs',
+        category: "Hot selling",
+        subcategory: "LED TVs",
         sizes: [
             {
-                size: '65 inches',
+                size: "65 inches",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '57 x 33 x 3 inches',
-            weight: '40 lbs',
-            material: 'Plastic and Glass',
-            warranty: '2 years'
+            dimensions: "57 x 33 x 3 inches",
+            weight: "40 lbs",
+            material: "Plastic and Glass",
+            warranty: "2 years"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '5-7 business days',
+            estimatedDelivery: "5-7 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [
             {
-                type: 'ranking',
-                text: 'Top Ranking'
+                type: "ranking",
+                text: "Top Ranking"
             }
         ],
         tags: [
-            'tv',
-            'led'
+            "tv",
+            "led"
         ]
     },
     {
         id: 41,
-        title: 'Global Version POCO X7 5G Smartphone MTK Dimensity',
-        image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop',
+        title: "Global Version POCO X7 5G Smartphone MTK Dimensity",
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=400&fit=crop",
         currentPrice: null,
         originalPrice: null,
         isFavorite: false,
         badge: {
-            type: 'ranking',
-            text: 'Top ranked last month',
-            position: 'below-title',
-            icon: 'crown'
+            type: "ranking",
+            text: "Top ranked last month",
+            position: "below-title",
+            icon: "crown"
         },
-        category: 'Hot selling',
-        subcategory: 'Smartphones',
+        category: "Hot selling",
+        subcategory: "Smartphones",
         sizes: [
             {
-                size: '6.5 inches',
+                size: "6.5 inches",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '6 x 3 x 0.3 inches',
-            weight: '0.5 lbs',
-            material: 'Glass and Metal',
-            warranty: '1 year'
+            dimensions: "6 x 3 x 0.3 inches",
+            weight: "0.5 lbs",
+            material: "Glass and Metal",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [
             {
-                type: 'ranking',
-                text: 'Top Ranking'
+                type: "ranking",
+                text: "Top Ranking"
             }
         ],
         tags: [
-            'phone',
-            'smartphone'
+            "phone",
+            "smartphone"
         ]
     }
 ];
@@ -2248,371 +2256,379 @@ const tailoredSelections = [
     {
         id: 41,
         label: "Women's Clothes",
-        image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=200&h=200&fit=crop'
+        slug: "womens-clothes",
+        category: "Fashion",
+        image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=200&h=200&fit=crop"
     },
     {
         id: 42,
-        label: 'Designer Shoe',
-        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&h=200&fit=crop'
+        label: "Designer Shoe",
+        slug: "designer-shoes",
+        category: "Fashion",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&h=200&fit=crop"
     },
     {
         id: 43,
-        label: 'Food Trailer',
-        image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=200&fit=crop'
+        label: "Food Trailer",
+        slug: "food-trailers",
+        category: "Food",
+        image: "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=200&h=200&fit=crop"
     },
     {
         id: 44,
-        label: 'Spider Hoodie',
-        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200&h=200&fit=crop'
+        label: "Spider Hoodie",
+        slug: "spider-hoodies",
+        category: "Fashion",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200&h=200&fit=crop"
     }
 ];
 const gridProducts = [
     {
         id: 45,
-        title: 'Wholesale Personal Nail Art Set',
-        image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&h=400&fit=crop',
-        currentPrice: '$1.80',
+        title: "Wholesale Personal Nail Art Set",
+        image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&h=400&fit=crop",
+        currentPrice: "$1.80",
         originalPrice: null,
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '4 x 3 x 1 inches',
-            weight: '0.2 lbs',
-            material: 'Plastic',
-            warranty: 'N/A'
+            dimensions: "4 x 3 x 1 inches",
+            weight: "0.2 lbs",
+            material: "Plastic",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Beauty',
+        category: "Beauty",
         tags: [
-            'nail',
-            'art'
+            "nail",
+            "art"
         ]
     },
     {
         id: 46,
-        title: 'Best-selling Embroidered Round Neck Sweater',
-        image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop',
-        currentPrice: '$12',
+        title: "Best-selling Embroidered Round Neck Sweater",
+        image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop",
+        currentPrice: "$12",
         originalPrice: null,
         isFavorite: false,
         priceIndicator: {
-            type: 'lower',
-            text: 'Lower priced than similar'
+            type: "lower",
+            text: "Lower priced than similar"
         },
         sizes: [
             {
-                size: 'M',
+                size: "M",
                 available: true
             },
             {
-                size: 'L',
+                size: "L",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '20 x 16 x 1 inches',
-            weight: '1 lbs',
-            material: 'Cotton',
-            warranty: 'N/A'
+            dimensions: "20 x 16 x 1 inches",
+            weight: "1 lbs",
+            material: "Cotton",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Fashion',
+        category: "Fashion",
         tags: [
-            'sweater',
-            'embroidered'
+            "sweater",
+            "embroidered"
         ]
     },
     {
         id: 47,
-        title: 'Botellas De Agua Vacuum Flask Set',
-        image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop',
-        currentPrice: '$1.63',
+        title: "Botellas De Agua Vacuum Flask Set",
+        image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop",
+        currentPrice: "$1.63",
         originalPrice: null,
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '3 x 3 x 10 inches',
-            weight: '0.5 lbs',
-            material: 'Stainless Steel',
-            warranty: '1 year'
+            dimensions: "3 x 3 x 10 inches",
+            weight: "0.5 lbs",
+            material: "Stainless Steel",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Home',
+        category: "Home",
         tags: [
-            'flask',
-            'vacuum'
+            "flask",
+            "vacuum"
         ]
     },
     {
         id: 48,
-        title: 'New 304 Stainless Steel Tumblers',
-        image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop',
-        currentPrice: '$2.63',
+        title: "New 304 Stainless Steel Tumblers",
+        image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=400&fit=crop",
+        currentPrice: "$2.63",
         originalPrice: null,
         isFavorite: false,
         priceIndicator: {
-            type: 'lower',
-            text: 'Lower priced than similar'
+            type: "lower",
+            text: "Lower priced than similar"
         },
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '3 x 3 x 6 inches',
-            weight: '0.3 lbs',
-            material: 'Stainless Steel',
-            warranty: '1 year'
+            dimensions: "3 x 3 x 6 inches",
+            weight: "0.3 lbs",
+            material: "Stainless Steel",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Home',
+        category: "Home",
         tags: [
-            'tumbler',
-            'stainless steel'
+            "tumbler",
+            "stainless steel"
         ]
     },
     {
         id: 49,
-        title: 'Cute Cartoon Ring Custom Character',
-        image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400&h=400&fit=crop',
-        currentPrice: '$10.99-11.99',
+        title: "Cute Cartoon Ring Custom Character",
+        image: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400&h=400&fit=crop",
+        currentPrice: "$10.99-11.99",
         originalPrice: null,
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '1 x 1 x 0.5 inches',
-            weight: '0.1 lbs',
-            material: 'Metal',
-            warranty: 'N/A'
+            dimensions: "1 x 1 x 0.5 inches",
+            weight: "0.1 lbs",
+            material: "Metal",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Fashion',
+        category: "Fashion",
         tags: [
-            'ring',
-            'cartoon'
+            "ring",
+            "cartoon"
         ]
     },
     {
         id: 50,
-        title: '2025 New Arrival Athletic Set',
-        image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop',
-        currentPrice: '$17.02',
+        title: "2025 New Arrival Athletic Set",
+        image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop",
+        currentPrice: "$17.02",
         originalPrice: null,
         isFavorite: false,
         sizes: [
             {
-                size: 'M',
+                size: "M",
                 available: true
             },
             {
-                size: 'L',
+                size: "L",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '20 x 16 x 1 inches',
-            weight: '1 lbs',
-            material: 'Cotton',
-            warranty: 'N/A'
+            dimensions: "20 x 16 x 1 inches",
+            weight: "1 lbs",
+            material: "Cotton",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Sports',
+        category: "Sports",
         tags: [
-            'athletic',
-            'set'
+            "athletic",
+            "set"
         ]
     },
     {
         id: 51,
-        title: 'Exquisite Mug Creation Set',
-        image: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&h=400&fit=crop',
-        currentPrice: '$2.20',
+        title: "Exquisite Mug Creation Set",
+        image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&h=400&fit=crop",
+        currentPrice: "$2.20",
         originalPrice: null,
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '4 x 4 x 4 inches',
-            weight: '0.5 lbs',
-            material: 'Ceramic',
-            warranty: 'N/A'
+            dimensions: "4 x 4 x 4 inches",
+            weight: "0.5 lbs",
+            material: "Ceramic",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Home',
+        category: "Home",
         tags: [
-            'mug',
-            'creation'
+            "mug",
+            "creation"
         ]
     },
     {
         id: 52,
-        title: 'SAVE High Quality Luxury Sunglasses',
-        image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop',
-        currentPrice: '$4.60',
+        title: "SAVE High Quality Luxury Sunglasses",
+        image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop",
+        currentPrice: "$4.60",
         originalPrice: null,
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '6 x 2 x 6 inches',
-            weight: '0.2 lbs',
-            material: 'Metal and Glass',
-            warranty: '1 year'
+            dimensions: "6 x 2 x 6 inches",
+            weight: "0.2 lbs",
+            material: "Metal and Glass",
+            warranty: "1 year"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Fashion',
+        category: "Fashion",
         tags: [
-            'sunglasses',
-            'luxury'
+            "sunglasses",
+            "luxury"
         ]
     },
     {
         id: 53,
-        title: 'Local stock Perfume Manufacturing Set',
-        image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop',
-        currentPrice: '$4.84',
+        title: "Local stock Perfume Manufacturing Set",
+        image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&h=400&fit=crop",
+        currentPrice: "$4.84",
         originalPrice: null,
         isFavorite: false,
         sizes: [
             {
-                size: 'One Size',
+                size: "One Size",
                 available: true
             }
         ],
         specifications: {
-            dimensions: '2 x 2 x 4 inches',
-            weight: '0.3 lbs',
-            material: 'Glass and Plastic',
-            warranty: 'N/A'
+            dimensions: "2 x 2 x 4 inches",
+            weight: "0.3 lbs",
+            material: "Glass and Plastic",
+            warranty: "N/A"
         },
         delivery: {
             freeShipping: true,
-            estimatedDelivery: '2-3 business days',
+            estimatedDelivery: "2-3 business days",
             shippingOptions: [
-                'Standard'
+                "Standard"
             ],
-            returnPolicy: '30-day return policy'
+            returnPolicy: "30-day return policy"
         },
         reviews: [],
         averageRating: 0,
         reviewCount: 0,
         labels: [],
-        category: 'Beauty',
+        category: "Beauty",
         tags: [
-            'perfume'
+            "perfume"
         ]
     }
 ];
@@ -2637,43 +2653,43 @@ const getProductDetails = (id)=>{
     const allProductDetails = [
         {
             id: 1,
-            title: 'NEW Ulefone Watch',
-            currentPrice: '$30.0',
-            originalPrice: '$40.0',
+            title: "NEW Ulefone Watch",
+            currentPrice: "$30.0",
+            originalPrice: "$40.0",
             media: [
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop"
                 },
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1579586337278-3befd40f17da?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1579586337278-3befd40f17da?w=600&h=600&fit=crop"
                 }
             ],
-            description: 'NEW Original Ulefone Watch 1.3 inch TFT Touch Screen 5 ATM Waterproof & 9 Sports Mode BT 4.2 Smart Watch Same Day Shipping on orders before 6PM (GMT+8), shipped from Hong Kong Warehouse',
+            description: "NEW Original Ulefone Watch 1.3 inch TFT Touch Screen 5 ATM Waterproof & 9 Sports Mode BT 4.2 Smart Watch Same Day Shipping on orders before 6PM (GMT+8), shipped from Hong Kong Warehouse",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true,
             delivery: {
                 freeShipping: true,
-                estimatedDelivery: '2-3 business days',
+                estimatedDelivery: "2-3 business days",
                 shippingOptions: [
-                    'Standard',
-                    'Express'
+                    "Standard",
+                    "Express"
                 ],
-                returnPolicy: '30-day return policy'
+                returnPolicy: "30-day return policy"
             },
             reviews: summaryProduct?.reviews || [],
             averageRating: summaryProduct?.averageRating || 0,
@@ -2681,873 +2697,873 @@ const getProductDetails = (id)=>{
         },
         {
             id: 2,
-            title: 'White Jumpsuit',
-            currentPrice: '₹ 1,100',
-            originalPrice: '₹ 2,200',
+            title: "White Jumpsuit",
+            currentPrice: "₹ 1,100",
+            originalPrice: "₹ 2,200",
             media: [
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=600&fit=crop"
                 },
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=600&fit=crop"
                 }
             ],
-            description: 'Stylish white jumpsuit perfect for any occasion. Made from premium quality fabric with comfortable fit. Available in multiple sizes.',
+            description: "Stylish white jumpsuit perfect for any occasion. Made from premium quality fabric with comfortable fit. Available in multiple sizes.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true,
             delivery: {
                 freeShipping: true,
-                estimatedDelivery: '3-5 business days',
+                estimatedDelivery: "3-5 business days",
                 shippingOptions: [
-                    'Standard',
-                    'Express'
+                    "Standard",
+                    "Express"
                 ],
-                returnPolicy: '30-day return policy'
+                returnPolicy: "30-day return policy"
             }
         },
         {
             id: 3,
-            title: 'Vitamin C Serum',
-            currentPrice: '₹ 2,453',
-            originalPrice: '₹ 4,700',
+            title: "Vitamin C Serum",
+            currentPrice: "₹ 2,453",
+            originalPrice: "₹ 4,700",
             media: [
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&h=600&fit=crop"
                 }
             ],
-            description: 'Premium Vitamin C Serum for brightening and anti-aging. Contains natural ingredients and is suitable for all skin types.',
+            description: "Premium Vitamin C Serum for brightening and anti-aging. Contains natural ingredients and is suitable for all skin types.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: false,
             delivery: {
                 freeShipping: false,
-                estimatedDelivery: '5-7 business days',
+                estimatedDelivery: "5-7 business days",
                 shippingOptions: [
-                    'Standard'
+                    "Standard"
                 ],
-                returnPolicy: '30-day return policy'
+                returnPolicy: "30-day return policy"
             }
         },
         {
             id: 4,
-            title: 'Strip T-shirt',
-            currentPrice: '₹ 1,700',
-            originalPrice: '₹ 3,400',
+            title: "Strip T-shirt",
+            currentPrice: "₹ 1,700",
+            originalPrice: "₹ 3,400",
             media: [
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop"
                 }
             ],
-            description: 'Comfortable striped T-shirt made from soft cotton blend. Perfect for casual wear. Available in multiple colors and sizes.',
+            description: "Comfortable striped T-shirt made from soft cotton blend. Perfect for casual wear. Available in multiple colors and sizes.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 5,
-            title: 'Product Title',
-            currentPrice: '$24.00',
+            title: "Product Title",
+            currentPrice: "$24.00",
             originalPrice: null,
             media: [
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop"
                 }
             ],
-            description: 'High-quality product with excellent features. Perfect for everyday use.',
+            description: "High-quality product with excellent features. Perfect for everyday use.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 6,
-            title: 'Product Title',
-            currentPrice: '$24.00',
+            title: "Product Title",
+            currentPrice: "$24.00",
             originalPrice: null,
             media: [
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=600&fit=crop"
                 }
             ],
-            description: 'High-quality product with excellent features. Perfect for everyday use.',
+            description: "High-quality product with excellent features. Perfect for everyday use.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 7,
-            title: 'Product Title',
-            currentPrice: '$24.00',
+            title: "Product Title",
+            currentPrice: "$24.00",
             originalPrice: null,
             media: [
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop"
                 }
             ],
-            description: 'High-quality product with excellent features. Perfect for everyday use.',
+            description: "High-quality product with excellent features. Perfect for everyday use.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 8,
-            title: 'Wireless Earbuds',
-            currentPrice: '$275.00',
-            originalPrice: '$550.00',
+            title: "Wireless Earbuds",
+            currentPrice: "$275.00",
+            originalPrice: "$550.00",
             media: [
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop"
                 }
             ],
-            description: 'Premium wireless earbuds with noise cancellation. Long battery life and crystal clear sound quality.',
+            description: "Premium wireless earbuds with noise cancellation. Long battery life and crystal clear sound quality.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 9,
-            title: 'Portable Speaker',
-            currentPrice: '$900.00',
-            originalPrice: '$1800.00',
+            title: "Portable Speaker",
+            currentPrice: "$900.00",
+            originalPrice: "$1800.00",
             media: [
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&h=600&fit=crop"
                 }
             ],
-            description: 'High-quality portable speaker with powerful bass and long battery life. Perfect for outdoor activities.',
+            description: "High-quality portable speaker with powerful bass and long battery life. Perfect for outdoor activities.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 10,
-            title: 'Gaming Controller',
-            currentPrice: '$400.00',
-            originalPrice: '$800.00',
+            title: "Gaming Controller",
+            currentPrice: "$400.00",
+            originalPrice: "$800.00",
             media: [
                 {
-                    type: 'image',
-                    url: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&h=600&fit=crop'
+                    type: "image",
+                    url: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&h=600&fit=crop"
                 }
             ],
-            description: 'Professional gaming controller with responsive buttons and ergonomic design. Compatible with multiple platforms.',
+            description: "Professional gaming controller with responsive buttons and ergonomic design. Compatible with multiple platforms.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 11,
-            title: 'Smartphone Case',
-            currentPrice: '$15.00',
-            originalPrice: '$30.00',
+            title: "Smartphone Case",
+            currentPrice: "$15.00",
+            originalPrice: "$30.00",
             images: [
-                'https://images.unsplash.com/photo-1601593346740-925612772716?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1601593346740-925612772716?w=600&h=600&fit=crop"
             ],
-            description: 'Protective smartphone case with shock absorption and stylish design.',
+            description: "Protective smartphone case with shock absorption and stylish design.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 12,
-            title: 'Wireless Charger',
-            currentPrice: '$25.00',
-            originalPrice: '$50.00',
+            title: "Wireless Charger",
+            currentPrice: "$25.00",
+            originalPrice: "$50.00",
             images: [
-                'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=600&h=600&fit=crop"
             ],
-            description: 'Fast wireless charger compatible with all Qi-enabled devices.',
+            description: "Fast wireless charger compatible with all Qi-enabled devices.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 13,
-            title: 'Bluetooth Headphones',
-            currentPrice: '$80.00',
-            originalPrice: '$160.00',
+            title: "Bluetooth Headphones",
+            currentPrice: "$80.00",
+            originalPrice: "$160.00",
             images: [
-                'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop"
             ],
-            description: 'High-quality Bluetooth headphones with noise cancellation and long battery life.',
+            description: "High-quality Bluetooth headphones with noise cancellation and long battery life.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 14,
-            title: 'Gaming Mouse',
-            currentPrice: '$45.00',
-            originalPrice: '$90.00',
+            title: "Gaming Mouse",
+            currentPrice: "$45.00",
+            originalPrice: "$90.00",
             images: [
-                'https://images.unsplash.com/photo-1527814050087-3793815479db?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1527814050087-3793815479db?w=600&h=600&fit=crop"
             ],
-            description: 'Precision gaming mouse with customizable buttons and RGB lighting.',
+            description: "Precision gaming mouse with customizable buttons and RGB lighting.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 15,
-            title: 'Mechanical Keyboard',
-            currentPrice: '$120.00',
-            originalPrice: '$240.00',
+            title: "Mechanical Keyboard",
+            currentPrice: "$120.00",
+            originalPrice: "$240.00",
             images: [
-                'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&h=600&fit=crop"
             ],
-            description: 'Mechanical keyboard with tactile switches and customizable backlighting.',
+            description: "Mechanical keyboard with tactile switches and customizable backlighting.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 16,
-            title: 'LED Monitor',
-            currentPrice: '$200.00',
-            originalPrice: '$400.00',
+            title: "LED Monitor",
+            currentPrice: "$200.00",
+            originalPrice: "$400.00",
             images: [
-                'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&h=600&fit=crop"
             ],
-            description: 'High-resolution LED monitor with vibrant colors and fast refresh rate.',
+            description: "High-resolution LED monitor with vibrant colors and fast refresh rate.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: false
         },
         {
             id: 17,
-            title: 'Coffee Maker',
-            currentPrice: '$60.00',
-            originalPrice: '$120.00',
+            title: "Coffee Maker",
+            currentPrice: "$60.00",
+            originalPrice: "$120.00",
             images: [
-                'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=600&fit=crop"
             ],
-            description: 'Automatic coffee maker with programmable settings and thermal carafe.',
+            description: "Automatic coffee maker with programmable settings and thermal carafe.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 18,
-            title: 'Blender',
-            currentPrice: '$35.00',
-            originalPrice: '$70.00',
+            title: "Blender",
+            currentPrice: "$35.00",
+            originalPrice: "$70.00",
             images: [
-                'https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=600&h=600&fit=crop"
             ],
-            description: 'Powerful blender with multiple speed settings and durable blades.',
+            description: "Powerful blender with multiple speed settings and durable blades.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 19,
-            title: 'Air Fryer',
-            currentPrice: '$100.00',
-            originalPrice: '$200.00',
+            title: "Air Fryer",
+            currentPrice: "$100.00",
+            originalPrice: "$200.00",
             images: [
-                'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=600&fit=crop"
             ],
-            description: 'Healthy air fryer with digital controls and non-stick basket.',
+            description: "Healthy air fryer with digital controls and non-stick basket.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 20,
-            title: 'Yoga Mat',
-            currentPrice: '$20.00',
-            originalPrice: '$40.00',
+            title: "Yoga Mat",
+            currentPrice: "$20.00",
+            originalPrice: "$40.00",
             images: [
-                'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=600&fit=crop"
             ],
-            description: 'Non-slip yoga mat with excellent cushioning and eco-friendly materials.',
+            description: "Non-slip yoga mat with excellent cushioning and eco-friendly materials.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 21,
-            title: 'Dumbbells Set',
-            currentPrice: '$50.00',
-            originalPrice: '$100.00',
+            title: "Dumbbells Set",
+            currentPrice: "$50.00",
+            originalPrice: "$100.00",
             images: [
-                'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop"
             ],
-            description: 'Adjustable dumbbells set for home workouts with comfortable grip.',
+            description: "Adjustable dumbbells set for home workouts with comfortable grip.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 22,
-            title: 'Running Shoes',
-            currentPrice: '$75.00',
-            originalPrice: '$150.00',
+            title: "Running Shoes",
+            currentPrice: "$75.00",
+            originalPrice: "$150.00",
             images: [
-                'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop"
             ],
-            description: 'Lightweight running shoes with superior cushioning and breathability.',
+            description: "Lightweight running shoes with superior cushioning and breathability.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 23,
-            title: 'Designer Watch',
-            currentPrice: '$500.00',
-            originalPrice: '$1000.00',
+            title: "Designer Watch",
+            currentPrice: "$500.00",
+            originalPrice: "$1000.00",
             images: [
-                'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop"
             ],
-            description: 'Elegant designer watch with premium materials and timeless design.',
+            description: "Elegant designer watch with premium materials and timeless design.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 24,
-            title: 'Leather Bag',
-            currentPrice: '$300.00',
-            originalPrice: '$600.00',
+            title: "Leather Bag",
+            currentPrice: "$300.00",
+            originalPrice: "$600.00",
             images: [
-                'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&h=600&fit=crop"
             ],
-            description: 'Genuine leather bag with spacious compartments and stylish look.',
+            description: "Genuine leather bag with spacious compartments and stylish look.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 25,
-            title: 'Sunglasses',
-            currentPrice: '$150.00',
-            originalPrice: '$300.00',
+            title: "Sunglasses",
+            currentPrice: "$150.00",
+            originalPrice: "$300.00",
             images: [
-                'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&h=600&fit=crop"
             ],
-            description: 'UV-protective sunglasses with polarized lenses and lightweight frame.',
+            description: "UV-protective sunglasses with polarized lenses and lightweight frame.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 26,
-            title: 'Bamboo Toothbrush',
-            currentPrice: '$5.00',
-            originalPrice: '$10.00',
+            title: "Bamboo Toothbrush",
+            currentPrice: "$5.00",
+            originalPrice: "$10.00",
             images: [
-                'https://images.unsplash.com/photo-1559599101-f09722fb4948?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1559599101-f09722fb4948?w=600&h=600&fit=crop"
             ],
-            description: 'Eco-friendly bamboo toothbrush with soft bristles and biodegradable design.',
+            description: "Eco-friendly bamboo toothbrush with soft bristles and biodegradable design.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 27,
-            title: 'Reusable Water Bottle',
-            currentPrice: '$15.00',
-            originalPrice: '$30.00',
+            title: "Reusable Water Bottle",
+            currentPrice: "$15.00",
+            originalPrice: "$30.00",
             images: [
-                'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&h=600&fit=crop"
             ],
-            description: 'Insulated reusable water bottle that keeps drinks cold for hours.',
+            description: "Insulated reusable water bottle that keeps drinks cold for hours.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 28,
-            title: 'Organic Cotton T-shirt',
-            currentPrice: '$25.00',
-            originalPrice: '$50.00',
+            title: "Organic Cotton T-shirt",
+            currentPrice: "$25.00",
+            originalPrice: "$50.00",
             images: [
-                'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=600&fit=crop"
             ],
-            description: 'Soft organic cotton T-shirt with comfortable fit and eco-friendly production.',
+            description: "Soft organic cotton T-shirt with comfortable fit and eco-friendly production.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 29,
-            title: 'Travel Pillow',
-            currentPrice: '$20.00',
-            originalPrice: '$40.00',
+            title: "Travel Pillow",
+            currentPrice: "$20.00",
+            originalPrice: "$40.00",
             images: [
-                'https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?w=600&h=600&fit=crop"
             ],
-            description: 'Memory foam travel pillow for comfortable neck support during travel.',
+            description: "Memory foam travel pillow for comfortable neck support during travel.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 30,
-            title: 'Portable Charger',
-            currentPrice: '$30.00',
-            originalPrice: '$60.00',
+            title: "Portable Charger",
+            currentPrice: "$30.00",
+            originalPrice: "$60.00",
             images: [
-                'https://images.unsplash.com/photo-1609594040430-3b9b92a98e53?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1609594040430-3b9b92a98e53?w=600&h=600&fit=crop"
             ],
-            description: 'High-capacity portable charger with fast charging capabilities.',
+            description: "High-capacity portable charger with fast charging capabilities.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 31,
-            title: 'Compression Socks',
-            currentPrice: '$15.00',
-            originalPrice: '$30.00',
+            title: "Compression Socks",
+            currentPrice: "$15.00",
+            originalPrice: "$30.00",
             images: [
-                'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop"
             ],
-            description: 'Compression socks for improved circulation and reduced swelling.',
+            description: "Compression socks for improved circulation and reduced swelling.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 32,
-            title: 'Smart Lock',
-            currentPrice: '$100.00',
-            originalPrice: '$200.00',
+            title: "Smart Lock",
+            currentPrice: "$100.00",
+            originalPrice: "$200.00",
             images: [
-                'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop"
             ],
-            description: 'Smart lock with keyless entry and mobile app control.',
+            description: "Smart lock with keyless entry and mobile app control.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 33,
-            title: 'Security Camera',
-            currentPrice: '$80.00',
-            originalPrice: '$160.00',
+            title: "Security Camera",
+            currentPrice: "$80.00",
+            originalPrice: "$160.00",
             images: [
-                'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=600&fit=crop"
             ],
-            description: 'Wireless security camera with night vision and motion detection.',
+            description: "Wireless security camera with night vision and motion detection.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: true
         },
         {
             id: 34,
-            title: 'Alarm System',
-            currentPrice: '$150.00',
-            originalPrice: '$300.00',
+            title: "Alarm System",
+            currentPrice: "$150.00",
+            originalPrice: "$300.00",
             images: [
-                'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=600&h=600&fit=crop'
+                "https://images.unsplash.com/photo-1582139329536-e7284fece509?w=600&h=600&fit=crop"
             ],
-            description: 'Home alarm system with sensors and smartphone alerts.',
+            description: "Home alarm system with sensors and smartphone alerts.",
             features: [
                 {
-                    icon: '😊',
-                    label: 'Safe'
+                    icon: "😊",
+                    label: "Safe"
                 },
                 {
-                    icon: '📄',
-                    label: 'Quality'
+                    icon: "📄",
+                    label: "Quality"
                 },
                 {
-                    icon: '✏️',
-                    label: 'Fresh'
+                    icon: "✏️",
+                    label: "Fresh"
                 }
             ],
             freeShipping: false
@@ -3573,7 +3589,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$context$2f$FavouritesContext$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/context/FavouritesContext.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/search.js [app-ssr] (ecmascript) <export default as Search>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-up.js [app-ssr] (ecmascript) <export default as ArrowUp>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$award$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Award$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/award.js [app-ssr] (ecmascript) <export default as Award>");
 'use client';
@@ -3582,7 +3597,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 ;
 ;
 ;
-function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite = false, badge, showVisualSearch = true, variant = 'default' // 'default', 'top-deal', 'top-ranking', 'grid'
+function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite = false, badge, variant = 'default' // 'default', 'top-deal', 'top-ranking', 'grid'
  }) {
     const { toggleFavourite, isFavourite } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$context$2f$FavouritesContext$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useFavourites"])();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
@@ -3609,7 +3624,7 @@ function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite
                             className: "product-image"
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 36,
+                            lineNumber: 35,
                             columnNumber: 11
                         }, this),
                         badge && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3617,21 +3632,7 @@ function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite
                             children: badge.text
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 44,
-                            columnNumber: 13
-                        }, this),
-                        showVisualSearch && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "product-visual-search",
-                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$search$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Search$3e$__["Search"], {
-                                size: 14
-                            }, void 0, false, {
-                                fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 52,
-                                columnNumber: 15
-                            }, this)
-                        }, void 0, false, {
-                            fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 51,
+                            lineNumber: 43,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3660,23 +3661,23 @@ function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite
                                     d: "M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/ProductCard.js",
-                                    lineNumber: 72,
+                                    lineNumber: 66,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 71,
+                                lineNumber: 65,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 57,
+                            lineNumber: 51,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/ProductCard.js",
-                    lineNumber: 35,
+                    lineNumber: 34,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3687,7 +3688,7 @@ function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite
                             children: badge.text
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 80,
+                            lineNumber: 74,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3697,12 +3698,12 @@ function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite
                                 children: title
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProductCard.js",
-                                lineNumber: 86,
+                                lineNumber: 80,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 85,
+                            lineNumber: 79,
                             columnNumber: 11
                         }, this),
                         (variant !== 'top-ranking' || currentPrice) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3713,7 +3714,7 @@ function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite
                                     children: formatPrice(currentPrice)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/ProductCard.js",
-                                    lineNumber: 93,
+                                    lineNumber: 87,
                                     columnNumber: 17
                                 }, this),
                                 originalPrice && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3721,13 +3722,13 @@ function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite
                                     children: formatPrice(originalPrice)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/ProductCard.js",
-                                    lineNumber: 96,
+                                    lineNumber: 90,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 91,
+                            lineNumber: 85,
                             columnNumber: 13
                         }, this),
                         badge && badge.position === 'below-title' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3737,44 +3738,44 @@ function ProductCard({ id, image, title, currentPrice, originalPrice, isFavorite
                                     size: 12
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/ProductCard.js",
-                                    lineNumber: 104,
+                                    lineNumber: 98,
                                     columnNumber: 42
                                 }, this),
                                 badge.icon === 'arrow-up' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUp$3e$__["ArrowUp"], {
                                     size: 12
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/ProductCard.js",
-                                    lineNumber: 105,
+                                    lineNumber: 99,
                                     columnNumber: 45
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: badge.text
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/ProductCard.js",
-                                    lineNumber: 106,
+                                    lineNumber: 100,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/ProductCard.js",
-                            lineNumber: 103,
+                            lineNumber: 97,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/ProductCard.js",
-                    lineNumber: 77,
+                    lineNumber: 71,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/components/ProductCard.js",
-            lineNumber: 34,
+            lineNumber: 33,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/ProductCard.js",
-        lineNumber: 33,
+        lineNumber: 32,
         columnNumber: 5
     }, this);
 }
@@ -3799,6 +3800,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$calendar$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Calendar$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/calendar.js [app-ssr] (ecmascript) <export default as Calendar>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$rotate$2d$ccw$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__RotateCcw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/rotate-ccw.js [app-ssr] (ecmascript) <export default as RotateCcw>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shield-check.js [app-ssr] (ecmascript) <export default as ShieldCheck>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/message-circle.js [app-ssr] (ecmascript) <export default as MessageCircle>");
 'use client';
 ;
 ;
@@ -4580,6 +4582,26 @@ function ProductDetailClient({ product }) {
                         lineNumber: 318,
                         columnNumber: 9
                     }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                        href: `https://wa.me/1234567890?text=Hi, I'm interested in ${product.title}`,
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        className: "whatsapp-btn",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$message$2d$circle$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__MessageCircle$3e$__["MessageCircle"], {
+                                size: 20
+                            }, void 0, false, {
+                                fileName: "[project]/app/products/[id]/ProductDetailClient.js",
+                                lineNumber: 331,
+                                columnNumber: 11
+                            }, this),
+                            "Contact Supplier"
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/products/[id]/ProductDetailClient.js",
+                        lineNumber: 325,
+                        columnNumber: 9
+                    }, this),
                     (()=>{
                         const similarProducts = getSimilarProducts(product);
                         if (similarProducts.length === 0) return null;
@@ -4591,7 +4613,7 @@ function ProductDetailClient({ product }) {
                                     children: "You Might Also Like"
                                 }, void 0, false, {
                                     fileName: "[project]/app/products/[id]/ProductDetailClient.js",
-                                    lineNumber: 332,
+                                    lineNumber: 342,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4607,23 +4629,23 @@ function ProductDetailClient({ product }) {
                                                 variant: "default"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/products/[id]/ProductDetailClient.js",
-                                                lineNumber: 336,
+                                                lineNumber: 346,
                                                 columnNumber: 21
                                             }, this)
                                         }, similarProduct.id, false, {
                                             fileName: "[project]/app/products/[id]/ProductDetailClient.js",
-                                            lineNumber: 335,
+                                            lineNumber: 345,
                                             columnNumber: 19
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/app/products/[id]/ProductDetailClient.js",
-                                    lineNumber: 333,
+                                    lineNumber: 343,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/products/[id]/ProductDetailClient.js",
-                            lineNumber: 331,
+                            lineNumber: 341,
                             columnNumber: 13
                         }, this);
                     })()

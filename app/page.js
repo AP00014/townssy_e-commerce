@@ -10,6 +10,7 @@ import PromoBanner from "./components/PromoBanner";
 import BottomNav from "./components/BottomNav";
 import CategoriesModal from "./components/CategoriesModal";
 import QuickFilter from "./components/QuickFilter";
+import DiscoverSection from "./components/DiscoverSection";
 import { ChevronDown, Filter } from "lucide-react";
 import {
   categories,
@@ -27,6 +28,17 @@ import {
   tailoredSelections,
   gridProducts,
 } from "./data/products";
+import {
+  getPersonalizedSelections,
+  initializePreferences,
+  trackInteraction,
+} from "./utils/personalization";
+import {
+  primaryCategories,
+  secondaryCategories,
+  getSplitProducts,
+  getMixedProducts,
+} from "./data/categoryStructure";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("All");
@@ -34,35 +46,112 @@ export default function Home() {
   const [isQuickFilterOpen, setIsQuickFilterOpen] = useState(false);
   const [isTabsVisible, setIsTabsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [dynamicSelections, setDynamicSelections] = useState(tailoredSelections);
+  const [syncedProducts, setSyncedProducts] = useState({ suppliers: [], manufacturers: [], all: [] });
   const scrollTimeoutRef = useRef(null);
   const tabsRef = useRef(null);
 
-  // Use categories for tabs, with "All" as the first tab
-  const tabs = ["All", ...categories.slice(0, 2).map((cat) => cat.name)];
+  // Use primary categories for tabs (Suppliers, Manufacturers)
+  const tabs = ["All", ...primaryCategories.map((cat) => cat.name)];
+
+  // Detect mobile screen
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Initialize user preferences on mount
+  useEffect(() => {
+    initializePreferences();
+  }, []);
+
+  // Get personalized tailored selections on mount
+  useEffect(() => {
+    // Get personalized selections (uses user preferences if available, otherwise random)
+    const personalized = getPersonalizedSelections(tailoredSelections, 4);
+    setDynamicSelections(personalized);
+  }, []);
+
+  // Sync products from suppliers and manufacturers (changes on refresh)
+  useEffect(() => {
+    // Combine all product arrays
+    const allProducts = [
+      ...featuredProducts,
+      ...newArrivals,
+      ...hotProducts,
+      ...topRated,
+      ...bestSelling,
+      ...luxuryProducts,
+      ...ecoProducts,
+      ...travelEssentials,
+      ...securityProducts,
+      ...gridProducts,
+    ];
+
+    // Get products split by provider type (randomized each time)
+    const split = getSplitProducts(allProducts);
+    setSyncedProducts(split);
+  }, []); // Empty dependency = runs on mount (each refresh)
+
+  // Handle click on tailored selection (track for personalization)
+  const handleSelectionClick = (selection) => {
+    trackInteraction("click_selection", {
+      slug: selection.slug,
+      category: selection.category,
+      label: selection.label,
+    });
+  };
+
+  // Get products based on active tab
+  const getDisplayProducts = () => {
+    if (activeTab === "All") {
+      return syncedProducts.all.slice(0, 4);
+    } else if (activeTab === "Suppliers") {
+      return syncedProducts.suppliers.slice(0, 4);
+    } else if (activeTab === "Manufacturers") {
+      return syncedProducts.manufacturers.slice(0, 4);
+    }
+    return gridProducts.slice(0, 4);
+  };
+
+  const displayProducts = getDisplayProducts();
 
   useEffect(() => {
+    setLastScrollY(window.scrollY);
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Clear existing timeout
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-
-      // Hide tabs when scrolling down
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsTabsVisible(false);
-      } else if (currentScrollY < lastScrollY) {
-        // Show tabs when scrolling up
-        setIsTabsVisible(true);
-      }
-
-      // Show tabs when user stops scrolling
-      scrollTimeoutRef.current = setTimeout(() => {
-        setIsTabsVisible(true);
-      }, 150);
+      const isScrollingDown = currentScrollY > lastScrollY;
 
       setLastScrollY(currentScrollY);
+
+      if (isScrollingDown) {
+        // Hide tabs during scroll down
+        setIsTabsVisible(false);
+
+        // Clear existing timeout
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+
+        // Show tabs after scrolling stops for 300ms
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsTabsVisible(true);
+        }, 300);
+      } else {
+        // Scrolling up, show tabs immediately
+        setIsTabsVisible(true);
+
+        // Clear timeout if any
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -73,7 +162,7 @@ export default function Home() {
         clearTimeout(scrollTimeoutRef.current);
       }
     };
-  }, [lastScrollY]);
+  }, []);
 
   return (
     <div className="page-content">
@@ -84,23 +173,27 @@ export default function Home() {
         {/* Navigation Tabs with Dropdown */}
         <div
           ref={tabsRef}
-          className={`category-tabs ${isTabsVisible ? "visible" : "hidden"}`}
+          className={`category-tabs-container ${
+            isTabsVisible ? "visible" : "hidden"
+          }`}
         >
-          {tabs.map((tab) => (
+          <div className="category-tabs">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                className={`category-tab ${activeTab === tab ? "active" : ""}`}
+                onClick={() => setActiveTab(tab)}
+              >
+                {tab}
+              </button>
+            ))}
             <button
-              key={tab}
-              className={`category-tab ${activeTab === tab ? "active" : ""}`}
-              onClick={() => setActiveTab(tab)}
+              className="category-tab-dropdown"
+              onClick={() => setIsCategoriesModalOpen(true)}
             >
-              {tab}
+              <ChevronDown size={18} />
             </button>
-          ))}
-          <button
-            className="category-tab-dropdown"
-            onClick={() => setIsCategoriesModalOpen(true)}
-          >
-            <ChevronDown size={18} />
-          </button>
+          </div>
           <button
             className="category-tab-filter"
             onClick={() => setIsQuickFilterOpen(true)}
@@ -173,67 +266,92 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Tailored Selections Section */}
-        <div className="tailored-selections-section">
-          <div className="tailored-selections-list">
+        {isMobile ? (
+          /* Combined Section on Mobile */
+          <div className="combined-mobile-section">
             <h3
               className="section-title"
               style={{ marginBottom: "16px", padding: "0 4px" }}
             >
-              Tailored Selections
+              Discover & Selections
             </h3>
-            {tailoredSelections.map((selection) => (
-              <Link 
-                key={selection.id} 
-                href={`/category/${selection.slug}`}
-                className="tailored-selection-item"
-              >
-                <img
-                  src={selection.image}
-                  alt={selection.label}
-                  className="tailored-selection-image"
-                />
-                <span className="tailored-selection-label">
-                  {selection.label}
-                </span>
-              </Link>
-            ))}
+            <div className="mobile-discover-grid">
+              {/* Discover Section on Left */}
+              {/* <DiscoverSection /> */}
+              {/* Tailored Selections on Right */}
+              <div className="mobile-tailored-section">
+                <div className="tailored-selections-list">
+                  {dynamicSelections.map((selection) => (
+                    <Link
+                      key={selection.id}
+                      href={`/category/${selection.slug}`}
+                      className="tailored-selection-item"
+                      onClick={() => handleSelectionClick(selection)}
+                    >
+                      <img
+                        src={selection.image}
+                        alt={selection.label}
+                        className="tailored-selection-image"
+                      />
+                      <span className="tailored-selection-label">
+                        {selection.label}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="products-grid">
-            {gridProducts.slice(0, 4).map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                image={product.image}
-                title={product.title}
-                currentPrice={product.currentPrice}
-                originalPrice={product.originalPrice}
-                isFavorite={product.isFavorite}
-                badge={product.badge}
-                variant="grid"
-              />
-            ))}
-          </div>
-        </div>
+        ) : (
+          <>
+            {/* Tailored Selections Section */}
+            <div className="tailored-selections-section">
+              <div className="tailored-selections-list">
+                <h3
+                  className="section-title"
+                  style={{ marginBottom: "16px", padding: "0 4px" }}
+                >
+                  Tailored Selections
+                </h3>
+                {dynamicSelections.map((selection) => (
+                  <Link
+                    key={selection.id}
+                    href={`/category/${selection.slug}`}
+                    className="tailored-selection-item"
+                    onClick={() => handleSelectionClick(selection)}
+                  >
+                    <img
+                      src={selection.image}
+                      alt={selection.label}
+                      className="tailored-selection-image"
+                    />
+                    <span className="tailored-selection-label">
+                      {selection.label}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+              <div className="products-grid">
+                {displayProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    image={product.image}
+                    title={product.title}
+                    currentPrice={product.currentPrice}
+                    originalPrice={product.originalPrice}
+                    isFavorite={product.isFavorite}
+                    badge={product.badge}
+                    variant="grid"
+                  />
+                ))}
+              </div>
+            </div>
 
-        {/* Additional Grid Products Section */}
-        <div className="products-container">
-          <div className="products-grid">
-            {gridProducts.slice(4).map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                image={product.image}
-                title={product.title}
-                currentPrice={product.currentPrice}
-                originalPrice={product.originalPrice}
-                isFavorite={product.isFavorite}
-                badge={product.badge}
-                variant="grid"
-              />
-            ))}
-          </div>
-        </div>
+            {/* Discover Section */}
+            {/* <DiscoverSection /> */}
+          </>
+        )}
 
         <div className="products-container">
           <SectionHeader title="Featured" />
@@ -256,40 +374,6 @@ export default function Home() {
           <SectionHeader title="New Arrivals" />
           <div className="products-scroll">
             {newArrivals.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                image={product.image}
-                title={product.title}
-                currentPrice={product.currentPrice}
-                originalPrice={product.originalPrice}
-                isFavorite={product.isFavorite}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className="products-container">
-          <SectionHeader title="Hot" />
-          <div className="products-scroll">
-            {hotProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                image={product.image}
-                title={product.title}
-                currentPrice={product.currentPrice}
-                originalPrice={product.originalPrice}
-                isFavorite={product.isFavorite}
-              />
-            ))}
-          </div>
-        </div>
-
-        <div className="products-container">
-          <SectionHeader title="Top Rated" />
-          <div className="products-scroll">
-            {topRated.map((product) => (
               <ProductCard
                 key={product.id}
                 id={product.id}
