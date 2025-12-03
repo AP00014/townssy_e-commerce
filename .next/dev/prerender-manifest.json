@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/category/womens-clothes":{},"/category/designer-shoes":{},"/category/food-trailers":{},"/category/spider-hoodies":{},"/products/1":{},"/products/2":{},"/products/3":{},"/products/4":{},"/products/5":{},"/products/6":{},"/products/7":{},"/products/8":{},"/products/9":{},"/products/10":{},"/products/11":{},"/products/12":{},"/products/13":{},"/products/14":{},"/products/15":{},"/products/16":{},"/products/17":{},"/products/18":{},"/products/19":{},"/products/20":{},"/products/21":{},"/products/22":{},"/products/23":{},"/products/24":{},"/products/25":{},"/products/26":{},"/products/27":{},"/products/28":{},"/products/29":{},"/products/30":{},"/products/31":{},"/products/32":{},"/products/33":{},"/products/34":{},"/products/35":{},"/products/36":{},"/products/37":{},"/products/38":{},"/products/39":{},"/products/40":{},"/products/41":{},"/products/45":{},"/products/46":{},"/products/47":{},"/products/48":{},"/products/49":{},"/products/50":{},"/products/51":{},"/products/52":{},"/products/53":{}},"dynamicRoutes":{"/category/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/category/[slug]","routeRegex":"^\\/category\\/([^/]+?)(?:\\/)?$","allowHeader":[]},"/products/[id]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/products/[id]","routeRegex":"^\\/products\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"8abed2bce976ee7bedf9e2d95bc2cf39","previewModeSigningKey":"4d9dae4f01bf7e65121b501bf9906edda707896fd28071814c86470394b7fac0","previewModeEncryptionKey":"4aec8f70866890e7fb577373f138acfcee5e1656b6cb64c9731dabccf42af8dd"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "849fb80b070b22fc32ec4fb5ca45354f",
+    "previewModeSigningKey": "54b67b8f07f9d1c18a3ee61e7e40e08af2b5a815b963e4ca64fee821f6ca7e08",
+    "previewModeEncryptionKey": "db6f503c8979dcc395cd21eebea511903268f18e6c5ff96412cd86a772a0dc70"
+  }
+}

@@ -1,5 +1,6 @@
 module.exports = {
   output: "export",
+  basePath: "/townssy_e-commerce",
   trailingSlash: true,
   images: {
     unoptimized: true,
