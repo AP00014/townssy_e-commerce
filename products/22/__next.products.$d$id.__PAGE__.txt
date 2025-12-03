@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[70658,["/_next/static/chunks/3f98ffd9d24ae708.js","/_next/static/chunks/b80530af690e80bb.js"],"default"]
+3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/247eb132b7f7b574.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"dt8eVHGGA6LtghoW7ZUDw","rsc":["$","$1","c",{"children":[["$","$L2",null,{"product":{"id":22,"title":"Running Shoes","currentPrice":"$$75.00","originalPrice":"$$150.00","images":["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop"],"description":"Lightweight running shoes with superior cushioning and breathability.","features":[{"icon":"😊","label":"Safe"},{"icon":"📄","label":"Quality"},{"icon":"✏️","label":"Fresh"}],"freeShipping":true,"reviews":[{"rating":4.8,"author":"Runner","date":"2023-09-18","comment":"Comfortable and lightweight!","verified":true}],"averageRating":4.8,"reviewCount":1}}],[["$","script","script-0",{"src":"/_next/static/chunks/b80530af690e80bb.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null

@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[70658,["/_next/static/chunks/3f98ffd9d24ae708.js","/_next/static/chunks/b80530af690e80bb.js"],"default"]
+3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/247eb132b7f7b574.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"dt8eVHGGA6LtghoW7ZUDw","rsc":["$","$1","c",{"children":[["$","$L2",null,{"product":{"id":34,"title":"Alarm System","currentPrice":"$$150.00","originalPrice":"$$300.00","images":["https://images.unsplash.com/photo-1582139329536-e7284fece509?w=600&h=600&fit=crop"],"description":"Home alarm system with sensors and smartphone alerts.","features":[{"icon":"😊","label":"Safe"},{"icon":"📄","label":"Quality"},{"icon":"✏️","label":"Fresh"}],"freeShipping":false,"reviews":[{"rating":4.9,"author":"SafeHome","date":"2023-10-20","comment":"Reliable protection!","verified":true}],"averageRating":4.9,"reviewCount":1}}],[["$","script","script-0",{"src":"/_next/static/chunks/b80530af690e80bb.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null

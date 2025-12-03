@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[70658,["/_next/static/chunks/3f98ffd9d24ae708.js","/_next/static/chunks/b80530af690e80bb.js"],"default"]
+3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/247eb132b7f7b574.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"dt8eVHGGA6LtghoW7ZUDw","rsc":["$","$1","c",{"children":[["$","$L2",null,{"product":{"id":7,"title":"Product Title","currentPrice":"$$24.00","originalPrice":null,"media":[{"type":"image","url":"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop"}],"description":"High-quality product with excellent features. Perfect for everyday use.","features":[{"icon":"😊","label":"Safe"},{"icon":"📄","label":"Quality"},{"icon":"✏️","label":"Fresh"}],"freeShipping":true,"reviews":[],"averageRating":0,"reviewCount":0}}],[["$","script","script-0",{"src":"/_next/static/chunks/b80530af690e80bb.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null

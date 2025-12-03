@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[70658,["/_next/static/chunks/3f98ffd9d24ae708.js","/_next/static/chunks/b80530af690e80bb.js"],"default"]
+3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/247eb132b7f7b574.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"dt8eVHGGA6LtghoW7ZUDw","rsc":["$","$1","c",{"children":[["$","$L2",null,{"product":{"id":3,"title":"Vitamin C Serum","currentPrice":"₹ 2,453","originalPrice":"₹ 4,700","media":[{"type":"image","url":"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&h=600&fit=crop"}],"description":"Premium Vitamin C Serum for brightening and anti-aging. Contains natural ingredients and is suitable for all skin types.","features":[{"icon":"😊","label":"Safe"},{"icon":"📄","label":"Quality"},{"icon":"✏️","label":"Fresh"}],"freeShipping":false,"delivery":{"freeShipping":false,"estimatedDelivery":"5-7 business days","shippingOptions":["Standard"],"returnPolicy":"30-day return policy"},"reviews":[{"rating":4.8,"author":"Alice Johnson","date":"2023-08-20","comment":"Amazing for skin!","verified":true}],"averageRating":4.8,"reviewCount":1}}],[["$","script","script-0",{"src":"/_next/static/chunks/b80530af690e80bb.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
