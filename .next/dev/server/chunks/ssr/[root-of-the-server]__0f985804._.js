@@ -35,57 +35,65 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2d$off$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__EyeOff$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/eye-off.js [app-ssr] (ecmascript) <export default as EyeOff>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$check$2d$big$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__CheckCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-check-big.js [app-ssr] (ecmascript) <export default as CheckCircle>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$x$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/circle-x.js [app-ssr] (ecmascript) <export default as XCircle>");
-'use client';
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/phone.js [app-ssr] (ecmascript) <export default as Phone>");
+"use client";
 ;
 ;
 ;
-function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
+;
+function ProfileModal({ isOpen, onClose, variant = "auto" }) {
     const [isLogin, setIsLogin] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     const [isMobile, setIsMobile] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
-    const [successMessage, setSuccessMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [successMessage, setSuccessMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [showPassword, setShowPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     // Form fields
-    const [username, setUsername] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
-    const [fullName, setFullName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
-    const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
-    const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [username, setUsername] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [fullName, setFullName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [confirmPassword, setConfirmPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [phoneNumber, setPhoneNumber] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [acceptTerms, setAcceptTerms] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     // Validation states
-    const [usernameError, setUsernameError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [usernameError, setUsernameError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [usernameSuccess, setUsernameSuccess] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [fullNameError, setFullNameError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [fullNameError, setFullNameError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [fullNameSuccess, setFullNameSuccess] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [emailError, setEmailError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [emailError, setEmailError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [emailSuccess, setEmailSuccess] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [phoneError, setPhoneError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [phoneSuccess, setPhoneSuccess] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [confirmPasswordError, setConfirmPasswordError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const modalRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     // Password strength calculation
     const getPasswordStrength = (password)=>{
         let score = 0;
         let feedback = [];
         if (password.length >= 8) score++;
-        else feedback.push('At least 8 characters');
+        else feedback.push("At least 8 characters");
         if (/[a-z]/.test(password)) score++;
-        else feedback.push('Lowercase letter');
+        else feedback.push("Lowercase letter");
         if (/[A-Z]/.test(password)) score++;
-        else feedback.push('Uppercase letter');
+        else feedback.push("Uppercase letter");
         if (/[0-9]/.test(password)) score++;
-        else feedback.push('Number');
+        else feedback.push("Number");
         if (/[^A-Za-z0-9]/.test(password)) score++;
-        else feedback.push('Special character');
+        else feedback.push("Special character");
         const colors = [
-            '#ef4444',
-            '#f97316',
-            '#eab308',
-            '#22c55e',
-            '#10b981'
+            "#ef4444",
+            "#f97316",
+            "#eab308",
+            "#22c55e",
+            "#10b981"
         ];
         const labels = [
-            'Very Weak',
-            'Weak',
-            'Fair',
-            'Good',
-            'Strong'
+            "Very Weak",
+            "Weak",
+            "Fair",
+            "Good",
+            "Strong"
         ];
         return {
             score,
@@ -101,59 +109,59 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
             setIsMobile(window.innerWidth < 768);
         };
         checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return ()=>window.removeEventListener('resize', checkMobile);
+        window.addEventListener("resize", checkMobile);
+        return ()=>window.removeEventListener("resize", checkMobile);
     }, []);
     // Determine if we should use modal or dropdown
-    const useModal = variant === 'modal' || variant === 'auto' && isMobile;
-    const useDropdown = variant === 'dropdown' || variant === 'auto' && !isMobile;
+    const useModal = variant === "modal" || variant === "auto" && isMobile;
+    const useDropdown = variant === "dropdown" || variant === "auto" && !isMobile;
     // Validation functions
     const validateUsername = (value)=>{
         if (!value) {
-            setUsernameError('');
+            setUsernameError("");
             setUsernameSuccess(false);
             return;
         }
         if (value.length < 3) {
-            setUsernameError('Username must be at least 3 characters');
+            setUsernameError("Username must be at least 3 characters");
             setUsernameSuccess(false);
         } else if (!/^[a-zA-Z0-9_]+$/.test(value)) {
-            setUsernameError('Username can only contain letters, numbers, and underscores');
+            setUsernameError("Username can only contain letters, numbers, and underscores");
             setUsernameSuccess(false);
         } else {
-            setUsernameError('');
+            setUsernameError("");
             setUsernameSuccess(true);
         }
     };
     const validateFullName = (value)=>{
         if (!value) {
-            setFullNameError('');
+            setFullNameError("");
             setFullNameSuccess(false);
             return;
         }
         if (value.length < 2) {
-            setFullNameError('Full name must be at least 2 characters');
+            setFullNameError("Full name must be at least 2 characters");
             setFullNameSuccess(false);
         } else if (!/^[a-zA-Z\s]+$/.test(value)) {
-            setFullNameError('Full name can only contain letters and spaces');
+            setFullNameError("Full name can only contain letters and spaces");
             setFullNameSuccess(false);
         } else {
-            setFullNameError('');
+            setFullNameError("");
             setFullNameSuccess(true);
         }
     };
     const validateEmail = (value)=>{
         if (!value) {
-            setEmailError('');
+            setEmailError("");
             setEmailSuccess(false);
             return;
         }
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
-            setEmailError('Please enter a valid email address');
+            setEmailError("Please enter a valid email address");
             setEmailSuccess(false);
         } else {
-            setEmailError('');
+            setEmailError("");
             setEmailSuccess(true);
         }
     };
@@ -173,46 +181,86 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
     }, [
         email
     ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (!isLogin && confirmPassword) {
+            if (password !== confirmPassword) {
+                setConfirmPasswordError("Passwords do not match");
+            } else {
+                setConfirmPasswordError("");
+            }
+        }
+    }, [
+        password,
+        confirmPassword,
+        isLogin
+    ]);
+    const validatePhone = (value)=>{
+        if (!value) {
+            setPhoneError("");
+            setPhoneSuccess(false);
+            return;
+        }
+        // Basic international phone regex or simple length check
+        const phoneRegex = /^\+?[\d\s-]{10,}$/;
+        if (!phoneRegex.test(value)) {
+            setPhoneError("Please enter a valid phone number");
+            setPhoneSuccess(false);
+        } else {
+            setPhoneError("");
+            setPhoneSuccess(true);
+        }
+    };
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        validatePhone(phoneNumber);
+    }, [
+        phoneNumber
+    ]);
     const handleGoogleAuth = ()=>{
-        console.log('Google OAuth clicked');
+        console.log("Google OAuth clicked");
     // In production, this would redirect to OAuth endpoint
     };
     const handleSubmit = async (e)=>{
         e.preventDefault();
         setLoading(true);
-        setError('');
-        setSuccessMessage('');
+        setError("");
+        setSuccessMessage("");
         try {
             // Simulate API call
             await new Promise((resolve)=>setTimeout(resolve, 2000));
             if (isLogin) {
-                setSuccessMessage('Login successful! Welcome back.');
+                setSuccessMessage("Login successful! Welcome back.");
             } else {
-                setSuccessMessage('Account created successfully! Welcome to our community.');
+                setSuccessMessage("Account created successfully! Welcome to our community.");
             }
             // Reset form after success
             setTimeout(()=>{
-                setUsername('');
-                setFullName('');
-                setEmail('');
-                setPassword('');
-                setSuccessMessage('');
+                setUsername("");
+                setFullName("");
+                setEmail("");
+                setPassword("");
+                setConfirmPassword("");
+                setPhoneNumber("");
+                setAcceptTerms(false);
+                setSuccessMessage("");
                 onClose();
             }, 2000);
         } catch (err) {
-            setError('Something went wrong. Please try again.');
+            setError("Something went wrong. Please try again.");
         } finally{
             setLoading(false);
         }
     };
     const switchMode = ()=>{
         setIsLogin(!isLogin);
-        setError('');
-        setSuccessMessage('');
-        setUsername('');
-        setFullName('');
-        setEmail('');
-        setPassword('');
+        setError("");
+        setSuccessMessage("");
+        setUsername("");
+        setFullName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setPhoneNumber("");
+        setAcceptTerms(false);
         setShowPassword(false);
     };
     if (!isOpen) return null;
@@ -225,12 +273,12 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                     size: 20
                 }, void 0, false, {
                     fileName: "[project]/app/components/ProfileModal.js",
-                    lineNumber: 211,
+                    lineNumber: 261,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/components/ProfileModal.js",
-                lineNumber: 210,
+                lineNumber: 260,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -240,20 +288,20 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                         children: isLogin ? "Welcome Back" : "Join Our Community"
                     }, void 0, false, {
                         fileName: "[project]/app/components/ProfileModal.js",
-                        lineNumber: 215,
+                        lineNumber: 265,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                         children: isLogin ? "Sign in to your account" : "Create your account"
                     }, void 0, false, {
                         fileName: "[project]/app/components/ProfileModal.js",
-                        lineNumber: 216,
+                        lineNumber: 266,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/ProfileModal.js",
-                lineNumber: 214,
+                lineNumber: 264,
                 columnNumber: 7
             }, this),
             error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -261,7 +309,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                 children: error
             }, void 0, false, {
                 fileName: "[project]/app/components/ProfileModal.js",
-                lineNumber: 219,
+                lineNumber: 269,
                 columnNumber: 17
             }, this),
             successMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -269,7 +317,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                 children: successMessage
             }, void 0, false, {
                 fileName: "[project]/app/components/ProfileModal.js",
-                lineNumber: 222,
+                lineNumber: 272,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -292,7 +340,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         d: "M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 233,
+                                        lineNumber: 288,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -300,7 +348,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         d: "M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 234,
+                                        lineNumber: 292,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -308,7 +356,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         d: "M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 235,
+                                        lineNumber: 296,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -316,20 +364,20 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         d: "M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 236,
+                                        lineNumber: 300,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 232,
+                                lineNumber: 282,
                                 columnNumber: 11
                             }, this),
                             "Continue with Google"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/ProfileModal.js",
-                        lineNumber: 226,
+                        lineNumber: 276,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -338,18 +386,18 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                             children: "or"
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProfileModal.js",
-                            lineNumber: 242,
+                            lineNumber: 309,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/ProfileModal.js",
-                        lineNumber: 241,
+                        lineNumber: 308,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/ProfileModal.js",
-                lineNumber: 225,
+                lineNumber: 275,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -366,7 +414,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         size: 20
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 250,
+                                        lineNumber: 317,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -377,12 +425,12 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         required: !isLogin,
                                         className: `auth-input ${usernameError ? "error" : usernameSuccess ? "success" : ""} ${usernameSuccess ? "input-valid" : usernameError ? "input-invalid" : ""}`,
                                         style: {
-                                            borderColor: username ? usernameSuccess ? '#10b981' : usernameError ? '#ef4444' : undefined : undefined
+                                            borderColor: username ? usernameSuccess ? "#10b981" : usernameError ? "#ef4444" : undefined : undefined
                                         },
                                         disabled: loading
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 251,
+                                        lineNumber: 318,
                                         columnNumber: 15
                                     }, this),
                                     usernameError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -392,20 +440,20 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProfileModal.js",
-                                                lineNumber: 263,
+                                                lineNumber: 346,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: usernameError
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProfileModal.js",
-                                                lineNumber: 264,
+                                                lineNumber: 347,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 262,
+                                        lineNumber: 345,
                                         columnNumber: 17
                                     }, this),
                                     usernameSuccess && !usernameError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -415,26 +463,26 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProfileModal.js",
-                                                lineNumber: 269,
+                                                lineNumber: 352,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Username looks good!"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProfileModal.js",
-                                                lineNumber: 270,
+                                                lineNumber: 353,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 268,
+                                        lineNumber: 351,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 249,
+                                lineNumber: 316,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -445,7 +493,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         size: 20
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 276,
+                                        lineNumber: 359,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -456,12 +504,12 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         required: !isLogin,
                                         className: `auth-input ${fullNameError ? "error" : fullNameSuccess ? "success" : ""} ${fullNameSuccess ? "input-valid" : fullNameError ? "input-invalid" : ""}`,
                                         style: {
-                                            borderColor: fullName ? fullNameSuccess ? '#10b981' : fullNameError ? '#ef4444' : undefined : undefined
+                                            borderColor: fullName ? fullNameSuccess ? "#10b981" : fullNameError ? "#ef4444" : undefined : undefined
                                         },
                                         disabled: loading
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 277,
+                                        lineNumber: 360,
                                         columnNumber: 15
                                     }, this),
                                     fullNameError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -471,20 +519,20 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProfileModal.js",
-                                                lineNumber: 289,
+                                                lineNumber: 388,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: fullNameError
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProfileModal.js",
-                                                lineNumber: 290,
+                                                lineNumber: 389,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 288,
+                                        lineNumber: 387,
                                         columnNumber: 17
                                     }, this),
                                     fullNameSuccess && !fullNameError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -494,26 +542,26 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                                 size: 16
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProfileModal.js",
-                                                lineNumber: 295,
+                                                lineNumber: 394,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: "Full name looks good!"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ProfileModal.js",
-                                                lineNumber: 296,
+                                                lineNumber: 395,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 294,
+                                        lineNumber: 393,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 275,
+                                lineNumber: 358,
                                 columnNumber: 13
                             }, this)
                         ]
@@ -526,7 +574,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 304,
+                                lineNumber: 403,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -537,12 +585,12 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                 required: true,
                                 className: `auth-input ${emailError ? "error" : emailSuccess ? "success" : ""} ${emailSuccess ? "input-valid" : emailError ? "input-invalid" : ""}`,
                                 style: {
-                                    borderColor: email ? emailSuccess ? '#10b981' : emailError ? '#ef4444' : undefined : undefined
+                                    borderColor: email ? emailSuccess ? "#10b981" : emailError ? "#ef4444" : undefined : undefined
                                 },
                                 disabled: loading
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 305,
+                                lineNumber: 404,
                                 columnNumber: 11
                             }, this),
                             emailError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -552,20 +600,20 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 317,
+                                        lineNumber: 428,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: emailError
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 318,
+                                        lineNumber: 429,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 316,
+                                lineNumber: 427,
                                 columnNumber: 13
                             }, this),
                             emailSuccess && !emailError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -575,27 +623,83 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 323,
+                                        lineNumber: 434,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Email looks good!"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 324,
+                                        lineNumber: 435,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 322,
+                                lineNumber: 433,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/ProfileModal.js",
-                        lineNumber: 303,
+                        lineNumber: 402,
                         columnNumber: 9
+                    }, this),
+                    !isLogin && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "input-group",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$phone$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Phone$3e$__["Phone"], {
+                                className: "input-icon",
+                                size: 20
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/ProfileModal.js",
+                                lineNumber: 442,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                type: "tel",
+                                placeholder: "Phone Number",
+                                value: phoneNumber,
+                                onChange: (e)=>setPhoneNumber(e.target.value),
+                                required: !isLogin,
+                                className: `auth-input ${phoneError ? "error" : phoneSuccess ? "success" : ""} ${phoneSuccess ? "input-valid" : phoneError ? "input-invalid" : ""}`,
+                                style: {
+                                    borderColor: phoneNumber ? phoneSuccess ? "#10b981" : phoneError ? "#ef4444" : undefined : undefined
+                                },
+                                disabled: loading
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/ProfileModal.js",
+                                lineNumber: 443,
+                                columnNumber: 13
+                            }, this),
+                            phoneError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "field-error",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$x$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircle$3e$__["XCircle"], {
+                                        size: 16
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/components/ProfileModal.js",
+                                        lineNumber: 467,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: phoneError
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/components/ProfileModal.js",
+                                        lineNumber: 468,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/components/ProfileModal.js",
+                                lineNumber: 466,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/components/ProfileModal.js",
+                        lineNumber: 441,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "input-group",
@@ -605,7 +709,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                 size: 20
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 330,
+                                lineNumber: 475,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -621,7 +725,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                 disabled: loading
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 331,
+                                lineNumber: 476,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -633,18 +737,18 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                     size: 20
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/ProfileModal.js",
-                                    lineNumber: 347,
+                                    lineNumber: 494,
                                     columnNumber: 29
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eye$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Eye$3e$__["Eye"], {
                                     size: 20
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/ProfileModal.js",
-                                    lineNumber: 347,
+                                    lineNumber: 494,
                                     columnNumber: 52
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 341,
+                                lineNumber: 488,
                                 columnNumber: 11
                             }, this),
                             password && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -660,12 +764,12 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/ProfileModal.js",
-                                            lineNumber: 352,
+                                            lineNumber: 499,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 351,
+                                        lineNumber: 498,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -676,35 +780,147 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                                         children: passwordStrength.label
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ProfileModal.js",
-                                        lineNumber: 360,
+                                        lineNumber: 507,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ProfileModal.js",
-                                lineNumber: 350,
+                                lineNumber: 497,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/ProfileModal.js",
-                        lineNumber: 329,
+                        lineNumber: 474,
                         columnNumber: 9
+                    }, this),
+                    !isLogin && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "input-group",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lock$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Lock$3e$__["Lock"], {
+                                className: "input-icon",
+                                size: 20
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/ProfileModal.js",
+                                lineNumber: 519,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                type: "password",
+                                placeholder: "Confirm Password",
+                                value: confirmPassword,
+                                onChange: (e)=>setConfirmPassword(e.target.value),
+                                required: !isLogin,
+                                className: `auth-input ${confirmPasswordError ? "error" : ""}`,
+                                disabled: loading
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/ProfileModal.js",
+                                lineNumber: 520,
+                                columnNumber: 13
+                            }, this),
+                            confirmPasswordError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "field-error",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$circle$2d$x$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__XCircle$3e$__["XCircle"], {
+                                        size: 16
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/components/ProfileModal.js",
+                                        lineNumber: 531,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: confirmPasswordError
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/components/ProfileModal.js",
+                                        lineNumber: 532,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/components/ProfileModal.js",
+                                lineNumber: 530,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/components/ProfileModal.js",
+                        lineNumber: 518,
+                        columnNumber: 11
+                    }, this),
+                    !isLogin && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "terms-checkbox-container",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                            className: "terms-label",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                    type: "checkbox",
+                                    checked: acceptTerms,
+                                    onChange: (e)=>setAcceptTerms(e.target.checked),
+                                    required: true,
+                                    className: "terms-input"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/components/ProfileModal.js",
+                                    lineNumber: 541,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                    className: "terms-text",
+                                    children: [
+                                        "I agree to the",
+                                        " ",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                            href: "#",
+                                            className: "terms-link",
+                                            children: "Terms of Service"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/components/ProfileModal.js",
+                                            lineNumber: 550,
+                                            columnNumber: 17
+                                        }, this),
+                                        " ",
+                                        "and",
+                                        " ",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                            href: "#",
+                                            className: "terms-link",
+                                            children: "Privacy Policy"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/components/ProfileModal.js",
+                                            lineNumber: 554,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/components/ProfileModal.js",
+                                    lineNumber: 548,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/components/ProfileModal.js",
+                            lineNumber: 540,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/app/components/ProfileModal.js",
+                        lineNumber: 539,
+                        columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "submit",
                         className: "auth-button primary",
-                        disabled: loading || !!emailError || passwordStrength.score < 4 || !isLogin && (!!usernameError || !!fullNameError),
+                        disabled: loading || !!emailError || passwordStrength.score < 4 || !isLogin && (!!usernameError || !!fullNameError || !!phoneError || !!confirmPasswordError || !acceptTerms),
                         children: loading ? "Processing..." : isLogin ? "Sign In" : "Sign Up"
                     }, void 0, false, {
                         fileName: "[project]/app/components/ProfileModal.js",
-                        lineNumber: 367,
+                        lineNumber: 562,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/ProfileModal.js",
-                lineNumber: 246,
+                lineNumber: 313,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -720,18 +936,18 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                             children: isLogin ? "Sign Up" : "Sign In"
                         }, void 0, false, {
                             fileName: "[project]/app/components/ProfileModal.js",
-                            lineNumber: 384,
+                            lineNumber: 584,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/ProfileModal.js",
-                    lineNumber: 382,
+                    lineNumber: 582,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/components/ProfileModal.js",
-                lineNumber: 381,
+                lineNumber: 581,
                 columnNumber: 7
             }, this)
         ]
@@ -746,12 +962,12 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                 children: modalContent
             }, void 0, false, {
                 fileName: "[project]/app/components/ProfileModal.js",
-                lineNumber: 400,
+                lineNumber: 604,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/app/components/ProfileModal.js",
-            lineNumber: 399,
+            lineNumber: 599,
             columnNumber: 7
         }, this);
     }
@@ -763,7 +979,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                 onClick: onClose
             }, void 0, false, {
                 fileName: "[project]/app/components/ProfileModal.js",
-                lineNumber: 410,
+                lineNumber: 612,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -773,7 +989,7 @@ function ProfileModal({ isOpen, onClose, variant = 'auto' }) {
                 children: modalContent
             }, void 0, false, {
                 fileName: "[project]/app/components/ProfileModal.js",
-                lineNumber: 411,
+                lineNumber: 613,
                 columnNumber: 7
             }, this)
         ]

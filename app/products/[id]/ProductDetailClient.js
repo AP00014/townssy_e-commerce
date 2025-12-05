@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useState, useEffect, useMemo } from 'react';
 import { featuredProducts, topProducts, accessories, newArrivals, hotProducts, topRated, bestSelling, luxuryProducts, ecoProducts, travelEssentials, securityProducts, topDeals, gridProducts } from '../../data/products.js';
 import ProductCard from '../../components/ProductCard.js';
@@ -135,6 +136,40 @@ export default function ProductDetailClient({ product }) {
             ))}
           </div>
         )}
+
+        {/* Vendor Info (Mocked for now) */}
+        <div className="product-vendor-info" style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '12px', 
+          margin: '12px 0', 
+          padding: '12px', 
+          background: '#f9fafb', 
+          borderRadius: '8px',
+          border: '1px solid #eee'
+        }}>
+          <img 
+            src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=50&h=50&fit=crop" 
+            alt="Vendor Logo" 
+            style={{ width: '40px', height: '40px', borderRadius: '4px', objectFit: 'cover' }}
+          />
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Link href="/vendor/v1" style={{ fontWeight: '600', color: '#333', textDecoration: 'none' }}>
+                Shenzhen Tech-Star Electronics
+              </Link>
+              <span style={{ fontSize: '10px', background: '#fff7e6', color: '#d48806', padding: '2px 6px', borderRadius: '4px', border: '1px solid #ffd591' }}>
+                Gold Supplier
+              </span>
+            </div>
+            <div style={{ fontSize: '12px', color: '#666', marginTop: '2px' }}>
+              8 Years • 98% Response Rate
+            </div>
+          </div>
+          <Link href="/vendor/v1" style={{ color: '#06392F', fontSize: '13px', fontWeight: '600' }}>
+            Visit Store
+          </Link>
+        </div>
 
         <div className="product-pricing">
           <div className="price-group">

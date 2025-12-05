@@ -1,1 +1,21 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/agents/page": "app/admin/agents/page.js",
+  "/admin/finances/page": "app/admin/finances/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/products/categories/create/page": "app/admin/products/categories/create/page.js",
+  "/admin/products/categories/page": "app/admin/products/categories/page.js",
+  "/admin/products/create/page": "app/admin/products/create/page.js",
+  "/admin/products/page": "app/admin/products/page.js",
+  "/admin/reports/page": "app/admin/reports/page.js",
+  "/admin/settings/audit/page": "app/admin/settings/audit/page.js",
+  "/admin/settings/page": "app/admin/settings/page.js",
+  "/admin/settings/roles/page": "app/admin/settings/roles/page.js",
+  "/admin/users/page": "app/admin/users/page.js",
+  "/admin/vendors/applications/page": "app/admin/vendors/applications/page.js",
+  "/admin/vendors/page": "app/admin/vendors/page.js",
+  "/admin/vendors/payouts/page": "app/admin/vendors/payouts/page.js",
+  "/favorites/page": "app/favorites/page.js",
+  "/page": "app/page.js",
+  "/vendor-application/page": "app/vendor-application/page.js"
+}
