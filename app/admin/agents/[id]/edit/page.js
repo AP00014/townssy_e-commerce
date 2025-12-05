@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useAuth } from '../../../../context/AuthContext';
-import { useRouter, useParams } from 'next/navigation';
-import { supabase } from '../../../../../lib/supabase';
+import { useState, useEffect } from "react";
+import { useAuth } from "../../../../context/AuthContext";
+import { useRouter, useParams } from "next/navigation";
+import { supabase } from "../../../../../lib/supabase";
 import {
   ArrowLeft,
   Save,
@@ -11,10 +11,9 @@ import {
   Mail,
   Phone,
   MapPin,
-  Briefcase
-} from 'lucide-react';
-import '../../../../styles/admin-agents.css';
-
+  Briefcase,
+} from "lucide-react";
+import "../../../../styles/admin-agents.css";
 
 export default function EditAgentPage() {
   const router = useRouter();
@@ -23,23 +22,23 @@ export default function EditAgentPage() {
   const { user, profile, isAdmin, isSuperAdmin } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  
+
   const [formData, setFormData] = useState({
-    full_name: '',
-    email: '',
-    phone: '',
-    agent_type: 'delivery',
-    agent_code: '',
-    assigned_location: '',
-    address: '',
-    national_id: '',
-    bank_account: '',
-    emergency_contact: '',
-    emergency_phone: '',
-    verification_status: 'pending',
-    verification_notes: '',
+    full_name: "",
+    email: "",
+    phone: "",
+    agent_type: "delivery",
+    agent_code: "",
+    assigned_location: "",
+    address: "",
+    national_id: "",
+    bank_account: "",
+    emergency_contact: "",
+    emergency_phone: "",
+    verification_status: "pending",
+    verification_notes: "",
     is_active: true,
-    notes: ''
+    notes: "",
   });
 
   // Fetch agent data
@@ -53,34 +52,34 @@ export default function EditAgentPage() {
     try {
       setLoading(true);
       const { data, error } = await supabase
-        .from('agents')
-        .select('*')
-        .eq('id', agentId)
+        .from("agents")
+        .select("*")
+        .eq("id", agentId)
         .single();
 
       if (error) throw error;
 
       setFormData({
-        full_name: data.full_name || '',
-        email: data.email || '',
-        phone: data.phone || '',
-        agent_type: data.agent_type || 'delivery',
-        agent_code: data.agent_code || '',
-        assigned_location: data.assigned_location || '',
-        address: data.address || '',
-        national_id: data.national_id || '',
-        bank_account: data.bank_account || '',
-        emergency_contact: data.emergency_contact || '',
-        emergency_phone: data.emergency_phone || '',
-        verification_status: data.verification_status || 'pending',
-        verification_notes: data.verification_notes || '',
+        full_name: data.full_name || "",
+        email: data.email || "",
+        phone: data.phone || "",
+        agent_type: data.agent_type || "delivery",
+        agent_code: data.agent_code || "",
+        assigned_location: data.assigned_location || "",
+        address: data.address || "",
+        national_id: data.national_id || "",
+        bank_account: data.bank_account || "",
+        emergency_contact: data.emergency_contact || "",
+        emergency_phone: data.emergency_phone || "",
+        verification_status: data.verification_status || "pending",
+        verification_notes: data.verification_notes || "",
         is_active: data.is_active !== false,
-        notes: data.notes || ''
+        notes: data.notes || "",
       });
     } catch (error) {
-      console.error('Error fetching agent:', error);
-      alert('Failed to load agent: ' + error.message);
-      router.push('/admin/agents');
+      console.error("Error fetching agent:", error);
+      alert("Failed to load agent: " + error.message);
+      router.push("/admin/agents");
     } finally {
       setLoading(false);
     }
@@ -88,31 +87,31 @@ export default function EditAgentPage() {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       setSaving(true);
 
       // Update agent
       const { error } = await supabase
-        .from('agents')
+        .from("agents")
         .update(formData)
-        .eq('id', agentId);
+        .eq("id", agentId);
 
       if (error) throw error;
 
-      alert('Agent updated successfully!');
-      router.push('/admin/agents');
+      alert("Agent updated successfully!");
+      router.push("/admin/agents");
     } catch (error) {
-      console.error('Error updating agent:', error);
-      alert('Failed to update agent: ' + error.message);
+      console.error("Error updating agent:", error);
+      alert("Failed to update agent: " + error.message);
     } finally {
       setSaving(false);
     }
@@ -132,10 +131,7 @@ export default function EditAgentPage() {
       {/* Header */}
       <div className="page-header">
         <div>
-          <button
-            className="back-button"
-            onClick={() => router.back()}
-          >
+          <button className="back-button" onClick={() => router.back()}>
             <ArrowLeft size={20} />
             Back
           </button>
@@ -149,7 +145,7 @@ export default function EditAgentPage() {
           {/* Personal Information */}
           <div className="form-section">
             <h3>Personal Information</h3>
-            
+
             <div className="form-group">
               <label htmlFor="full_name">Full Name *</label>
               <input
@@ -277,7 +273,7 @@ export default function EditAgentPage() {
               />
             </div>
 
-            <h3 style={{ marginTop: '2rem' }}>Emergency Contact</h3>
+            <h3 style={{ marginTop: "2rem" }}>Emergency Contact</h3>
 
             <div className="form-group">
               <label htmlFor="emergency_contact">Contact Name</label>
@@ -337,7 +333,9 @@ export default function EditAgentPage() {
                 />
                 <span>Active</span>
               </label>
-              <span className="help-text">Only active agents can receive assignments</span>
+              <span className="help-text">
+                Only active agents can receive assignments
+              </span>
             </div>
           </div>
 
@@ -370,10 +368,20 @@ export default function EditAgentPage() {
         <div className="warning-box">
           <h4>⚠️ Important Notes</h4>
           <ul>
-            <li>Changing verification status will affect the agent's ability to access the system</li>
-            <li>Deactivating an agent will stop all their assignments and tasks</li>
-            <li>Agent code should remain unique and not be changed unless necessary</li>
-            <li>Contact information changes should be communicated to the agent</li>
+            <li>
+              Changing verification status will affect the agent's ability to
+              access the system
+            </li>
+            <li>
+              Deactivating an agent will stop all their assignments and tasks
+            </li>
+            <li>
+              Agent code should remain unique and not be changed unless
+              necessary
+            </li>
+            <li>
+              Contact information changes should be communicated to the agent
+            </li>
           </ul>
         </div>
 
@@ -387,11 +395,7 @@ export default function EditAgentPage() {
           >
             Cancel
           </button>
-          <button
-            type="submit"
-            className="btn-primary"
-            disabled={saving}
-          >
+          <button type="submit" className="btn-primary" disabled={saving}>
             {saving ? (
               <>
                 <div className="spinner-sm"></div>

@@ -1,5 +1,6 @@
 module.exports = {
-  output: "export",
+  // Temporarily disable static export for dynamic routes
+  // output: "export",
   basePath: process.env.NODE_ENV === "production" ? "/townssy_e-commerce" : "",
   trailingSlash: true,
   images: {

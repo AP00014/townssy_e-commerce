@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useAuth } from '../../../../../context/AuthContext';
-import { useRouter, useParams } from 'next/navigation';
-import { supabase } from '../../../../../../lib/supabase';
+import { useState, useEffect } from "react";
+import { useAuth } from "../../../../../context/AuthContext";
+import { useRouter, useParams } from "next/navigation";
+import { supabase } from "../../../../../../lib/supabase";
 import {
   FolderTree,
   ArrowLeft,
@@ -11,9 +11,9 @@ import {
   Upload,
   X,
   Image as ImageIcon,
-  Trash2
-} from 'lucide-react';
-import '../../../../../styles/admin-categories.css';
+  Trash2,
+} from "lucide-react";
+import "../../../../../styles/admin-categories.css";
 
 export default function EditCategoryPage() {
   const router = useRouter();
@@ -26,20 +26,20 @@ export default function EditCategoryPage() {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [existingImage, setExistingImage] = useState(null);
-  
+
   const [formData, setFormData] = useState({
-    name: '',
-    slug: '',
-    parent_id: '',
-    description: '',
+    name: "",
+    slug: "",
+    parent_id: "",
+    description: "",
     is_active: true,
-    sort_order: 0
+    sort_order: 0,
   });
 
   // Check permissions
   useEffect(() => {
     if (!isAdmin && !isSuperAdmin) {
-      router.push('/admin');
+      router.push("/admin");
     }
   }, [isAdmin, isSuperAdmin, router]);
 
@@ -55,27 +55,27 @@ export default function EditCategoryPage() {
     try {
       setLoading(true);
       const { data, error } = await supabase
-        .from('categories')
-        .select('*')
-        .eq('id', categoryId)
+        .from("categories")
+        .select("*")
+        .eq("id", categoryId)
         .single();
 
       if (error) throw error;
 
       setFormData({
-        name: data.name || '',
-        slug: data.slug || '',
-        parent_id: data.parent_id || '',
-        description: data.description || '',
+        name: data.name || "",
+        slug: data.slug || "",
+        parent_id: data.parent_id || "",
+        description: data.description || "",
         is_active: data.is_active !== false,
-        sort_order: data.sort_order || 0
+        sort_order: data.sort_order || 0,
       });
 
       setExistingImage(data.image_url);
     } catch (error) {
-      console.error('Error fetching category:', error);
-      alert('Failed to load category: ' + error.message);
-      router.push('/admin/products/categories');
+      console.error("Error fetching category:", error);
+      alert("Failed to load category: " + error.message);
+      router.push("/admin/products/categories");
     } finally {
       setLoading(false);
     }
@@ -84,39 +84,39 @@ export default function EditCategoryPage() {
   const fetchCategories = async () => {
     try {
       const { data, error } = await supabase
-        .from('categories')
-        .select('id, name, parent_id')
-        .is('parent_id', null)
-        .neq('id', categoryId) // Exclude current category to prevent circular reference
-        .order('name');
+        .from("categories")
+        .select("id, name, parent_id")
+        .is("parent_id", null)
+        .neq("id", categoryId) // Exclude current category to prevent circular reference
+        .order("name");
 
       if (error) throw error;
       setCategories(data || []);
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      console.error("Error fetching categories:", error);
     }
   };
 
   const generateSlug = (name) => {
     return name
       .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-+|-+$/g, '');
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
   };
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    
-    if (name === 'name') {
-      setFormData(prev => ({
+
+    if (name === "name") {
+      setFormData((prev) => ({
         ...prev,
         name: value,
-        slug: generateSlug(value)
+        slug: generateSlug(value),
       }));
     } else {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        [name]: type === 'checkbox' ? checked : value
+        [name]: type === "checkbox" ? checked : value,
       }));
     }
   };
@@ -141,21 +141,23 @@ export default function EditCategoryPage() {
   const uploadImage = async () => {
     if (!imageFile) return existingImage;
 
-    const fileExt = imageFile.name.split('.').pop();
-    const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
+    const fileExt = imageFile.name.split(".").pop();
+    const fileName = `${Math.random()
+      .toString(36)
+      .substring(2)}_${Date.now()}.${fileExt}`;
     const filePath = `categories/${fileName}`;
 
     const { data, error } = await supabase.storage
-      .from('product-images')
+      .from("product-images")
       .upload(filePath, imageFile);
 
     if (error) {
-      console.error('Error uploading image:', error);
+      console.error("Error uploading image:", error);
       return existingImage;
     }
 
     const { data: urlData } = supabase.storage
-      .from('product-images')
+      .from("product-images")
       .getPublicUrl(filePath);
 
     return urlData.publicUrl;
@@ -163,7 +165,7 @@ export default function EditCategoryPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       setSaving(true);
 
@@ -175,22 +177,22 @@ export default function EditCategoryPage() {
         ...formData,
         parent_id: formData.parent_id || null,
         sort_order: parseInt(formData.sort_order) || 0,
-        image_url: imageUrl
+        image_url: imageUrl,
       };
 
       // Update category
       const { error } = await supabase
-        .from('categories')
+        .from("categories")
         .update(categoryData)
-        .eq('id', categoryId);
+        .eq("id", categoryId);
 
       if (error) throw error;
 
-      alert('Category updated successfully!');
-      router.push('/admin/products/categories');
+      alert("Category updated successfully!");
+      router.push("/admin/products/categories");
     } catch (error) {
-      console.error('Error updating category:', error);
-      alert('Failed to update category: ' + error.message);
+      console.error("Error updating category:", error);
+      alert("Failed to update category: " + error.message);
     } finally {
       setSaving(false);
     }
@@ -210,10 +212,7 @@ export default function EditCategoryPage() {
       {/* Header */}
       <div className="page-header">
         <div>
-          <button
-            className="back-button"
-            onClick={() => router.back()}
-          >
+          <button className="back-button" onClick={() => router.back()}>
             <ArrowLeft size={20} />
             Back
           </button>
@@ -227,7 +226,7 @@ export default function EditCategoryPage() {
           {/* Basic Information */}
           <div className="form-section">
             <h3>Basic Information</h3>
-            
+
             <div className="form-group">
               <label htmlFor="name">Category Name *</label>
               <input
@@ -239,7 +238,9 @@ export default function EditCategoryPage() {
                 required
                 placeholder="e.g., Electronics, Fashion, Home Decor"
               />
-              <span className="help-text">The display name for this category</span>
+              <span className="help-text">
+                The display name for this category
+              </span>
             </div>
 
             <div className="form-group">
@@ -254,7 +255,9 @@ export default function EditCategoryPage() {
                 pattern="[a-z0-9-]+"
                 placeholder="e.g., electronics"
               />
-              <span className="help-text">Used in URLs (lowercase, no spaces)</span>
+              <span className="help-text">
+                Used in URLs (lowercase, no spaces)
+              </span>
             </div>
 
             <div className="form-group">
@@ -266,8 +269,10 @@ export default function EditCategoryPage() {
                 onChange={handleInputChange}
               >
                 <option value="">None (Top Level Category)</option>
-                {categories.map(cat => (
-                  <option key={cat.id} value={cat.id}>{cat.name}</option>
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name}
+                  </option>
                 ))}
               </select>
               <span className="help-text">Leave empty for a main category</span>
@@ -301,7 +306,9 @@ export default function EditCategoryPage() {
                 min="0"
                 placeholder="0"
               />
-              <span className="help-text">Lower numbers appear first (0 = top)</span>
+              <span className="help-text">
+                Lower numbers appear first (0 = top)
+              </span>
             </div>
 
             <div className="form-group">
@@ -314,13 +321,15 @@ export default function EditCategoryPage() {
                 />
                 <span>Active</span>
               </label>
-              <span className="help-text">Only active categories appear on the storefront</span>
+              <span className="help-text">
+                Only active categories appear on the storefront
+              </span>
             </div>
 
             {/* Category Image */}
             <div className="form-group">
               <label>Category Image</label>
-              
+
               {/* Existing Image */}
               {existingImage && !imagePreview && (
                 <div className="existing-image-single">
@@ -360,14 +369,18 @@ export default function EditCategoryPage() {
                 <div className="image-upload-area-small">
                   <label htmlFor="image" className="upload-label-small">
                     <ImageIcon size={32} />
-                    <p>{existingImage ? 'Click to change image' : 'Click to upload image'}</p>
+                    <p>
+                      {existingImage
+                        ? "Click to change image"
+                        : "Click to upload image"}
+                    </p>
                     <span>Recommended: 400x400px, PNG or JPG</span>
                     <input
                       type="file"
                       id="image"
                       accept="image/*"
                       onChange={handleImageChange}
-                      style={{ display: 'none' }}
+                      style={{ display: "none" }}
                     />
                   </label>
                 </div>
@@ -397,11 +410,7 @@ export default function EditCategoryPage() {
           >
             Cancel
           </button>
-          <button
-            type="submit"
-            className="btn-primary"
-            disabled={saving}
-          >
+          <button type="submit" className="btn-primary" disabled={saving}>
             {saving ? (
               <>
                 <div className="spinner-sm"></div>

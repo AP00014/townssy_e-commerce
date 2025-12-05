@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useAuth } from '../../../../context/AuthContext';
-import { useRouter, useParams } from 'next/navigation';
-import { supabase } from '../../../../../lib/supabase';
+import { useState, useEffect } from "react";
+import { useAuth } from "../../../../context/AuthContext";
+import { useRouter, useParams } from "next/navigation";
+import { supabase } from "../../../../../lib/supabase";
 import {
   ArrowLeft,
   Save,
@@ -12,9 +12,9 @@ import {
   Phone,
   MapPin,
   FileText,
-  DollarSign
-} from 'lucide-react';
-import '../../../../styles/admin-vendors.css';
+  DollarSign,
+} from "lucide-react";
+import "../../../../styles/admin-vendors.css";
 
 export default function EditVendorPage() {
   const router = useRouter();
@@ -23,19 +23,19 @@ export default function EditVendorPage() {
   const { user, profile, isAdmin, isSuperAdmin } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  
+
   const [formData, setFormData] = useState({
-    business_name: '',
-    business_type: 'Retailer',
-    business_description: '',
-    tax_id: '',
-    business_address: '',
-    phone_number: '',
-    email: '',
+    business_name: "",
+    business_type: "Retailer",
+    business_description: "",
+    tax_id: "",
+    business_address: "",
+    phone_number: "",
+    email: "",
     commission_rate: 10,
-    verification_status: 'pending',
-    verification_notes: '',
-    is_active: true
+    verification_status: "pending",
+    verification_notes: "",
+    is_active: true,
   });
 
   // Fetch vendor data
@@ -49,30 +49,30 @@ export default function EditVendorPage() {
     try {
       setLoading(true);
       const { data, error } = await supabase
-        .from('vendors')
-        .select('*')
-        .eq('id', vendorId)
+        .from("vendors")
+        .select("*")
+        .eq("id", vendorId)
         .single();
 
       if (error) throw error;
 
       setFormData({
-        business_name: data.business_name || '',
-        business_type: data.business_type || 'Retailer',
-        business_description: data.business_description || '',
-        tax_id: data.tax_id || '',
-        business_address: data.business_address || '',
-        phone_number: data.phone_number || '',
-        email: data.email || '',
+        business_name: data.business_name || "",
+        business_type: data.business_type || "Retailer",
+        business_description: data.business_description || "",
+        tax_id: data.tax_id || "",
+        business_address: data.business_address || "",
+        phone_number: data.phone_number || "",
+        email: data.email || "",
         commission_rate: data.commission_rate || 10,
-        verification_status: data.verification_status || 'pending',
-        verification_notes: data.verification_notes || '',
-        is_active: data.is_active !== false
+        verification_status: data.verification_status || "pending",
+        verification_notes: data.verification_notes || "",
+        is_active: data.is_active !== false,
       });
     } catch (error) {
-      console.error('Error fetching vendor:', error);
-      alert('Failed to load vendor: ' + error.message);
-      router.push('/admin/vendors');
+      console.error("Error fetching vendor:", error);
+      alert("Failed to load vendor: " + error.message);
+      router.push("/admin/vendors");
     } finally {
       setLoading(false);
     }
@@ -80,34 +80,34 @@ export default function EditVendorPage() {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       setSaving(true);
 
       // Update vendor
       const { error } = await supabase
-        .from('vendors')
+        .from("vendors")
         .update({
           ...formData,
-          commission_rate: parseFloat(formData.commission_rate) || 0
+          commission_rate: parseFloat(formData.commission_rate) || 0,
         })
-        .eq('id', vendorId);
+        .eq("id", vendorId);
 
       if (error) throw error;
 
-      alert('Vendor updated successfully!');
-      router.push('/admin/vendors');
+      alert("Vendor updated successfully!");
+      router.push("/admin/vendors");
     } catch (error) {
-      console.error('Error updating vendor:', error);
-      alert('Failed to update vendor: ' + error.message);
+      console.error("Error updating vendor:", error);
+      alert("Failed to update vendor: " + error.message);
     } finally {
       setSaving(false);
     }
@@ -127,10 +127,7 @@ export default function EditVendorPage() {
       {/* Header */}
       <div className="page-header">
         <div>
-          <button
-            className="back-button"
-            onClick={() => router.back()}
-          >
+          <button className="back-button" onClick={() => router.back()}>
             <ArrowLeft size={20} />
             Back
           </button>
@@ -144,7 +141,7 @@ export default function EditVendorPage() {
           {/* Business Information */}
           <div className="form-section">
             <h3>Business Information</h3>
-            
+
             <div className="form-group">
               <label htmlFor="business_name">Business Name *</label>
               <input
@@ -245,7 +242,7 @@ export default function EditVendorPage() {
               </div>
             </div>
 
-            <h3 style={{ marginTop: '2rem' }}>Settings</h3>
+            <h3 style={{ marginTop: "2rem" }}>Settings</h3>
 
             <div className="form-group">
               <label htmlFor="commission_rate">Commission Rate (%)</label>
@@ -263,7 +260,9 @@ export default function EditVendorPage() {
                   placeholder="10.00"
                 />
               </div>
-              <span className="help-text">Platform fee percentage on sales</span>
+              <span className="help-text">
+                Platform fee percentage on sales
+              </span>
             </div>
 
             <div className="form-group">
@@ -302,7 +301,9 @@ export default function EditVendorPage() {
                 />
                 <span>Active</span>
               </label>
-              <span className="help-text">Only active vendors can sell on the platform</span>
+              <span className="help-text">
+                Only active vendors can sell on the platform
+              </span>
             </div>
           </div>
         </div>
@@ -311,10 +312,18 @@ export default function EditVendorPage() {
         <div className="warning-box">
           <h4>⚠️ Important Notes</h4>
           <ul>
-            <li>Changing verification status will affect the vendor's ability to sell</li>
-            <li>Deactivating a vendor will hide all their products from the storefront</li>
+            <li>
+              Changing verification status will affect the vendor's ability to
+              sell
+            </li>
+            <li>
+              Deactivating a vendor will hide all their products from the
+              storefront
+            </li>
             <li>Commission rate changes apply to future transactions only</li>
-            <li>Contact information changes should be communicated to the vendor</li>
+            <li>
+              Contact information changes should be communicated to the vendor
+            </li>
           </ul>
         </div>
 
@@ -328,11 +337,7 @@ export default function EditVendorPage() {
           >
             Cancel
           </button>
-          <button
-            type="submit"
-            className="btn-primary"
-            disabled={saving}
-          >
+          <button type="submit" className="btn-primary" disabled={saving}>
             {saving ? (
               <>
                 <div className="spinner-sm"></div>

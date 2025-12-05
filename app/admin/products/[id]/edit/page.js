@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useAuth } from '../../../../context/AuthContext';
-import { useRouter, useParams } from 'next/navigation';
-import { supabase } from '../../../../../lib/supabase';
+import { useState, useEffect } from "react";
+import { useAuth } from "../../../../context/AuthContext";
+import { useRouter, useParams } from "next/navigation";
+import { supabase } from "../../../../../lib/supabase";
 import {
   Package,
   Upload,
@@ -13,9 +13,9 @@ import {
   Save,
   ArrowLeft,
   Image as ImageIcon,
-  Trash2
-} from 'lucide-react';
-import '../../../../styles/admin-products.css';
+  Trash2,
+} from "lucide-react";
+import "../../../../styles/admin-products.css";
 
 export default function EditProductPage() {
   const router = useRouter();
@@ -29,28 +29,28 @@ export default function EditProductPage() {
   const [imageFiles, setImageFiles] = useState([]);
   const [existingImages, setExistingImages] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
-  
+
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    category_id: '',
-    vendor_id: '',
-    price: '',
-    compare_price: '',
+    name: "",
+    description: "",
+    category_id: "",
+    vendor_id: "",
+    price: "",
+    compare_price: "",
     stock_quantity: 0,
-    sku: '',
+    sku: "",
     specifications: {},
     is_featured: false,
     is_active: true,
-    verification_status: 'pending'
+    verification_status: "pending",
   });
 
-  const [specFields, setSpecFields] = useState([{ key: '', value: '' }]);
+  const [specFields, setSpecFields] = useState([{ key: "", value: "" }]);
 
   // Check permissions
   useEffect(() => {
     if (!isAdmin && !isSuperAdmin) {
-      router.push('/admin');
+      router.push("/admin");
     }
   }, [isAdmin, isSuperAdmin, router]);
 
@@ -67,26 +67,26 @@ export default function EditProductPage() {
     try {
       setLoading(true);
       const { data, error } = await supabase
-        .from('products')
-        .select('*')
-        .eq('id', productId)
+        .from("products")
+        .select("*")
+        .eq("id", productId)
         .single();
 
       if (error) throw error;
 
       setFormData({
-        name: data.name || '',
-        description: data.description || '',
-        category_id: data.category_id || '',
-        vendor_id: data.vendor_id || '',
-        price: data.price || '',
-        compare_price: data.compare_price || '',
+        name: data.name || "",
+        description: data.description || "",
+        category_id: data.category_id || "",
+        vendor_id: data.vendor_id || "",
+        price: data.price || "",
+        compare_price: data.compare_price || "",
         stock_quantity: data.stock_quantity || 0,
-        sku: data.sku || '',
+        sku: data.sku || "",
         specifications: data.specifications || {},
         is_featured: data.is_featured || false,
         is_active: data.is_active || true,
-        verification_status: data.verification_status || 'pending'
+        verification_status: data.verification_status || "pending",
       });
 
       // Set existing images
@@ -94,16 +94,18 @@ export default function EditProductPage() {
 
       // Set specifications
       if (data.specifications && Object.keys(data.specifications).length > 0) {
-        const specs = Object.entries(data.specifications).map(([key, value]) => ({
-          key,
-          value
-        }));
+        const specs = Object.entries(data.specifications).map(
+          ([key, value]) => ({
+            key,
+            value,
+          })
+        );
         setSpecFields(specs);
       }
     } catch (error) {
-      console.error('Error fetching product:', error);
-      alert('Failed to load product: ' + error.message);
-      router.push('/admin/products');
+      console.error("Error fetching product:", error);
+      alert("Failed to load product: " + error.message);
+      router.push("/admin/products");
     } finally {
       setLoading(false);
     }
@@ -112,56 +114,56 @@ export default function EditProductPage() {
   const fetchCategories = async () => {
     try {
       const { data, error } = await supabase
-        .from('categories')
-        .select('id, name')
-        .eq('is_active', true)
-        .order('name');
+        .from("categories")
+        .select("id, name")
+        .eq("is_active", true)
+        .order("name");
 
       if (error) throw error;
       setCategories(data || []);
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      console.error("Error fetching categories:", error);
     }
   };
 
   const fetchVendors = async () => {
     try {
       const { data, error } = await supabase
-        .from('vendors')
-        .select('id, business_name, verification_status')
-        .eq('verification_status', 'verified')
-        .order('business_name');
+        .from("vendors")
+        .select("id, business_name, verification_status")
+        .eq("verification_status", "verified")
+        .order("business_name");
 
       if (error) throw error;
       setVendors(data || []);
     } catch (error) {
-      console.error('Error fetching vendors:', error);
+      console.error("Error fetching vendors:", error);
     }
   };
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
-    const newPreviews = files.map(file => URL.createObjectURL(file));
-    
-    setImageFiles(prev => [...prev, ...files]);
-    setImagePreviews(prev => [...prev, ...newPreviews]);
+    const newPreviews = files.map((file) => URL.createObjectURL(file));
+
+    setImageFiles((prev) => [...prev, ...files]);
+    setImagePreviews((prev) => [...prev, ...newPreviews]);
   };
 
   const removeExistingImage = (index) => {
-    setExistingImages(prev => prev.filter((_, i) => i !== index));
+    setExistingImages((prev) => prev.filter((_, i) => i !== index));
   };
 
   const removeNewImage = (index) => {
-    setImageFiles(prev => prev.filter((_, i) => i !== index));
-    setImagePreviews(prev => prev.filter((_, i) => i !== index));
+    setImageFiles((prev) => prev.filter((_, i) => i !== index));
+    setImagePreviews((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleSpecChange = (index, field, value) => {
@@ -171,7 +173,7 @@ export default function EditProductPage() {
   };
 
   const addSpecField = () => {
-    setSpecFields([...specFields, { key: '', value: '' }]);
+    setSpecFields([...specFields, { key: "", value: "" }]);
   };
 
   const removeSpecField = (index) => {
@@ -182,21 +184,23 @@ export default function EditProductPage() {
     const uploadedUrls = [];
 
     for (const file of imageFiles) {
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${Math.random()
+        .toString(36)
+        .substring(2)}_${Date.now()}.${fileExt}`;
       const filePath = `products/${fileName}`;
 
       const { data, error } = await supabase.storage
-        .from('product-images')
+        .from("product-images")
         .upload(filePath, file);
 
       if (error) {
-        console.error('Error uploading image:', error);
+        console.error("Error uploading image:", error);
         continue;
       }
 
       const { data: urlData } = supabase.storage
-        .from('product-images')
+        .from("product-images")
         .getPublicUrl(filePath);
 
       uploadedUrls.push(urlData.publicUrl);
@@ -207,7 +211,7 @@ export default function EditProductPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       setSaving(true);
 
@@ -217,7 +221,7 @@ export default function EditProductPage() {
 
       // Prepare specifications
       const specifications = {};
-      specFields.forEach(field => {
+      specFields.forEach((field) => {
         if (field.key && field.value) {
           specifications[field.key] = field.value;
         }
@@ -229,23 +233,25 @@ export default function EditProductPage() {
         images: allImages,
         specifications,
         price: parseFloat(formData.price),
-        compare_price: formData.compare_price ? parseFloat(formData.compare_price) : null,
+        compare_price: formData.compare_price
+          ? parseFloat(formData.compare_price)
+          : null,
         stock_quantity: parseInt(formData.stock_quantity) || 0,
       };
 
       // Update product
       const { error } = await supabase
-        .from('products')
+        .from("products")
         .update(productData)
-        .eq('id', productId);
+        .eq("id", productId);
 
       if (error) throw error;
 
-      alert('Product updated successfully!');
-      router.push('/admin/products');
+      alert("Product updated successfully!");
+      router.push("/admin/products");
     } catch (error) {
-      console.error('Error updating product:', error);
-      alert('Failed to update product: ' + error.message);
+      console.error("Error updating product:", error);
+      alert("Failed to update product: " + error.message);
     } finally {
       setSaving(false);
     }
@@ -265,10 +271,7 @@ export default function EditProductPage() {
       {/* Header */}
       <div className="page-header">
         <div>
-          <button
-            className="back-button"
-            onClick={() => router.back()}
-          >
+          <button className="back-button" onClick={() => router.back()}>
             <ArrowLeft size={20} />
             Back
           </button>
@@ -282,7 +285,7 @@ export default function EditProductPage() {
           {/* Basic Information */}
           <div className="form-section">
             <h3>Basic Information</h3>
-            
+
             <div className="form-group">
               <label htmlFor="name">Product Name *</label>
               <input
@@ -319,8 +322,10 @@ export default function EditProductPage() {
                   required
                 >
                   <option value="">Select Category</option>
-                  {categories.map(cat => (
-                    <option key={cat.id} value={cat.id}>{cat.name}</option>
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -335,7 +340,7 @@ export default function EditProductPage() {
                   required
                 >
                   <option value="">Select Vendor</option>
-                  {vendors.map(vendor => (
+                  {vendors.map((vendor) => (
                     <option key={vendor.id} value={vendor.id}>
                       {vendor.business_name}
                     </option>
@@ -452,7 +457,7 @@ export default function EditProductPage() {
         {/* Product Images */}
         <div className="form-section">
           <h3>Product Images</h3>
-          
+
           {/* Existing Images */}
           {existingImages.length > 0 && (
             <div className="existing-images">
@@ -485,7 +490,7 @@ export default function EditProductPage() {
                 accept="image/*"
                 multiple
                 onChange={handleImageChange}
-                style={{ display: 'none' }}
+                style={{ display: "none" }}
               />
             </label>
 
@@ -530,13 +535,17 @@ export default function EditProductPage() {
                   type="text"
                   placeholder="Key (e.g., Color)"
                   value={field.key}
-                  onChange={(e) => handleSpecChange(index, 'key', e.target.value)}
+                  onChange={(e) =>
+                    handleSpecChange(index, "key", e.target.value)
+                  }
                 />
                 <input
                   type="text"
                   placeholder="Value (e.g., Red)"
                   value={field.value}
-                  onChange={(e) => handleSpecChange(index, 'value', e.target.value)}
+                  onChange={(e) =>
+                    handleSpecChange(index, "value", e.target.value)
+                  }
                 />
                 {specFields.length > 1 && (
                   <button
@@ -562,11 +571,7 @@ export default function EditProductPage() {
           >
             Cancel
           </button>
-          <button
-            type="submit"
-            className="btn-primary"
-            disabled={saving}
-          >
+          <button type="submit" className="btn-primary" disabled={saving}>
             {saving ? (
               <>
                 <div className="spinner-sm"></div>
