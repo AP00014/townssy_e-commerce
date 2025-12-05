@@ -3,3 +3,7 @@
 [00:00:13.589] Server  LOG     Supabase client initialized: "Connected"
 [00:00:16.776] Browser LOG     Supabase client initialized: Connected
 [00:02:45.439] Browser LOG     Supabase client initialized: Connected
+[00:10:59.438] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./lib/supabase.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:10:59.459] Server  LOG      ✓ Compiled in 71ms
+[00:11:00.126] Server  LOG     Supabase client initialized: Connected
+[00:11:03.997] Browser LOG     Supabase client initialized: Connected
