@@ -1,4 +1,9 @@
-"use client";
+export async function generateStaticParams() {
+  // For static export, return a placeholder ID since this is a client-side admin route
+  return [{ id: "placeholder" }];
+}
+
+("use client");
 
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../../../context/AuthContext";
