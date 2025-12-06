@@ -20,6 +20,7 @@ import {
   ChevronDown,
   AlertCircle,
   Users,
+  Home,
 } from "lucide-react";
 import "../styles/admin-layout.css";
 
@@ -58,6 +59,12 @@ export default function AdminLayout({ children }) {
   }
 
   const menuItems = [
+    {
+      label: "Homepage",
+      icon: Home,
+      href: "/",
+      roles: ["super_admin", "admin", "moderator"],
+    },
     {
       label: "Dashboard",
       icon: LayoutDashboard,
