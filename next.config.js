@@ -1,5 +1,9 @@
 module.exports = {
-  basePath: process.env.NODE_ENV === "production" ? "/townssy_e-commerce" : "",
+  basePath: process.env.VERCEL
+    ? ""
+    : process.env.NODE_ENV === "production"
+    ? "/townssy_e-commerce"
+    : "",
   trailingSlash: true,
   images: {
     unoptimized: true,
