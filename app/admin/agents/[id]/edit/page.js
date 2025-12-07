@@ -415,3 +415,8 @@ export default function EditAgentPage() {
     </div>
   );
 }
+
+// Static params generation for static export
+export async function generateStaticParams() {
+  return []
+}

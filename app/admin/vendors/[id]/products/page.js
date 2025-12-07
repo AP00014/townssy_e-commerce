@@ -349,3 +349,8 @@ export default function VendorProductsPage({ params }) {
     </div>
   );
 }
+
+// Static params generation for static export
+export async function generateStaticParams() {
+  return []
+}

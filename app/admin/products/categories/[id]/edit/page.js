@@ -430,3 +430,8 @@ export default function EditCategoryPage() {
     </div>
   );
 }
+
+// Static params generation for static export
+export async function generateStaticParams() {
+  return []
+}
