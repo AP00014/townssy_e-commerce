@@ -1,0 +1,213 @@
+/* Agent Dashboard Styles */
+
+.agent-dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* Sidebar */
+.agent-sidebar {
+  width: 280px;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.agent-sidebar.closed {
+  transform: translateX(-100%);
+}
+
+.sidebar-header {
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.agent-avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 12px;
+}
+
+.agent-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #f0fdf4;
+}
+
+.agent-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  border-radius: 50%;
+  border: 3px solid #f0fdf4;
+}
+
+.agent-avatar-placeholder.sales {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.agent-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #1f2937;
+}
+
+.agent-code {
+  font-size: 12px;
+  color: #6b7280;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 8px;
+}
+
+.agent-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.agent-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.agent-type-badge.sales {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+/* Main Content */
+.agent-main-content {
+  flex: 1;
+  margin-left: 280px;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease;
+}
+
+.agent-sidebar.closed + .agent-main-content {
+  margin-left: 0;
+}
+
+/* Top Bar */
+.agent-topbar {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.agent-topbar.sales {
+  background: linear-gradient(90deg, #f8f9fa 0%, #f3f0ff 100%);
+}
+
+.location-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #d1fae5;
+  color: #065f46;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.commission-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #ede9fe;
+  color: #6d28d9;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.user-avatar.sales {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Page Content */
+.agent-content {
+  flex: 1;
+  padding: 32px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .agent-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .agent-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .agent-main-content {
+    margin-left: 0;
+  }
+
+  .sidebar-toggle {
+    display: block;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .user-details {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .agent-content {
+    padding: 16px;
+  }
+
+  .agent-topbar {
+    padding: 12px 16px;
+  }
+
+  .location-badge,
+  .commission-badge {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}

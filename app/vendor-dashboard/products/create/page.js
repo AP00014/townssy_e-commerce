@@ -1,0 +1,481 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../../../context/AuthContext';
+import { supabase } from '../../../../lib/supabase';
+import { Upload, X, Plus, Loader } from 'lucide-react';
+
+export default function CreateProductPage() {
+  const router = useRouter();
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [images, setImages] = useState([]);
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    price: '',
+    compare_price: '',
+    category: '',
+    stock_quantity: '',
+    sku: '',
+    tags: '',
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageUpload = async (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
+
+    setUploading(true);
+    const uploadedUrls = [];
+
+    try {
+      // Get vendor ID
+      const { data: vendorData } = await supabase
+        .from('vendors')
+        .select('id')
+        .eq('user_id', user.id)
+        .single();
+
+      for (const file of files) {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `products/${vendorData.id}/${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`;
+
+        // Upload to product-images bucket
+        const { data, error } = await supabase.storage
+          .from('product-images')
+          .upload(fileName, file);
+
+        if (error) throw error;
+
+        // Get public URL
+        const { data: urlData } = supabase.storage
+          .from('product-images')
+          .getPublicUrl(fileName);
+
+        uploadedUrls.push(urlData.publicUrl);
+      }
+
+      setImages(prev => [...prev, ...uploadedUrls]);
+    } catch (error) {
+      console.error('Error uploading images:', error);
+      alert('Error uploading images. Please try again.');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeImage = (index) => {
+    setImages(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (images.length === 0) {
+      alert('Please upload at least one product image');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      // Get vendor ID
+      const { data: vendorData } = await supabase
+        .from('vendors')
+        .select('id')
+        .eq('user_id', user.id)
+        .single();
+
+      // Create product
+      const { data, error } = await supabase
+        .from('products')
+        .insert({
+          vendor_id: vendorData.id,
+          name: formData.name,
+          description: formData.description,
+          price: parseFloat(formData.price),
+          compare_price: formData.compare_price ? parseFloat(formData.compare_price) : null,
+          category: formData.category,
+          stock_quantity: parseInt(formData.stock_quantity) || 0,
+          sku: formData.sku || null,
+          images: images,
+          tags: formData.tags ? formData.tags.split(',').map(t => t.trim()) : [],
+          verification_status: 'pending',
+          is_active: true,
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      alert('Product created successfully! It will be visible after admin approval.');
+      router.push('/vendor-dashboard/products');
+    } catch (error) {
+      console.error('Error creating product:', error);
+      alert('Error creating product. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <div className="page-header">
+        <div>
+          <h1>Create New Product</h1>
+          <p>Add a new product to your store</p>
+        </div>
+      </div>
+
+      <form onSubmit={handleSubmit} style={{ maxWidth: '800px' }}>
+        {/* Product Images */}
+        <div style={{
+          background: 'white',
+          padding: '24px',
+          borderRadius: '12px',
+          marginBottom: '24px',
+          border: '1px solid #e5e7eb'
+        }}>
+          <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '16px' }}>
+            Product Images
+          </h3>
+
+          {/* Image Upload Area */}
+          <div style={{
+            border: '2px dashed #d1d5db',
+            borderRadius: '8px',
+            padding: '32px',
+            textAlign: 'center',
+            marginBottom: '16px'
+          }}>
+            <Upload size={48} style={{ margin: '0 auto 16px', color: '#9ca3af' }} />
+            <p style={{ marginBottom: '16px', color: '#6b7280' }}>
+              {uploading ? 'Uploading...' : 'Upload product images'}
+            </p>
+            <label style={{
+              padding: '10px 20px',
+              background: 'var(--primary-color)',
+              color: 'white',
+              borderRadius: '8px',
+              cursor: uploading ? 'not-allowed' : 'pointer',
+              display: 'inline-block',
+              opacity: uploading ? 0.5 : 1
+            }}>
+              {uploading ? 'Uploading...' : 'Choose Files'}
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                onChange={handleImageUpload}
+                disabled={uploading}
+                style={{ display: 'none' }}
+              />
+            </label>
+            <p style={{ fontSize: '12px', color: '#9ca3af', marginTop: '8px' }}>
+              PNG, JPG, GIF, WebP up to 10MB
+            </p>
+          </div>
+
+          {/* Uploaded Images Preview */}
+          {images.length > 0 && (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: '12px' }}>
+              {images.map((url, index) => (
+                <div key={index} style={{ position: 'relative', paddingTop: '100%' }}>
+                  <img
+                    src={url}
+                    alt={`Product ${index + 1}`}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      borderRadius: '8px'
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeImage(index)}
+                    style={{
+                      position: 'absolute',
+                      top: '4px',
+                      right: '4px',
+                      background: 'rgba(239, 68, 68, 0.9)',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '24px',
+                      height: '24px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <X size={16} />
+                  </button>
+                  {index === 0 && (
+                    <div style={{
+                      position: 'absolute',
+                      bottom: '4px',
+                      left: '4px',
+                      background: 'var(--primary-color)',
+                      color: 'white',
+                      padding: '2px 8px',
+                      borderRadius: '4px',
+                      fontSize: '10px',
+                      fontWeight: '600'
+                    }}>
+                      Main
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Product Details */}
+        <div style={{
+          background: 'white',
+          padding: '24px',
+          borderRadius: '12px',
+          marginBottom: '24px',
+          border: '1px solid #e5e7eb'
+        }}>
+          <h3 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '16px' }}>
+            Product Details
+          </h3>
+
+          <div style={{ display: 'grid', gap: '16px' }}>
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+                Product Name *
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+                style={{
+                  width: '100%',
+                  padding: '10px 12px',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '8px',
+                  fontSize: '14px'
+                }}
+                placeholder="Enter product name"
+              />
+            </div>
+
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+                Description *
+              </label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                required
+                rows="4"
+                style={{
+                  width: '100%',
+                  padding: '10px 12px',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  resize: 'vertical'
+                }}
+                placeholder="Describe your product"
+              />
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+                  Price * ($)
+                </label>
+                <input
+                  type="number"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleInputChange}
+                  required
+                  min="0"
+                  step="0.01"
+                  style={{
+                    width: '100%',
+                    padding: '10px 12px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '14px'
+                  }}
+                  placeholder="0.00"
+                />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+                  Compare Price ($)
+                </label>
+                <input
+                  type="number"
+                  name="compare_price"
+                  value={formData.compare_price}
+                  onChange={handleInputChange}
+                  min="0"
+                  step="0.01"
+                  style={{
+                    width: '100%',
+                    padding: '10px 12px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '14px'
+                  }}
+                  placeholder="0.00"
+                />
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+                  Category *
+                </label>
+                <input
+                  type="text"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleInputChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '10px 12px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '14px'
+                  }}
+                  placeholder="e.g., Electronics"
+                />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+                  Stock Quantity *
+                </label>
+                <input
+                  type="number"
+                  name="stock_quantity"
+                  value={formData.stock_quantity}
+                  onChange={handleInputChange}
+                  required
+                  min="0"
+                  style={{
+                    width: '100%',
+                    padding: '10px 12px',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    fontSize: '14px'
+                  }}
+                  placeholder="0"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+                SKU (Optional)
+              </label>
+              <input
+                type="text"
+                name="sku"
+                value={formData.sku}
+                onChange={handleInputChange}
+                style={{
+                  width: '100%',
+                  padding: '10px 12px',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '8px',
+                  fontSize: '14px'
+                }}
+                placeholder="Product SKU"
+              />
+            </div>
+
+            <div>
+              <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: '500' }}>
+                Tags (comma separated)
+              </label>
+              <input
+                type="text"
+                name="tags"
+                value={formData.tags}
+                onChange={handleInputChange}
+                style={{
+                  width: '100%',
+                  padding: '10px 12px',
+                  border: '1px solid #d1d5db',
+                  borderRadius: '8px',
+                  fontSize: '14px'
+                }}
+                placeholder="e.g., new, featured, sale"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Submit Buttons */}
+        <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+          <button
+            type="button"
+            onClick={() => router.back()}
+            disabled={loading}
+            style={{
+              padding: '12px 24px',
+              background: 'white',
+              color: '#374151',
+              border: '1px solid #d1d5db',
+              borderRadius: '8px',
+              fontSize: '14px',
+              fontWeight: '600',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              opacity: loading ? 0.5 : 1
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={loading || uploading}
+            style={{
+              padding: '12px 24px',
+              background: 'var(--primary-color)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '14px',
+              fontWeight: '600',
+              cursor: (loading || uploading) ? 'not-allowed' : 'pointer',
+              opacity: (loading || uploading) ? 0.5 : 1,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}
+          >
+            {loading && <Loader size={16} className="spinner" />}
+            {loading ? 'Creating...' : 'Create Product'}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}

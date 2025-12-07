@@ -1,0 +1,89 @@
+
+> townssy-ecommerce@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Environments: .env
+
+ ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+ ✓ Compiled successfully in 7.4s
+   Running TypeScript ...
+   Collecting page data using 7 workers ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   Generating static pages using 7 workers (0/83) ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+Supabase client initialized: Connected
+Supabase client initialized: Connected
+Supabase client initialized: Connected
+Supabase client initialized: Connected
+   Generating static pages using 7 workers (20/83) 
+   Generating static pages using 7 workers (41/83) 
+   Generating static pages using 7 workers (62/83) 
+ ✓ Generating static pages using 7 workers (83/83) in 3.1s
+   Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /admin
+├ ○ /admin/agents
+├ ƒ /admin/agents/[id]/edit
+├ ○ /admin/agents/create
+├ ○ /admin/finances
+├ ○ /admin/products
+├ ƒ /admin/products/[id]/edit
+├ ○ /admin/products/categories
+├ ƒ /admin/products/categories/[id]/edit
+├ ○ /admin/products/categories/create
+├ ○ /admin/products/create
+├ ○ /admin/reports
+├ ○ /admin/settings
+├ ○ /admin/settings/audit
+├ ○ /admin/settings/roles
+├ ○ /admin/users
+├ ƒ /admin/users/[id]
+├ ○ /admin/vendors
+├ ƒ /admin/vendors/[id]/edit
+├ ○ /admin/vendors/applications
+├ ○ /admin/vendors/create
+├ ○ /admin/vendors/payouts
+├ ○ /cart
+├ ● /category/[slug]
+│ ├ /category/womens-clothes
+│ ├ /category/designer-shoes
+│ ├ /category/food-trailers
+│ └ /category/spider-hoodies
+├ ○ /favorites
+├ ○ /orders
+├ ● /products/[id]
+│ ├ /products/1
+│ ├ /products/2
+│ ├ /products/3
+│ └ [+47 more paths]
+├ ○ /sell
+├ ○ /top-ranking
+├ ○ /vendor-application
+└ ● /vendor/[id]
+  ├ /vendor/v1
+  ├ /vendor/v2
+  └ /vendor/v3
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

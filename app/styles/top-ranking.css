@@ -1,0 +1,119 @@
+/* Top Ranking Page Styles */
+.top-ranking-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  margin-bottom: 16px;
+  background: #8B4513;
+  color: white;
+  padding: 16px;
+  margin: -16px -16px 16px -16px;
+  position: relative;
+}
+
+.back-button,
+.search-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover,
+.search-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.top-ranking-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.category-selector {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--text-dark);
+  transition: all 0.2s;
+}
+
+.category-selector:hover {
+  background: rgba(245, 249, 245, 0.8);
+}
+
+.top-ranking-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 20px;
+  padding: 0 4px;
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.top-ranking-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.top-ranking-tab {
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-light-gray);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.top-ranking-tab:hover {
+  color: var(--text-dark);
+}
+
+.top-ranking-tab.active {
+  color: var(--text-dark);
+  font-weight: 600;
+  border-bottom-color: var(--primary-color);
+  background: var(--background);
+  border-radius: 8px 8px 0 0;
+}
+
+.top-ranking-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 4px;
+}
+
+/* Top Ranking Section Clickable */
+.top-ranking-section {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.top-ranking-section:active {
+  transform: scale(0.98);
+}
+

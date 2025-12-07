@@ -1,0 +1,352 @@
+
+> townssy-ecommerce@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Environments: .env
+
+ ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+
+> Build error occurred
+Error: Turbopack build failed with 13 errors:
+./app/admin/orders/[id]/page.js:6:1
+Module not found: Can't resolve '../../../../../lib/supabase'
+[0m [90m 4 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m {
+ [90m 8 |[39m   [33mArrowLeft[39m[33m,[39m
+ [90m 9 |[39m   [33mPackage[39m[33m,[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/orders/[id]/page.js [Client Component Browser]
+    ./app/admin/orders/[id]/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/orders/[id]/page.js [Client Component SSR]
+    ./app/admin/orders/[id]/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/orders/disputes/page.js:6:1
+Module not found: Can't resolve '../../../../../lib/supabase'
+[0m [90m 4 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m { [33mAlertCircle[39m[33m,[39m [33mMessageSquare[39m[33m,[39m [33mCheckCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m [32m"../../../../styles/admin-orders.css"[39m[33m;[39m
+ [90m 9 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/orders/disputes/page.js [Client Component Browser]
+    ./app/admin/orders/disputes/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/orders/disputes/page.js [Client Component SSR]
+    ./app/admin/orders/disputes/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/orders/verify/page.js:6:1
+Module not found: Can't resolve '../../../../../lib/supabase'
+[0m [90m 4 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m { [33mShield[39m[33m,[39m [33mCheckCircle[39m[33m,[39m [33mXCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m [32m"../../../../styles/admin-orders.css"[39m[33m;[39m
+ [90m 9 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/orders/verify/page.js [Client Component Browser]
+    ./app/admin/orders/verify/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/orders/verify/page.js [Client Component SSR]
+    ./app/admin/orders/verify/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/products/verify/page.js:6:1
+Module not found: Can't resolve '../../../../../lib/supabase'
+[0m [90m 4 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m { [33mCheckCircle[39m[33m,[39m [33mXCircle[39m[33m,[39m [33mPackage[39m[33m,[39m [33mExternalLink[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+ [90m 8 |[39m [36mimport[39m [32m"../../../../styles/admin-products.css"[39m[33m;[39m
+ [90m 9 |[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/products/verify/page.js [Client Component Browser]
+    ./app/admin/products/verify/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/products/verify/page.js [Client Component SSR]
+    ./app/admin/products/verify/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/orders/[id]/page.js:4:1
+Module not found: Can't resolve '../../../../context/AuthContext'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m 7 |[39m [36mimport[39m {[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/orders/[id]/page.js [Client Component Browser]
+    ./app/admin/orders/[id]/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/orders/[id]/page.js [Client Component SSR]
+    ./app/admin/orders/[id]/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/orders/disputes/page.js:4:1
+Module not found: Can't resolve '../../../../context/AuthContext'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m 7 |[39m [36mimport[39m { [33mAlertCircle[39m[33m,[39m [33mMessageSquare[39m[33m,[39m [33mCheckCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/orders/disputes/page.js [Client Component Browser]
+    ./app/admin/orders/disputes/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/orders/disputes/page.js [Client Component SSR]
+    ./app/admin/orders/disputes/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/orders/verify/page.js:4:1
+Module not found: Can't resolve '../../../../context/AuthContext'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m 7 |[39m [36mimport[39m { [33mShield[39m[33m,[39m [33mCheckCircle[39m[33m,[39m [33mXCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/orders/verify/page.js [Client Component Browser]
+    ./app/admin/orders/verify/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/orders/verify/page.js [Client Component SSR]
+    ./app/admin/orders/verify/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/products/verify/page.js:4:1
+Module not found: Can't resolve '../../../../context/AuthContext'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m 7 |[39m [36mimport[39m { [33mCheckCircle[39m[33m,[39m [33mXCircle[39m[33m,[39m [33mPackage[39m[33m,[39m [33mExternalLink[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/products/verify/page.js [Client Component Browser]
+    ./app/admin/products/verify/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/products/verify/page.js [Client Component SSR]
+    ./app/admin/products/verify/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/orders/[id]/page.js:19:1
+Module not found: Can't resolve '../../../../styles/admin-orders.css'
+[0m [90m 17 |[39m   [33mTruck[39m
+ [90m 18 |[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 19 |[39m [36mimport[39m [32m"../../../../styles/admin-orders.css"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 20 |[39m
+ [90m 21 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mOrderDetailsPage[39m() {
+ [90m 22 |[39m   [36mconst[39m { user[33m,[39m profile[33m,[39m isAdmin[33m,[39m isSuperAdmin } [33m=[39m useAuth()[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/orders/[id]/page.js [Client Component Browser]
+    ./app/admin/orders/[id]/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/orders/[id]/page.js [Client Component SSR]
+    ./app/admin/orders/[id]/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/orders/disputes/page.js:8:1
+Module not found: Can't resolve '../../../../styles/admin-orders.css'
+[0m [90m  6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mAlertCircle[39m[33m,[39m [33mMessageSquare[39m[33m,[39m [33mCheckCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m [32m"../../../../styles/admin-orders.css"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m
+ [90m 10 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mDisputesPage[39m() {
+ [90m 11 |[39m   [36mconst[39m { user[33m,[39m profile[33m,[39m isAdmin[33m,[39m isSuperAdmin } [33m=[39m useAuth()[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/orders/disputes/page.js [Client Component Browser]
+    ./app/admin/orders/disputes/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/orders/disputes/page.js [Client Component SSR]
+    ./app/admin/orders/disputes/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/orders/verify/page.js:8:1
+Module not found: Can't resolve '../../../../styles/admin-orders.css'
+[0m [90m  6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mShield[39m[33m,[39m [33mCheckCircle[39m[33m,[39m [33mXCircle[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m [32m"../../../../styles/admin-orders.css"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m
+ [90m 10 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mOrderVerificationPage[39m() {
+ [90m 11 |[39m   [36mconst[39m { user[33m,[39m profile[33m,[39m isAdmin[33m,[39m isSuperAdmin } [33m=[39m useAuth()[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/orders/verify/page.js [Client Component Browser]
+    ./app/admin/orders/verify/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/orders/verify/page.js [Client Component SSR]
+    ./app/admin/orders/verify/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/products/verify/page.js:8:1
+Module not found: Can't resolve '../../../../styles/admin-products.css'
+[0m [90m  6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mCheckCircle[39m[33m,[39m [33mXCircle[39m[33m,[39m [33mPackage[39m[33m,[39m [33mExternalLink[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m [32m"../../../../styles/admin-products.css"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m
+ [90m 10 |[39m [36mexport[39m [36mdefault[39m [36mfunction[39m [33mProductVerificationPage[39m() {
+ [90m 11 |[39m   [36mconst[39m { user[33m,[39m profile[33m,[39m isAdmin[33m,[39m isSuperAdmin[33m,[39m isModerator } [33m=[39m useAuth()[33m;[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/products/verify/page.js [Client Component Browser]
+    ./app/admin/products/verify/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/products/verify/page.js [Client Component SSR]
+    ./app/admin/products/verify/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./app/admin/orders/page.js:6:1
+Module not found: Can't resolve '../../lib/supabase'
+[0m [90m 4 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../context/AuthContext"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m { useRouter } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 6 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../lib/supabase"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimport[39m {
+ [90m 8 |[39m   [33mFileText[39m[33m,[39m
+ [90m 9 |[39m   [33mSearch[39m[33m,[39m[0m
+
+
+
+Import traces:
+  Client Component Browser:
+    ./app/admin/orders/page.js [Client Component Browser]
+    ./app/admin/orders/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/admin/orders/page.js [Client Component SSR]
+    ./app/admin/orders/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./app/admin/orders/[id]/page.js:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/orders/disputes/page.js:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/orders/verify/page.js:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/products/verify/page.js:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/orders/[id]/page.js:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/orders/disputes/page.js:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/orders/verify/page.js:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/products/verify/page.js:4:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/orders/[id]/page.js:19:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/orders/disputes/page.js:8:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/orders/verify/page.js:8:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/products/verify/page.js:8:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./app/admin/orders/page.js:6:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)

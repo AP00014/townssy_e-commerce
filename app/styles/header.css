@@ -1,0 +1,101 @@
+.header {
+  padding: 12px 20px 20px;
+  transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease, padding 0.5s ease, margin 0.5s ease;
+  overflow: hidden;
+  max-height: 200px;
+}
+
+.header.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  max-height: 0;
+  padding: 0 20px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.header-greeting {
+  font-size: 14px;
+  color: var(--text-gray);
+  margin-bottom: 4px;
+}
+
+.header-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.logo svg {
+  width: 120px;
+  height: 40px;
+}
+
+.cart-icon-wrapper {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon-wrapper svg {
+  width: 24px;
+  height: 24px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: var(--cart-badge);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Hide cart icon in header on mobile (using bottom nav) and desktop (using desktop nav) */
+.cart-icon-wrapper.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .cart-icon-wrapper.desktop-only {
+    display: flex;
+  }
+}
+
+/* Logo responsive design */
+@media (max-width: 480px) {
+  .logo svg {
+    width: 80px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo svg {
+    width: 100px;
+    height: 33px;
+  }
+}
+

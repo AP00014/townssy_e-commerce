@@ -1,0 +1,30 @@
+{
+  "name": "townssy-ecommerce",
+  "version": "0.1.0",
+  "description": "A modern e-commerce application built with Next.js",
+  "private": true,
+  "homepage": "https://yourusername.github.io/townssy_e-commerce",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/townssy_e-commerce.git"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next export",
+    "deploy": "npm run build && npm run export && gh-pages -d out",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.86.0",
+    "lucide-react": "^0.554.0",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}

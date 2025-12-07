@@ -1,0 +1,136 @@
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  animation: fadeIn 0.3s ease;
+}
+
+.menu-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 85%;
+  max-width: 320px;
+  background: var(--background);
+  z-index: 999;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  animation: slideInRight 0.3s ease;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background: var(--background);
+  z-index: 1;
+}
+
+.menu-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.menu-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dark);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.menu-close-btn:hover {
+  background: var(--border-color);
+}
+
+.menu-content {
+  padding: 20px 0;
+}
+
+.menu-section {
+  margin-bottom: 32px;
+}
+
+.menu-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 20px;
+  margin-bottom: 12px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background: var(--border-color);
+}
+
+.menu-item svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-gray);
+  flex-shrink: 0;
+}
+
+.menu-item span {
+  flex: 1;
+  font-size: 16px;
+}
+
+.menu-theme-item {
+  justify-content: space-between;
+}
+
+.menu-theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+[data-theme="dark"] .menu-container {
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.4);
+}
+

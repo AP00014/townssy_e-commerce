@@ -1,0 +1,444 @@
+
+> townssy-ecommerce@0.1.0 build
+> next build
+
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+   ▲ Next.js 16.0.3 (Turbopack)
+   - Environments: .env
+
+ ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+   Creating an optimized production build ...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+
+> Build error occurred
+Error: Turbopack build failed with 25 errors:
+./app/admin/agents/[id]/edit/page.js:6:1
+Ecmascript file had an error
+[0m [90m 4 |[39m }
+ [90m 5 |[39m
+[31m[1m>[22m[39m[90m 6 |[39m [32m"use client"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m
+ [90m 8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m[0m
+
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+
+
+./app/admin/agents/[id]/edit/page.js:8:20
+Ecmascript file had an error
+[0m [90m  6 |[39m [32m"use client"[39m[33m;[39m
+ [90m  7 |[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m    |[39m                    [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m[0m
+
+You're importing a component that needs `useEffect`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/agents/[id]/edit/page.js:10:21
+Ecmascript file had an error
+[0m [90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m {
+ [90m 13 |[39m   [33mArrowLeft[39m[33m,[39m[0m
+
+You're importing a component that needs `useParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/agents/[id]/edit/page.js:10:10
+Ecmascript file had an error
+[0m [90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m {
+ [90m 13 |[39m   [33mArrowLeft[39m[33m,[39m[0m
+
+You're importing a component that needs `useRouter`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/agents/[id]/edit/page.js:8:10
+Ecmascript file had an error
+[0m [90m  6 |[39m [32m"use client"[39m[33m;[39m
+ [90m  7 |[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m[0m
+
+You're importing a component that needs `useState`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/products/[id]/edit/page.js:6:1
+Ecmascript file had an error
+[0m [90m 4 |[39m }
+ [90m 5 |[39m
+[31m[1m>[22m[39m[90m 6 |[39m [32m"use client"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m
+ [90m 8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m[0m
+
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+
+
+./app/admin/products/[id]/edit/page.js:8:20
+Ecmascript file had an error
+[0m [90m  6 |[39m [32m"use client"[39m[33m;[39m
+ [90m  7 |[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m    |[39m                    [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m[0m
+
+You're importing a component that needs `useEffect`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/products/[id]/edit/page.js:10:21
+Ecmascript file had an error
+[0m [90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m {
+ [90m 13 |[39m   [33mPackage[39m[33m,[39m[0m
+
+You're importing a component that needs `useParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/products/[id]/edit/page.js:10:10
+Ecmascript file had an error
+[0m [90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m {
+ [90m 13 |[39m   [33mPackage[39m[33m,[39m[0m
+
+You're importing a component that needs `useRouter`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/products/[id]/edit/page.js:8:10
+Ecmascript file had an error
+[0m [90m  6 |[39m [32m"use client"[39m[33m;[39m
+ [90m  7 |[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m[0m
+
+You're importing a component that needs `useState`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/products/categories/[id]/edit/page.js:6:1
+Ecmascript file had an error
+[0m [90m 4 |[39m }
+ [90m 5 |[39m
+[31m[1m>[22m[39m[90m 6 |[39m ([32m"use client"[39m)[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m
+ [90m 8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../../context/AuthContext"[39m[33m;[39m[0m
+
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+
+
+./app/admin/products/categories/[id]/edit/page.js:8:20
+Ecmascript file had an error
+[0m [90m  6 |[39m ([32m"use client"[39m)[33m;[39m
+ [90m  7 |[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m    |[39m                    [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../../context/AuthContext"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../../lib/supabase"[39m[33m;[39m[0m
+
+You're importing a component that needs `useEffect`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/products/categories/[id]/edit/page.js:10:21
+Ecmascript file had an error
+[0m [90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../../context/AuthContext"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../../lib/supabase"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m {
+ [90m 13 |[39m   [33mFolderTree[39m[33m,[39m[0m
+
+You're importing a component that needs `useParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/products/categories/[id]/edit/page.js:10:10
+Ecmascript file had an error
+[0m [90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../../context/AuthContext"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../../lib/supabase"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m {
+ [90m 13 |[39m   [33mFolderTree[39m[33m,[39m[0m
+
+You're importing a component that needs `useRouter`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/products/categories/[id]/edit/page.js:8:10
+Ecmascript file had an error
+[0m [90m  6 |[39m ([32m"use client"[39m)[33m;[39m
+ [90m  7 |[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../../context/AuthContext"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../../lib/supabase"[39m[33m;[39m[0m
+
+You're importing a component that needs `useState`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/users/[id]/page.js:6:1
+Ecmascript file had an error
+[0m [90m 4 |[39m }
+ [90m 5 |[39m
+[31m[1m>[22m[39m[90m 6 |[39m ([32m"use client"[39m)[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m
+ [90m 8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../context/AuthContext"[39m[33m;[39m[0m
+
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+
+
+./app/admin/users/[id]/page.js:8:20
+Ecmascript file had an error
+[0m [90m  6 |[39m ([32m"use client"[39m)[33m;[39m
+ [90m  7 |[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m    |[39m                    [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../context/AuthContext"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../lib/supabase"[39m[33m;[39m[0m
+
+You're importing a component that needs `useEffect`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/users/[id]/page.js:10:21
+Ecmascript file had an error
+[0m [90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../context/AuthContext"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../lib/supabase"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m {
+ [90m 13 |[39m   [33mUser[39m[33m,[39m[0m
+
+You're importing a component that needs `useParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/users/[id]/page.js:10:10
+Ecmascript file had an error
+[0m [90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../context/AuthContext"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../lib/supabase"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m {
+ [90m 13 |[39m   [33mUser[39m[33m,[39m[0m
+
+You're importing a component that needs `useRouter`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/users/[id]/page.js:8:10
+Ecmascript file had an error
+[0m [90m  6 |[39m ([32m"use client"[39m)[33m;[39m
+ [90m  7 |[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../context/AuthContext"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../lib/supabase"[39m[33m;[39m[0m
+
+You're importing a component that needs `useState`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/vendors/[id]/edit/page.js:6:1
+Ecmascript file had an error
+[0m [90m 4 |[39m }
+ [90m 5 |[39m
+[31m[1m>[22m[39m[90m 6 |[39m [32m"use client"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 7 |[39m
+ [90m 8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m 9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m[0m
+
+The "use client" directive must be placed before other expressions. Move it to the top of the file to resolve this issue.
+
+
+./app/admin/vendors/[id]/edit/page.js:8:20
+Ecmascript file had an error
+[0m [90m  6 |[39m [32m"use client"[39m[33m;[39m
+ [90m  7 |[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m    |[39m                    [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m[0m
+
+You're importing a component that needs `useEffect`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/vendors/[id]/edit/page.js:10:21
+Ecmascript file had an error
+[0m [90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m {
+ [90m 13 |[39m   [33mArrowLeft[39m[33m,[39m[0m
+
+You're importing a component that needs `useParams`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/vendors/[id]/edit/page.js:10:10
+Ecmascript file had an error
+[0m [90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m {
+ [90m 13 |[39m   [33mArrowLeft[39m[33m,[39m[0m
+
+You're importing a component that needs `useRouter`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+./app/admin/vendors/[id]/edit/page.js:8:10
+Ecmascript file had an error
+[0m [90m  6 |[39m [32m"use client"[39m[33m;[39m
+ [90m  7 |[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { useState[33m,[39m useEffect } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m    |[39m          [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { useAuth } [36mfrom[39m [32m"../../../../context/AuthContext"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m { useRouter[33m,[39m useParams } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { supabase } [36mfrom[39m [32m"../../../../../lib/supabase"[39m[33m;[39m[0m
+
+You're importing a component that needs `useState`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+
+    at <unknown> (./app/admin/agents/[id]/edit/page.js:6:1)
+    at <unknown> (./app/admin/agents/[id]/edit/page.js:8:20)
+    at <unknown> (./app/admin/agents/[id]/edit/page.js:10:21)
+    at <unknown> (./app/admin/agents/[id]/edit/page.js:10:10)
+    at <unknown> (./app/admin/agents/[id]/edit/page.js:8:10)
+    at <unknown> (./app/admin/products/[id]/edit/page.js:6:1)
+    at <unknown> (./app/admin/products/[id]/edit/page.js:8:20)
+    at <unknown> (./app/admin/products/[id]/edit/page.js:10:21)
+    at <unknown> (./app/admin/products/[id]/edit/page.js:10:10)
+    at <unknown> (./app/admin/products/[id]/edit/page.js:8:10)
+    at <unknown> (./app/admin/products/categories/[id]/edit/page.js:6:1)
+    at <unknown> (./app/admin/products/categories/[id]/edit/page.js:8:20)
+    at <unknown> (./app/admin/products/categories/[id]/edit/page.js:10:21)
+    at <unknown> (./app/admin/products/categories/[id]/edit/page.js:10:10)
+    at <unknown> (./app/admin/products/categories/[id]/edit/page.js:8:10)
+    at <unknown> (./app/admin/users/[id]/page.js:6:1)
+    at <unknown> (./app/admin/users/[id]/page.js:8:20)
+    at <unknown> (./app/admin/users/[id]/page.js:10:21)
+    at <unknown> (./app/admin/users/[id]/page.js:10:10)
+    at <unknown> (./app/admin/users/[id]/page.js:8:10)
+    at <unknown> (./app/admin/vendors/[id]/edit/page.js:6:1)
+    at <unknown> (./app/admin/vendors/[id]/edit/page.js:8:20)
+    at <unknown> (./app/admin/vendors/[id]/edit/page.js:10:21)
+    at <unknown> (./app/admin/vendors/[id]/edit/page.js:10:10)
+    at <unknown> (./app/admin/vendors/[id]/edit/page.js:8:10)
