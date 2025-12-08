@@ -389,7 +389,7 @@ export default function ProfileModal({ isOpen, onClose, variant = "auto" }) {
         <div className="success-message">{successMessage}</div>
       )}
 
-      <div className="google-auth-section">
+      {/* <div className="google-auth-section">
         <button
           type="button"
           className="google-auth-button"
@@ -425,7 +425,7 @@ export default function ProfileModal({ isOpen, onClose, variant = "auto" }) {
         <div className="divider">
           <span>or</span>
         </div>
-      </div>
+      </div> */}
 
       <form onSubmit={handleSubmit} className="auth-form">
         {!isLogin && (
