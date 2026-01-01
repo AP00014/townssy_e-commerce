@@ -269,80 +269,128 @@ export default function CreateProductPage() {
     const errors = [];
 
     try {
+      // Skip bucket check - it can hang. We'll validate during actual upload instead.
+      setSubmitProgress('Preparing upload...');
+      console.log(`📦 Starting upload of ${imageFiles.length} image(s)...`);
+
       for (let i = 0; i < imageFiles.length; i++) {
         const file = imageFiles[i];
-        setSubmitProgress(`Uploading image ${i + 1} of ${imageFiles.length}...`);
+        const fileNumber = i + 1;
+        setSubmitProgress(`Uploading image ${fileNumber} of ${imageFiles.length}: ${file.name}...`);
 
-        // Validate file type (matching storage bucket allowed_mime_types)
-        const validTypes = [
-          'image/jpeg', 
-          'image/jpg', 
-          'image/png', 
-          'image/gif', 
-          'image/webp'
-        ];
-        if (!validTypes.includes(file.type)) {
-          errors.push(`File "${file.name}" is not a valid image type. Please use JPEG, PNG, WebP, or GIF.`);
-          continue;
+        try {
+          // Validate file type (matching storage bucket allowed_mime_types)
+          const validTypes = [
+            'image/jpeg', 
+            'image/jpg', 
+            'image/png', 
+            'image/gif', 
+            'image/webp'
+          ];
+          if (!validTypes.includes(file.type)) {
+            errors.push(`File "${file.name}" is not a valid image type. Please use JPEG, PNG, WebP, or GIF.`);
+            continue;
+          }
+
+          // Validate file size (max 10MB - matching storage bucket file_size_limit: 10485760 bytes)
+          const maxSize = 10 * 1024 * 1024; // 10MB
+          if (file.size > maxSize) {
+            errors.push(`File "${file.name}" is too large (${(file.size / 1024 / 1024).toFixed(2)}MB). Maximum size is 10MB.`);
+            continue;
+          }
+
+          const fileExt = file.name.split('.').pop();
+          const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
+          const filePath = `products/${fileName}`;
+
+          console.log(`📤 Uploading ${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB) to ${filePath}...`);
+
+          // Create upload promise with timeout
+          const uploadPromise = supabase.storage
+            .from('product-images')
+            .upload(filePath, file, {
+              cacheControl: '3600',
+              upsert: false
+            });
+
+          // Add timeout (60 seconds per image)
+          const timeoutPromise = new Promise((_, reject) => {
+            setTimeout(() => reject(new Error('Upload timeout: Image upload took too long. Please try again with a smaller file.')), 60000);
+          });
+
+          const { data: uploadData, error: uploadError } = await Promise.race([
+            uploadPromise,
+            timeoutPromise
+          ]);
+
+          if (uploadError) {
+            console.error(`❌ Error uploading ${file.name}:`, uploadError);
+            
+            // Provide more specific error messages
+            let errorMessage = uploadError.message;
+            if (uploadError.message?.includes('new row violates row-level security')) {
+              errorMessage = 'Permission denied. Please ensure you have admin privileges.';
+            } else if (uploadError.message?.includes('timeout') || uploadError.message?.includes('network')) {
+              errorMessage = 'Network error. Please check your connection and try again.';
+            } else if (uploadError.message?.includes('size') || uploadError.message?.includes('limit')) {
+              errorMessage = 'File size exceeds limit. Maximum size is 10MB.';
+            }
+            
+            errors.push(`Failed to upload "${file.name}": ${errorMessage}`);
+            continue;
+          }
+
+          if (!uploadData || !uploadData.path) {
+            console.error('Upload succeeded but no path returned:', uploadData);
+            errors.push(`Upload succeeded for "${file.name}" but could not get file path.`);
+            continue;
+          }
+
+          // Get public URL
+          const { data: urlData } = supabase.storage
+            .from('product-images')
+            .getPublicUrl(uploadData.path);
+
+          if (!urlData || !urlData.publicUrl) {
+            console.error('Could not get public URL for:', uploadData.path);
+            errors.push(`Could not get public URL for "${file.name}"`);
+            continue;
+          }
+
+          console.log(`✅ Image ${fileNumber}/${imageFiles.length} uploaded: ${file.name} -> ${urlData.publicUrl}`);
+          uploadedUrls.push(urlData.publicUrl);
+          
+          // Small delay to prevent overwhelming the server
+          if (i < imageFiles.length - 1) {
+            await new Promise(resolve => setTimeout(resolve, 100));
+          }
+        } catch (error) {
+          console.error(`❌ Error processing ${file.name}:`, error);
+          errors.push(`Failed to upload "${file.name}": ${error.message || 'Unknown error'}`);
         }
-
-        // Validate file size (max 10MB - matching storage bucket file_size_limit: 10485760 bytes)
-        const maxSize = 10 * 1024 * 1024; // 10MB
-        if (file.size > maxSize) {
-          errors.push(`File "${file.name}" is too large. Maximum size is 10MB.`);
-          continue;
-        }
-
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
-      const filePath = `products/${fileName}`;
-
-      const { data: uploadData, error } = await supabase.storage
-        .from('product-images')
-        .upload(filePath, file, {
-          cacheControl: '3600',
-          upsert: false
-        });
-
-      if (error) {
-        console.error('Error uploading image:', error);
-        errors.push(`Failed to upload "${file.name}": ${error.message}`);
-        continue;
       }
 
-      if (!uploadData || !uploadData.path) {
-        console.error('Upload succeeded but no path returned:', uploadData);
-        errors.push(`Upload succeeded for "${file.name}" but could not get file path.`);
-        continue;
+      // Final status
+      if (uploadedUrls.length > 0) {
+        setSubmitProgress(`✅ ${uploadedUrls.length} image(s) uploaded successfully${errors.length > 0 ? `, ${errors.length} failed` : ''}`);
       }
-
-      // Use the path from the upload response, not the original filePath
-      const { data: urlData } = supabase.storage
-        .from('product-images')
-        .getPublicUrl(uploadData.path);
-
-      if (!urlData || !urlData.publicUrl) {
-        console.error('Could not get public URL for:', uploadData.path);
-        errors.push(`Could not get public URL for "${file.name}"`);
-        continue;
-      }
-
-      console.log(`✅ Image uploaded: ${file.name} -> ${urlData.publicUrl}`);
-      uploadedUrls.push(urlData.publicUrl);
-    }
 
       if (errors.length > 0 && uploadedUrls.length === 0) {
-        throw new Error(`Image upload failed: ${errors.join(', ')}`);
+        throw new Error(`All image uploads failed:\n${errors.join('\n')}`);
       }
 
       if (errors.length > 0) {
-        console.warn('Some images failed to upload:', errors);
-        alert(`Warning: ${errors.length} image(s) failed to upload:\n${errors.join('\n')}`);
+        console.warn('⚠️ Some images failed to upload:', errors);
+        // Show warning but don't block if at least one image uploaded
+        const warningMessage = `Warning: ${errors.length} image(s) failed to upload:\n${errors.slice(0, 3).join('\n')}${errors.length > 3 ? `\n...and ${errors.length - 3} more` : ''}`;
+        alert(warningMessage);
       }
 
-    return uploadedUrls;
+      console.log(`✅ Upload complete: ${uploadedUrls.length} successful, ${errors.length} failed`);
+      return uploadedUrls;
     } catch (error) {
-      console.error('Error in uploadImages:', error);
+      console.error('❌ Error in uploadImages:', error);
+      setSubmitProgress(`❌ Upload failed: ${error.message}`);
       throw error;
     } finally {
       setUploadingImages(false);
@@ -1196,15 +1244,28 @@ export default function CreateProductPage() {
         {submitProgress && (
           <div className="submit-progress" style={{
             padding: '12px 16px',
-            background: '#f0fdf4',
-            border: '1px solid #10b981',
+            background: uploadingImages ? '#fef3c7' : '#f0fdf4',
+            border: `1px solid ${uploadingImages ? '#f59e0b' : '#10b981'}`,
             borderRadius: '8px',
             marginBottom: '16px',
-            color: '#065f46',
+            color: uploadingImages ? '#92400e' : '#065f46',
             fontSize: '14px',
-            fontWeight: '500'
+            fontWeight: '500',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
           }}>
-            {submitProgress}
+            {uploadingImages && (
+              <div style={{
+                width: '16px',
+                height: '16px',
+                border: '2px solid #f3f3f3',
+                borderTop: '2px solid #f59e0b',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite'
+              }}></div>
+            )}
+            <span>{submitProgress}</span>
           </div>
         )}
 
