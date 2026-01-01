@@ -56,35 +56,40 @@ export const AuthProvider = ({ children }) => {
 
     // Listen for PROFILE changes (Realtime Role Updates)
     // This answers the request: "always be checking for user roles in the database"
-    let profileChannel = null;
-    try {
-      if (supabase && typeof supabase.channel === "function") {
-        profileChannel = supabase
-          .channel("public:profiles")
-          .on(
-            "postgres_changes",
+    let cleanupProfileChannel = null;
+    
+    if (user?.id && supabase && typeof window !== 'undefined') {
+      try {
+        const { createRealtimeSubscription } = require('../utils/realtimeManager');
+        
+        cleanupProfileChannel = createRealtimeSubscription(supabase, `profile-updates-${user.id}`, {
+          postgresChanges: [
             {
-              event: "UPDATE",
-              schema: "public",
-              table: "profiles",
-              filter: user ? `id=eq.${user.id}` : undefined,
-            },
-            (payload) => {
-              // If the update serves the current user, update local state
-              console.log("Profile updated realtime:", payload);
-              setProfile(payload.new);
+              options: {
+                event: "UPDATE",
+                schema: "public",
+                table: "profiles",
+                filter: `id=eq.${user.id}`
+              },
+              callback: (payload) => {
+                // If the update serves the current user, update local state
+                console.log("Profile updated realtime:", payload);
+                if (payload.new) {
+                  setProfile(payload.new);
+                }
+              }
             }
-          )
-          .subscribe();
+          ]
+        });
+      } catch (error) {
+        console.warn("Realtime subscription failed:", error);
       }
-    } catch (error) {
-      console.warn("Realtime subscription failed:", error);
     }
 
     return () => {
       subscription.unsubscribe();
-      if (profileChannel) {
-        supabase.removeChannel(profileChannel);
+      if (cleanupProfileChannel) {
+        cleanupProfileChannel();
       }
     };
   }, [user?.id]); // Add dependency on user.id to recreate subscription when user changes

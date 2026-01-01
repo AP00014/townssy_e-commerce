@@ -3,15 +3,28 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import SectionHeader from "./components/SectionHeader";
 import ProductCard from "./components/ProductCard";
 import PromoBanner from "./components/PromoBanner";
 import BottomNav from "./components/BottomNav";
-import CategoriesModal from "./components/CategoriesModal";
-import QuickFilter from "./components/QuickFilter";
-import DiscoverSection from "./components/DiscoverSection";
+
+// Lazy load heavy components
+const CategoriesModal = dynamic(() => import("./components/CategoriesModal"), {
+  loading: () => null,
+  ssr: false,
+});
+const QuickFilter = dynamic(() => import("./components/QuickFilter"), {
+  loading: () => null,
+  ssr: false,
+});
+const DiscoverSection = dynamic(() => import("./components/DiscoverSection"), {
+  loading: () => null,
+  ssr: false,
+});
 import { ChevronDown, Filter } from "lucide-react";
 import {
   categories,
@@ -136,8 +149,6 @@ export default function Home() {
           setTailoredSelectionsSortOrder(tailoredExistsResult.data?.sort_order ?? tailoredResult.data?.sort_order ?? null);
           if (tailoredResult.data.layout_config.items?.length > 0) {
             const items = tailoredResult.data.layout_config.items;
-            console.log('Tailored selections from database:', items);
-            
             // Validate items structure
             const validItems = items.filter(item => 
               item && 
@@ -151,31 +162,26 @@ export default function Home() {
               setTailoredSelectionsData(validItems);
               // Get personalized selections from database items
               const personalized = getPersonalizedSelections(validItems, 4);
-              console.log('Personalized selections:', personalized);
               if (personalized && personalized.length > 0) {
                 setDynamicSelections(personalized);
               } else {
                 // If personalization returns empty, use items directly (take first 4)
-                console.log('Personalization returned empty, using items directly');
                 setDynamicSelections(validItems.slice(0, 4));
               }
             } else {
               // Items are invalid - use fallback
-              console.log('Tailored selections items are invalid, using fallback');
               setTailoredSelectionsData(null);
               const personalized = getPersonalizedSelections(tailoredSelections, 4);
               setDynamicSelections(personalized);
             }
           } else {
             // Section is active but has no items - use fallback
-            console.log('Tailored selections active but no items, using fallback');
             setTailoredSelectionsData(null);
             const personalized = getPersonalizedSelections(tailoredSelections, 4);
             setDynamicSelections(personalized);
           }
         } else {
           // Database section is inactive or missing
-          console.log('Tailored selections inactive or missing, error:', tailoredResult.error, 'data:', tailoredResult.data);
           setIsTailoredSelectionsActive(false);
           setTailoredSelectionsData(null);
           
@@ -185,11 +191,9 @@ export default function Home() {
           
           if (sectionExists) {
             // Section exists but is inactive - hide it completely
-            console.log('Tailored selections section exists but is inactive - hiding');
             setDynamicSelections([]);
           } else {
             // Section doesn't exist at all - use fallback
-            console.log('Tailored selections section does not exist - using fallback');
             const personalized = getPersonalizedSelections(tailoredSelections, 4);
             setDynamicSelections(personalized);
           }
@@ -236,11 +240,10 @@ export default function Home() {
           if (payload.new?.name === 'tailored_selections') {
             console.log('Tailored selections real-time update:', payload.new);
             setTailoredSelectionsSortOrder(payload.new?.sort_order ?? null);
-            if (payload.new?.is_active && payload.new?.layout_config?.type === 'tailored_selections') {
+              if (payload.new?.is_active && payload.new?.layout_config?.type === 'tailored_selections') {
               setIsTailoredSelectionsActive(true);
               if (payload.new.layout_config.items?.length > 0) {
                 const items = payload.new.layout_config.items;
-                console.log('Setting active tailored selections:', items);
                 
                 // Validate items structure
                 const validItems = items.filter(item => 
@@ -254,17 +257,14 @@ export default function Home() {
                 if (validItems.length > 0) {
                   setTailoredSelectionsData(validItems);
                   const personalized = getPersonalizedSelections(validItems, 4);
-                  console.log('Setting personalized selections:', personalized);
                   if (personalized && personalized.length > 0) {
                     setDynamicSelections(personalized);
                   } else {
                     // If personalization returns empty, use items directly (take first 4)
-                    console.log('Personalization returned empty, using items directly');
                     setDynamicSelections(validItems.slice(0, 4));
                   }
                 } else {
                   // Items are invalid - use fallback
-                  console.log('Tailored selections items are invalid, using fallback');
                   setTailoredSelectionsData(null);
                   const personalized = getPersonalizedSelections(tailoredSelections, 4);
                   setDynamicSelections(personalized);
@@ -277,7 +277,6 @@ export default function Home() {
               }
             } else {
               // Section is inactive - clear selections to hide the section
-              console.log('Tailored selections inactive, hiding section');
               setIsTailoredSelectionsActive(false);
               setTailoredSelectionsData(null);
               setDynamicSelections([]); // Clear to hide the section
@@ -429,12 +428,11 @@ export default function Home() {
           const { data, timestamp } = JSON.parse(cached);
           const age = Date.now() - timestamp;
           
-          // Use cache if it's less than 5 minutes old
-          if (age < CACHE_DURATION && data && data.length > 0) {
-            console.log('Initializing from cache');
-            setHomeSections(data);
-            setLoadingSections(false);
-          }
+              // Use cache if it's less than 5 minutes old
+              if (age < CACHE_DURATION && data && data.length > 0) {
+                setHomeSections(data);
+                setLoadingSections(false);
+              }
         } catch (e) {
           // Ignore cache errors on init
         }
@@ -459,7 +457,6 @@ export default function Home() {
               
               // Use cache if it's less than 5 minutes old
               if (age < CACHE_DURATION && data && data.length > 0) {
-                console.log('Using cached home sections');
                 setHomeSections(data);
                 setLoadingSections(false);
                 
@@ -515,10 +512,8 @@ export default function Home() {
     loadSections();
 
     // Set up polling to refresh sections periodically (fallback if WebSocket fails)
-    // Increased interval to reduce load
-    const pollInterval = setInterval(() => {
-      loadSections();
-    }, 60000); // Refresh every 60 seconds (reduced frequency)
+    // Increased interval to reduce load - only poll if no real-time connection
+    let pollInterval = null;
 
     // Try to set up real-time subscription to listen for changes (optional)
     let channel = null;
@@ -534,7 +529,6 @@ export default function Home() {
               table: 'home_sections'
             },
             (payload) => {
-              console.log('Home sections changed:', payload);
               // Clear cache and reload sections when they change
               if (typeof window !== 'undefined') {
                 sessionStorage.removeItem('home_sections_cache');
@@ -550,7 +544,6 @@ export default function Home() {
               table: 'product_section_placements'
             },
             (payload) => {
-              console.log('Product section placements changed:', payload);
               // Clear cache and reload sections when product placements change
               if (typeof window !== 'undefined') {
                 sessionStorage.removeItem('home_sections_cache');
@@ -560,11 +553,18 @@ export default function Home() {
           )
           .subscribe((status) => {
             if (status === 'SUBSCRIBED') {
-              console.log('Real-time subscription active');
               // Clear polling if WebSocket works
-              clearInterval(pollInterval);
+              if (pollInterval) {
+                clearInterval(pollInterval);
+                pollInterval = null;
+              }
             } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
-              console.log('Real-time subscription failed, using polling fallback');
+              // Only start polling if not already started
+              if (!pollInterval) {
+                pollInterval = setInterval(() => {
+                  loadSections(false);
+                }, 120000); // Refresh every 2 minutes (reduced frequency)
+              }
             }
           });
       } catch (error) {
@@ -573,7 +573,9 @@ export default function Home() {
     }
 
     return () => {
-      clearInterval(pollInterval);
+      if (pollInterval) {
+        clearInterval(pollInterval);
+      }
       if (channel && supabase) {
         try {
           supabase.removeChannel(channel);
@@ -765,10 +767,15 @@ export default function Home() {
                       className="tailored-selection-item"
                       onClick={() => handleSelectionClick(selection)}
                     >
-                      <img
+                      <Image
                         src={selection.image}
                         alt={selection.label}
+                        width={200}
+                        height={200}
                         className="tailored-selection-image"
+                        loading="lazy"
+                        quality={85}
+                        sizes="(max-width: 768px) 25vw, 20vw"
                       />
                       <span className="tailored-selection-label">
                         {selection.label}
@@ -821,11 +828,10 @@ export default function Home() {
                 )}
                 {loadingSections ? (
                   <div className="products-scroll" style={{ padding: '20px', textAlign: 'center' }}>
-                    <img 
-                      src={SITE_LOGO_SVG} 
-                      alt="Loading" 
+                    <div
                       className="category-loading-spinner"
                       style={{ width: '40px', height: '40px', margin: '0 auto', display: 'block' }}
+                      dangerouslySetInnerHTML={{ __html: SITE_LOGO_SVG }}
                     />
                     <p style={{ marginTop: '10px', color: '#64748b', fontSize: '14px' }}>Loading products...</p>
                   </div>

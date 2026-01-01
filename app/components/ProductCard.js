@@ -1,12 +1,14 @@
 'use client';
 
+import { memo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useFavourites } from '../context/FavouritesContext';
 import { formatPrice } from '../utils/currency';
 import { Check, ArrowDown, ArrowUp, Award } from 'lucide-react';
 
-export default function ProductCard({
+function ProductCard({
   id,
   image,
   title,
@@ -26,10 +28,15 @@ export default function ProductCard({
     <Link href={`/products/${id}`} className={`product-card-link product-card-${variant}`}>
       <div className="product-card">
         <div className="product-image-wrapper">
-          <img
-            src={image}
+          <Image
+            src={image || '/placeholder-product.jpg'}
             alt={title}
+            width={300}
+            height={300}
             className="product-image"
+            loading="lazy"
+            quality={85}
+            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
           />
           
           {/* Badges */}
@@ -99,4 +106,6 @@ export default function ProductCard({
     </Link>
   );
 }
+
+export default memo(ProductCard);
 

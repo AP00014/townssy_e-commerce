@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../../lib/supabase";
+import { fetchUserConversations, fetchUnreadCount as fetchUnreadMessagesCount } from "../utils/supabaseQuery";
 import "../styles/profilemodal.css";
 
 export default function ProfileModal({ isOpen, onClose, variant = "auto" }) {
@@ -113,50 +114,17 @@ export default function ProfileModal({ isOpen, onClose, variant = "auto" }) {
 
     const fetchUnreadCount = async () => {
       try {
-        // Get all conversations where user is a participant
-        // Use parallel queries instead of .or() to avoid connection issues
-        const [result1, result2] = await Promise.all([
-          supabase
-            .from('conversations')
-            .select('id')
-            .eq('participant1_id', user.id),
-          supabase
-            .from('conversations')
-            .select('id')
-            .eq('participant2_id', user.id)
-        ]);
+        // Use optimized query utility with timeout and retry logic
+        const conversations = await fetchUserConversations(supabase, user.id);
 
-        const conversations1 = result1.data || [];
-        const conversations2 = result2.data || [];
-        const convError = result1.error || result2.error;
-
-        // Combine and deduplicate conversations
-        const allConversations = [...conversations1, ...conversations2].filter(
-          (conv, index, self) => index === self.findIndex(c => c.id === conv.id)
-        );
-
-        if (convError || !allConversations || allConversations.length === 0) {
+        if (!conversations || conversations.length === 0) {
           setUnreadMessagesCount(0);
           return;
         }
 
-        const conversationIds = allConversations.map(c => c.id);
-
-        // Count unread messages (messages not sent by the user)
-        const { count, error } = await supabase
-          .from('messages')
-          .select('*', { count: 'exact', head: true })
-          .in('conversation_id', conversationIds)
-          .eq('is_read', false)
-          .neq('sender_id', user.id);
-
-        if (error) {
-          console.error('Error fetching unread count:', error);
-          setUnreadMessagesCount(0);
-          return;
-        }
-
-        setUnreadMessagesCount(count || 0);
+        const conversationIds = conversations.map(c => c.id);
+        const count = await fetchUnreadMessagesCount(supabase, user.id, conversationIds);
+        setUnreadMessagesCount(count);
       } catch (error) {
         console.error('Error fetching unread messages count:', error);
         setUnreadMessagesCount(0);
@@ -165,29 +133,61 @@ export default function ProfileModal({ isOpen, onClose, variant = "auto" }) {
 
     fetchUnreadCount();
 
-    // Set up real-time subscription for new messages
-    const channel = supabase
-      .channel('profile-modal-unread-messages')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'messages',
-          filter: `is_read=eq.false`
-        },
-        () => {
-          fetchUnreadCount();
-        }
-      )
-      .subscribe();
+    // Set up real-time subscription for new messages with proper connection management
+    let pollInterval = null;
+    let cleanupChannel = null;
 
-    // Poll for updates every 30 seconds as fallback
-    const pollInterval = setInterval(fetchUnreadCount, 30000);
+    if (supabase && typeof window !== 'undefined') {
+      try {
+        const { createRealtimeSubscription } = require('../utils/realtimeManager');
+        
+        cleanupChannel = createRealtimeSubscription(supabase, 'profile-modal-unread-messages', {
+          postgresChanges: [
+            {
+              options: {
+                event: '*',
+                schema: 'public',
+                table: 'messages',
+                filter: `is_read=eq.false`
+              },
+              callback: () => {
+                fetchUnreadCount();
+              }
+            }
+          ],
+          onSubscribed: () => {
+            // Clear polling if WebSocket works
+            if (pollInterval) {
+              clearInterval(pollInterval);
+              pollInterval = null;
+            }
+          },
+          onError: () => {
+            // Start polling as fallback if WebSocket fails
+            if (!pollInterval) {
+              pollInterval = setInterval(fetchUnreadCount, 30000);
+            }
+          }
+        });
+
+        // Start polling as initial fallback (will be cleared if WebSocket connects)
+        pollInterval = setInterval(fetchUnreadCount, 30000);
+      } catch (error) {
+        console.warn('Failed to set up real-time subscription, using polling:', error);
+        pollInterval = setInterval(fetchUnreadCount, 30000);
+      }
+    } else {
+      // Fallback to polling if supabase not available
+      pollInterval = setInterval(fetchUnreadCount, 30000);
+    }
 
     return () => {
-      supabase.removeChannel(channel);
-      clearInterval(pollInterval);
+      if (cleanupChannel) {
+        cleanupChannel();
+      }
+      if (pollInterval) {
+        clearInterval(pollInterval);
+      }
     };
   }, [user, isAuthenticated]);
 

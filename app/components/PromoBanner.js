@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 
@@ -102,8 +103,6 @@ export default function PromoBanner({ slides: propSlides }) {
           filter: 'name=eq.promo_banner'
         },
         (payload) => {
-          console.log('Promo banner changed:', payload);
-          
           // If section is active and has slides, update
           if (payload.new?.is_active && payload.new?.layout_config?.type === 'promo_banner' && payload.new.layout_config.slides?.length > 0) {
             setSlides(payload.new.layout_config.slides);
@@ -271,10 +270,16 @@ export default function PromoBanner({ slides: propSlides }) {
                 <div className="promo-subtitle">{slide.subtitle}</div>
               </div>
               <div className="promo-image-wrapper">
-                <img
+                <Image
                   src={slide.image}
                   alt={slide.title}
+                  width={300}
+                  height={300}
                   className="promo-image"
+                  loading="eager"
+                  quality={90}
+                  priority={index === 0}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             </div>

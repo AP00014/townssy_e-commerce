@@ -135,6 +135,28 @@ export async function middleware(request) {
     });
   }
 
+  // Add performance and caching headers
+  if (process.env.NODE_ENV === 'production') {
+    // Cache static assets
+    if (pathname.match(/\.(jpg|jpeg|png|gif|ico|svg|webp|avif|woff|woff2|ttf|eot)$/)) {
+      response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+    }
+    // Cache API responses (with shorter TTL)
+    else if (pathname.startsWith('/api/')) {
+      response.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
+    }
+    // Cache HTML pages (with revalidation)
+    else {
+      response.headers.set('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+    }
+    
+    // Security headers
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('X-Frame-Options', 'DENY');
+    response.headers.set('X-XSS-Protection', '1; mode=block');
+    response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+  }
+
   return response;
 }
 

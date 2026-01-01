@@ -14,6 +14,23 @@ import { AuthProvider } from "./context/AuthContext";
 export const metadata = {
   title: "Townssy E-commerce",
   description: "Modern e-commerce platform",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com'),
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/icon.svg',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -32,7 +49,7 @@ export default function RootLayout({ children }) {
             <CartProvider>
               <FavouritesProvider>
                 <ProfileProvider>
-                  <AuthProvider>{children}</AuthProvider>
+                  {children}
                 </ProfileProvider>
               </FavouritesProvider>
             </CartProvider>
