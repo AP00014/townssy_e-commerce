@@ -20,16 +20,26 @@ export default function CreateProductPage() {
   const router = useRouter();
   const { user, profile, isAdmin, isSuperAdmin } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [uploadingImages, setUploadingImages] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [vendors, setVendors] = useState([]);
+  const [sections, setSections] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [submitProgress, setSubmitProgress] = useState('');
   
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    category_id: '',
-    vendor_id: '',
+    category_ids: [], // Array of category IDs
+    primary_category_id: '', // Primary category (first selected)
+    section_ids: [], // Array of section IDs
+    location: '',
+    region: '',
+    delivery: false,
+    delivery_options: [],
+    supplier_whatsapp: '',
+    supplier_type: '', // 'supplier' or 'manufacturer' - required
     price: '',
     compare_price: '',
     stock_quantity: 0,
@@ -40,6 +50,8 @@ export default function CreateProductPage() {
     verification_status: 'approved' // Admin can directly approve
   });
 
+  const [deliveryOption, setDeliveryOption] = useState('');
+
   const [specFields, setSpecFields] = useState([{ key: '', value: '' }]);
 
   // Check permissions
@@ -49,10 +61,10 @@ export default function CreateProductPage() {
     }
   }, [isAdmin, isSuperAdmin, router]);
 
-  // Fetch categories and vendors
+  // Fetch categories and sections
   useEffect(() => {
     fetchCategories();
-    fetchVendors();
+    fetchSections();
   }, []);
 
   const fetchCategories = async () => {
@@ -70,18 +82,18 @@ export default function CreateProductPage() {
     }
   };
 
-  const fetchVendors = async () => {
+  const fetchSections = async () => {
     try {
       const { data, error } = await supabase
-        .from('vendors')
-        .select('id, business_name, verification_status')
-        .eq('verification_status', 'verified')
-        .order('business_name');
+        .from('home_sections')
+        .select('id, display_name, name, section_type')
+        .eq('is_active', true)
+        .order('sort_order');
 
       if (error) throw error;
-      setVendors(data || []);
+      setSections(data || []);
     } catch (error) {
-      console.error('Error fetching vendors:', error);
+      console.error('Error fetching sections:', error);
     }
   };
 
@@ -91,14 +103,124 @@ export default function CreateProductPage() {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+    
+    // Clear error for this field when user starts typing
+    if (errors[name]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  const handleCategoryChange = (categoryId) => {
+    setFormData(prev => {
+      const categoryIds = [...prev.category_ids];
+      const index = categoryIds.indexOf(categoryId);
+      
+      if (index > -1) {
+        // Remove category
+        categoryIds.splice(index, 1);
+        // If removed category was primary, set first remaining as primary
+        const newPrimary = categoryIds.length > 0 ? categoryIds[0] : '';
+        return {
+          ...prev,
+          category_ids: categoryIds,
+          primary_category_id: prev.primary_category_id === categoryId ? newPrimary : prev.primary_category_id
+        };
+      } else {
+        // Add category
+        const newCategoryIds = [...categoryIds, categoryId];
+        // If no primary category set, make this the primary
+        const newPrimary = prev.primary_category_id || categoryId;
+        return {
+          ...prev,
+          category_ids: newCategoryIds,
+          primary_category_id: newPrimary
+        };
+      }
+    });
+  };
+
+  const setPrimaryCategory = (categoryId) => {
+    setFormData(prev => ({
+      ...prev,
+      primary_category_id: categoryId
+    }));
+  };
+
+  const handleSectionChange = (sectionId) => {
+    setFormData(prev => {
+      const sectionIds = [...prev.section_ids];
+      const index = sectionIds.indexOf(sectionId);
+      
+      if (index > -1) {
+        // Remove section
+        sectionIds.splice(index, 1);
+      } else {
+        // Add section
+        sectionIds.push(sectionId);
+      }
+      
+      return {
+        ...prev,
+        section_ids: sectionIds
+      };
+    });
   };
 
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
-    const newPreviews = files.map(file => URL.createObjectURL(file));
-    
-    setImageFiles(prev => [...prev, ...files]);
-    setImagePreviews(prev => [...prev, ...newPreviews]);
+    const validFiles = [];
+    const validPreviews = [];
+    const errors = [];
+
+    files.forEach(file => {
+      // Validate file type (matching storage bucket allowed_mime_types)
+      const validTypes = [
+        'image/jpeg', 
+        'image/jpg', 
+        'image/png', 
+        'image/gif', 
+        'image/webp'
+      ];
+      if (!validTypes.includes(file.type)) {
+        errors.push(`"${file.name}" is not a valid image type. Please use JPEG, PNG, WebP, or GIF.`);
+        return;
+      }
+
+      // Validate file size (max 10MB - matching storage bucket file_size_limit)
+      const maxSize = 10 * 1024 * 1024; // 10MB (10485760 bytes)
+      if (file.size > maxSize) {
+        errors.push(`"${file.name}" is too large. Maximum size is 10MB.`);
+        return;
+      }
+
+      validFiles.push(file);
+      validPreviews.push(URL.createObjectURL(file));
+    });
+
+    if (errors.length > 0) {
+      alert(`Some images were rejected:\n\n${errors.join('\n')}`);
+      // Clear errors from state
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors.images;
+        return newErrors;
+      });
+    }
+
+    if (validFiles.length > 0) {
+      setImageFiles(prev => [...prev, ...validFiles]);
+      setImagePreviews(prev => [...prev, ...validPreviews]);
+      // Clear image error if images are added
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors.images;
+        return newErrors;
+      });
+    }
   };
 
   const removeImage = (index) => {
@@ -120,43 +242,209 @@ export default function CreateProductPage() {
     setSpecFields(specFields.filter((_, i) => i !== index));
   };
 
-  const uploadImages = async () => {
-    const uploadedUrls = [];
+  const addDeliveryOption = () => {
+    if (deliveryOption.trim()) {
+      setFormData(prev => ({
+        ...prev,
+        delivery_options: [...prev.delivery_options, deliveryOption.trim()]
+      }));
+      setDeliveryOption('');
+    }
+  };
 
-    for (const file of imageFiles) {
+  const removeDeliveryOption = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      delivery_options: prev.delivery_options.filter((_, i) => i !== index)
+    }));
+  };
+
+  const uploadImages = async () => {
+    if (imageFiles.length === 0) {
+      return [];
+    }
+
+    setUploadingImages(true);
+    const uploadedUrls = [];
+    const errors = [];
+
+    try {
+      for (let i = 0; i < imageFiles.length; i++) {
+        const file = imageFiles[i];
+        setSubmitProgress(`Uploading image ${i + 1} of ${imageFiles.length}...`);
+
+        // Validate file type (matching storage bucket allowed_mime_types)
+        const validTypes = [
+          'image/jpeg', 
+          'image/jpg', 
+          'image/png', 
+          'image/gif', 
+          'image/webp'
+        ];
+        if (!validTypes.includes(file.type)) {
+          errors.push(`File "${file.name}" is not a valid image type. Please use JPEG, PNG, WebP, or GIF.`);
+          continue;
+        }
+
+        // Validate file size (max 10MB - matching storage bucket file_size_limit: 10485760 bytes)
+        const maxSize = 10 * 1024 * 1024; // 10MB
+        if (file.size > maxSize) {
+          errors.push(`File "${file.name}" is too large. Maximum size is 10MB.`);
+          continue;
+        }
+
       const fileExt = file.name.split('.').pop();
       const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
       const filePath = `products/${fileName}`;
 
-      const { data, error } = await supabase.storage
+      const { data: uploadData, error } = await supabase.storage
         .from('product-images')
-        .upload(filePath, file);
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
 
       if (error) {
         console.error('Error uploading image:', error);
+        errors.push(`Failed to upload "${file.name}": ${error.message}`);
         continue;
       }
 
+      if (!uploadData || !uploadData.path) {
+        console.error('Upload succeeded but no path returned:', uploadData);
+        errors.push(`Upload succeeded for "${file.name}" but could not get file path.`);
+        continue;
+      }
+
+      // Use the path from the upload response, not the original filePath
       const { data: urlData } = supabase.storage
         .from('product-images')
-        .getPublicUrl(filePath);
+        .getPublicUrl(uploadData.path);
 
+      if (!urlData || !urlData.publicUrl) {
+        console.error('Could not get public URL for:', uploadData.path);
+        errors.push(`Could not get public URL for "${file.name}"`);
+        continue;
+      }
+
+      console.log(`✅ Image uploaded: ${file.name} -> ${urlData.publicUrl}`);
       uploadedUrls.push(urlData.publicUrl);
     }
 
+      if (errors.length > 0 && uploadedUrls.length === 0) {
+        throw new Error(`Image upload failed: ${errors.join(', ')}`);
+      }
+
+      if (errors.length > 0) {
+        console.warn('Some images failed to upload:', errors);
+        alert(`Warning: ${errors.length} image(s) failed to upload:\n${errors.join('\n')}`);
+      }
+
     return uploadedUrls;
+    } catch (error) {
+      console.error('Error in uploadImages:', error);
+      throw error;
+    } finally {
+      setUploadingImages(false);
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Validate required fields
+    if (!formData.name || formData.name.trim() === '') {
+      newErrors.name = 'Product name is required';
+    }
+
+    if (formData.category_ids.length === 0) {
+      newErrors.categories = 'Please select at least one category';
+    }
+
+    if (!formData.supplier_type || (formData.supplier_type !== 'supplier' && formData.supplier_type !== 'manufacturer')) {
+      newErrors.supplier_type = 'Please select either Supplier or Manufacturer';
+    }
+
+    if (!formData.price || isNaN(parseFloat(formData.price)) || parseFloat(formData.price) <= 0) {
+      newErrors.price = 'Valid price is required';
+    }
+
+    if (formData.compare_price && (isNaN(parseFloat(formData.compare_price)) || parseFloat(formData.compare_price) <= 0)) {
+      newErrors.compare_price = 'Compare price must be a valid number';
+    }
+
+    if (formData.compare_price && parseFloat(formData.compare_price) <= parseFloat(formData.price)) {
+      newErrors.compare_price = 'Compare price must be greater than regular price';
+    }
+
+    if (imageFiles.length === 0) {
+      newErrors.images = 'Please upload at least one product image';
+    }
+
+    if (formData.sku && formData.sku.trim() !== '') {
+      // Check if SKU already exists (optional validation)
+      // This could be done on the backend
+    }
+
+    setErrors(newErrors);
+    return { isValid: Object.keys(newErrors).length === 0, errors: newErrors };
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('🚀 Form submission started');
+    console.log('Form data:', formData);
+    console.log('Image files:', imageFiles.length);
+    
+    // Validate form
+    const validation = validateForm();
+    console.log('Validation result:', validation);
+    
+    if (!validation.isValid) {
+      console.error('❌ Validation failed:', validation.errors);
+      const errorMessages = Object.entries(validation.errors)
+        .map(([field, message]) => `${field}: ${message}`)
+        .join('\n');
+      alert(`Please fix the following errors:\n\n${errorMessages}`);
+      
+      // Scroll to first error
+      const firstErrorField = Object.keys(validation.errors)[0];
+      if (firstErrorField) {
+        const element = document.querySelector(`[name="${firstErrorField}"]`) || 
+                        document.querySelector(`#${firstErrorField}`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          element.focus();
+        }
+      }
+      return;
+    }
+    
+    console.log('✅ Validation passed, proceeding with submission...');
     
     try {
       setLoading(true);
+      setSubmitProgress('Starting product creation...');
 
       // Upload images
+      console.log('📷 Uploading images...');
+      setSubmitProgress('Uploading images...');
       const imageUrls = await uploadImages();
+      console.log('✅ Images uploaded:', imageUrls.length, 'files');
+      
+      if (imageUrls.length === 0 && imageFiles.length > 0) {
+        throw new Error('Failed to upload images. Please try again.');
+      }
+
+      // Check if user is authenticated
+      if (!user || !user.id) {
+        console.error('❌ User not authenticated');
+        throw new Error('You must be logged in to create a product. Please log in and try again.');
+      }
 
       // Prepare specifications
+      console.log('📋 Preparing specifications...');
+      setSubmitProgress('Preparing product data...');
       const specifications = {};
       specFields.forEach(field => {
         if (field.key && field.value) {
@@ -164,33 +452,129 @@ export default function CreateProductPage() {
         }
       });
 
-      // Prepare product data
+      // Prepare product data (use primary category for category_id for backward compatibility)
+      console.log('📦 Preparing product data...');
       const productData = {
-        ...formData,
+        name: formData.name,
+        description: formData.description,
+        category_id: formData.primary_category_id, // Primary category for backward compatibility
+        location: formData.location,
+        region: formData.region,
+        delivery: formData.delivery,
+        delivery_options: formData.delivery_options,
+        supplier_whatsapp: formData.supplier_whatsapp,
+        supplier_type: formData.supplier_type,
         images: imageUrls,
         specifications,
         price: parseFloat(formData.price),
         compare_price: formData.compare_price ? parseFloat(formData.compare_price) : null,
         stock_quantity: parseInt(formData.stock_quantity) || 0,
-        verified_by: user.id
+        sku: formData.sku,
+        is_featured: formData.is_featured,
+        is_active: formData.is_active,
+        verification_status: formData.verification_status,
+        verified_by: user.id,
+        admin_name: profile?.full_name || user.email || 'Admin' // Store admin name when admin creates product
       };
 
       // Insert product
-      const { data, error } = await supabase
+      setSubmitProgress('Creating product in database...');
+      console.log('Creating product with data:', {
+        ...productData,
+        images: imageUrls.length,
+        category_ids: formData.category_ids.length,
+        section_ids: formData.section_ids.length
+      });
+
+      const { data: product, error } = await supabase
         .from('products')
         .insert([productData])
         .select()
         .single();
 
-      if (error) throw error;
+      if (error) {
+        console.error('Product creation error:', error);
+        throw new Error(`Failed to create product: ${error.message}`);
+      }
 
-      alert('Product created successfully!');
+      console.log('Product created successfully:', product.id);
+
+      // Insert product-category relationships
+      setSubmitProgress('Linking categories...');
+      const categoryRelations = formData.category_ids.map((catId, index) => ({
+        product_id: product.id,
+        category_id: catId,
+        is_primary: catId === formData.primary_category_id,
+        sort_order: index
+      }));
+
+      const { error: categoryError } = await supabase
+        .from('product_categories')
+        .insert(categoryRelations);
+
+      if (categoryError) {
+        console.error('Error inserting categories:', categoryError);
+        throw new Error(`Product created but failed to link categories: ${categoryError.message}`);
+      }
+
+      console.log('Categories linked successfully');
+
+      // Insert product-section relationships
+      if (formData.section_ids.length > 0) {
+        setSubmitProgress('Linking homepage sections...');
+        const sectionRelations = formData.section_ids.map((sectionId, index) => ({
+          product_id: product.id,
+          section_id: sectionId,
+          sort_order: index,
+          is_pinned: false
+        }));
+
+        const { error: sectionError } = await supabase
+          .from('product_section_placements')
+          .insert(sectionRelations);
+
+        if (sectionError) {
+          console.error('Error inserting sections:', sectionError);
+          // Non-critical error - product is created, just log it
+          console.warn('Product created but sections linking failed:', sectionError.message);
+        } else {
+          console.log('Sections linked successfully');
+        }
+      }
+
+      setSubmitProgress('Product created successfully!');
+      console.log('✅ Product creation complete:', {
+        productId: product.id,
+        name: product.name,
+        categories: formData.category_ids.length,
+        sections: formData.section_ids.length,
+        images: imageUrls.length
+      });
+
+      alert(`Product "${product.name}" created successfully!\n\n- Categories: ${formData.category_ids.length}\n- Sections: ${formData.section_ids.length}\n- Images: ${imageUrls.length}`);
       router.push('/admin/products');
     } catch (error) {
-      console.error('Error creating product:', error);
-      alert('Failed to create product: ' + error.message);
+      console.error('❌ Error creating product:', error);
+      setSubmitProgress('');
+      const errorMessage = error.message || 'An unknown error occurred';
+      alert(`Failed to create product:\n\n${errorMessage}\n\nPlease check the console for more details.`);
+      
+      // Log full error details for debugging
+      console.error('Full error details:', {
+        error,
+        formData: {
+          ...formData,
+          category_ids: formData.category_ids.length,
+          section_ids: formData.section_ids.length,
+          delivery_options: formData.delivery_options.length
+        },
+        imageFilesCount: imageFiles.length,
+        specFieldsCount: specFields.length
+      });
     } finally {
       setLoading(false);
+      setUploadingImages(false);
+      setSubmitProgress('');
     }
   };
 
@@ -227,7 +611,9 @@ export default function CreateProductPage() {
                 onChange={handleInputChange}
                 required
                 placeholder="Enter product name"
+                className={errors.name ? 'error' : ''}
               />
+              {errors.name && <span className="field-error-text">{errors.name}</span>}
             </div>
 
             <div className="form-group">
@@ -242,39 +628,197 @@ export default function CreateProductPage() {
               />
             </div>
 
+            <div className="form-group">
+              <label htmlFor="category-search">Categories *</label>
+              <div className="category-selection-wrapper">
+                {/* Selected Categories Summary */}
+                {formData.category_ids.length > 0 && (
+                  <div className="selected-categories-summary">
+                    <div className="summary-header">
+                      <span className="summary-count">
+                        {formData.category_ids.length} {formData.category_ids.length === 1 ? 'Category' : 'Categories'} Selected
+                      </span>
+                      {formData.primary_category_id && (
+                        <span className="primary-badge">
+                          <span className="star-icon">★</span>
+                          Primary: {categories.find(c => c.id === formData.primary_category_id)?.name}
+                        </span>
+                      )}
+                    </div>
+                    <div className="selected-categories-tags">
+                      {formData.category_ids.map(catId => {
+                        const cat = categories.find(c => c.id === catId);
+                        const isPrimary = catId === formData.primary_category_id;
+                        return cat ? (
+                          <div key={catId} className={`category-tag ${isPrimary ? 'primary' : ''}`}>
+                            <span>{cat.name}</span>
+                            {isPrimary && <span className="tag-star">★</span>}
+                            <button
+                              type="button"
+                              className="tag-remove"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleCategoryChange(catId);
+                              }}
+                              title="Remove category"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        ) : null;
+                      })}
+                    </div>
+                  </div>
+                )}
+                
+                {/* Category Selection Area */}
+                <div className="category-selection">
+                  <div className="category-grid">
+                    {categories.map(cat => {
+                      const isSelected = formData.category_ids.includes(cat.id);
+                      const isPrimary = formData.primary_category_id === cat.id;
+                      return (
+                        <div
+                          key={cat.id}
+                          className={`category-card ${isSelected ? 'selected' : ''} ${isPrimary ? 'primary' : ''}`}
+                          onClick={() => handleCategoryChange(cat.id)}
+                        >
+                          <div className="category-card-content">
+                            <input
+                              type="checkbox"
+                              checked={isSelected}
+                              onChange={() => handleCategoryChange(cat.id)}
+                              className="category-checkbox"
+                            />
+                            <span className="category-name">{cat.name}</span>
+                            {isSelected && (
+                              <button
+                                type="button"
+                                className={`primary-category-btn ${isPrimary ? 'active' : ''}`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setPrimaryCategory(cat.id);
+                                }}
+                                title={isPrimary ? 'Primary Category' : 'Set as Primary'}
+                              >
+                                {isPrimary ? '★' : '☆'}
+                              </button>
+                            )}
+                          </div>
+                          {isPrimary && (
+                            <div className="primary-indicator">Primary Category</div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {formData.category_ids.length === 0 && (
+                    <div className="category-error-message">
+                      <span className="error-icon">⚠</span>
+                      {errors.categories || 'Please select at least one category'}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="section-search">Homepage Sections (Optional)</label>
+              <div className="category-selection-wrapper">
+                {/* Selected Sections Summary */}
+                {formData.section_ids.length > 0 && (
+                  <div className="selected-categories-summary">
+                    <div className="summary-header">
+                      <span className="summary-count">
+                        {formData.section_ids.length} {formData.section_ids.length === 1 ? 'Section' : 'Sections'} Selected
+                      </span>
+                    </div>
+                    <div className="selected-categories-tags">
+                      {formData.section_ids.map(sectionId => {
+                        const section = sections.find(s => s.id === sectionId);
+                        return section ? (
+                          <div key={sectionId} className="category-tag">
+                            <span>{section.display_name}</span>
+                            <button
+                              type="button"
+                              className="tag-remove"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleSectionChange(sectionId);
+                              }}
+                              title="Remove section"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        ) : null;
+                      })}
+                    </div>
+                  </div>
+                )}
+                
+                {/* Section Selection Area */}
+                <div className="category-selection">
+                  <div className="category-grid">
+                    {sections.map(section => {
+                      const isSelected = formData.section_ids.includes(section.id);
+                      return (
+                        <div
+                          key={section.id}
+                          className={`category-card ${isSelected ? 'selected' : ''}`}
+                          onClick={() => handleSectionChange(section.id)}
+                        >
+                          <div className="category-card-content">
+                            <input
+                              type="checkbox"
+                              checked={isSelected}
+                              onChange={() => handleSectionChange(section.id)}
+                              className="category-checkbox"
+                            />
+                            <span className="category-name">{section.display_name}</span>
+                            <span className="section-type-badge" style={{ fontSize: '11px', padding: '2px 6px', marginLeft: 'auto' }}>
+                              {section.section_type}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {sections.length === 0 && (
+                    <div className="category-error-message" style={{ color: '#64748b' }}>
+                      <span className="error-icon">ℹ</span>
+                      No active sections available. Create sections in the Sections management page.
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="category_id">Category *</label>
-                <select
-                  id="category_id"
-                  name="category_id"
-                  value={formData.category_id}
+                <label htmlFor="location">Location *</label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  value={formData.location}
                   onChange={handleInputChange}
                   required
-                >
-                  <option value="">Select Category</option>
-                  {categories.map(cat => (
-                    <option key={cat.id} value={cat.id}>{cat.name}</option>
-                  ))}
-                </select>
+                  placeholder="e.g., Accra, Kumasi"
+                />
               </div>
 
               <div className="form-group">
-                <label htmlFor="vendor_id">Vendor *</label>
-                <select
-                  id="vendor_id"
-                  name="vendor_id"
-                  value={formData.vendor_id}
+                <label htmlFor="region">Region *</label>
+                <input
+                  type="text"
+                  id="region"
+                  name="region"
+                  value={formData.region}
                   onChange={handleInputChange}
                   required
-                >
-                  <option value="">Select Vendor</option>
-                  {vendors.map(vendor => (
-                    <option key={vendor.id} value={vendor.id}>
-                      {vendor.business_name}
-                    </option>
-                  ))}
-                </select>
+                  placeholder="e.g., Greater Accra, Ashanti"
+                />
               </div>
             </div>
 
@@ -288,6 +832,21 @@ export default function CreateProductPage() {
                 onChange={handleInputChange}
                 placeholder="Enter SKU"
               />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="supplier_whatsapp">Supplier WhatsApp Link</label>
+              <input
+                type="url"
+                id="supplier_whatsapp"
+                name="supplier_whatsapp"
+                value={formData.supplier_whatsapp}
+                onChange={handleInputChange}
+                placeholder="https://wa.me/233XXXXXXXXX"
+              />
+              <small style={{ color: '#64748b', fontSize: '12px', marginTop: '4px', display: 'block' }}>
+                Format: https://wa.me/233XXXXXXXXX (include country code)
+              </small>
             </div>
           </div>
 
@@ -310,8 +869,10 @@ export default function CreateProductPage() {
                     step="0.01"
                     min="0"
                     placeholder="0.00"
+                    className={errors.price ? 'error' : ''}
                   />
                 </div>
+                {errors.price && <span className="field-error-text">{errors.price}</span>}
               </div>
 
               <div className="form-group">
@@ -327,8 +888,10 @@ export default function CreateProductPage() {
                     step="0.01"
                     min="0"
                     placeholder="0.00"
+                    className={errors.compare_price ? 'error' : ''}
                   />
                 </div>
+                {errors.compare_price && <span className="field-error-text">{errors.compare_price}</span>}
               </div>
             </div>
 
@@ -359,39 +922,135 @@ export default function CreateProductPage() {
               </select>
             </div>
 
-            <div className="form-checkboxes">
-              <label className="checkbox-label">
+            <div className="form-group">
+              <label>Product Status</label>
+              <div className="status-checkboxes">
+                <label className={`status-checkbox ${formData.is_featured ? 'checked' : ''}`}>
                 <input
                   type="checkbox"
                   name="is_featured"
                   checked={formData.is_featured}
                   onChange={handleInputChange}
                 />
-                <span>Featured Product</span>
+                  <div className="checkbox-custom">
+                    <svg className="checkbox-icon" viewBox="0 0 20 20" fill="none">
+                      <path
+                        d="M16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711L8.70711 14.7071C8.31658 15.0976 7.68342 15.0976 7.29289 14.7071L3.29289 10.7071C2.90237 10.3166 2.90237 9.68342 3.29289 9.29289C3.68342 8.90237 4.31658 8.90237 4.70711 9.29289L8 12.5858L15.2929 5.29289C15.6834 4.90237 16.3166 4.90237 16.7071 5.29289Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <div className="checkbox-content">
+                    <span className="checkbox-label-text">Featured Product</span>
+                    <span className="checkbox-description">Show this product prominently on the homepage</span>
+                  </div>
               </label>
 
+                <label className={`status-checkbox ${formData.is_active ? 'checked' : ''}`}>
+                  <input
+                    type="checkbox"
+                    name="is_active"
+                    checked={formData.is_active}
+                    onChange={handleInputChange}
+                  />
+                  <div className="checkbox-custom">
+                    <svg className="checkbox-icon" viewBox="0 0 20 20" fill="none">
+                      <path
+                        d="M16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711L8.70711 14.7071C8.31658 15.0976 7.68342 15.0976 7.29289 14.7071L3.29289 10.7071C2.90237 10.3166 2.90237 9.68342 3.29289 9.29289C3.68342 8.90237 4.31658 8.90237 4.70711 9.29289L8 12.5858L15.2929 5.29289C15.6834 4.90237 16.3166 4.90237 16.7071 5.29289Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <div className="checkbox-content">
+                    <span className="checkbox-label-text">Active</span>
+                    <span className="checkbox-description">Product will be visible to customers</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          {/* Delivery Information */}
+          <div className="form-section">
+            <h3>Delivery Information</h3>
+
+            <div className="form-group">
               <label className="checkbox-label">
                 <input
                   type="checkbox"
-                  name="is_active"
-                  checked={formData.is_active}
+                  name="delivery"
+                  checked={formData.delivery}
                   onChange={handleInputChange}
                 />
-                <span>Active</span>
+                <span>Delivery Available</span>
               </label>
             </div>
+
+            {formData.delivery && (
+              <div className="form-group">
+                <label>Delivery Options</label>
+                <div className="spec-fields">
+                  <div className="spec-field-row">
+                    <input
+                      type="text"
+                      placeholder="e.g., Standard Delivery (3-5 days)"
+                      value={deliveryOption}
+                      onChange={(e) => setDeliveryOption(e.target.value)}
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          addDeliveryOption();
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      className="btn-secondary-sm"
+                      onClick={addDeliveryOption}
+                    >
+                      <Plus size={16} />
+                      Add Option
+                    </button>
+                  </div>
+                  {formData.delivery_options.map((option, index) => (
+                    <div key={index} className="spec-field-row">
+                      <input
+                        type="text"
+                        value={option}
+                        readOnly
+                        style={{ background: '#f8fafc' }}
+                      />
+                      <button
+                        type="button"
+                        className="btn-icon danger"
+                        onClick={() => removeDeliveryOption(index)}
+                      >
+                        <Minus size={16} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Product Images */}
         <div className="form-section">
-          <h3>Product Images</h3>
+          <h3>Product Images *</h3>
+          
+          {errors.images && (
+            <div className="category-error-message" style={{ marginBottom: '12px' }}>
+              <span className="error-icon">⚠</span>
+              {errors.images}
+            </div>
+          )}
           
           <div className="image-upload-area">
             <label htmlFor="images" className="upload-label">
               <ImageIcon size={48} />
               <p>Click to upload images</p>
-              <span>PNG, JPG, GIF up to 10MB</span>
+              <span>PNG, JPG, GIF, WebP up to 10MB each</span>
               <input
                 type="file"
                 id="images"
@@ -407,15 +1066,29 @@ export default function CreateProductPage() {
                 {imagePreviews.map((preview, index) => (
                   <div key={index} className="image-preview">
                     <img src={preview} alt={`Preview ${index + 1}`} />
+                    <div className="image-preview-info">
+                      <span className="image-number">{index + 1}</span>
+                      {imageFiles[index] && (
+                        <span className="image-size">
+                          {(imageFiles[index].size / 1024 / 1024).toFixed(2)} MB
+                        </span>
+                      )}
+                    </div>
                     <button
                       type="button"
                       className="remove-image"
                       onClick={() => removeImage(index)}
+                      title="Remove image"
                     >
                       <X size={16} />
                     </button>
                   </div>
                 ))}
+              </div>
+            )}
+            {imageFiles.length > 0 && (
+              <div style={{ marginTop: '8px', fontSize: '12px', color: '#64748b' }}>
+                {imageFiles.length} image{imageFiles.length !== 1 ? 's' : ''} selected
               </div>
             )}
           </div>
@@ -464,25 +1137,103 @@ export default function CreateProductPage() {
           </div>
         </div>
 
+        {/* Supplier/Manufacturer Selection */}
+        <div className="form-section">
+          <h3>Product Source *</h3>
+          <div className="form-group">
+            <label className="required-label">Select Product Source</label>
+            <div className="supplier-type-options">
+              <label className={`supplier-type-option ${formData.supplier_type === 'supplier' ? 'selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="supplier_type"
+                  value="supplier"
+                  checked={formData.supplier_type === 'supplier'}
+                  onChange={handleInputChange}
+                  required
+                />
+                <div className="option-content">
+                  <div className="option-icon supplier-icon">
+                    <Package size={24} />
+                  </div>
+                  <div className="option-details">
+                    <span className="option-title">Supplier</span>
+                    <span className="option-description">Product from a supplier/distributor</span>
+                  </div>
+                </div>
+              </label>
+
+              <label className={`supplier-type-option ${formData.supplier_type === 'manufacturer' ? 'selected' : ''}`}>
+                <input
+                  type="radio"
+                  name="supplier_type"
+                  value="manufacturer"
+                  checked={formData.supplier_type === 'manufacturer'}
+                  onChange={handleInputChange}
+                  required
+                />
+                <div className="option-content">
+                  <div className="option-icon manufacturer-icon">
+                    <Package size={24} />
+                  </div>
+                  <div className="option-details">
+                    <span className="option-title">Manufacturer</span>
+                    <span className="option-description">Product directly from manufacturer</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+            {errors.supplier_type && (
+              <p className="field-error">{errors.supplier_type}</p>
+            )}
+            {!formData.supplier_type && !errors.supplier_type && (
+              <p className="field-error">Please select either Supplier or Manufacturer</p>
+            )}
+          </div>
+        </div>
+
+        {/* Progress Indicator */}
+        {submitProgress && (
+          <div className="submit-progress" style={{
+            padding: '12px 16px',
+            background: '#f0fdf4',
+            border: '1px solid #10b981',
+            borderRadius: '8px',
+            marginBottom: '16px',
+            color: '#065f46',
+            fontSize: '14px',
+            fontWeight: '500'
+          }}>
+            {submitProgress}
+          </div>
+        )}
+
         {/* Form Actions */}
         <div className="form-actions">
           <button
             type="button"
             className="btn-secondary"
             onClick={() => router.back()}
-            disabled={loading}
+            disabled={loading || uploadingImages}
           >
             Cancel
           </button>
           <button
             type="submit"
             className="btn-primary"
-            disabled={loading}
+            disabled={loading || uploadingImages}
+            onClick={(e) => {
+              console.log('🔘 Create Product button clicked');
+              console.log('Button disabled?', loading || uploadingImages);
+              console.log('Loading state:', loading);
+              console.log('Uploading images state:', uploadingImages);
+              // Let the form's onSubmit handle it
+            }}
           >
-            {loading ? (
+            {loading || uploadingImages ? (
               <>
                 <div className="spinner-sm"></div>
-                Creating...
+                {uploadingImages ? 'Uploading Images...' : submitProgress || 'Creating...'}
               </>
             ) : (
               <>

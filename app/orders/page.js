@@ -1,79 +1,111 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../context/AuthContext';
 import BottomNav from '../components/BottomNav';
+import Header from '../components/Header';
 import { Package, ArrowLeft, Clock, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { fetchUserOrders } from '../utils/fetchUserOrders';
+import { SITE_LOGO_SVG } from '../utils/siteLogo';
+import '../styles/orders.css';
 
 export default function OrdersPage() {
-  // Mock orders data
-  const pendingOrders = [
-    {
-      id: 'ORD001',
-      date: '2024-11-25',
-      items: 3,
-      total: 89.97,
-      status: 'Processing'
-    },
-    {
-      id: 'ORD002',
-      date: '2024-11-24',
-      items: 1,
-      total: 45.99,
-      status: 'Shipped'
-    }
-  ];
+  const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const completedOrders = [
-    {
-      id: 'ORD003',
-      date: '2024-11-20',
-      items: 2,
-      total: 67.98,
-      status: 'Delivered'
-    },
-    {
-      id: 'ORD004',
-      date: '2024-11-15',
-      items: 4,
-      total: 123.96,
-      status: 'Delivered'
+  // Check authentication
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push('/auth/login?redirect=/orders');
     }
-  ];
+  }, [user, authLoading, router]);
 
-  const OrderCard = ({ order, isPending }) => (
-    <div className="order-card" style={{
-      background: 'var(--background)',
-      border: '1px solid var(--border-color)',
-      borderRadius: '12px',
-      padding: '16px',
-      marginBottom: '12px',
-      boxShadow: 'var(--shadow-color)',
-      transition: 'transform 0.2s'
-    }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-        <span style={{ fontWeight: '600', color: 'var(--text-dark)' }}>Order #{order.id}</span>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-          {isPending ? <Clock size={16} color="#FFA500" /> : <CheckCircle size={16} color="#10B981" />}
-          <span style={{ fontSize: '12px', color: isPending ? '#FFA500' : '#10B981' }}>{order.status}</span>
+  // Fetch orders when user is authenticated
+  useEffect(() => {
+    if (user && !authLoading) {
+      loadOrders();
+    }
+  }, [user, authLoading]);
+
+  const loadOrders = async () => {
+    try {
+      setLoading(true);
+      const userOrders = await fetchUserOrders(user.id);
+      setOrders(userOrders);
+    } catch (error) {
+      console.error('Error loading orders:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Separate orders by status
+  const pendingOrders = orders.filter(order => 
+    ['pending', 'processing', 'shipped', 'verified'].includes(order.status.toLowerCase())
+  );
+
+  const completedOrders = orders.filter(order => 
+    order.status.toLowerCase() === 'delivered'
+  );
+
+  const cancelledOrders = orders.filter(order => 
+    ['cancelled', 'disputed'].includes(order.status.toLowerCase())
+  );
+
+  const getStatusIcon = (status) => {
+    const statusLower = status.toLowerCase();
+    if (statusLower === 'delivered') return <CheckCircle size={16} />;
+    if (['pending', 'processing', 'shipped', 'verified'].includes(statusLower)) return <Clock size={16} />;
+    return <Package size={16} />;
+  };
+
+  const getStatusBadgeClass = (status) => {
+    const statusLower = status.toLowerCase();
+    if (statusLower === 'delivered') return 'delivered';
+    if (statusLower === 'pending') return 'pending';
+    if (statusLower === 'processing') return 'processing';
+    if (statusLower === 'shipped') return 'shipped';
+    if (statusLower === 'cancelled') return 'cancelled';
+    if (statusLower === 'disputed') return 'disputed';
+    if (statusLower === 'verified') return 'verified';
+    return 'pending';
+  };
+
+  const OrderCard = ({ order }) => (
+    <div 
+      className="order-card"
+      onClick={() => router.push(`/orders/${order.id}`)}
+    >
+      <div className="order-card-header">
+        <span className="order-number">Order #{order.orderNumber || order.id.slice(0, 8)}</span>
+        <div className={`order-status-badge ${getStatusBadgeClass(order.status)}`}>
+          {getStatusIcon(order.status)}
+          <span>{order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span>
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div>
-          <p style={{ margin: '0', fontSize: '14px', color: 'var(--text-gray)' }}>{order.date}</p>
-          <p style={{ margin: '0', fontSize: '14px', color: 'var(--text-gray)' }}>{order.items} item{order.items !== 1 ? 's' : ''}</p>
+      <div className="order-card-body">
+        <div className="order-info">
+          <p className="order-date">{order.date}</p>
+          <p className="order-items">
+            {order.itemCount} {order.itemCount === 1 ? 'item' : 'items'}
+          </p>
+          {order.vendor && (
+            <p className="order-vendor">From: {order.vendor.business_name || 'Vendor'}</p>
+          )}
         </div>
-        <div style={{ textAlign: 'right' }}>
-          <p style={{ margin: '0', fontWeight: '600', color: 'var(--text-dark)' }}>${order.total}</p>
-          <button style={{
-            background: 'var(--primary-color)',
-            color: 'white',
-            border: 'none',
-            padding: '6px 12px',
-            borderRadius: '6px',
-            fontSize: '12px',
-            cursor: 'pointer',
-            marginTop: '4px'
-          }}>
+        <div className="order-amount">
+          <p className="order-total">₵{order.total.toFixed(2)}</p>
+          <button 
+            className="view-details-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(`/orders/${order.id}`);
+            }}
+          >
             View Details
           </button>
         </div>
@@ -81,95 +113,101 @@ export default function OrdersPage() {
     </div>
   );
 
+  // Show loading state
+  if (authLoading || loading) {
+    return (
+      <div className="orders-page">
+        <Header />
+        <div className="orders-container">
+          <div className="loading-container">
+            <img 
+              src={SITE_LOGO_SVG} 
+              alt="Loading" 
+              className="loading-logo"
+            />
+            <p className="loading-text">Loading orders...</p>
+          </div>
+        </div>
+        <BottomNav />
+      </div>
+    );
+  }
+
+  // Show login prompt if not authenticated
+  if (!user) {
+    return null; // Will redirect to login
+  }
+
   return (
-    <div className="page-content">
-      <div className="container" style={{ paddingTop: '20px' }}>
-        <div className="orders-header" style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '24px'
-        }}>
-          <Link href="/" className="back-link" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            color: 'var(--text-dark)',
-            textDecoration: 'none'
-          }}>
-            <ArrowLeft size={16} />
-            Back to Shopping
+    <div className="orders-page">
+      <Header />
+      <div className="orders-container">
+        <div className="orders-header">
+          <Link href="/" className="back-link">
+            <ArrowLeft size={18} />
+            <span>Back to Shopping</span>
           </Link>
-          <h1 className="orders-title" style={{
-            margin: '0',
-            color: 'var(--text-dark)',
-            fontSize: '24px',
-            fontWeight: '600'
-          }}>
-            My Orders
-          </h1>
-          <div></div> {/* Spacer */}
+          <h1 className="orders-title">My Orders</h1>
+          <div style={{ width: '120px' }}></div> {/* Spacer for alignment */}
         </div>
 
         {/* Pending Orders */}
-        <div className="orders-section">
-          <h2 style={{
-            marginBottom: '16px',
-            color: 'var(--text-dark)',
-            fontSize: '18px',
-            fontWeight: '600',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}>
-            <Clock size={20} color="#FFA500" />
-            Pending Orders ({pendingOrders.length})
-          </h2>
-          {pendingOrders.length === 0 ? (
-            <div style={{
-              textAlign: 'center',
-              padding: '40px 20px',
-              color: 'var(--text-gray)'
-            }}>
-              <Package size={48} style={{ marginBottom: '16px', opacity: 0.5 }} />
-              <p>No pending orders</p>
-            </div>
-          ) : (
-            pendingOrders.map(order => (
-              <OrderCard key={order.id} order={order} isPending={true} />
-            ))
-          )}
-        </div>
+        {pendingOrders.length > 0 && (
+          <div className="orders-section">
+            <h2 className="section-title">
+              <Clock size={20} color="#d97706" />
+              <span>Active Orders ({pendingOrders.length})</span>
+            </h2>
+            {pendingOrders.map(order => (
+              <OrderCard key={order.id} order={order} />
+            ))}
+          </div>
+        )}
 
         {/* Completed Orders */}
-        <div className="orders-section" style={{ marginTop: '32px' }}>
-          <h2 style={{
-            marginBottom: '16px',
-            color: 'var(--text-dark)',
-            fontSize: '18px',
-            fontWeight: '600',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}>
-            <CheckCircle size={20} color="#10B981" />
-            Completed Orders ({completedOrders.length})
-          </h2>
-          {completedOrders.length === 0 ? (
-            <div style={{
-              textAlign: 'center',
-              padding: '40px 20px',
-              color: 'var(--text-gray)'
-            }}>
-              <Package size={48} style={{ marginBottom: '16px', opacity: 0.5 }} />
-              <p>No completed orders yet</p>
-            </div>
-          ) : (
-            completedOrders.map(order => (
-              <OrderCard key={order.id} order={order} isPending={false} />
-            ))
-          )}
-        </div>
+        {completedOrders.length > 0 && (
+          <div className="orders-section">
+            <h2 className="section-title">
+              <CheckCircle size={20} color="#059669" />
+              <span>Completed Orders ({completedOrders.length})</span>
+            </h2>
+            {completedOrders.map(order => (
+              <OrderCard key={order.id} order={order} />
+            ))}
+          </div>
+        )}
+
+        {/* Cancelled/Disputed Orders */}
+        {cancelledOrders.length > 0 && (
+          <div className="orders-section">
+            <h2 className="section-title">
+              <Package size={20} color="#dc2626" />
+              <span>Cancelled Orders ({cancelledOrders.length})</span>
+            </h2>
+            {cancelledOrders.map(order => (
+              <OrderCard key={order.id} order={order} />
+            ))}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {orders.length === 0 && !loading && (
+          <div className="empty-state">
+            <Package size={64} className="empty-state-icon" />
+            <p className="empty-state-text">You haven't placed any orders yet</p>
+            <Link 
+              href="/" 
+              className="view-details-btn"
+              style={{ 
+                display: 'inline-block', 
+                marginTop: '20px',
+                textDecoration: 'none'
+              }}
+            >
+              Start Shopping
+            </Link>
+          </div>
+        )}
       </div>
       <BottomNav />
     </div>

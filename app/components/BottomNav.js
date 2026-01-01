@@ -2,14 +2,15 @@
 
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { useState } from 'react';
 import ProfileModal from './ProfileModal';
 import { useProfile } from '../context/ProfileContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function BottomNav() {
   const pathname = usePathname();
   const isCartPage = pathname === '/cart';
   const { isProfileOpen, toggleProfile, closeProfile } = useProfile();
+  const { isAuthenticated } = useAuth();
 
   const navItems = [
     { 

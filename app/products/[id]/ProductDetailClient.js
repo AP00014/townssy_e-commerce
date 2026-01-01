@@ -3,55 +3,114 @@
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useEffect, useMemo } from 'react';
-import { featuredProducts, topProducts, accessories, newArrivals, hotProducts, topRated, bestSelling, luxuryProducts, ecoProducts, travelEssentials, securityProducts, topDeals, gridProducts } from '../../data/products.js';
+import { supabase } from '../../../lib/supabase';
+import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
+import { formatPrice } from '../../utils/currency';
 import ProductCard from '../../components/ProductCard.js';
-import { ChevronLeft, Heart, Share2, Star, Truck, Calendar, RotateCcw, ShieldCheck, MessageCircle } from 'lucide-react';
+import { SITE_LOGO_SVG } from '../../utils/siteLogo';
+import { ChevronLeft, Heart, Share2, Star, Truck, Calendar, RotateCcw, ShieldCheck, MessageCircle, ShoppingCart, Loader2 } from 'lucide-react';
 
-// Function to find similar products based on category and tags
-function getSimilarProducts(currentProduct) {
-  const allProducts = [
-    ...featuredProducts,
-    ...topProducts,
-    ...accessories,
-    ...newArrivals,
-    ...hotProducts,
-    ...topRated,
-    ...bestSelling,
-    ...luxuryProducts,
-    ...ecoProducts,
-    ...travelEssentials,
-    ...securityProducts,
-    ...topDeals,
-    ...gridProducts
-  ];
+// Function to fetch similar products from database
+async function getSimilarProducts(currentProduct) {
+  try {
+    if (!currentProduct.category?.id) return [];
 
-  // Filter products that match category or have common tags, excluding current product
-  const similarProducts = allProducts.filter(p => {
-    if (p.id === currentProduct.id) return false;
+    const { data, error } = await supabase
+      .from('products')
+      .select(`
+        id,
+        name,
+        price,
+        compare_price,
+        images,
+        is_featured,
+        category:categories(id, name, slug)
+      `)
+      .eq('category_id', currentProduct.category.id)
+      .eq('is_active', true)
+      .eq('verification_status', 'approved')
+      .neq('id', currentProduct.id)
+      .limit(4);
 
-    const categoryMatch = p.category === currentProduct.category;
-    const tagMatch = p.tags && currentProduct.tags &&
-      p.tags.some(tag => currentProduct.tags.includes(tag));
+    if (error) throw error;
 
-    return categoryMatch || tagMatch;
-  });
-
-  // Return up to 4 similar products
-  return similarProducts.slice(0, 4);
+    return (data || []).map(p => ({
+      id: p.id,
+      title: p.name,
+      currentPrice: parseFloat(p.price),
+      originalPrice: p.compare_price ? parseFloat(p.compare_price) : null,
+      image: p.images && Array.isArray(p.images) && p.images.length > 0 ? p.images[0] : '/placeholder-product.jpg',
+      isFavorite: false,
+      badge: p.is_featured ? 'Featured' : null
+    }));
+  } catch (error) {
+    console.error('Error fetching similar products:', error);
+    return [];
+  }
 }
 
 export default function ProductDetailClient({ product }) {
    const router = useRouter();
+   const { isAuthenticated, user } = useAuth();
+   const { addToCart, cartItems } = useCart();
    const [currentImageIndex, setCurrentImageIndex] = useState(0);
    const [isFavorite, setIsFavorite] = useState(false);
    const [isAutoSliding, setIsAutoSliding] = useState(true);
    const [isVideoPlaying, setIsVideoPlaying] = useState(false);
    const [selectedSize, setSelectedSize] = useState(null);
+   const [similarProducts, setSimilarProducts] = useState([]);
+   const [loadingSimilar, setLoadingSimilar] = useState(true);
+   const [addingToCart, setAddingToCart] = useState(false);
+   const [cartSuccess, setCartSuccess] = useState(false);
+
+   // Normalize product data (handle both old and new formats)
+   const normalizedProduct = useMemo(() => {
+     return {
+       id: product.id,
+       title: product.name || product.title,
+       name: product.name || product.title,
+       description: product.description || '',
+       price: product.price || product.currentPrice,
+       comparePrice: product.comparePrice || product.originalPrice,
+       images: product.images || [],
+       location: product.location,
+       region: product.region,
+       delivery: product.delivery,
+       deliveryOptions: product.deliveryOptions || product.delivery_options || [],
+       supplierWhatsapp: product.supplierWhatsapp || product.supplier_whatsapp,
+       supplierType: product.supplierType || product.supplier_type,
+       specifications: product.specifications || {},
+       stockQuantity: product.stockQuantity || product.stock_quantity || 0,
+       sku: product.sku,
+       category: product.category,
+       vendor: product.vendor,
+       adminCreator: product.adminCreator,
+       isAdminCreated: product.isAdminCreated,
+       vendorId: product.vendorId,
+       vendorName: product.vendorName,
+       adminName: product.adminName,
+       isFeatured: product.isFeatured || product.is_featured,
+       viewCount: product.viewCount || product.view_count || 0,
+       salesCount: product.salesCount || product.sales_count || 0
+     };
+   }, [product]);
+
+   // Fetch similar products
+   useEffect(() => {
+     const loadSimilar = async () => {
+       setLoadingSimilar(true);
+       const similar = await getSimilarProducts(normalizedProduct);
+       setSimilarProducts(similar);
+       setLoadingSimilar(false);
+     };
+     loadSimilar();
+   }, [normalizedProduct.id]);
 
   // Get media array (support both old images and new media format)
   const mediaItems = useMemo(() => {
-    return product?.media || product?.images?.map(url => ({ type: 'image', url })) || [];
-  }, [product]);
+    return normalizedProduct?.media || normalizedProduct?.images?.map(url => ({ type: 'image', url })) || [];
+  }, [normalizedProduct]);
 
   // Auto-slide media
   useEffect(() => {
@@ -105,8 +164,8 @@ export default function ProductDetailClient({ product }) {
             />
           ) : (
             <img
-              src={mediaItems[currentImageIndex]?.url}
-              alt={product.title}
+              src={mediaItems[currentImageIndex]?.url || '/placeholder-product.jpg'}
+              alt={normalizedProduct.title}
               className="product-main-image"
             />
           )}
@@ -124,82 +183,189 @@ export default function ProductDetailClient({ product }) {
 
       {/* Product Details Card */}
       <div className="product-details-card">
-        <h1 className="product-detail-title">{product.title}</h1>
+        <h1 className="product-detail-title">{normalizedProduct.title}</h1>
 
         {/* Product Labels */}
-        {product.labels && product.labels.length > 0 && (
+        {normalizedProduct.isFeatured && (
           <div className="product-labels">
-            {product.labels.map((label, index) => (
-              <span key={index} className={`product-label label-${label.type}`}>
-                {label.text}
-              </span>
-            ))}
+            <span className="product-label label-featured">
+              Featured
+            </span>
           </div>
         )}
 
-        {/* Vendor Info (Mocked for now) */}
-        <div className="product-vendor-info" style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '12px', 
-          margin: '12px 0', 
-          padding: '12px', 
-          background: '#f9fafb', 
-          borderRadius: '8px',
-          border: '1px solid #eee'
-        }}>
-          <img 
-            src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=50&h=50&fit=crop" 
-            alt="Vendor Logo" 
-            style={{ width: '40px', height: '40px', borderRadius: '4px', objectFit: 'cover' }}
-          />
-          <div style={{ flex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Link href="/vendor/v1" style={{ fontWeight: '600', color: '#333', textDecoration: 'none' }}>
-                Shenzhen Tech-Star Electronics
-              </Link>
-              <span style={{ fontSize: '10px', background: '#fff7e6', color: '#d48806', padding: '2px 6px', borderRadius: '4px', border: '1px solid #ffd591' }}>
-                Gold Supplier
-              </span>
+        {/* Vendor/Store Info */}
+        {normalizedProduct.isAdminCreated && normalizedProduct.adminCreator?.id ? (
+          <div className="product-vendor-info" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '12px', 
+            margin: '12px 0', 
+            padding: '12px', 
+            background: '#f9fafb', 
+            borderRadius: '8px',
+            border: '1px solid #eee'
+          }}>
+            <img 
+              src={normalizedProduct.adminCreator.avatar_url || SITE_LOGO_SVG} 
+              alt="Townssy Stores Logo" 
+              style={{ width: '40px', height: '40px', borderRadius: '4px', objectFit: 'cover' }}
+              onError={(e) => {
+                e.target.src = SITE_LOGO_SVG;
+              }}
+            />
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Link 
+                  href={`/admin-products/${normalizedProduct.adminCreator.id}`}
+                  style={{ fontWeight: '600', color: '#333', textDecoration: 'none' }}
+                >
+                  Townssy Stores
+                </Link>
+                <span style={{ 
+                  fontSize: '10px', 
+                  background: 'linear-gradient(135deg, var(--primary-color, #22c55e) 0%, var(--primary-color-dark, #16a34a) 100%)', 
+                  color: 'white', 
+                  padding: '2px 6px', 
+                  borderRadius: '4px',
+                  fontWeight: '500'
+                }}>
+                  {normalizedProduct.supplierType === 'manufacturer' ? 'Manufacturer' : 'Supplier'}
+                </span>
+              </div>
+              <div style={{ fontSize: '12px', color: '#666', marginTop: '2px' }}>
+                {normalizedProduct.adminName || normalizedProduct.adminCreator?.full_name || 'Admin'} • Verified Store
+              </div>
             </div>
-            <div style={{ fontSize: '12px', color: '#666', marginTop: '2px' }}>
-              8 Years • 98% Response Rate
+            <Link 
+              href={`/admin-products/${normalizedProduct.adminCreator.id}`}
+              style={{ color: '#06392F', fontSize: '13px', fontWeight: '600' }}
+            >
+              Visit Store
+            </Link>
+          </div>
+        ) : normalizedProduct.isAdminCreated && !normalizedProduct.adminCreator?.id ? (
+          <div className="product-vendor-info" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '12px', 
+            margin: '12px 0', 
+            padding: '12px', 
+            background: '#f9fafb', 
+            borderRadius: '8px',
+            border: '1px solid #eee'
+          }}>
+            <img 
+              src={SITE_LOGO_SVG} 
+              alt="Townssy Stores Logo" 
+              style={{ width: '40px', height: '40px', borderRadius: '4px', objectFit: 'cover' }}
+            />
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontWeight: '600', color: '#333' }}>
+                  Townssy Stores
+                </span>
+                <span style={{ 
+                  fontSize: '10px', 
+                  background: 'linear-gradient(135deg, var(--primary-color, #22c55e) 0%, var(--primary-color-dark, #16a34a) 100%)', 
+                  color: 'white', 
+                  padding: '2px 6px', 
+                  borderRadius: '4px',
+                  fontWeight: '500'
+                }}>
+                  {normalizedProduct.supplierType === 'manufacturer' ? 'Manufacturer' : 'Supplier'}
+                </span>
+              </div>
+              <div style={{ fontSize: '12px', color: '#666', marginTop: '2px' }}>
+                Admin • Verified Store
+              </div>
             </div>
           </div>
-          <Link href="/vendor/v1" style={{ color: '#06392F', fontSize: '13px', fontWeight: '600' }}>
-            Visit Store
-          </Link>
-        </div>
+        ) : normalizedProduct.vendor ? (
+          <div className="product-vendor-info" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '12px', 
+            margin: '12px 0', 
+            padding: '12px', 
+            background: '#f9fafb', 
+            borderRadius: '8px',
+            border: '1px solid #eee'
+          }}>
+            <img 
+              src={normalizedProduct.vendor.logo_url || normalizedProduct.vendor.profiles?.avatar_url || '/default-avatar.png'} 
+              alt="Vendor Logo" 
+              style={{ width: '40px', height: '40px', borderRadius: '4px', objectFit: 'cover' }}
+              onError={(e) => {
+                e.target.src = '/default-avatar.png';
+              }}
+            />
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Link 
+                  href={`/vendor/${normalizedProduct.vendor.id}`}
+                  style={{ fontWeight: '600', color: '#333', textDecoration: 'none' }}
+                >
+                  {normalizedProduct.vendorName || normalizedProduct.vendor.business_name || 'Vendor Store'}
+                </Link>
+                {normalizedProduct.vendor.verification_status === 'verified' && (
+                  <span style={{ 
+                    fontSize: '10px', 
+                    background: '#fff7e6', 
+                    color: '#d48806', 
+                    padding: '2px 6px', 
+                    borderRadius: '4px', 
+                    border: '1px solid #ffd591' 
+                  }}>
+                    {normalizedProduct.vendor.verification_status === 'verified' ? 'Verified' : 'Pending'}
+                  </span>
+                )}
+              </div>
+              <div style={{ fontSize: '12px', color: '#666', marginTop: '2px' }}>
+                {normalizedProduct.supplierType === 'manufacturer' ? 'Manufacturer' : 'Supplier'} • {normalizedProduct.vendor.verification_status === 'verified' ? 'Verified' : 'Pending Verification'}
+              </div>
+            </div>
+            <Link 
+              href={`/vendor/${normalizedProduct.vendor.id}`}
+              style={{ color: '#06392F', fontSize: '13px', fontWeight: '600' }}
+            >
+              Visit Store
+            </Link>
+          </div>
+        ) : null}
 
         <div className="product-pricing">
           <div className="price-group">
-            <span className="current-price">{product.currentPrice}</span>
-            {product.originalPrice && (
-              <span className="original-price">{product.originalPrice}</span>
+            <span className="current-price">{formatPrice(normalizedProduct.price)}</span>
+            {normalizedProduct.comparePrice && (
+              <span className="original-price">{formatPrice(normalizedProduct.comparePrice)}</span>
             )}
           </div>
-          {product.freeShipping && (
-            <span className="shipping-badge">FREE SHIP</span>
+          {normalizedProduct.delivery && (
+            <span className="shipping-badge">DELIVERY AVAILABLE</span>
           )}
         </div>
 
-        <div className="product-features">
-          {product.features.map((feature, index) => (
-            <div key={index} className="feature-item">
-              <span className="feature-icon">{feature.icon}</span>
-              <span className="feature-label">{feature.label}</span>
-            </div>
-          ))}
-        </div>
+        {/* Stock Info */}
+        {normalizedProduct.stockQuantity > 0 && (
+          <div className="product-stock" style={{ marginTop: '12px', fontSize: '14px', color: '#10b981' }}>
+            In Stock ({normalizedProduct.stockQuantity} available)
+          </div>
+        )}
+        {normalizedProduct.stockQuantity === 0 && (
+          <div className="product-stock" style={{ marginTop: '12px', fontSize: '14px', color: '#ef4444' }}>
+            Out of Stock
+          </div>
+        )}
 
-        <p className="product-description">{product.description}</p>
+        <p className="product-description">{normalizedProduct.description}</p>
 
         {/* Specifications */}
-        {product.specifications && Object.keys(product.specifications).length > 0 && (
+        {normalizedProduct.specifications && Object.keys(normalizedProduct.specifications).length > 0 && (
           <div className="product-specifications">
             <h3 className="specifications-title">Specifications</h3>
             <dl className="specifications-list">
-              {Object.entries(product.specifications).map(([key, value]) => (
+              {Object.entries(normalizedProduct.specifications).map(([key, value]) => (
                 <div key={key} className="specification-item">
                   <dt className="spec-key">{key.charAt(0).toUpperCase() + key.slice(1)}</dt>
                   <dd className="spec-value">{value}</dd>
@@ -248,8 +414,8 @@ export default function ProductDetailClient({ product }) {
                       </span>
                       <span className="option-cost">
                         {product.delivery.freeShipping && option === 'Standard' ? 'Free' :
-                         option === 'Standard' ? '$9.99' :
-                         option === 'Express' ? '$19.99' : 'Contact for pricing'}
+                         option === 'Standard' ? formatPrice(9.99) :
+                         option === 'Express' ? formatPrice(19.99) : 'Contact for pricing'}
                       </span>
                     </div>
                   ))}
@@ -352,13 +518,99 @@ export default function ProductDetailClient({ product }) {
 
         <button
           className="add-to-cart-btn"
-          disabled={!selectedSize || (product.sizes && product.sizes.find(s => s.size === selectedSize)?.available === false)}
+          disabled={normalizedProduct.stockQuantity === 0 || addingToCart}
+          onClick={async () => {
+            if (!isAuthenticated) {
+              router.push(`/auth/login?redirect=/products/${product.id}`);
+              return;
+            }
+
+            if (normalizedProduct.stockQuantity === 0) {
+              alert('This product is out of stock.');
+              return;
+            }
+
+            try {
+              setAddingToCart(true);
+              
+              // Fetch current stock from database to ensure accuracy
+              const { data: productData, error: stockError } = await supabase
+                .from('products')
+                .select('stock_quantity')
+                .eq('id', normalizedProduct.id)
+                .single();
+
+              const currentStock = productData?.stock_quantity || normalizedProduct.stockQuantity || 0;
+
+              if (currentStock === 0) {
+                alert('This product is out of stock.');
+                setAddingToCart(false);
+                return;
+              }
+
+              // Check if item already in cart and would exceed stock
+              const existingCartItem = cartItems.find(item => item.id === normalizedProduct.id);
+              const currentCartQuantity = existingCartItem?.quantity || 0;
+              
+              if (currentCartQuantity >= currentStock) {
+                alert(`You already have the maximum available quantity (${currentStock}) in your cart.`);
+                setAddingToCart(false);
+                return;
+              }
+              
+              // Prepare product data for cart
+              const cartProduct = {
+                id: normalizedProduct.id,
+                title: normalizedProduct.title,
+                name: normalizedProduct.name,
+                image: mediaItems[0]?.url || '/placeholder-product.jpg',
+                currentPrice: parseFloat(normalizedProduct.price),
+                originalPrice: normalizedProduct.comparePrice ? parseFloat(normalizedProduct.comparePrice) : null,
+                quantity: 1,
+                stockQuantity: currentStock,
+                stock_quantity: currentStock,
+                sku: normalizedProduct.sku,
+                supplierType: normalizedProduct.supplierType,
+                vendorId: normalizedProduct.vendorId,
+                vendorName: normalizedProduct.vendorName,
+                adminName: normalizedProduct.adminName,
+                isAdminCreated: normalizedProduct.isAdminCreated
+              };
+
+              addToCart(cartProduct, 1);
+              
+              setCartSuccess(true);
+              setTimeout(() => setCartSuccess(false), 3000);
+            } catch (error) {
+              console.error('Error adding to cart:', error);
+              alert('Failed to add product to cart. Please try again.');
+            } finally {
+              setAddingToCart(false);
+            }
+          }}
         >
-          Add to Cart
+          {addingToCart ? (
+            <>
+              <Loader2 size={18} className="spinning" />
+              Adding...
+            </>
+          ) : cartSuccess ? (
+            <>
+              <ShoppingCart size={18} />
+              Added to Cart!
+            </>
+          ) : normalizedProduct.stockQuantity > 0 ? (
+            <>
+              <ShoppingCart size={18} />
+              Add to Cart
+            </>
+          ) : (
+            'Out of Stock'
+          )}
         </button>
 
         <a 
-          href={`https://wa.me/1234567890?text=Hi, I'm interested in ${product.title}`}
+          href={normalizedProduct.supplierWhatsapp || `https://wa.me/?text=Hi, I'm interested in ${normalizedProduct.title}`}
           target="_blank"
           rel="noopener noreferrer"
           className="whatsapp-btn"
@@ -368,30 +620,30 @@ export default function ProductDetailClient({ product }) {
         </a>
 
         {/* You Might Also Like Section */}
-        {(() => {
-          const similarProducts = getSimilarProducts(product);
-          if (similarProducts.length === 0) return null;
-
-          return (
-            <div className="similar-products-section">
-              <h3 className="similar-products-title">You Might Also Like</h3>
-              <div className="similar-products-container">
-                {similarProducts.map((similarProduct) => (
-                  <div key={similarProduct.id} className="similar-product-item">
-                    <ProductCard
-                      id={similarProduct.id}
-                      image={similarProduct.image}
-                      title={similarProduct.title}
-                      currentPrice={similarProduct.currentPrice}
-                      originalPrice={similarProduct.originalPrice}
-                      variant="default"
-                    />
-                  </div>
-                ))}
-              </div>
+        {loadingSimilar ? (
+          <div className="similar-products-section" style={{ padding: '20px', textAlign: 'center' }}>
+            <div className="category-loading-spinner"></div>
+            <p style={{ marginTop: '10px', color: '#64748b', fontSize: '14px' }}>Loading similar products...</p>
+          </div>
+        ) : similarProducts.length > 0 && (
+          <div className="similar-products-section">
+            <h3 className="similar-products-title">You Might Also Like</h3>
+            <div className="similar-products-container">
+              {similarProducts.map((similarProduct) => (
+                <div key={similarProduct.id} className="similar-product-item">
+                  <ProductCard
+                    id={similarProduct.id}
+                    image={similarProduct.image}
+                    title={similarProduct.title}
+                    currentPrice={similarProduct.currentPrice}
+                    originalPrice={similarProduct.originalPrice}
+                    variant="default"
+                  />
+                </div>
+              ))}
             </div>
-          );
-        })()}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -103,10 +103,10 @@ export default function CategoryClient({ category, products }) {
             className="filter-select"
           >
             <option value="all">All Prices</option>
-            <option value="under-50">Under $50</option>
-            <option value="50-100">$50 - $100</option>
-            <option value="100-200">$100 - $200</option>
-            <option value="over-200">Over $200</option>
+            <option value="under-50">Under ₵200</option>
+            <option value="50-100">₵200 - ₵500</option>
+            <option value="100-200">₵500 - ₵1000</option>
+            <option value="over-200">Over ₵1000</option>
           </select>
         </div>
         

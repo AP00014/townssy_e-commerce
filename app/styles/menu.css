@@ -134,3 +134,280 @@
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.4);
 }
 
+/* Mobile optimizations for iPhone and Android devices */
+
+/* General mobile styles for all devices up to 414px */
+@media (max-width: 414px) {
+  .menu-container {
+    width: 82%;
+    max-width: 200px;
+  }
+
+  .menu-header {
+    padding: 8px;
+  }
+
+  .menu-header .logo svg {
+    width: 42px;
+    height: 14px;
+  }
+
+  .menu-content {
+    padding: 8px 0;
+  }
+
+  .menu-section {
+    margin-bottom: 12px;
+  }
+
+  .menu-section-title {
+    font-size: 8px;
+    padding: 0 8px;
+    margin-bottom: 5px;
+    letter-spacing: 0.1px;
+  }
+
+  .menu-item {
+    padding: 6px 8px;
+    gap: 5px;
+  }
+
+  .menu-item svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .menu-item span {
+    font-size: 11px;
+  }
+
+  .menu-close-btn {
+    padding: 1px;
+  }
+
+  .menu-close-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* iPhone SE / Small Android (320px - 359px) */
+@media (max-width: 359px) {
+  .menu-container {
+    width: 85%;
+    max-width: 190px;
+  }
+
+  .menu-header {
+    padding: 8px;
+  }
+
+  .menu-header .logo svg {
+    width: 40px;
+    height: 13px;
+  }
+
+  .menu-content {
+    padding: 8px 0;
+  }
+
+  .menu-section {
+    margin-bottom: 10px;
+  }
+
+  .menu-section-title {
+    font-size: 8px;
+    padding: 0 8px;
+    margin-bottom: 4px;
+    letter-spacing: 0.1px;
+  }
+
+  .menu-item {
+    padding: 6px 8px;
+    gap: 5px;
+  }
+
+  .menu-item svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .menu-item span {
+    font-size: 11px;
+  }
+
+  .menu-close-btn {
+    padding: 1px;
+  }
+
+  .menu-close-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* iPhone 6/7/8 / Standard Android (360px - 389px) */
+@media (min-width: 360px) and (max-width: 389px) {
+  .menu-container {
+    width: 83%;
+    max-width: 210px;
+  }
+
+  .menu-header {
+    padding: 8px;
+  }
+
+  .menu-header .logo svg {
+    width: 44px;
+    height: 15px;
+  }
+
+  .menu-content {
+    padding: 8px 0;
+  }
+
+  .menu-section {
+    margin-bottom: 12px;
+  }
+
+  .menu-section-title {
+    font-size: 8px;
+    padding: 0 8px;
+    margin-bottom: 5px;
+    letter-spacing: 0.1px;
+  }
+
+  .menu-item {
+    padding: 6px 8px;
+    gap: 5px;
+  }
+
+  .menu-item svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .menu-item span {
+    font-size: 11px;
+  }
+
+  .menu-close-btn {
+    padding: 1px;
+  }
+
+  .menu-close-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* iPhone X/11/12/13/14 (390px - 413px) */
+@media (min-width: 390px) and (max-width: 413px) {
+  .menu-container {
+    width: 82%;
+    max-width: 215px;
+  }
+
+  .menu-header {
+    padding: 8px;
+  }
+
+  .menu-header .logo svg {
+    width: 44px;
+    height: 15px;
+  }
+
+  .menu-content {
+    padding: 8px 0;
+  }
+
+  .menu-section {
+    margin-bottom: 12px;
+  }
+
+  .menu-section-title {
+    font-size: 8px;
+    padding: 0 8px;
+    margin-bottom: 5px;
+    letter-spacing: 0.1px;
+  }
+
+  .menu-item {
+    padding: 6px 8px;
+    gap: 5px;
+  }
+
+  .menu-item svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .menu-item span {
+    font-size: 11px;
+  }
+
+  .menu-close-btn {
+    padding: 1px;
+  }
+
+  .menu-close-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* iPhone 6/7/8 Plus (414px) */
+@media (min-width: 414px) and (max-width: 414px) {
+  .menu-container {
+    width: 81%;
+    max-width: 220px;
+  }
+
+  .menu-header {
+    padding: 10px;
+  }
+
+  .menu-header .logo svg {
+    width: 46px;
+    height: 16px;
+  }
+
+  .menu-content {
+    padding: 10px 0;
+  }
+
+  .menu-section {
+    margin-bottom: 14px;
+  }
+
+  .menu-section-title {
+    font-size: 9px;
+    padding: 0 10px;
+    margin-bottom: 6px;
+    letter-spacing: 0.2px;
+  }
+
+  .menu-item {
+    padding: 7px 10px;
+    gap: 6px;
+  }
+
+  .menu-item svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .menu-item span {
+    font-size: 12px;
+  }
+
+  .menu-close-btn {
+    padding: 1px;
+  }
+
+  .menu-close-btn svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+

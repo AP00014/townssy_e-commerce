@@ -130,10 +130,15 @@ CREATE TABLE IF NOT EXISTS categories (
 -- Products table (enhanced)
 CREATE TABLE IF NOT EXISTS products (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  vendor_id UUID REFERENCES vendors(id) ON DELETE CASCADE,
+  vendor_id UUID REFERENCES vendors(id) ON DELETE CASCADE, -- Optional: can be NULL
   category_id UUID REFERENCES categories(id),
   name TEXT NOT NULL,
   description TEXT,
+  location TEXT, -- Product location (e.g., Accra, Kumasi)
+  region TEXT, -- Product region (e.g., Greater Accra, Ashanti)
+  delivery BOOLEAN DEFAULT false, -- Whether delivery is available
+  delivery_options JSONB DEFAULT '[]'::jsonb, -- Array of delivery options
+  supplier_whatsapp TEXT, -- WhatsApp contact link (format: https://wa.me/233XXXXXXXXX)
   specifications JSONB,
   images JSONB, -- Array of image URLs
   price DECIMAL(10,2) NOT NULL,
@@ -149,6 +154,19 @@ CREATE TABLE IF NOT EXISTS products (
   sales_count INTEGER DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL
+);
+
+-- Product section placements (junction table for products in home sections)
+CREATE TABLE IF NOT EXISTS product_section_placements (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  product_id UUID REFERENCES products(id) ON DELETE CASCADE,
+  section_id UUID REFERENCES home_sections(id) ON DELETE CASCADE,
+  sort_order INTEGER DEFAULT 0,
+  is_pinned BOOLEAN DEFAULT false, -- Pin to top of section
+  start_date TIMESTAMP WITH TIME ZONE, -- For time-limited placements
+  end_date TIMESTAMP WITH TIME ZONE, -- For time-limited placements
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
+  UNIQUE(product_id, section_id)
 );
 
 -- =====================================================
@@ -294,8 +312,15 @@ CREATE TABLE IF NOT EXISTS notifications (
 
 CREATE INDEX IF NOT EXISTS idx_vendors_status ON vendors(verification_status);
 CREATE INDEX IF NOT EXISTS idx_vendors_user ON vendors(user_id);
-CREATE INDEX IF NOT EXISTS idx_products_vendor ON products(vendor_id);
+CREATE INDEX IF NOT EXISTS idx_products_vendor ON products(vendor_id) WHERE vendor_id IS NOT NULL;
 CREATE INDEX IF NOT EXISTS idx_products_status ON products(verification_status);
+CREATE INDEX IF NOT EXISTS idx_products_location ON products(location);
+CREATE INDEX IF NOT EXISTS idx_products_region ON products(region);
+CREATE INDEX IF NOT EXISTS idx_products_delivery ON products(delivery) WHERE delivery = true;
+CREATE INDEX IF NOT EXISTS idx_products_active_featured ON products(is_active, is_featured) WHERE is_active = true;
+CREATE INDEX IF NOT EXISTS idx_section_placements_section ON product_section_placements(section_id, sort_order);
+CREATE INDEX IF NOT EXISTS idx_section_placements_product ON product_section_placements(product_id);
+CREATE INDEX IF NOT EXISTS idx_section_placements_pinned ON product_section_placements(is_pinned, sort_order) WHERE is_pinned = true;
 CREATE INDEX IF NOT EXISTS idx_orders_status ON orders(status);
 CREATE INDEX IF NOT EXISTS idx_orders_vendor ON orders(vendor_id);
 CREATE INDEX IF NOT EXISTS idx_agents_status ON agents(status);
@@ -324,6 +349,7 @@ ALTER TABLE vendor_payouts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE audit_logs ENABLE ROW LEVEL SECURITY;
 ALTER TABLE platform_settings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
+ALTER TABLE product_section_placements ENABLE ROW LEVEL SECURITY;
 
 -- Drop existing policies
 DROP POLICY IF EXISTS "Users can view own profile" ON profiles;
@@ -374,6 +400,26 @@ CREATE POLICY "Products visible to all" ON products
   FOR SELECT USING (is_active = true OR vendor_id IN (
     SELECT id FROM vendors WHERE user_id = auth.uid()
   ));
+
+-- Product section placements policies
+CREATE POLICY "Public can view active product placements" ON product_section_placements
+  FOR SELECT USING (
+    EXISTS (
+      SELECT 1 FROM home_sections hs
+      WHERE hs.id = product_section_placements.section_id
+        AND hs.is_active = true
+    )
+    AND (start_date IS NULL OR start_date <= NOW())
+    AND (end_date IS NULL OR end_date >= NOW())
+  );
+
+CREATE POLICY "Admins can manage product placements" ON product_section_placements
+  FOR ALL USING (
+    EXISTS (
+      SELECT 1 FROM profiles WHERE id = auth.uid()
+      AND role IN ('super_admin', 'admin')
+    )
+  );
 
 -- Orders policies
 CREATE POLICY "Users can view own orders" ON orders

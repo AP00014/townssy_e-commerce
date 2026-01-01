@@ -6,24 +6,33 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 9998;
+  z-index: 10000;
   animation: fadeIn 0.3s ease;
 }
 
 /* Categories Modal */
 .categories-modal {
   position: fixed;
-  bottom: 0;
+  bottom: 90px; /* More space above bottom nav */
   left: 0;
   right: 0;
   background: var(--background);
   border-radius: 20px 20px 0 0;
-  z-index: 9999;
-  max-height: 85vh;
+  z-index: 10002; /* Higher than bottom nav (10001) */
+  max-height: calc(100vh - 90px - 20px); /* Full height minus bottom nav and some padding */
   overflow-y: auto;
   animation: slideUp 0.3s ease;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: calc(20px + env(safe-area-inset-bottom)); /* Extra padding at bottom */
+}
+
+/* On desktop, bottom nav is hidden, so modal can go to bottom */
+@media (min-width: 768px) {
+  .categories-modal {
+    bottom: 0;
+    max-height: 85vh;
+    border-radius: 20px 20px 0 0;
+  }
 }
 
 @keyframes fadeIn {
@@ -58,10 +67,11 @@
 }
 
 .categories-modal-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--text-dark);
   margin: 0;
+  letter-spacing: -0.3px;
 }
 
 .categories-modal-close {
@@ -83,28 +93,134 @@
 
 /* Modal Content */
 .categories-modal-content {
-  padding: 0;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Grid layout for desktop/PC */
+@media (min-width: 768px) {
+  .categories-modal-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    padding: 16px 20px;
+  }
+  
+  .categories-modal-item {
+    margin: 0;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    min-height: 80px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .categories-modal-item:hover {
+    transform: translateY(-2px);
+    padding-left: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .categories-modal-item::before {
+    width: 100%;
+    height: 4px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    transform: scaleX(0);
+    border-radius: 4px 4px 0 0;
+  }
+  
+  .categories-modal-item:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  
+  .categories-modal-item::after {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    margin-left: 0;
+  }
+  
+  .categories-modal-item:active {
+    transform: translateY(0);
+  }
 }
 
 .categories-modal-item {
   padding: 16px 20px;
   font-size: 16px;
+  font-weight: 500;
   color: var(--text-dark);
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
   text-align: left;
-  border-bottom: 1px solid var(--border-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 12px;
+  margin: 0 12px;
+  background: transparent;
+  border: none;
+  position: relative;
+  overflow: hidden;
 }
 
-.categories-modal-item:last-child {
-  border-bottom: none;
+.categories-modal-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--primary-color);
+  transform: scaleY(0);
+  transition: transform 0.2s ease;
+  border-radius: 0 4px 4px 0;
 }
 
 .categories-modal-item:hover {
-  background: rgba(0, 0, 0, 0.03);
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.08) 0%, transparent 100%);
+  color: var(--primary-color, #22c55e);
+  transform: translateX(4px);
+  padding-left: 24px;
+}
+
+.categories-modal-item:hover::before {
+  transform: scaleY(1);
 }
 
 .categories-modal-item:active {
-  background: rgba(0, 0, 0, 0.05);
+  background: linear-gradient(90deg, rgba(34, 197, 94, 0.12) 0%, transparent 100%);
+  transform: translateX(2px);
+}
+
+.categories-modal-item:last-child {
+  margin-bottom: 8px;
+}
+
+/* Add chevron icon on hover */
+.categories-modal-item::after {
+  content: '→';
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.2s ease;
+  color: var(--primary-color, #22c55e);
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.categories-modal-item:hover::after {
+  opacity: 1;
+  transform: translateX(0);
 }
 

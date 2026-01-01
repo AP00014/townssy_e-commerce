@@ -16,8 +16,10 @@
 ### 2. Create Product Page
 **File**: `app/admin/products/create/page.js`
 - ✅ Complete product form
-- ✅ Category selection
-- ✅ Vendor assignment
+- ✅ Multiple category selection (with primary category designation)
+- ✅ Location and Region fields
+- ✅ Delivery field and delivery options
+- ✅ Contact supplier WhatsApp link field
 - ✅ Pricing fields (price, compare price)
 - ✅ Stock management
 - ✅ Multiple image upload with preview
@@ -32,6 +34,7 @@
 **File**: `app/admin/products/[id]/edit/page.js`
 - ✅ Pre-filled form with existing data
 - ✅ Edit all product fields
+- ✅ Multiple category selection (with primary category designation)
 - ✅ Manage existing images
 - ✅ Add new images
 - ✅ Update specifications
@@ -47,8 +50,10 @@
 - ✅ Mobile-friendly
 
 ### 5. Database
-**Files**: `supabase-schema.sql`, `supabase-product-policies.sql`
+**Files**: `supabase-schema.sql`, `supabase-product-policies.sql`, `add_product_categories_junction.sql`
 - ✅ Products table with all fields
+- ✅ Product-categories junction table for many-to-many relationship
+- ✅ Primary category support with auto-sync trigger
 - ✅ Row Level Security (RLS) policies
 - ✅ Admin permissions for CRUD operations
 - ✅ Helper functions (get_products_for_admin, get_product_stats)
@@ -108,7 +113,9 @@
 2. **Create New Product**:
    ```
    Click "Add Product" button
-   Fill in required fields (name, category, vendor, price)
+   Fill in required fields (name, categories, location, region, price)
+   Add delivery information and options
+   Add supplier WhatsApp contact link (optional)
    Upload images (optional)
    Add specifications (optional)
    Click "Create Product"

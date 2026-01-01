@@ -1,9 +1,11 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { supabase } from '../../lib/supabase';
 
-const slides = [
+// Default slides fallback
+const defaultSlides = [
   {
     id: 1,
     title: 'Big Sale',
@@ -21,7 +23,7 @@ const slides = [
   {
     id: 3,
     title: 'Free Shipping',
-    subtitle: 'On Orders Over $50',
+    subtitle: 'On Orders Over ₵200',
     image: 'https://images.unsplash.com/photo-1607082349566-187342175e2f?w=300&h=300&fit=crop',
     gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
   },
@@ -41,15 +43,83 @@ const slides = [
   },
 ];
 
-export default function PromoBanner() {
+export default function PromoBanner({ slides: propSlides }) {
+  const [slides, setSlides] = useState(propSlides || defaultSlides);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [touchStart, setTouchStart] = useState(null);
-  const [touchEnd, setTouchEnd] = useState(null);
   const intervalRef = useRef(null);
   const bannerRef = useRef(null);
   const touchStartRef = useRef(null);
+  const touchEndRef = useRef(null);
   const touchStartYRef = useRef(null);
+
+  // Fetch slides from database if not provided as props
+  useEffect(() => {
+    // If propSlides is explicitly null, hide the component (set empty array)
+    if (propSlides === null) {
+      setSlides([]);
+      return;
+    }
+    
+    // If propSlides is provided (array), use it
+    if (propSlides && Array.isArray(propSlides)) {
+      setSlides(propSlides);
+      return;
+    }
+
+    const fetchPromoBanner = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('home_sections')
+          .select('layout_config, is_active')
+          .eq('name', 'promo_banner')
+          .eq('is_active', true)
+          .maybeSingle(); // Use maybeSingle() instead of single() to handle 0 rows
+
+        if (error) throw error;
+
+        if (data?.is_active && data?.layout_config?.type === 'promo_banner' && data.layout_config.slides && data.layout_config.slides.length > 0) {
+          setSlides(data.layout_config.slides);
+        }
+        // If no data or inactive, keep default slides
+      } catch (error) {
+        console.error('Error fetching promo banner:', error);
+        // Keep default slides on error
+      }
+    };
+
+    fetchPromoBanner();
+
+    // Set up real-time subscription for promo banner updates
+    const channel = supabase
+      .channel('promo-banner-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'home_sections',
+          filter: 'name=eq.promo_banner'
+        },
+        (payload) => {
+          console.log('Promo banner changed:', payload);
+          
+          // If section is active and has slides, update
+          if (payload.new?.is_active && payload.new?.layout_config?.type === 'promo_banner' && payload.new.layout_config.slides?.length > 0) {
+            setSlides(payload.new.layout_config.slides);
+          } else {
+            // If section is inactive or missing slides, use defaults (component will still render with defaults)
+            // Note: If parent passes null as propSlides, component will hide itself
+            setSlides(defaultSlides);
+          }
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [propSlides]);
 
   // Auto-slide functionality
   useEffect(() => {
@@ -80,17 +150,17 @@ export default function PromoBanner() {
   };
 
   // Navigation functions
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 5000); // Resume after 5 seconds
-  };
+  }, []);
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     setIsAutoPlaying(false);
     setTimeout(() => setIsAutoPlaying(true), 5000); // Resume after 5 seconds
-  };
+  }, []);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
@@ -101,49 +171,76 @@ export default function PromoBanner() {
   // Touch handlers for mobile swipe
   const minSwipeDistance = 50;
 
-  const onTouchStart = (e) => {
-    setTouchEnd(null);
-    const startX = e.targetTouches[0].clientX;
-    setTouchStart(startX);
-    touchStartRef.current = startX;
-    touchStartYRef.current = e.targetTouches[0].clientY;
-    setIsAutoPlaying(false);
-  };
+  // Add touch event listeners directly to DOM with passive: false
+  useEffect(() => {
+    const element = bannerRef.current;
+    if (!element) return;
 
-  const onTouchMove = (e) => {
-    const currentX = e.targetTouches[0].clientX;
-    const currentY = e.targetTouches[0].clientY;
-    setTouchEnd(currentX);
-    
-    // Prevent vertical scrolling if horizontal swipe is detected
-    if (touchStartRef.current !== null && touchStartYRef.current !== null) {
-      const deltaX = Math.abs(currentX - touchStartRef.current);
-      const deltaY = Math.abs(currentY - touchStartYRef.current);
+    const onTouchStart = (e) => {
+      touchEndRef.current = null;
+      const startX = e.touches[0].clientX;
+      touchStartRef.current = startX;
+      touchStartYRef.current = e.touches[0].clientY;
+      setIsAutoPlaying(false);
+    };
+
+    const onTouchMove = (e) => {
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
+      touchEndRef.current = currentX;
       
-      if (deltaX > deltaY && deltaX > 10) {
-        e.preventDefault();
+      // Prevent vertical scrolling if horizontal swipe is detected
+      if (touchStartRef.current !== null && touchStartYRef.current !== null) {
+        const deltaX = Math.abs(currentX - touchStartRef.current);
+        const deltaY = Math.abs(currentY - touchStartYRef.current);
+        
+        if (deltaX > deltaY && deltaX > 10) {
+          e.preventDefault();
+        }
       }
-    }
-  };
+    };
 
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) {
-      setIsAutoPlaying(true);
-      return;
-    }
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
+    const onTouchEnd = () => {
+      if (!touchStartRef.current || touchEndRef.current === null) {
+        setIsAutoPlaying(true);
+        return;
+      }
+      
+      const distance = touchStartRef.current - touchEndRef.current;
+      const isLeftSwipe = distance > minSwipeDistance;
+      const isRightSwipe = distance < -minSwipeDistance;
 
-    if (isLeftSwipe) {
-      goToNext();
-    } else if (isRightSwipe) {
-      goToPrevious();
-    } else {
-      setIsAutoPlaying(true);
-    }
-  };
+      if (isLeftSwipe) {
+        goToNext();
+      } else if (isRightSwipe) {
+        goToPrevious();
+      } else {
+        setIsAutoPlaying(true);
+      }
+      
+      // Reset touch references
+      touchStartRef.current = null;
+      touchEndRef.current = null;
+      touchStartYRef.current = null;
+    };
+
+    // Add event listeners with passive: false for touchmove to allow preventDefault
+    element.addEventListener('touchstart', onTouchStart, { passive: true });
+    element.addEventListener('touchmove', onTouchMove, { passive: false });
+    element.addEventListener('touchend', onTouchEnd, { passive: true });
+
+    return () => {
+      element.removeEventListener('touchstart', onTouchStart);
+      element.removeEventListener('touchmove', onTouchMove);
+      element.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [goToNext, goToPrevious]);
+
+  // Don't render if no slides available
+  // If propSlides is explicitly null (from parent), don't render
+  if (propSlides === null || !slides || slides.length === 0) {
+    return null;
+  }
 
   return (
     <div 
@@ -154,9 +251,6 @@ export default function PromoBanner() {
     >
       <div 
         className="promo-banner-wrapper"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
       >
         {slides.map((slide, index) => {
           let className = 'promo-banner';

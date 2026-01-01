@@ -24,6 +24,7 @@ import {
   Shield
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import { supabase } from "../../lib/supabase";
 import "../styles/profilemodal.css";
 
 export default function ProfileModal({ isOpen, onClose, variant = "auto" }) {
@@ -35,6 +36,7 @@ export default function ProfileModal({ isOpen, onClose, variant = "auto" }) {
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [unreadMessagesCount, setUnreadMessagesCount] = useState(0);
 
   // Form fields
   const [username, setUsername] = useState("");
@@ -101,6 +103,93 @@ export default function ProfileModal({ isOpen, onClose, variant = "auto" }) {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // Fetch unread messages count
+  useEffect(() => {
+    if (!isAuthenticated || !user) {
+      setUnreadMessagesCount(0);
+      return;
+    }
+
+    const fetchUnreadCount = async () => {
+      try {
+        // Get all conversations where user is a participant
+        // Use parallel queries instead of .or() to avoid connection issues
+        const [result1, result2] = await Promise.all([
+          supabase
+            .from('conversations')
+            .select('id')
+            .eq('participant1_id', user.id),
+          supabase
+            .from('conversations')
+            .select('id')
+            .eq('participant2_id', user.id)
+        ]);
+
+        const conversations1 = result1.data || [];
+        const conversations2 = result2.data || [];
+        const convError = result1.error || result2.error;
+
+        // Combine and deduplicate conversations
+        const allConversations = [...conversations1, ...conversations2].filter(
+          (conv, index, self) => index === self.findIndex(c => c.id === conv.id)
+        );
+
+        if (convError || !allConversations || allConversations.length === 0) {
+          setUnreadMessagesCount(0);
+          return;
+        }
+
+        const conversationIds = allConversations.map(c => c.id);
+
+        // Count unread messages (messages not sent by the user)
+        const { count, error } = await supabase
+          .from('messages')
+          .select('*', { count: 'exact', head: true })
+          .in('conversation_id', conversationIds)
+          .eq('is_read', false)
+          .neq('sender_id', user.id);
+
+        if (error) {
+          console.error('Error fetching unread count:', error);
+          setUnreadMessagesCount(0);
+          return;
+        }
+
+        setUnreadMessagesCount(count || 0);
+      } catch (error) {
+        console.error('Error fetching unread messages count:', error);
+        setUnreadMessagesCount(0);
+      }
+    };
+
+    fetchUnreadCount();
+
+    // Set up real-time subscription for new messages
+    const channel = supabase
+      .channel('profile-modal-unread-messages')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'messages',
+          filter: `is_read=eq.false`
+        },
+        () => {
+          fetchUnreadCount();
+        }
+      )
+      .subscribe();
+
+    // Poll for updates every 30 seconds as fallback
+    const pollInterval = setInterval(fetchUnreadCount, 30000);
+
+    return () => {
+      supabase.removeChannel(channel);
+      clearInterval(pollInterval);
+    };
+  }, [user, isAuthenticated]);
 
   // Determine if we should use modal or dropdown
   const useModal = variant === "modal" || (variant === "auto" && isMobile);
@@ -358,10 +447,15 @@ export default function ProfileModal({ isOpen, onClose, variant = "auto" }) {
           <Heart size={18} />
           <span>My Favorites</span>
         </a>
-        <a href="/messages" className="menu-item">
+        <a 
+          href={(isAdmin || isSuperAdmin) ? "/admin/messages" : "/messages"} 
+          className="menu-item"
+        >
           <MessageSquare size={18} />
           <span>Messages</span>
-          <span className="badge-count">2</span>
+          {unreadMessagesCount > 0 && (
+            <span className="badge-count">{unreadMessagesCount > 99 ? '99+' : unreadMessagesCount}</span>
+          )}
         </a>
         <a href="/settings" className="menu-item">
           <Settings size={18} />

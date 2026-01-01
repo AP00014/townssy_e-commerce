@@ -8,6 +8,9 @@ export default function Menu({ isOpen, onClose }) {
   const menuRef = useRef(null);
 
   useEffect(() => {
+    // Only run on client side to avoid hydration mismatch
+    if (typeof window === 'undefined') return;
+
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         onClose();
@@ -15,14 +18,17 @@ export default function Menu({ isOpen, onClose }) {
     };
 
     if (isOpen) {
+      // Store original overflow value
+      const originalOverflow = document.body.style.overflow;
       document.addEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "hidden";
-    }
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "unset";
-    };
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+        // Restore original overflow value
+        document.body.style.overflow = originalOverflow || "";
+      };
+    }
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;

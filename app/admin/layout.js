@@ -21,8 +21,11 @@ import {
   AlertCircle,
   Users,
   Home,
+  MessageSquare,
+  Send,
 } from "lucide-react";
 import "../styles/admin-layout.css";
+import { supabase } from "../../lib/supabase";
 
 export default function AdminLayout({ children }) {
   const {
@@ -36,14 +39,107 @@ export default function AdminLayout({ children }) {
   } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [notifications, setNotifications] = useState([]);
+  const [unreadMessagesCount, setUnreadMessagesCount] = useState(0);
+
+  useEffect(() => {
+    // Set sidebar state based on screen size
+    const checkScreenSize = () => {
+      if (window.innerWidth > 1024) {
+        setSidebarOpen(true); // Open on desktop
+      } else {
+        setSidebarOpen(false); // Closed on mobile/tablet
+      }
+    };
+
+    // Check on mount
+    checkScreenSize();
+
+    // Listen for resize events
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
+  }, []);
 
   useEffect(() => {
     if (!loading && (!user || (!isAdmin && !isSuperAdmin && !isModerator))) {
       router.push("/");
     }
   }, [user, loading, isAdmin, isSuperAdmin, isModerator, router]);
+
+  // Fetch unread messages count for admins
+  useEffect(() => {
+    if (!user || (!isAdmin && !isSuperAdmin)) {
+      setUnreadMessagesCount(0);
+      return;
+    }
+
+    const fetchUnreadCount = async () => {
+      try {
+        // Get all conversations where admin is a participant
+        const { data: conversations, error: convError } = await supabase
+          .from('conversations')
+          .select('id')
+          .or(`participant1_id.eq.${user.id},participant2_id.eq.${user.id}`);
+
+        if (convError || !conversations || conversations.length === 0) {
+          setUnreadMessagesCount(0);
+          return;
+        }
+
+        const conversationIds = conversations.map(c => c.id);
+
+        // Count unread messages (messages not sent by the admin)
+        const { count, error } = await supabase
+          .from('messages')
+          .select('*', { count: 'exact', head: true })
+          .in('conversation_id', conversationIds)
+          .eq('is_read', false)
+          .neq('sender_id', user.id);
+
+        if (error) {
+          console.error('Error fetching unread messages count:', error);
+          setUnreadMessagesCount(0);
+          return;
+        }
+
+        setUnreadMessagesCount(count || 0);
+      } catch (error) {
+        console.error('Error fetching unread messages count:', error);
+        setUnreadMessagesCount(0);
+      }
+    };
+
+    fetchUnreadCount();
+
+    // Set up real-time subscription for new messages
+    const channel = supabase
+      .channel('admin-unread-messages-count')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'messages',
+          filter: `is_read=eq.false`
+        },
+        () => {
+          fetchUnreadCount();
+        }
+      )
+      .subscribe();
+
+    // Poll for updates every 30 seconds as fallback
+    const pollInterval = setInterval(fetchUnreadCount, 30000);
+
+    return () => {
+      supabase.removeChannel(channel);
+      clearInterval(pollInterval);
+    };
+  }, [user, isAdmin, isSuperAdmin]);
 
   if (loading) {
     return (
@@ -60,39 +156,33 @@ export default function AdminLayout({ children }) {
 
   const menuItems = [
     {
-      label: "Homepage",
-      icon: Home,
-      href: "/",
-      roles: ["super_admin", "admin", "moderator"],
-    },
-    {
       label: "Dashboard",
       icon: LayoutDashboard,
       href: "/admin",
       roles: ["super_admin", "admin", "moderator"],
     },
-    {
-      label: "Vendor Management",
-      icon: ShoppingBag,
-      roles: ["super_admin", "admin", "moderator"],
-      submenu: [
-        {
-          label: "Applications",
-          href: "/admin/vendors/applications",
-          roles: ["super_admin", "admin", "moderator"],
-        },
-        {
-          label: "All Vendors",
-          href: "/admin/vendors",
-          roles: ["super_admin", "admin", "moderator"],
-        },
-        {
-          label: "Payouts",
-          href: "/admin/vendors/payouts",
-          roles: ["super_admin"],
-        },
-      ],
-    },
+    // {
+    //   label: "Vendor Management",
+    //   icon: ShoppingBag,
+    //   roles: ["super_admin", "admin", "moderator"],
+    //   submenu: [
+    //     {
+    //       label: "Applications",
+    //       href: "/admin/vendors/applications",
+    //       roles: ["super_admin", "admin", "moderator"],
+    //     },
+    //     {
+    //       label: "All Vendors",
+    //       href: "/admin/vendors",
+    //       roles: ["super_admin", "admin", "moderator"],
+    //     },
+    //     {
+    //       label: "Payouts",
+    //       href: "/admin/vendors/payouts",
+    //       roles: ["super_admin"],
+    //     },
+    //   ],
+    // },
     {
       label: "Products",
       icon: Package,
@@ -111,6 +201,11 @@ export default function AdminLayout({ children }) {
         {
           label: "Categories",
           href: "/admin/products/categories",
+          roles: ["super_admin", "admin"],
+        },
+        {
+          label: "Homepage Sections",
+          href: "/admin/sections",
           roles: ["super_admin", "admin"],
         },
       ],
@@ -137,12 +232,12 @@ export default function AdminLayout({ children }) {
         },
       ],
     },
-    {
-      label: "Agents",
-      icon: MapPin,
-      href: "/admin/agents",
-      roles: ["super_admin", "admin", "moderator"],
-    },
+    // {
+    //   label: "Agents",
+    //   icon: MapPin,
+    //   href: "/admin/agents",
+    //   roles: ["super_admin", "admin", "moderator"],
+    // },
     {
       label: "Users",
       icon: Users,
@@ -160,6 +255,28 @@ export default function AdminLayout({ children }) {
       icon: DollarSign,
       href: "/admin/finances",
       roles: ["super_admin"],
+    },
+    {
+      label: "Messages",
+      icon: MessageSquare,
+      roles: ["super_admin", "admin"],
+      submenu: [
+        {
+          label: "All Conversations",
+          href: "/admin/messages",
+          roles: ["super_admin", "admin"],
+        },
+        {
+          label: "Send Broadcast",
+          href: "/admin/messages/broadcast",
+          roles: ["super_admin", "admin"],
+        },
+        {
+          label: "Broadcast History",
+          href: "/admin/messages/broadcast/history",
+          roles: ["super_admin", "admin"],
+        },
+      ],
     },
     {
       label: "Settings",
@@ -183,6 +300,12 @@ export default function AdminLayout({ children }) {
         },
       ],
     },
+    {
+      label: "Homepage",
+      icon: Home,
+      href: "/",
+      roles: ["super_admin", "admin", "moderator"],
+    },
   ];
 
   const userRole = profile?.role;
@@ -192,6 +315,13 @@ export default function AdminLayout({ children }) {
       ...item,
       submenu: item.submenu?.filter((sub) => sub.roles?.includes(userRole)),
     }));
+
+  // Close sidebar on mobile when menu item is clicked
+  const handleMenuClick = () => {
+    if (window.innerWidth <= 1024) {
+      setSidebarOpen(false);
+    }
+  };
 
   return (
     <div className="admin-layout">
@@ -228,7 +358,12 @@ export default function AdminLayout({ children }) {
               {item.submenu ? (
                 <details className="nav-submenu">
                   <summary className="nav-item">
-                    <item.icon size={20} />
+                    <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                      <item.icon size={20} />
+                      {item.label === "Messages" && unreadMessagesCount > 0 && (
+                        <span className="admin-message-badge">{unreadMessagesCount > 99 ? '99+' : unreadMessagesCount}</span>
+                      )}
+                    </div>
                     <span>{item.label}</span>
                     <ChevronDown size={16} className="submenu-icon" />
                   </summary>
@@ -240,6 +375,7 @@ export default function AdminLayout({ children }) {
                         className={`nav-subitem ${
                           pathname === sub.href ? "active" : ""
                         }`}
+                        onClick={handleMenuClick}
                       >
                         {sub.label}
                       </Link>
@@ -258,6 +394,7 @@ export default function AdminLayout({ children }) {
                       ? "active"
                       : ""
                   }`}
+                  onClick={handleMenuClick}
                 >
                   <item.icon size={20} />
                   <span>{item.label}</span>

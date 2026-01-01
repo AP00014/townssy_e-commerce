@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useFavourites } from '../context/FavouritesContext';
+import { formatPrice } from '../utils/currency';
 import { Check, ArrowDown, ArrowUp, Award } from 'lucide-react';
 
 export default function ProductCard({
@@ -20,13 +21,6 @@ export default function ProductCard({
 
   const favourite = isFavourite(id);
 
-  const formatPrice = (price) => {
-    if (price == null) return '';
-    if (typeof price === 'string') {
-      return price;
-    }
-    return `$${price.toFixed(2)}`;
-  };
 
   return (
     <Link href={`/products/${id}`} className={`product-card-link product-card-${variant}`}>
