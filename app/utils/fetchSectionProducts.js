@@ -6,15 +6,30 @@ import { supabase } from '../../lib/supabase';
 function transformProduct(product) {
   if (!product) return null;
   
+  // Extract first valid image URL
+  let imageUrl = '/placeholder-product.jpg';
+  
+  if (product.images) {
+    if (Array.isArray(product.images) && product.images.length > 0) {
+      // Get first image from array
+      const firstImage = product.images[0];
+      // Ensure it's a string and not empty
+      if (typeof firstImage === 'string' && firstImage.trim()) {
+        imageUrl = firstImage.trim();
+      }
+    } else if (typeof product.images === 'string' && product.images.trim()) {
+      // Handle case where images might be a single string
+      imageUrl = product.images.trim();
+    }
+  }
+  
   // Optimized: Only return fields needed for ProductCard display
   return {
     id: product.id,
     title: product.name,
     currentPrice: parseFloat(product.price),
     originalPrice: product.compare_price ? parseFloat(product.compare_price) : null,
-    image: product.images && Array.isArray(product.images) && product.images.length > 0 
-      ? product.images[0] 
-      : '/placeholder-product.jpg',
+    image: imageUrl,
     isFavorite: false, // This would come from user favorites
     badge: product.is_featured ? 'Featured' : null,
     category: product.category // Keep category for filtering

@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { supabase } from '../../../../lib/supabase';
+import imageCompression from 'browser-image-compression';
+import { generateNextTitSku } from '../../../utils/generateTitSku';
 import {
   Package,
   Upload,
@@ -23,10 +25,13 @@ export default function CreateProductPage() {
   const [uploadingImages, setUploadingImages] = useState(false);
   const [categories, setCategories] = useState([]);
   const [sections, setSections] = useState([]);
-  const [imageFiles, setImageFiles] = useState([]);
+  const [imageFiles, setImageFiles] = useState([]); // Keep for backward compatibility, but will be empty after upload
   const [imagePreviews, setImagePreviews] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]); // URLs added directly or uploaded
+  const [urlInput, setUrlInput] = useState(''); // Temporary URL input
   const [errors, setErrors] = useState({});
   const [submitProgress, setSubmitProgress] = useState('');
+  const [uploadProgress, setUploadProgress] = useState({}); // Track upload progress: { fileIndex: { status: 'uploading'|'success'|'error', progress: 0-100, message: '' } }
   
   const [formData, setFormData] = useState({
     name: '',
@@ -170,12 +175,12 @@ export default function CreateProductPage() {
     });
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const files = Array.from(e.target.files);
     const validFiles = [];
-    const validPreviews = [];
     const errors = [];
 
+    // Validate files first
     files.forEach(file => {
       // Validate file type (matching storage bucket allowed_mime_types)
       const validTypes = [
@@ -198,12 +203,10 @@ export default function CreateProductPage() {
       }
 
       validFiles.push(file);
-      validPreviews.push(URL.createObjectURL(file));
     });
 
     if (errors.length > 0) {
       alert(`Some images were rejected:\n\n${errors.join('\n')}`);
-      // Clear errors from state
       setErrors(prev => {
         const newErrors = { ...prev };
         delete newErrors.images;
@@ -211,21 +214,278 @@ export default function CreateProductPage() {
       });
     }
 
-    if (validFiles.length > 0) {
-      setImageFiles(prev => [...prev, ...validFiles]);
-      setImagePreviews(prev => [...prev, ...validPreviews]);
-      // Clear image error if images are added
-      setErrors(prev => {
-        const newErrors = { ...prev };
-        delete newErrors.images;
-        return newErrors;
-      });
+    if (validFiles.length === 0) {
+      return;
     }
+
+    // Clear image error
+    setErrors(prev => {
+      const newErrors = { ...prev };
+      delete newErrors.images;
+      return newErrors;
+    });
+
+    // Upload each file immediately
+    const startIndex = imageUrls.length;
+    for (let i = 0; i < validFiles.length; i++) {
+      const file = validFiles[i];
+      const fileIndex = startIndex + i;
+      
+      // Create preview immediately
+      const previewUrl = URL.createObjectURL(file);
+      setImagePreviews(prev => [...prev, previewUrl]);
+      
+      // Initialize upload progress
+      setUploadProgress(prev => ({
+        ...prev,
+        [fileIndex]: {
+          status: 'uploading',
+          progress: 0,
+          message: 'Preparing...'
+        }
+      }));
+
+      // Upload the file
+      try {
+        setUploadProgress(prev => ({
+          ...prev,
+          [fileIndex]: {
+            status: 'uploading',
+            progress: 10,
+            message: 'Compressing...'
+          }
+        }));
+
+        // Compress image
+        const processedFile = await compressImage(file);
+        
+        setUploadProgress(prev => ({
+          ...prev,
+          [fileIndex]: {
+            status: 'uploading',
+            progress: 30,
+            message: 'Uploading...'
+          }
+        }));
+
+        // Upload to storage
+        const fileExt = processedFile.name.split('.').pop() || 'jpg';
+        const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
+        const filePath = `products/${fileName}`;
+        const fileSizeMB = processedFile.size / (1024 * 1024);
+
+        setUploadProgress(prev => ({
+          ...prev,
+          [fileIndex]: {
+            status: 'uploading',
+            progress: 50,
+            message: `Uploading ${file.name} (${fileSizeMB.toFixed(2)}MB)...`
+          }
+        }));
+
+        // Upload with timeout
+        const timeoutMs = Math.max(300000, 300000 + (fileSizeMB * 30000));
+        const uploadPromise = supabase.storage
+          .from('product-images')
+          .upload(filePath, processedFile, {
+            cacheControl: '3600',
+            upsert: false
+          });
+
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Upload timeout')), timeoutMs);
+        });
+
+        const result = await Promise.race([uploadPromise, timeoutPromise]);
+
+        if (result.error) {
+          throw result.error;
+        }
+
+        if (!result.data || !result.data.path) {
+          throw new Error('Upload succeeded but no path returned');
+        }
+
+        setUploadProgress(prev => ({
+          ...prev,
+          [fileIndex]: {
+            status: 'uploading',
+            progress: 80,
+            message: 'Getting URL...'
+          }
+        }));
+
+        // Get public URL
+        const { data: urlData } = supabase.storage
+          .from('product-images')
+          .getPublicUrl(result.data.path);
+
+        if (!urlData || !urlData.publicUrl) {
+          throw new Error('Could not get public URL');
+        }
+
+        // Update preview with uploaded URL
+        setImagePreviews(prev => {
+          const newPreviews = [...prev];
+          newPreviews[fileIndex] = urlData.publicUrl;
+          return newPreviews;
+        });
+
+        // Add to uploaded URLs
+        setImageUrls(prev => [...prev, urlData.publicUrl]);
+
+        // Mark as success
+        setUploadProgress(prev => ({
+          ...prev,
+          [fileIndex]: {
+            status: 'success',
+            progress: 100,
+            message: 'Uploaded successfully'
+          }
+        }));
+
+        // Clear progress after 2 seconds
+        setTimeout(() => {
+          setUploadProgress(prev => {
+            const newProgress = { ...prev };
+            delete newProgress[fileIndex];
+            return newProgress;
+          });
+        }, 2000);
+
+        console.log(`✅ Image uploaded immediately: ${file.name} -> ${urlData.publicUrl}`);
+      } catch (error) {
+        console.error(`❌ Error uploading ${file.name}:`, error);
+        
+        // Remove preview on error
+        setImagePreviews(prev => prev.filter((_, idx) => idx !== fileIndex));
+        
+        // Mark as error
+        setUploadProgress(prev => ({
+          ...prev,
+          [fileIndex]: {
+            status: 'error',
+            progress: 0,
+            message: error.message || 'Upload failed'
+          }
+        }));
+
+        // Show error alert
+        alert(`Failed to upload "${file.name}": ${error.message || 'Unknown error'}`);
+        
+        // Clear error progress after 5 seconds
+        setTimeout(() => {
+          setUploadProgress(prev => {
+            const newProgress = { ...prev };
+            delete newProgress[fileIndex];
+            return newProgress;
+          });
+        }, 5000);
+      }
+    }
+
+    // Clear file input
+    e.target.value = '';
   };
 
   const removeImage = (index) => {
-    setImageFiles(prev => prev.filter((_, i) => i !== index));
-    setImagePreviews(prev => prev.filter((_, i) => i !== index));
+    // Since we now upload immediately, all images are URLs
+    // Revoke blob URL if it's still a blob (during upload)
+    setImagePreviews(prev => {
+      const newPreviews = [...prev];
+      if (newPreviews[index] && newPreviews[index].startsWith('blob:')) {
+        URL.revokeObjectURL(newPreviews[index]);
+      }
+      return newPreviews.filter((_, i) => i !== index);
+    });
+    
+    setImageUrls(prev => prev.filter((_, i) => i !== index));
+    
+    // Clear any upload progress for this index
+    setUploadProgress(prev => {
+      const newProgress = { ...prev };
+      // Update indices for remaining items
+      const updated = {};
+      Object.keys(newProgress).forEach(key => {
+        const keyIndex = parseInt(key);
+        if (keyIndex < index) {
+          updated[key] = newProgress[key];
+        } else if (keyIndex > index) {
+          updated[keyIndex - 1] = newProgress[key];
+        }
+      });
+      return updated;
+    });
+  };
+
+  const validateImageUrl = async (url) => {
+    try {
+      // Basic URL validation
+      const urlObj = new URL(url);
+      if (!['http:', 'https:'].includes(urlObj.protocol)) {
+        return { valid: false, error: 'URL must use HTTP or HTTPS protocol' };
+      }
+
+      // Check if it's an image URL by extension or content type
+      const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+      const hasImageExtension = imageExtensions.some(ext => 
+        urlObj.pathname.toLowerCase().endsWith(ext)
+      );
+
+      // Try to fetch and validate it's an image
+      try {
+        const response = await fetch(url, { method: 'HEAD', mode: 'no-cors' });
+        // If we can't check (CORS), assume it's valid if it has image extension
+        if (!hasImageExtension) {
+          console.warn('Cannot verify image type due to CORS, but URL format looks valid');
+        }
+      } catch (fetchError) {
+        // CORS error is expected for external URLs, but we can still use the URL
+        if (!hasImageExtension) {
+          console.warn('Cannot verify image type, but URL format looks valid');
+        }
+      }
+
+      return { valid: true };
+    } catch (error) {
+      return { valid: false, error: 'Invalid URL format' };
+    }
+  };
+
+  const handleAddImageUrl = async () => {
+    const trimmedUrl = urlInput.trim();
+    if (!trimmedUrl) {
+      setErrors(prev => ({ ...prev, imageUrl: 'Please enter a valid image URL' }));
+      return;
+    }
+
+    // Check if URL already exists
+    if (imageUrls.includes(trimmedUrl)) {
+      setErrors(prev => ({ ...prev, imageUrl: 'This URL is already added' }));
+      return;
+    }
+
+    // Validate URL
+    setSubmitProgress('Validating image URL...');
+    const validation = await validateImageUrl(trimmedUrl);
+    
+    if (!validation.valid) {
+      setErrors(prev => ({ ...prev, imageUrl: validation.error || 'Invalid image URL' }));
+      setSubmitProgress('');
+      return;
+    }
+
+    // Add URL
+    setImageUrls(prev => [...prev, trimmedUrl]);
+    setImagePreviews(prev => [...prev, trimmedUrl]);
+    setUrlInput('');
+    setErrors(prev => {
+      const newErrors = { ...prev };
+      delete newErrors.imageUrl;
+      delete newErrors.images;
+      return newErrors;
+    });
+    setSubmitProgress('');
   };
 
   const handleSpecChange = (index, field, value) => {
@@ -259,142 +519,214 @@ export default function CreateProductPage() {
     }));
   };
 
-  const uploadImages = async () => {
-    if (imageFiles.length === 0) {
-      return [];
-    }
-
-    setUploadingImages(true);
-    const uploadedUrls = [];
-    const errors = [];
-
+  // Compress image before upload
+  const compressImage = async (file) => {
     try {
-      // Skip bucket check - it can hang. We'll validate during actual upload instead.
-      setSubmitProgress('Preparing upload...');
-      console.log(`📦 Starting upload of ${imageFiles.length} image(s)...`);
+      const originalSizeMB = file.size / (1024 * 1024);
+      
+      // Always compress files larger than 500KB for better upload speed
+      if (originalSizeMB <= 0.5) {
+        console.log(`📦 Skipping compression for ${file.name} (${originalSizeMB.toFixed(2)}MB - already small)`);
+        return file;
+      }
 
-      for (let i = 0; i < imageFiles.length; i++) {
-        const file = imageFiles[i];
-        const fileNumber = i + 1;
-        setSubmitProgress(`Uploading image ${fileNumber} of ${imageFiles.length}: ${file.name}...`);
+      console.log(`🗜️ Compressing ${file.name} (${originalSizeMB.toFixed(2)}MB)...`);
+      
+      // More aggressive compression settings for faster uploads
+      const options = {
+        maxSizeMB: 1.5, // Target max size: 1.5MB (more aggressive)
+        maxWidthOrHeight: 1600, // Smaller max dimension for faster upload
+        useWebWorker: true, // Use web worker for better performance
+        fileType: file.type, // Preserve original type
+        initialQuality: 0.75, // 75% quality (more aggressive compression)
+        alwaysKeepResolution: false, // Allow resolution reduction
+      };
+
+      const compressedFile = await imageCompression(file, options);
+      const compressedSizeMB = compressedFile.size / (1024 * 1024);
+      const reduction = ((1 - compressedFile.size / file.size) * 100).toFixed(1);
+      
+      // If compression didn't help much, try even more aggressive
+      if (compressedSizeMB > 2 && originalSizeMB > 2) {
+        console.log(`🔄 First compression result too large (${compressedSizeMB.toFixed(2)}MB), trying more aggressive compression...`);
+        const aggressiveOptions = {
+          maxSizeMB: 1, // Even smaller target
+          maxWidthOrHeight: 1200, // Smaller dimensions
+          useWebWorker: true,
+          fileType: file.type,
+          initialQuality: 0.65, // Lower quality
+          alwaysKeepResolution: false,
+        };
+        
+        const moreCompressed = await imageCompression(file, aggressiveOptions);
+        const moreCompressedSizeMB = moreCompressed.size / (1024 * 1024);
+        const moreReduction = ((1 - moreCompressed.size / file.size) * 100).toFixed(1);
+        console.log(`✅ Aggressively compressed ${file.name}: ${originalSizeMB.toFixed(2)}MB → ${moreCompressedSizeMB.toFixed(2)}MB (${moreReduction}% reduction)`);
+        return moreCompressed;
+      }
+      
+      console.log(`✅ Compressed ${file.name}: ${originalSizeMB.toFixed(2)}MB → ${compressedSizeMB.toFixed(2)}MB (${reduction}% reduction)`);
+      
+      return compressedFile;
+    } catch (error) {
+      console.warn(`⚠️ Compression failed for ${file.name}, using original:`, error);
+      return file; // Fallback to original if compression fails
+    }
+  };
+
+  // Upload single image with retry logic
+  const uploadSingleImage = async (file, fileIndex, totalFiles) => {
+    const fileNumber = fileIndex + 1;
+    
+    try {
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+      if (!validTypes.includes(file.type)) {
+        throw new Error(`File "${file.name}" is not a valid image type. Please use JPEG, PNG, WebP, or GIF.`);
+      }
+
+      // Compress image before upload
+      setSubmitProgress(`Compressing image ${fileNumber} of ${totalFiles}: ${file.name}...`);
+      const processedFile = await compressImage(file);
+
+      // Validate file size after compression
+      const maxSize = 10 * 1024 * 1024; // 10MB
+      if (processedFile.size > maxSize) {
+        throw new Error(`File "${file.name}" is too large (${(processedFile.size / 1024 / 1024).toFixed(2)}MB). Maximum size is 10MB.`);
+      }
+
+      const fileExt = processedFile.name.split('.').pop() || 'jpg';
+      const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
+      const filePath = `products/${fileName}`;
+
+      const fileSizeMB = processedFile.size / (1024 * 1024);
+      setSubmitProgress(`Uploading image ${fileNumber} of ${totalFiles}: ${file.name} (${fileSizeMB.toFixed(2)}MB)...`);
+      console.log(`📤 Uploading ${file.name} (${fileSizeMB.toFixed(2)}MB) to ${filePath}...`);
+
+      // Upload with retry logic
+      const maxRetries = 2;
+      let uploadData = null;
+      let uploadError = null;
+      let lastAttemptError = null;
+
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        if (attempt > 0) {
+          const retryDelay = attempt * 2000; // 2s, 4s delays
+          console.log(`🔄 Retry attempt ${attempt}/${maxRetries} for ${file.name} after ${retryDelay}ms delay...`);
+          setSubmitProgress(`Retrying upload ${fileNumber} of ${totalFiles} (attempt ${attempt + 1}/${maxRetries + 1}): ${file.name}...`);
+          await new Promise(resolve => setTimeout(resolve, retryDelay));
+        }
 
         try {
-          // Validate file type (matching storage bucket allowed_mime_types)
-          const validTypes = [
-            'image/jpeg', 
-            'image/jpg', 
-            'image/png', 
-            'image/gif', 
-            'image/webp'
-          ];
-          if (!validTypes.includes(file.type)) {
-            errors.push(`File "${file.name}" is not a valid image type. Please use JPEG, PNG, WebP, or GIF.`);
-            continue;
+          // Dynamic timeout based on file size: base 5 minutes + 30s per MB
+          // For a 1.5MB file (after compression), this gives ~5.75 minutes
+          // More generous timeout to handle slow connections
+          const timeoutMs = Math.max(300000, 300000 + (fileSizeMB * 30000)); // Minimum 5 minutes, scales with size
+          
+          if (attempt === 0) {
+            console.log(`⏱️ Upload timeout set to ${(timeoutMs / 1000 / 60).toFixed(1)} minutes for ${fileSizeMB.toFixed(2)}MB file`);
+            console.log(`📊 Upload details: Original: ${(file.size / 1024 / 1024).toFixed(2)}MB, Compressed: ${fileSizeMB.toFixed(2)}MB`);
           }
-
-          // Validate file size (max 10MB - matching storage bucket file_size_limit: 10485760 bytes)
-          const maxSize = 10 * 1024 * 1024; // 10MB
-          if (file.size > maxSize) {
-            errors.push(`File "${file.name}" is too large (${(file.size / 1024 / 1024).toFixed(2)}MB). Maximum size is 10MB.`);
-            continue;
-          }
-
-          const fileExt = file.name.split('.').pop();
-          const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
-          const filePath = `products/${fileName}`;
-
-          console.log(`📤 Uploading ${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB) to ${filePath}...`);
 
           // Create upload promise with timeout
           const uploadPromise = supabase.storage
             .from('product-images')
-            .upload(filePath, file, {
+            .upload(filePath, processedFile, {
               cacheControl: '3600',
               upsert: false
             });
 
-          // Add timeout (60 seconds per image)
           const timeoutPromise = new Promise((_, reject) => {
-            setTimeout(() => reject(new Error('Upload timeout: Image upload took too long. Please try again with a smaller file.')), 60000);
+            setTimeout(() => reject(new Error('Upload timeout: Image upload took too long. Please try again with a smaller file or check your internet connection.')), timeoutMs);
           });
 
-          const { data: uploadData, error: uploadError } = await Promise.race([
+          const result = await Promise.race([
             uploadPromise,
             timeoutPromise
           ]);
 
-          if (uploadError) {
-            console.error(`❌ Error uploading ${file.name}:`, uploadError);
-            
-            // Provide more specific error messages
-            let errorMessage = uploadError.message;
-            if (uploadError.message?.includes('new row violates row-level security')) {
-              errorMessage = 'Permission denied. Please ensure you have admin privileges.';
-            } else if (uploadError.message?.includes('timeout') || uploadError.message?.includes('network')) {
-              errorMessage = 'Network error. Please check your connection and try again.';
-            } else if (uploadError.message?.includes('size') || uploadError.message?.includes('limit')) {
-              errorMessage = 'File size exceeds limit. Maximum size is 10MB.';
+          uploadData = result.data;
+          uploadError = result.error;
+          lastAttemptError = null;
+
+          // If successful, break out of retry loop
+          if (!uploadError && uploadData) {
+            if (attempt > 0) {
+              console.log(`✅ Upload succeeded on retry attempt ${attempt + 1} for ${file.name}`);
             }
-            
-            errors.push(`Failed to upload "${file.name}": ${errorMessage}`);
-            continue;
+            break;
           }
 
-          if (!uploadData || !uploadData.path) {
-            console.error('Upload succeeded but no path returned:', uploadData);
-            errors.push(`Upload succeeded for "${file.name}" but could not get file path.`);
-            continue;
-          }
+          // If error is not retryable, break immediately
+          if (uploadError) {
+            const isRetryable = 
+              uploadError.message?.includes('timeout') ||
+              uploadError.message?.includes('network') ||
+              uploadError.message?.includes('ECONNRESET') ||
+              uploadError.message?.includes('ECONNREFUSED') ||
+              (!uploadError.status || uploadError.status >= 500);
 
-          // Get public URL
-          const { data: urlData } = supabase.storage
-            .from('product-images')
-            .getPublicUrl(uploadData.path);
+            if (!isRetryable) {
+              console.log(`❌ Non-retryable error for ${file.name}, stopping retries`);
+              break;
+            }
 
-          if (!urlData || !urlData.publicUrl) {
-            console.error('Could not get public URL for:', uploadData.path);
-            errors.push(`Could not get public URL for "${file.name}"`);
-            continue;
-          }
-
-          console.log(`✅ Image ${fileNumber}/${imageFiles.length} uploaded: ${file.name} -> ${urlData.publicUrl}`);
-          uploadedUrls.push(urlData.publicUrl);
-          
-          // Small delay to prevent overwhelming the server
-          if (i < imageFiles.length - 1) {
-            await new Promise(resolve => setTimeout(resolve, 100));
+            lastAttemptError = uploadError;
+            if (attempt < maxRetries) {
+              console.log(`⚠️ Upload attempt ${attempt + 1} failed, will retry:`, uploadError.message);
+            }
           }
         } catch (error) {
-          console.error(`❌ Error processing ${file.name}:`, error);
-          errors.push(`Failed to upload "${file.name}": ${error.message || 'Unknown error'}`);
+          lastAttemptError = error;
+          uploadError = error;
+          if (attempt < maxRetries) {
+            console.log(`⚠️ Upload attempt ${attempt + 1} threw error, will retry:`, error.message);
+          }
         }
       }
 
-      // Final status
-      if (uploadedUrls.length > 0) {
-        setSubmitProgress(`✅ ${uploadedUrls.length} image(s) uploaded successfully${errors.length > 0 ? `, ${errors.length} failed` : ''}`);
+      // Handle final result
+      if (uploadError || !uploadData) {
+        const finalError = uploadError || lastAttemptError;
+        throw finalError || new Error('Upload failed after retries');
       }
 
-      if (errors.length > 0 && uploadedUrls.length === 0) {
-        throw new Error(`All image uploads failed:\n${errors.join('\n')}`);
+      if (!uploadData.path) {
+        throw new Error('Upload succeeded but no path returned');
       }
 
-      if (errors.length > 0) {
-        console.warn('⚠️ Some images failed to upload:', errors);
-        // Show warning but don't block if at least one image uploaded
-        const warningMessage = `Warning: ${errors.length} image(s) failed to upload:\n${errors.slice(0, 3).join('\n')}${errors.length > 3 ? `\n...and ${errors.length - 3} more` : ''}`;
-        alert(warningMessage);
+      // Get public URL
+      const { data: urlData } = supabase.storage
+        .from('product-images')
+        .getPublicUrl(uploadData.path);
+
+      if (!urlData || !urlData.publicUrl) {
+        throw new Error('Could not get public URL');
       }
 
-      console.log(`✅ Upload complete: ${uploadedUrls.length} successful, ${errors.length} failed`);
-      return uploadedUrls;
+      console.log(`✅ Image ${fileNumber}/${totalFiles} uploaded: ${file.name} -> ${urlData.publicUrl}`);
+      return urlData.publicUrl;
     } catch (error) {
-      console.error('❌ Error in uploadImages:', error);
-      setSubmitProgress(`❌ Upload failed: ${error.message}`);
-      throw error;
-    } finally {
-      setUploadingImages(false);
+      console.error(`❌ Error processing ${file.name}:`, error);
+      
+      // Provide more specific error messages
+      let errorMessage = error?.message || 'Unknown error';
+      if (errorMessage.includes('new row violates row-level security')) {
+        errorMessage = 'Permission denied. Please ensure you have admin privileges.';
+      } else if (errorMessage.includes('timeout') || errorMessage.includes('network')) {
+        errorMessage = 'Network error. The upload timed out after multiple attempts. Please check your internet connection and try again.';
+      } else if (errorMessage.includes('size') || errorMessage.includes('limit')) {
+        errorMessage = 'File size exceeds limit. Maximum size is 10MB.';
+      }
+      
+      throw new Error(`Failed to upload "${file.name}": ${errorMessage}`);
     }
+  };
+
+  const uploadImages = async () => {
+    // All images are already uploaded immediately when selected
+    // Just return the URLs
+    return [...imageUrls];
   };
 
   const validateForm = () => {
@@ -425,7 +757,7 @@ export default function CreateProductPage() {
       newErrors.compare_price = 'Compare price must be greater than regular price';
     }
 
-    if (imageFiles.length === 0) {
+    if (imageUrls.length === 0) {
       newErrors.images = 'Please upload at least one product image';
     }
 
@@ -442,7 +774,14 @@ export default function CreateProductPage() {
     e.preventDefault();
     console.log('🚀 Form submission started');
     console.log('Form data:', formData);
-    console.log('Image files:', imageFiles.length);
+    console.log('Uploaded images:', imageUrls.length);
+    
+    // Check if any images are still uploading
+    const uploadingImages = Object.values(uploadProgress).some(p => p.status === 'uploading');
+    if (uploadingImages) {
+      alert('Please wait for all images to finish uploading before submitting.');
+      return;
+    }
     
     // Validate form
     const validation = validateForm();
@@ -472,16 +811,15 @@ export default function CreateProductPage() {
     
     try {
       setLoading(true);
-      setSubmitProgress('Starting product creation...');
+      setSubmitProgress('Creating product...');
 
-      // Upload images
-      console.log('📷 Uploading images...');
-      setSubmitProgress('Uploading images...');
-      const imageUrls = await uploadImages();
-      console.log('✅ Images uploaded:', imageUrls.length, 'files');
+      // Images are already uploaded, just get the URLs
+      console.log('📷 Using uploaded images...');
+      const finalImageUrls = imageUrls;
+      console.log('✅ Images ready:', finalImageUrls.length);
       
-      if (imageUrls.length === 0 && imageFiles.length > 0) {
-        throw new Error('Failed to upload images. Please try again.');
+      if (finalImageUrls.length === 0) {
+        throw new Error('Please upload at least one product image.');
       }
 
       // Check if user is authenticated
@@ -500,6 +838,12 @@ export default function CreateProductPage() {
         }
       });
 
+      // Generate SKU automatically for admin uploads (always generate)
+      console.log('📦 Generating automatic TIT SKU...');
+      setSubmitProgress('Generating SKU...');
+      const finalSku = await generateNextTitSku();
+      console.log('✅ Generated SKU:', finalSku);
+
       // Prepare product data (use primary category for category_id for backward compatibility)
       console.log('📦 Preparing product data...');
       const productData = {
@@ -512,12 +856,12 @@ export default function CreateProductPage() {
         delivery_options: formData.delivery_options,
         supplier_whatsapp: formData.supplier_whatsapp,
         supplier_type: formData.supplier_type,
-        images: imageUrls,
+        images: finalImageUrls,
         specifications,
         price: parseFloat(formData.price),
         compare_price: formData.compare_price ? parseFloat(formData.compare_price) : null,
         stock_quantity: parseInt(formData.stock_quantity) || 0,
-        sku: formData.sku,
+        sku: finalSku,
         is_featured: formData.is_featured,
         is_active: formData.is_active,
         verification_status: formData.verification_status,
@@ -525,7 +869,7 @@ export default function CreateProductPage() {
         admin_name: profile?.full_name || user.email || 'Admin' // Store admin name when admin creates product
       };
 
-      // Insert product
+      // Insert product with timeout protection
       setSubmitProgress('Creating product in database...');
       console.log('Creating product with data:', {
         ...productData,
@@ -534,35 +878,96 @@ export default function CreateProductPage() {
         section_ids: formData.section_ids.length
       });
 
-      const { data: product, error } = await supabase
+      // Add timeout to prevent hanging
+      const insertTimeout = 30000; // 30 seconds
+      console.log('⏱️ Starting product insert with', insertTimeout / 1000, 'second timeout...');
+      
+      const insertPromise = supabase
         .from('products')
         .insert([productData])
         .select()
         .single();
 
-      if (error) {
-        console.error('Product creation error:', error);
-        throw new Error(`Failed to create product: ${error.message}`);
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => {
+          console.error('⏱️ Product insert timed out after', insertTimeout / 1000, 'seconds');
+          reject(new Error('Database operation timed out. Please check your connection and try again.'));
+        }, insertTimeout);
+      });
+
+      let product, error;
+      try {
+        const result = await Promise.race([
+          insertPromise.then(res => ({ type: 'success', ...res })),
+          timeoutPromise.then(() => ({ type: 'timeout' })).catch(err => ({ type: 'timeout', error: err }))
+        ]);
+        
+        // Handle timeout
+        if (result.type === 'timeout') {
+          throw new Error('Database operation timed out. Please check your connection and try again.');
+        }
+        
+        // Handle Supabase response
+        if (result.error) {
+          error = result.error;
+        } else if (result.data) {
+          product = result.data;
+          error = result.error; // May be null/undefined
+        } else {
+          throw new Error('Unexpected response from database');
+        }
+      } catch (raceError) {
+        // This catches timeout errors and other race errors
+        console.error('❌ Promise.race error:', raceError);
+        if (raceError.message && raceError.message.includes('timed out')) {
+          throw raceError;
+        }
+        throw new Error(`Database operation failed: ${raceError.message || 'Unknown error'}`);
       }
+
+      if (error) {
+        console.error('❌ Product creation error:', error);
+        console.error('Error details:', JSON.stringify(error, null, 2));
+        throw new Error(`Failed to create product: ${error.message || 'Unknown database error'}`);
+      }
+
+      if (!product || !product.id) {
+        console.error('❌ Product insert returned no data or ID');
+        console.error('Response:', { product, error });
+        throw new Error('Product was created but no ID was returned. Please check the database.');
+      }
+      
+      console.log('✅ Product inserted successfully with ID:', product.id);
 
       console.log('Product created successfully:', product.id);
 
       // Insert product-category relationships
-      setSubmitProgress('Linking categories...');
-      const categoryRelations = formData.category_ids.map((catId, index) => ({
-        product_id: product.id,
-        category_id: catId,
-        is_primary: catId === formData.primary_category_id,
-        sort_order: index
-      }));
+      if (formData.category_ids.length > 0) {
+        setSubmitProgress('Linking categories...');
+        const categoryRelations = formData.category_ids.map((catId, index) => ({
+          product_id: product.id,
+          category_id: catId,
+          is_primary: catId === formData.primary_category_id,
+          sort_order: index
+        }));
 
-      const { error: categoryError } = await supabase
-        .from('product_categories')
-        .insert(categoryRelations);
+        const categoryInsertPromise = supabase
+          .from('product_categories')
+          .insert(categoryRelations);
 
-      if (categoryError) {
-        console.error('Error inserting categories:', categoryError);
-        throw new Error(`Product created but failed to link categories: ${categoryError.message}`);
+        const categoryTimeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Category linking timed out')), 15000);
+        });
+
+        const { error: categoryError } = await Promise.race([
+          categoryInsertPromise,
+          categoryTimeoutPromise
+        ]);
+
+        if (categoryError) {
+          console.error('Error inserting categories:', categoryError);
+          throw new Error(`Product created but failed to link categories: ${categoryError.message}`);
+        }
       }
 
       console.log('Categories linked successfully');
@@ -577,16 +982,30 @@ export default function CreateProductPage() {
           is_pinned: false
         }));
 
-        const { error: sectionError } = await supabase
+        const sectionInsertPromise = supabase
           .from('product_section_placements')
           .insert(sectionRelations);
 
-        if (sectionError) {
-          console.error('Error inserting sections:', sectionError);
+        const sectionTimeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Section linking timed out')), 15000);
+        });
+
+        try {
+          const { error: sectionError } = await Promise.race([
+            sectionInsertPromise,
+            sectionTimeoutPromise
+          ]);
+
+          if (sectionError) {
+            console.error('Error inserting sections:', sectionError);
+            // Non-critical error - product is created, just log it
+            console.warn('Product created but sections linking failed:', sectionError.message);
+          } else {
+            console.log('Sections linked successfully');
+          }
+        } catch (sectionTimeoutError) {
           // Non-critical error - product is created, just log it
-          console.warn('Product created but sections linking failed:', sectionError.message);
-        } else {
-          console.log('Sections linked successfully');
+          console.warn('Section linking timed out, but product was created:', sectionTimeoutError.message);
         }
       }
 
@@ -599,7 +1018,8 @@ export default function CreateProductPage() {
         images: imageUrls.length
       });
 
-      alert(`Product "${product.name}" created successfully!\n\n- Categories: ${formData.category_ids.length}\n- Sections: ${formData.section_ids.length}\n- Images: ${imageUrls.length}`);
+      // Simple success message
+      alert('Product created successfully');
       router.push('/admin/products');
     } catch (error) {
       console.error('❌ Error creating product:', error);
@@ -616,7 +1036,7 @@ export default function CreateProductPage() {
           section_ids: formData.section_ids.length,
           delivery_options: formData.delivery_options.length
         },
-        imageFilesCount: imageFiles.length,
+        imageFilesCount: imageUrls.length,
         specFieldsCount: specFields.length
       });
     } finally {
@@ -878,8 +1298,13 @@ export default function CreateProductPage() {
                 name="sku"
                 value={formData.sku}
                 onChange={handleInputChange}
-                placeholder="Enter SKU"
+                placeholder="Auto-generated (TIT1, TIT2, etc.)"
+                disabled
+                style={{ backgroundColor: '#f1f5f9', cursor: 'not-allowed' }}
               />
+              <small style={{ color: '#64748b', fontSize: '12px', marginTop: '4px', display: 'block' }}>
+                SKU will be automatically generated as TIT1, TIT2, TIT3, etc.
+              </small>
             </div>
 
             <div className="form-group">
@@ -1095,6 +1520,7 @@ export default function CreateProductPage() {
           )}
           
           <div className="image-upload-area">
+            {/* File Upload Section */}
             <label htmlFor="images" className="upload-label">
               <ImageIcon size={48} />
               <p>Click to upload images</p>
@@ -1109,34 +1535,214 @@ export default function CreateProductPage() {
               />
             </label>
 
+            {/* URL Input Section */}
+            <div style={{ 
+              marginTop: '16px', 
+              padding: '16px', 
+              border: '1px dashed #cbd5e1', 
+              borderRadius: '8px',
+              backgroundColor: '#f8fafc'
+            }}>
+              <label style={{ 
+                display: 'block', 
+                marginBottom: '8px', 
+                fontWeight: '500',
+                color: '#334155'
+              }}>
+                Or add image by URL
+              </label>
+              <div style={{ 
+                display: 'flex', 
+                gap: '8px',
+                flexWrap: 'wrap'
+              }}>
+                <input
+                  type="url"
+                  placeholder="https://example.com/image.jpg"
+                  value={urlInput}
+                  onChange={(e) => {
+                    setUrlInput(e.target.value);
+                    if (errors.imageUrl) {
+                      setErrors(prev => {
+                        const newErrors = { ...prev };
+                        delete newErrors.imageUrl;
+                        return newErrors;
+                      });
+                    }
+                  }}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleAddImageUrl();
+                    }
+                  }}
+                  style={{
+                    flex: '1 1 200px',
+                    minWidth: '150px',
+                    padding: '8px 12px',
+                    border: errors.imageUrl ? '1px solid #ef4444' : '1px solid #cbd5e1',
+                    borderRadius: '6px',
+                    fontSize: '14px'
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={handleAddImageUrl}
+                  className="btn-secondary"
+                  style={{ 
+                    padding: '8px 16px',
+                    whiteSpace: 'nowrap',
+                    flex: '0 0 auto',
+                    minWidth: 'fit-content'
+                  }}
+                >
+                  <Plus size={16} style={{ marginRight: '4px' }} />
+                  <span style={{ 
+                    display: 'inline-block'
+                  }}>
+                    Add URL
+                  </span>
+                </button>
+              </div>
+              {errors.imageUrl && (
+                <p style={{ 
+                  marginTop: '8px', 
+                  fontSize: '12px', 
+                  color: '#ef4444' 
+                }}>
+                  {errors.imageUrl}
+                </p>
+              )}
+              <p style={{ 
+                marginTop: '8px', 
+                fontSize: '12px', 
+                color: '#64748b' 
+              }}>
+                Enter a direct image URL (HTTP/HTTPS)
+              </p>
+            </div>
+
+            {/* Image Previews */}
             {imagePreviews.length > 0 && (
-              <div className="image-previews">
-                {imagePreviews.map((preview, index) => (
-                  <div key={index} className="image-preview">
-                    <img src={preview} alt={`Preview ${index + 1}`} />
-                    <div className="image-preview-info">
-                      <span className="image-number">{index + 1}</span>
-                      {imageFiles[index] && (
-                        <span className="image-size">
-                          {(imageFiles[index].size / 1024 / 1024).toFixed(2)} MB
-                        </span>
+              <div className="image-previews" style={{ marginTop: '16px' }}>
+                {imagePreviews.map((preview, index) => {
+                  const progress = uploadProgress[index];
+                  const isUploading = progress && progress.status === 'uploading';
+                  const isError = progress && progress.status === 'error';
+                  const isSuccess = progress && progress.status === 'success';
+                  
+                  return (
+                    <div key={index} className="image-preview" style={{ position: 'relative' }}>
+                      <img src={preview} alt={`Preview ${index + 1}`} />
+                      
+                      {/* Upload Progress Overlay */}
+                      {isUploading && (
+                        <div className="upload-progress-overlay" style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          fontSize: '12px',
+                          borderRadius: '8px'
+                        }}>
+                          <div style={{ marginBottom: '8px' }}>{progress.message}</div>
+                          <div style={{
+                            width: '80%',
+                            height: '4px',
+                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                            borderRadius: '2px',
+                            overflow: 'hidden'
+                          }}>
+                            <div style={{
+                              width: `${progress.progress}%`,
+                              height: '100%',
+                              backgroundColor: '#3b82f6',
+                              transition: 'width 0.3s ease'
+                            }}></div>
+                          </div>
+                          <div style={{ marginTop: '4px', fontSize: '10px' }}>{progress.progress}%</div>
+                        </div>
                       )}
+                      
+                      {/* Success Indicator */}
+                      {isSuccess && (
+                        <div className="upload-success-overlay" style={{
+                          position: 'absolute',
+                          top: '8px',
+                          right: '8px',
+                          backgroundColor: '#10b981',
+                          color: 'white',
+                          padding: '4px 8px',
+                          borderRadius: '4px',
+                          fontSize: '10px',
+                          fontWeight: 'bold'
+                        }}>
+                          ✓ Uploaded
+                        </div>
+                      )}
+                      
+                      {/* Error Indicator */}
+                      {isError && (
+                        <div className="upload-error-overlay" style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          backgroundColor: 'rgba(239, 68, 68, 0.9)',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'white',
+                          fontSize: '12px',
+                          borderRadius: '8px',
+                          padding: '8px',
+                          textAlign: 'center'
+                        }}>
+                          <div style={{ marginBottom: '4px' }}>✗ Upload Failed</div>
+                          <div style={{ fontSize: '10px' }}>{progress.message}</div>
+                        </div>
+                      )}
+                      
+                      <div className="image-preview-info">
+                        <span className="image-number">{index + 1}</span>
+                        {!isUploading && !isError && (
+                          <span className="image-size" style={{ fontSize: '10px', color: '#64748b' }}>
+                            {isSuccess ? 'Uploaded' : 'Ready'}
+                          </span>
+                        )}
+                      </div>
+                      <button
+                        type="button"
+                        className="remove-image"
+                        onClick={() => removeImage(index)}
+                        title="Remove image"
+                        disabled={isUploading}
+                        style={{ opacity: isUploading ? 0.5 : 1, cursor: isUploading ? 'not-allowed' : 'pointer' }}
+                      >
+                        <X size={16} />
+                      </button>
                     </div>
-                    <button
-                      type="button"
-                      className="remove-image"
-                      onClick={() => removeImage(index)}
-                      title="Remove image"
-                    >
-                      <X size={16} />
-                    </button>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
-            {imageFiles.length > 0 && (
+            {imageUrls.length > 0 && (
               <div style={{ marginTop: '8px', fontSize: '12px', color: '#64748b' }}>
-                {imageFiles.length} image{imageFiles.length !== 1 ? 's' : ''} selected
+                {imageUrls.length} image{imageUrls.length !== 1 ? 's' : ''} uploaded
+                {Object.values(uploadProgress).some(p => p.status === 'uploading') && (
+                  <span style={{ color: '#3b82f6', marginLeft: '8px' }}>
+                    • Uploading...
+                  </span>
+                )}
               </div>
             )}
           </div>

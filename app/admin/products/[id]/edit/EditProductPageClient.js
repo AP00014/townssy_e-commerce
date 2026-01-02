@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../../../context/AuthContext";
 import { useRouter, useParams } from "next/navigation";
 import { supabase } from "../../../../../lib/supabase";
+import imageCompression from 'browser-image-compression';
+import { generateNextTitSku } from "../../../../utils/generateTitSku";
 import {
   Package,
   Upload,
@@ -332,6 +334,207 @@ export default function EditProductPageClient() {
     setSpecFields(specFields.filter((_, i) => i !== index));
   };
 
+  // Compress image before upload
+  const compressImage = async (file) => {
+    try {
+      const originalSizeMB = file.size / (1024 * 1024);
+      
+      // Always compress files larger than 500KB for better upload speed
+      if (originalSizeMB <= 0.5) {
+        console.log(`📦 Skipping compression for ${file.name} (${originalSizeMB.toFixed(2)}MB - already small)`);
+        return file;
+      }
+
+      console.log(`🗜️ Compressing ${file.name} (${originalSizeMB.toFixed(2)}MB)...`);
+      
+      // More aggressive compression settings for faster uploads
+      const options = {
+        maxSizeMB: 1.5, // Target max size: 1.5MB (more aggressive)
+        maxWidthOrHeight: 1600, // Smaller max dimension for faster upload
+        useWebWorker: true, // Use web worker for better performance
+        fileType: file.type, // Preserve original type
+        initialQuality: 0.75, // 75% quality (more aggressive compression)
+        alwaysKeepResolution: false, // Allow resolution reduction
+      };
+
+      const compressedFile = await imageCompression(file, options);
+      const compressedSizeMB = compressedFile.size / (1024 * 1024);
+      const reduction = ((1 - compressedFile.size / file.size) * 100).toFixed(1);
+      
+      // If compression didn't help much, try even more aggressive
+      if (compressedSizeMB > 2 && originalSizeMB > 2) {
+        console.log(`🔄 First compression result too large (${compressedSizeMB.toFixed(2)}MB), trying more aggressive compression...`);
+        const aggressiveOptions = {
+          maxSizeMB: 1, // Even smaller target
+          maxWidthOrHeight: 1200, // Smaller dimensions
+          useWebWorker: true,
+          fileType: file.type,
+          initialQuality: 0.65, // Lower quality
+          alwaysKeepResolution: false,
+        };
+        
+        const moreCompressed = await imageCompression(file, aggressiveOptions);
+        const moreCompressedSizeMB = moreCompressed.size / (1024 * 1024);
+        const moreReduction = ((1 - moreCompressed.size / file.size) * 100).toFixed(1);
+        console.log(`✅ Aggressively compressed ${file.name}: ${originalSizeMB.toFixed(2)}MB → ${moreCompressedSizeMB.toFixed(2)}MB (${moreReduction}% reduction)`);
+        return moreCompressed;
+      }
+      
+      console.log(`✅ Compressed ${file.name}: ${originalSizeMB.toFixed(2)}MB → ${compressedSizeMB.toFixed(2)}MB (${reduction}% reduction)`);
+      
+      return compressedFile;
+    } catch (error) {
+      console.warn(`⚠️ Compression failed for ${file.name}, using original:`, error);
+      return file; // Fallback to original if compression fails
+    }
+  };
+
+  // Upload single image with retry logic
+  const uploadSingleImage = async (file, fileIndex, totalFiles) => {
+    const fileNumber = fileIndex + 1;
+    
+    try {
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+      if (!validTypes.includes(file.type)) {
+        throw new Error(`File "${file.name}" is not a valid image type. Please use JPEG, PNG, WebP, or GIF.`);
+      }
+
+      // Compress image before upload
+      const processedFile = await compressImage(file);
+
+      // Validate file size after compression
+      const maxSize = 10 * 1024 * 1024; // 10MB
+      if (processedFile.size > maxSize) {
+        throw new Error(`File "${file.name}" is too large (${(processedFile.size / 1024 / 1024).toFixed(2)}MB). Maximum size is 10MB.`);
+      }
+
+      const fileExt = processedFile.name.split('.').pop() || 'jpg';
+      const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
+      const filePath = `products/${fileName}`;
+
+      const fileSizeMB = processedFile.size / (1024 * 1024);
+      console.log(`📤 Uploading ${file.name} (${fileSizeMB.toFixed(2)}MB) to ${filePath}...`);
+
+      // Upload with retry logic
+      const maxRetries = 2;
+      let uploadData = null;
+      let uploadError = null;
+      let lastAttemptError = null;
+
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
+        if (attempt > 0) {
+          const retryDelay = attempt * 2000; // 2s, 4s delays
+          console.log(`🔄 Retry attempt ${attempt}/${maxRetries} for ${file.name} after ${retryDelay}ms delay...`);
+          await new Promise(resolve => setTimeout(resolve, retryDelay));
+        }
+
+        try {
+          // Dynamic timeout based on file size: base 5 minutes + 30s per MB
+          // For a 1.5MB file (after compression), this gives ~5.75 minutes
+          // More generous timeout to handle slow connections
+          const timeoutMs = Math.max(300000, 300000 + (fileSizeMB * 30000)); // Minimum 5 minutes, scales with size
+          
+          if (attempt === 0) {
+            console.log(`⏱️ Upload timeout set to ${(timeoutMs / 1000 / 60).toFixed(1)} minutes for ${fileSizeMB.toFixed(2)}MB file`);
+            console.log(`📊 Upload details: Original: ${(file.size / 1024 / 1024).toFixed(2)}MB, Compressed: ${fileSizeMB.toFixed(2)}MB`);
+          }
+
+          // Create upload promise with timeout
+          const uploadPromise = supabase.storage
+            .from("product-images")
+            .upload(filePath, processedFile, {
+              cacheControl: '3600',
+              upsert: false
+            });
+
+          const timeoutPromise = new Promise((_, reject) => {
+            setTimeout(() => reject(new Error('Upload timeout: Image upload took too long. Please try again with a smaller file or check your internet connection.')), timeoutMs);
+          });
+
+          const result = await Promise.race([
+            uploadPromise,
+            timeoutPromise
+          ]);
+
+          uploadData = result.data;
+          uploadError = result.error;
+          lastAttemptError = null;
+
+          // If successful, break out of retry loop
+          if (!uploadError && uploadData) {
+            if (attempt > 0) {
+              console.log(`✅ Upload succeeded on retry attempt ${attempt + 1} for ${file.name}`);
+            }
+            break;
+          }
+
+          // If error is not retryable, break immediately
+          if (uploadError) {
+            const isRetryable = 
+              uploadError.message?.includes('timeout') ||
+              uploadError.message?.includes('network') ||
+              uploadError.message?.includes('ECONNRESET') ||
+              uploadError.message?.includes('ECONNREFUSED') ||
+              (!uploadError.status || uploadError.status >= 500);
+
+            if (!isRetryable) {
+              console.log(`❌ Non-retryable error for ${file.name}, stopping retries`);
+              break;
+            }
+
+            lastAttemptError = uploadError;
+            if (attempt < maxRetries) {
+              console.log(`⚠️ Upload attempt ${attempt + 1} failed, will retry:`, uploadError.message);
+            }
+          }
+        } catch (error) {
+          lastAttemptError = error;
+          uploadError = error;
+          if (attempt < maxRetries) {
+            console.log(`⚠️ Upload attempt ${attempt + 1} threw error, will retry:`, error.message);
+          }
+        }
+      }
+
+      // Handle final result
+      if (uploadError || !uploadData) {
+        const finalError = uploadError || lastAttemptError;
+        throw finalError || new Error('Upload failed after retries');
+      }
+
+      if (!uploadData.path) {
+        throw new Error('Upload succeeded but no path returned');
+      }
+
+      // Get public URL
+      const { data: urlData } = supabase.storage
+        .from("product-images")
+        .getPublicUrl(uploadData.path);
+
+      if (!urlData || !urlData.publicUrl) {
+        throw new Error('Could not get public URL');
+      }
+
+      console.log(`✅ Image ${fileNumber}/${totalFiles} uploaded: ${file.name} -> ${urlData.publicUrl}`);
+      return urlData.publicUrl;
+    } catch (error) {
+      console.error(`❌ Error processing ${file.name}:`, error);
+      
+      // Provide more specific error messages
+      let errorMessage = error?.message || 'Unknown error';
+      if (errorMessage.includes('new row violates row-level security')) {
+        errorMessage = 'Permission denied. Please ensure you have admin privileges.';
+      } else if (errorMessage.includes('timeout') || errorMessage.includes('network')) {
+        errorMessage = 'Network error. The upload timed out after multiple attempts. Please check your internet connection and try again.';
+      } else if (errorMessage.includes('size') || errorMessage.includes('limit')) {
+        errorMessage = 'File size exceeds limit. Maximum size is 10MB.';
+      }
+      
+      throw new Error(`Failed to upload "${file.name}": ${errorMessage}`);
+    }
+  };
+
   const uploadImages = async () => {
     if (imageFiles.length === 0) {
       return [];
@@ -340,79 +543,58 @@ export default function EditProductPageClient() {
     const uploadedUrls = [];
     const errors = [];
 
-    for (let i = 0; i < imageFiles.length; i++) {
-      const file = imageFiles[i];
+    try {
+      console.log(`📦 Starting upload of ${imageFiles.length} image(s)...`);
 
-      // Validate file type (matching storage bucket allowed_mime_types)
-      const validTypes = [
-        'image/jpeg', 
-        'image/jpg', 
-        'image/png', 
-        'image/gif', 
-        'image/webp'
-      ];
-      if (!validTypes.includes(file.type)) {
-        errors.push(`File "${file.name}" is not a valid image type. Please use JPEG, PNG, WebP, or GIF.`);
-        continue;
+      // Upload images in parallel (max 3 concurrent to avoid overwhelming)
+      const MAX_CONCURRENT = 3;
+      const uploadPromises = [];
+      
+      for (let i = 0; i < imageFiles.length; i++) {
+        const file = imageFiles[i];
+        
+        // Create upload promise
+        const uploadPromise = uploadSingleImage(file, i, imageFiles.length)
+          .then(url => ({ success: true, url, index: i }))
+          .catch(error => ({ success: false, error: error.message, index: i }));
+        
+        uploadPromises.push(uploadPromise);
+        
+        // Process in batches of MAX_CONCURRENT
+        if ((i + 1) % MAX_CONCURRENT === 0 || i === imageFiles.length - 1) {
+          const batchResults = await Promise.all(uploadPromises);
+          
+          // Process results in order
+          for (const result of batchResults) {
+            if (result.success) {
+              uploadedUrls[result.index] = result.url;
+            } else {
+              errors.push(result.error);
+            }
+          }
+          
+          // Clear batch
+          uploadPromises.length = 0;
+        }
       }
 
-      // Validate file size (max 10MB - matching storage bucket file_size_limit: 10485760 bytes)
-      const maxSize = 10 * 1024 * 1024; // 10MB
-      if (file.size > maxSize) {
-        errors.push(`File "${file.name}" is too large. Maximum size is 10MB.`);
-        continue;
+      // Filter out undefined entries and maintain order
+      const finalUrls = uploadedUrls.filter(url => url !== undefined);
+
+      if (errors.length > 0 && finalUrls.length === 0) {
+        throw new Error(`Image upload failed: ${errors.join(', ')}`);
       }
 
-      const fileExt = file.name.split(".").pop();
-      const fileName = `${Math.random()
-        .toString(36)
-        .substring(2)}_${Date.now()}.${fileExt}`;
-      const filePath = `products/${fileName}`;
-
-      const { data: uploadData, error } = await supabase.storage
-        .from("product-images")
-        .upload(filePath, file, {
-          cacheControl: '3600',
-          upsert: false
-        });
-
-      if (error) {
-        console.error("Error uploading image:", error);
-        errors.push(`Failed to upload "${file.name}": ${error.message}`);
-        continue;
+      if (errors.length > 0) {
+        console.warn('⚠️ Some images failed to upload:', errors);
+        alert(`Warning: ${errors.length} image(s) failed to upload:\n${errors.slice(0, 3).join('\n')}${errors.length > 3 ? `\n...and ${errors.length - 3} more` : ''}`);
       }
 
-      if (!uploadData || !uploadData.path) {
-        console.error('Upload succeeded but no path returned:', uploadData);
-        errors.push(`Upload succeeded for "${file.name}" but could not get file path.`);
-        continue;
-      }
-
-      // Use the path from the upload response, not the original filePath
-      const { data: urlData } = supabase.storage
-        .from("product-images")
-        .getPublicUrl(uploadData.path);
-
-      if (!urlData || !urlData.publicUrl) {
-        console.error('Could not get public URL for:', uploadData.path);
-        errors.push(`Could not get public URL for "${file.name}"`);
-        continue;
-      }
-
-      console.log(`✅ Image uploaded: ${file.name} -> ${urlData.publicUrl}`);
-      uploadedUrls.push(urlData.publicUrl);
+      return finalUrls;
+    } catch (error) {
+      console.error('❌ Error in uploadImages:', error);
+      throw error;
     }
-
-    if (errors.length > 0 && uploadedUrls.length === 0) {
-      throw new Error(`Image upload failed: ${errors.join(', ')}`);
-    }
-
-    if (errors.length > 0) {
-      console.warn('Some images failed to upload:', errors);
-      alert(`Warning: ${errors.length} image(s) failed to upload:\n${errors.join('\n')}`);
-    }
-
-    return uploadedUrls;
   };
 
   const handleSubmit = async (e) => {
@@ -447,6 +629,17 @@ export default function EditProductPageClient() {
         return;
       }
 
+      // Generate SKU automatically if empty (for admin uploads)
+      let finalSku = formData.sku?.trim() || '';
+      if (!finalSku) {
+        console.log('📦 Generating automatic TIT SKU...');
+        finalSku = await generateNextTitSku();
+        console.log('✅ Generated SKU:', finalSku);
+      } else {
+        // If SKU already exists, keep it (for editing existing products)
+        finalSku = formData.sku;
+      }
+
       // Prepare product data (exclude category_ids, use primary_category_id for category_id)
       const productData = {
         name: formData.name,
@@ -465,7 +658,7 @@ export default function EditProductPageClient() {
           ? parseFloat(formData.compare_price)
           : null,
         stock_quantity: parseInt(formData.stock_quantity) || 0,
-        sku: formData.sku,
+        sku: finalSku,
         is_featured: formData.is_featured,
         is_active: formData.is_active,
         verification_status: formData.verification_status,
@@ -804,8 +997,13 @@ export default function EditProductPageClient() {
                 name="sku"
                 value={formData.sku}
                 onChange={handleInputChange}
-                placeholder="Enter SKU"
+                placeholder="Auto-generated (TIT1, TIT2, etc.)"
+                disabled
+                style={{ backgroundColor: '#f1f5f9', cursor: 'not-allowed' }}
               />
+              <small style={{ color: '#64748b', fontSize: '12px', marginTop: '4px', display: 'block' }}>
+                SKU will be automatically generated as TIT1, TIT2, TIT3, etc.
+              </small>
             </div>
 
             <div className="form-group">
