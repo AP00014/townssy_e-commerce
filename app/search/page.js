@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
@@ -11,7 +11,10 @@ import { Search, Loader2 } from 'lucide-react';
 import '../styles/products.css';
 import '../styles/search-results.css';
 
-export default function SearchPage() {
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+function SearchContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const query = searchParams.get('q') || '';
@@ -109,6 +112,26 @@ export default function SearchPage() {
 
       <BottomNav />
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="page-content">
+        <Header />
+        <SearchBar />
+        <div className="search-results-page">
+          <div className="loading-container">
+            <Loader2 className="spinner-icon" size={48} />
+            <p>Loading...</p>
+          </div>
+        </div>
+        <BottomNav />
+      </div>
+    }>
+      <SearchContent />
+    </Suspense>
   );
 }
 

@@ -16,7 +16,9 @@ function ProductCard({
   originalPrice,
   isFavorite = false,
   badge,
-  variant = 'default' // 'default', 'top-deal', 'top-ranking', 'grid'
+  variant = 'default', // 'default', 'top-deal', 'top-ranking', 'grid'
+  priority = false, // For above-the-fold images (LCP optimization)
+  loading = 'lazy' // 'lazy' or 'eager'
 }) {
   const { toggleFavourite, isFavourite } = useFavourites();
   const router = useRouter();
@@ -62,7 +64,8 @@ function ProductCard({
               width={300}
               height={300}
               className="product-image"
-              loading="lazy"
+              loading={priority ? 'eager' : loading}
+              priority={priority}
               quality={85}
               sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
               onError={handleImageError}
