@@ -653,7 +653,7 @@ export default function Home() {
     <div className="page-content">
       <div className="container">
         <Header />
-        <SearchBar cartCount={3} />
+        <SearchBar />
 
         {/* Navigation Tabs with Dropdown */}
         <div

@@ -1,31 +1,68 @@
 'use client';
 
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import ProfileModal from './ProfileModal';
 import { useProfile } from '../context/ProfileContext';
+import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
+import { useFavourites } from '../context/FavouritesContext';
 
-export default function DesktopNav({ cartCount = 3 }) {
+export default function DesktopNav() {
   const pathname = usePathname();
+  const router = useRouter();
   const { isProfileOpen, toggleProfile, closeProfile } = useProfile();
+  const { user, loading: authLoading } = useAuth();
+  const { getCartItemCount } = useCart();
+  const { getFavouritesCount } = useFavourites();
+  const isAuthenticated = !!user;
+  const cartCount = getCartItemCount();
+  const favouritesCount = getFavouritesCount();
+
+  const handleCartClick = (e) => {
+    if (!isAuthenticated) {
+      e.preventDefault();
+      router.push('/auth/login?redirect=/cart');
+    }
+  };
+
+  const handleFavoritesClick = (e) => {
+    if (!isAuthenticated) {
+      e.preventDefault();
+      router.push('/auth/login?redirect=/favorites');
+    }
+  };
 
   return (
     <>
       <div className="desktop-nav">
-        <Link href="/favorites" className="desktop-nav-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
+        <Link 
+          href="/favorites" 
+          className="desktop-nav-item"
+          onClick={handleFavoritesClick}
+        >
+          <div className="desktop-cart-wrapper">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            {isAuthenticated && favouritesCount > 0 && (
+              <span className="desktop-cart-badge">{favouritesCount}</span>
+            )}
+          </div>
         </Link>
-        <Link href="/cart" className="desktop-nav-item">
+        <Link 
+          href="/cart" 
+          className="desktop-nav-item"
+          onClick={handleCartClick}
+        >
           <div className="desktop-cart-wrapper">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="9" cy="21" r="1"></circle>
               <circle cx="20" cy="21" r="1"></circle>
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
-            {cartCount > 0 && (
+            {isAuthenticated && cartCount > 0 && (
               <span className="desktop-cart-badge">{cartCount}</span>
             )}
           </div>

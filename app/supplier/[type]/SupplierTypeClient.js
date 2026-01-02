@@ -52,7 +52,7 @@ export default function SupplierTypeClient({ type, title, description, initialPr
     <div className="page-content">
       <div className="container">
         <Header />
-        <SearchBar cartCount={0} />
+        <SearchBar />
         
         {/* Search Input */}
         <div className="supplier-search-container">

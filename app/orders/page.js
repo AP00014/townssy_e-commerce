@@ -13,23 +13,23 @@ import '../styles/orders.css';
 
 export default function OrdersPage() {
   const router = useRouter();
-  const { user, loading: authLoading } = useAuth();
+  const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Check authentication
+  // Redirect to login if not authenticated
   useEffect(() => {
-    if (!authLoading && !user) {
+    if (!authLoading && !isAuthenticated) {
       router.push('/auth/login?redirect=/orders');
     }
-  }, [user, authLoading, router]);
+  }, [isAuthenticated, authLoading, router]);
 
   // Fetch orders when user is authenticated
   useEffect(() => {
-    if (user && !authLoading) {
+    if (isAuthenticated && user && !authLoading) {
       loadOrders();
     }
-  }, [user, authLoading]);
+  }, [isAuthenticated, user, authLoading]);
 
   const loadOrders = async () => {
     try {
@@ -133,9 +133,9 @@ export default function OrdersPage() {
     );
   }
 
-  // Show login prompt if not authenticated
-  if (!user) {
-    return null; // Will redirect to login
+  // Don't render if not authenticated (will redirect)
+  if (!isAuthenticated) {
+    return null;
   }
 
   return (
@@ -147,7 +147,12 @@ export default function OrdersPage() {
             <ArrowLeft size={18} />
             <span>Back to Shopping</span>
           </Link>
-          <h1 className="orders-title">My Orders</h1>
+          <div className="orders-title-wrapper">
+            <h1 className="orders-title">My Orders</h1>
+            {orders.length > 0 && (
+              <span className="orders-badge">{orders.length}</span>
+            )}
+          </div>
           <div style={{ width: '120px' }}></div> {/* Spacer for alignment */}
         </div>
 

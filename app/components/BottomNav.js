@@ -1,16 +1,44 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import ProfileModal from './ProfileModal';
 import { useProfile } from '../context/ProfileContext';
 import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
+import { useFavourites } from '../context/FavouritesContext';
 
 export default function BottomNav() {
   const pathname = usePathname();
+  const router = useRouter();
   const isCartPage = pathname === '/cart';
   const { isProfileOpen, toggleProfile, closeProfile } = useProfile();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+  const { getCartItemCount } = useCart();
+  const { getFavouritesCount } = useFavourites();
+  const cartCount = getCartItemCount();
+  const favouritesCount = getFavouritesCount();
+
+  const handleCartClick = (e) => {
+    if (!isAuthenticated) {
+      e.preventDefault();
+      router.push('/auth/login?redirect=/cart');
+    }
+  };
+
+  const handleFavoritesClick = (e) => {
+    if (!isAuthenticated) {
+      e.preventDefault();
+      router.push('/auth/login?redirect=/favorites');
+    }
+  };
+
+  const handleOrdersClick = (e) => {
+    if (!isAuthenticated) {
+      e.preventDefault();
+      router.push('/auth/login?redirect=/orders');
+    }
+  };
 
   const navItems = [
     { 
@@ -91,6 +119,92 @@ export default function BottomNav() {
                 </div>
                 <span style={{ fontSize: '10px', marginTop: '2px' }}>{item.label}</span>
               </div>
+            );
+          }
+
+          // Special handling for cart item with badge
+          if (item.path === '/cart') {
+            return (
+              <Link 
+                key={item.path} 
+                href={item.path} 
+                className="nav-item"
+                onClick={handleCartClick}
+              >
+                <div className={`nav-icon-wrapper ${active ? 'active' : ''}`} style={{ position: 'relative' }}>
+                  {item.icon(active)}
+                  {isAuthenticated && cartCount > 0 && (
+                    <span className="cart-badge" style={{
+                      position: 'absolute',
+                      top: '-4px',
+                      right: '-4px',
+                      backgroundColor: 'var(--cart-badge, #FF0000)',
+                      color: 'white',
+                      borderRadius: '50%',
+                      width: '18px',
+                      height: '18px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '10px',
+                      fontWeight: '600',
+                      border: '2px solid white'
+                    }}>{cartCount}</span>
+                  )}
+                </div>
+                <span style={{ fontSize: '10px', marginTop: '2px' }}>{item.label}</span>
+              </Link>
+            );
+          }
+
+          // Handle favorites and orders with authentication
+          if (item.path === '/favorites') {
+            return (
+              <Link 
+                key={item.path} 
+                href={item.path} 
+                className="nav-item"
+                onClick={handleFavoritesClick}
+              >
+                <div className={`nav-icon-wrapper ${active ? 'active' : ''}`} style={{ position: 'relative' }}>
+                  {item.icon(active)}
+                  {isAuthenticated && favouritesCount > 0 && (
+                    <span className="cart-badge" style={{
+                      position: 'absolute',
+                      top: '-4px',
+                      right: '-4px',
+                      backgroundColor: 'var(--cart-badge, #FF0000)',
+                      color: 'white',
+                      borderRadius: '50%',
+                      width: '18px',
+                      height: '18px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '10px',
+                      fontWeight: '600',
+                      border: '2px solid white'
+                    }}>{favouritesCount}</span>
+                  )}
+                </div>
+                <span style={{ fontSize: '10px', marginTop: '2px' }}>{item.label}</span>
+              </Link>
+            );
+          }
+
+          if (item.path === '/orders') {
+            return (
+              <Link 
+                key={item.path} 
+                href={item.path} 
+                className="nav-item"
+                onClick={handleOrdersClick}
+              >
+                <div className={`nav-icon-wrapper ${active ? 'active' : ''}`}>
+                  {item.icon(active)}
+                </div>
+                <span style={{ fontSize: '10px', marginTop: '2px' }}>{item.label}</span>
+              </Link>
             );
           }
 
