@@ -132,9 +132,10 @@ export default function SettingsPage() {
       setUploadingAvatar(true);
       
       // Generate unique filename
+      // Path should be: {user_id}/filename.ext (no 'avatars/' prefix since bucket is already 'avatars')
       const fileExt = avatarFile.name.split('.').pop();
-      const fileName = `${user.id}/${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
-      const filePath = `avatars/${fileName}`;
+      const fileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const filePath = `${user.id}/${fileName}`;
 
       // Upload to Supabase Storage
       const { data: uploadData, error: uploadError } = await supabase.storage
@@ -153,8 +154,8 @@ export default function SettingsPage() {
             .remove([filePath]);
           
           // Retry upload with new filename
-          const retryFileName = `${user.id}/${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
-          const retryPath = `avatars/${retryFileName}`;
+          const retryFileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
+          const retryPath = `${user.id}/${retryFileName}`;
           
           const { data: retryData, error: retryError } = await supabase.storage
             .from('avatars')
@@ -224,41 +225,98 @@ export default function SettingsPage() {
       // Upload avatar if a new file was selected
       if (avatarFile) {
         try {
+          console.log('Uploading avatar...', avatarFile.name);
           avatarUrl = await uploadAvatar();
+          console.log('Avatar uploaded successfully:', avatarUrl);
+          
+          if (!avatarUrl) {
+            throw new Error('Avatar upload failed - no URL returned');
+          }
+          
+          // Update formData with new avatar URL
           setFormData(prev => ({ ...prev, avatar_url: avatarUrl }));
-          setAvatarFile(null); // Clear file after upload
+          // Clear file after successful upload
+          setAvatarFile(null);
         } catch (uploadError) {
+          console.error('Avatar upload error:', uploadError);
           throw new Error(`Failed to upload avatar: ${uploadError.message}`);
         }
       }
 
       // Update profile in database
-      const { error } = await supabase
-        .from('profiles')
-        .update({
-          full_name: formData.full_name,
-          username: formData.username,
-          phone: formData.phone,
-          avatar_url: avatarUrl,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', user.id);
+      const updateData = {
+        full_name: formData.full_name,
+        username: formData.username,
+        phone: formData.phone,
+        updated_at: new Date().toISOString()
+      };
 
-      if (error) throw error;
+      // Only include avatar_url if it exists
+      if (avatarUrl) {
+        updateData.avatar_url = avatarUrl;
+      }
+
+      const { error, data } = await supabase
+        .from('profiles')
+        .update(updateData)
+        .eq('id', user.id)
+        .select();
+
+      if (error) {
+        console.error('Profile update error:', error);
+        throw error;
+      }
+
+      console.log('Profile updated:', data);
 
       // Update email in auth if changed
       if (formData.email !== user.email) {
         const { error: emailError } = await supabase.auth.updateUser({
           email: formData.email
         });
-        if (emailError) throw emailError;
+        if (emailError) {
+          console.error('Email update error:', emailError);
+          throw emailError;
+        }
+      }
+
+      // Refresh profile data and update context
+      if (data && data[0]) {
+        const updatedProfile = data[0];
+        
+        // Update formData with saved data
+        setFormData(prev => ({
+          ...prev,
+          avatar_url: updatedProfile.avatar_url || prev.avatar_url,
+          full_name: updatedProfile.full_name || prev.full_name,
+          username: updatedProfile.username || prev.username,
+          phone: updatedProfile.phone || prev.phone
+        }));
+        
+        // Update avatar preview with the saved URL
+        if (updatedProfile.avatar_url) {
+          setAvatarPreview(updatedProfile.avatar_url);
+        }
+        
+        // Update auth context profile to refresh UI
+        if (updateProfile && typeof updateProfile === 'function') {
+          await updateProfile(updatedProfile);
+        }
       }
 
       setSuccessMessage('Profile updated successfully!');
-      setTimeout(() => setSuccessMessage(''), 3000);
+      
+      // Scroll to top to show success message
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Clear message after 5 seconds
+      setTimeout(() => setSuccessMessage(''), 5000);
+      
+      // Clear avatar file state after successful save
+      setAvatarFile(null);
     } catch (error) {
       console.error('Error updating profile:', error);
-      setErrorMessage(error.message || 'Failed to update profile');
+      setErrorMessage(error.message || 'Failed to update profile. Please try again.');
     } finally {
       setSaving(false);
     }
@@ -460,36 +518,20 @@ export default function SettingsPage() {
                       e.target.src = SITE_LOGO_SVG;
                     }}
                   />
-                  <div className="avatar-overlay">
-                    <Camera size={20} />
-                  </div>
-                  <input
-                    type="file"
-                    accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
-                    onChange={handleAvatarSelect}
-                    className="avatar-file-input"
-                    id="avatar-upload"
-                    disabled={uploadingAvatar}
-                  />
-                  <label htmlFor="avatar-upload" className="avatar-upload-label"></label>
                 </div>
-                <div className="avatar-upload-info">
-                  <p className="avatar-upload-text">
-                    {uploadingAvatar ? (
-                      <>
-                        <img src={SITE_LOGO_SVG} alt="Loading" className="avatar-upload-spinner" />
-                        <span>Uploading...</span>
-                      </>
-                    ) : avatarFile ? (
-                      <span className="avatar-file-name">{avatarFile.name}</span>
-                    ) : (
-                      'Click to upload (Max 5MB)'
-                    )}
-                  </p>
-                  <p className="avatar-upload-hint">
-                    Supported: JPEG, PNG, WebP, GIF
-                  </p>
-                </div>
+                <input
+                  type="file"
+                  accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+                  onChange={handleAvatarSelect}
+                  className="avatar-file-input"
+                  id="avatar-upload"
+                  disabled={uploadingAvatar}
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor="avatar-upload" className="change-avatar-button">
+                  <Camera size={18} />
+                  <span>{uploadingAvatar ? 'Uploading...' : 'Change profile picture'}</span>
+                </label>
               </div>
             </div>
 
