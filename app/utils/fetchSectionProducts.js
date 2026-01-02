@@ -39,12 +39,12 @@ function transformProduct(product) {
 /**
  * Fetch products for a home section by section ID
  * @param {string} sectionId - The ID of the section
- * @param {number} limit - Maximum number of products to return
+ * @param {number} limit - Maximum number of products to return (default: 10, use null or very high number for all)
  * @returns {Promise<Array>} Array of transformed products
  */
 export async function fetchProductsForSectionById(sectionId, limit = 10) {
   try {
-    const { data, error } = await supabase
+    let query = supabase
       .from('product_section_placements')
       .select(`
         sort_order,
@@ -72,8 +72,15 @@ export async function fetchProductsForSectionById(sectionId, limit = 10) {
       .eq('products.is_active', true)
       .eq('products.verification_status', 'approved')
       .order('is_pinned', { ascending: false })
-      .order('sort_order', { ascending: true })
-      .limit(limit);
+      .order('sort_order', { ascending: true });
+
+    // Only apply limit if it's provided and is a reasonable number
+    // For "all products", pass null or undefined
+    if (limit != null && limit > 0) {
+      query = query.limit(limit);
+    }
+
+    const { data, error } = await query;
 
     if (error) {
       console.error('Error fetching products for section:', error);

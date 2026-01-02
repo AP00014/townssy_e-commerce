@@ -820,6 +820,7 @@ export default function Home() {
                 <SectionHeader 
                   title={section.display_name || section.name} 
                   href={section.section_type === 'category' ? `/category/${section.name}` : undefined}
+                  viewAllHref={`/sections/${section.id}`}
                 />
                 {section.description && (
                   <div className="section-subtitle">
